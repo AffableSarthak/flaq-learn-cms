@@ -1,14 +1,19 @@
-import { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints';
+import { QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
 
-export type Post = {
-  id: string;
+export type BlogPages = {
   title: string;
+  pageId: string;
 };
 
-export const parseProperties = (database: QueryDatabaseResponse): Post[] =>
-  database.results.map((row) => {
-    const id = row.id;
-    const titleCell = row.properties.Title.title;
-    const title = titleCell?.[0].plain_text;
-    return { id, title };
+const getPageId = (url: string): string => {
+  const urlParts = url.split("-");
+  return urlParts[urlParts.length - 1];
+};
+
+export const parseProperties = (database: QueryDatabaseResponse): BlogPages[] =>
+  database.results.map((row: any) => {
+    const title = row.properties.Article.title[0].plain_text;
+    const pageId = getPageId(row.url);
+
+    return { title, pageId };
   });
