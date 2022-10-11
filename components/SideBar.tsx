@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import { BlogPages } from '../src/utils/parse-properties'
 
+// TODO: Create a new responsive sidebar component.
 function SideBar({ blogData }: { blogData: BlogPages[] }) {
   return (
     <>
