@@ -9,7 +9,7 @@ function SideBar({ blogData }: { blogData: BlogPages[] }) {
         <div className="logo">
           <Link href="/">FLAQ ACADEMY</Link>
         </div>
-        {blogData.map((blog) => (
+        {blogData?.map((blog) => (
           <div key={blog.pageId} className="menu-item">
             <Link href={`/blog/${blog.pageId}`}>{blog.title}</Link>
           </div>
