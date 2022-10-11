@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { NotionRenderer } from 'react-notion-x'
 import {
@@ -7,6 +8,10 @@ import {
 import { parseProperties } from '../../src/utils/parse-properties'
 
 const Blog = ({ recordMap }: { recordMap: any }) => {
+  if (recordMap === null) {
+    return 'Oh shit, record map is undefined'
+  }
+
   return (
     <div>
       <NotionRenderer
