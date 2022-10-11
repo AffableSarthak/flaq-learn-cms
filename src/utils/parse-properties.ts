@@ -10,6 +10,7 @@ const getPageId = (url: string): string => {
   return urlParts[urlParts.length - 1];
 };
 
+// Parse the notion database response to get the blog pages data.
 export const parseProperties = (database: QueryDatabaseResponse): BlogPages[] =>
   database.results.map((row: any) => {
     const title = row.properties.Article.title[0].plain_text;

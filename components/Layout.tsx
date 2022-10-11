@@ -10,11 +10,11 @@ function Layout({
   blogData: BlogPages[]
 }) {
   return (
-    <div className="main-container">
+    <div className="layout-container">
       <div className="sidebar-container">
         <SideBar blogData={blogData} />
       </div>
-      <div className="body-container">{children}</div>
+      <div className="main-container">{children}</div>
     </div>
   )
 }

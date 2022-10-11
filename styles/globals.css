@@ -53,7 +53,7 @@ text-decoration: none;
   color: #064579;
 }
 
-.body-container {
+.main-container {
   margin-left: 18rem; /* Same width as the sidebar + left position in px */
   font-size: 28px; /* Increased text to enable scrolling */
   padding: 0px 10px;
