@@ -1,6 +1,5 @@
 import React from 'react'
-import { queryDatabase } from '../src/api/query-database'
-import { BlogPages, parseProperties } from '../src/utils/parse-properties'
+import { BlogPages } from '../src/utils/parse-properties'
 import SideBar from './SideBar'
 
 function Layout({
