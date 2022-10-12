@@ -1,17 +1,17 @@
-import { Box, Flex, Icon, IconButton, Show, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { BlogPages } from "../src/utils/parse-properties";
-import SideBar from "./Sidebar";
-import { AiOutlineDoubleRight } from "react-icons/ai";
+import { Box, Flex, Icon, IconButton, Show, Text } from '@chakra-ui/react'
+import React, { useState } from 'react'
+import { BlogPages } from '../src/utils/parse-properties'
+import SideBar from './Sidebar'
+import { AiOutlineDoubleRight } from 'react-icons/ai'
 function Layout({
   children,
   blogData,
 }: {
-  children: React.ReactNode;
-  blogData: BlogPages[];
+  children: React.ReactNode
+  blogData: BlogPages[]
 }) {
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
+  const [isSidebarOpen, setSidebarOpen] = useState(false)
+  const toggleSidebar = () => setSidebarOpen(!isSidebarOpen)
   return (
     <Box>
       <Box>
@@ -26,24 +26,20 @@ function Layout({
             <Flex py="4" alignItems="center">
               <Show below="md">
                 <IconButton
-                  variant={"outline"}
+                  variant={'outline'}
                   mx="1"
                   onClick={() => toggleSidebar()}
                   aria-label="open close drawer"
                   icon={<AiOutlineDoubleRight />}
                 />
               </Show>
-
-              <Text fontSize={"14px"} fontWeight={"400"}>
-                Flaq Academy
-              </Text>
             </Flex>
             <Box>{children}</Box>
           </Box>
         </Flex>
       </Box>
     </Box>
-  );
+  )
 }
 
-export default Layout;
+export default Layout
