@@ -1,11 +1,17 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { NotionRenderer } from 'react-notion-x'
+import { Header, NotionRenderer } from 'react-notion-x'
+import React from 'react'
 import {
   getRecordDataForPage,
   queryDatabase,
 } from '../../src/api/query-database'
 import { parseProperties } from '../../src/utils/parse-properties'
+import * as types from "notion-types";
+import { Box, Flex } from '@chakra-ui/react'
+interface MyHeadingProps {
+  children: React.PropsWithChildren<React.ReactChild>;
+}
 
 const Blog = ({ recordMap }: { recordMap: any }) => {
   // TODO: Show an error comopnent or link to a error page.
@@ -21,13 +27,14 @@ const Blog = ({ recordMap }: { recordMap: any }) => {
         darkMode={false}
         // TODO: Enable this when the sidebar is added.
         // showTableOfContents={true}
+
         components={{
           nextImage: Image,
           nextLink: Link,
         }}
       />
     </div>
-  )
+  );
 }
 
 export async function getServerSideProps(context: any) {
