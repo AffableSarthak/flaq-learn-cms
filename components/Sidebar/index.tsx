@@ -53,14 +53,14 @@ const SidebarContent = ({ blogData }: { blogData: BlogPages[] }) => {
             Flaq Academy
           </Text>
         </Link>
-        <Show below="md">
+        {/* <Show above="md">
           <IconButton
             variant={'outline'}
             mx="1"
             aria-label="open close drawer"
             icon={<AiOutlineDoubleLeft />}
           />
-        </Show>
+        </Show> */}
       </Flex>
       {blogData?.map((blog) => (
         <Flex
