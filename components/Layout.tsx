@@ -13,32 +13,31 @@ function Layout({
   const [isSidebarOpen, setSidebarOpen] = useState(false)
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen)
   return (
-    <Box>
-      <Box>
-        <Flex>
-          <SideBar
-            isSidebarOpen={isSidebarOpen}
-            toggleSidebar={toggleSidebar}
-            blogData={blogData}
-          />
+    <div className="flex-container">
+      <div>
+        <SideBar
+          isSidebarOpen={isSidebarOpen}
+          toggleSidebar={toggleSidebar}
+          blogData={blogData}
+        />
 
-          <Box flex="1" px="1">
-            <Flex py="4" alignItems="center">
-              <Show below="md">
-                <IconButton
-                  variant={'outline'}
-                  mx="1"
-                  onClick={() => toggleSidebar()}
-                  aria-label="open close drawer"
-                  icon={<AiOutlineDoubleRight />}
-                />
-              </Show>
-            </Flex>
-            <Box>{children}</Box>
-          </Box>
-        </Flex>
-      </Box>
-    </Box>
+        <Box flex="1" px="1">
+          <Flex py="4" alignItems="center">
+            <Show below="md">
+              <IconButton
+                variant={'outline'}
+                mx="1"
+                onClick={() => toggleSidebar()}
+                aria-label="open close drawer"
+                icon={<AiOutlineDoubleRight />}
+              />
+            </Show>
+          </Flex>
+        </Box>
+      </div>
+
+      <div className="flex-item">{children}</div>
+    </div>
   )
 }
 
