@@ -3,7 +3,7 @@ import { QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints"
 export type BlogPages = {
   title: string;
   pageId: string;
-  icon:string
+  icon: string;
 };
 
 const getPageId = (url: string): string => {
@@ -16,6 +16,6 @@ export const parseProperties = (database: QueryDatabaseResponse): BlogPages[] =>
   database.results.map((row: any) => {
     const title = row.properties.Article.title[0].plain_text;
     const pageId = getPageId(row.url);
-    const icon = row.icon.emoji;
+    const icon = row.icon?.emoji ?? null;
     return { title, pageId, icon };
   });

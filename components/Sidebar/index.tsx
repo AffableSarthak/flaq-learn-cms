@@ -32,17 +32,12 @@ const mdVariant = { navigation: 'sidebar', navigationButton: false }
 const SidebarContent = ({ blogData }: { blogData: BlogPages[] }) => {
   return (
     <VStack w="100%">
-      <Flex
-        py="4"
-        w="100%"
-        justifyContent={'space-between'}
-        alignItems="center"
-      >
+      <Flex py="4" w="100%" justifyContent={'space-between'} alignItems="left">
         <Link href="/">
           <Text
             ml={4}
             p={1}
-            fontSize={{ base: 'md', md: 'lg', lg: 'xl' }}
+            fontSize={{ base: 'sm', md: 'md', lg: 'lg' }}
             fontWeight={900}
             _hover={{
               bg: '#E2E2E1',
@@ -64,7 +59,7 @@ const SidebarContent = ({ blogData }: { blogData: BlogPages[] }) => {
       </Flex>
       {blogData?.map((blog) => (
         <Flex
-          fontSize="14px"
+          fontSize={{ base: 'sm', md: 'md', lg: 'lg' }}
           color="#37352F"
           key={blog.pageId}
           // fontFamily="Segoe UI"
@@ -78,7 +73,7 @@ const SidebarContent = ({ blogData }: { blogData: BlogPages[] }) => {
             borderRadius: 'md',
           }}
         >
-          <Text px="1">{blog.icon}</Text>
+          {blog.icon ?? <Text px="1">{blog.icon}</Text>}
           <Link href={`/blog/${blog.pageId}`}>
             <Text>{blog.title}</Text>
           </Link>
