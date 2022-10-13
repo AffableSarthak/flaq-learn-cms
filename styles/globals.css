@@ -30,3 +30,18 @@ text-decoration: none;
   }
 }
   
+*::-webkit-scrollbar {
+  width: 0.5em;
+  border-radius: 10px;
+}
+ 
+*::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  borderRadius: 10px;
+}
+ 
+*::-webkit-scrollbar-thumb {
+  background-color: #EDEDEB;
+  outline: 1px solid slategrey;
+  borderRadius: 1px;
+}

@@ -38,23 +38,26 @@ const mdVariant = { navigation: "sidebar", navigationButton: false };
 interface SidebarContentProps { 
   blogData: BlogPages[];
   isSidebarOpen: boolean;
-  toggleSidebar: ()=>void;
+  toggleSidebar: () => void;
+  closeDrawer:Function;
 }
 const SidebarContent = ({
   blogData,
   isSidebarOpen,
   toggleSidebar,
+  closeDrawer,
 }: SidebarContentProps) => {
   return (
-    <VStack w="100%">
+    <VStack w="100%" alignItems={"left"}>
       <Flex
         py="4"
         w="100%"
         justifyContent={"space-between"}
         alignItems="center"
       >
-        <Link href="/">Flaq Academy</Link>
         <Show above="md">
+          <Link href="/">Flaq Academy</Link>
+
           <IconButton
             variant={"outline"}
             mx="1"
@@ -64,23 +67,27 @@ const SidebarContent = ({
           />
         </Show>
       </Flex>
-      {blogData?.map((blog) => (
-        <Flex
-          fontSize="14px"
-          color="#37352F"
-          key={blog.pageId}
-          fontFamily="Segoe UI"
-          fontWeight={"600"}
-          px="2"
-          borderRadius={"2"}
-          py="1"
-          _hover={{
-            bg: "#E2E2E1",
-          }}
-        >
-          <Text px="1">{blog.icon}</Text>
-          <Link href={`/blog/${blog.pageId}`}>{blog.title}</Link>
-        </Flex>
+      {blogData?.map((blog,key) => (
+        <Box key={ key} cursor={"pointer"} onClick={() => closeDrawer()}>
+          <Link href={`/blog/${blog.pageId}`}>
+            <Flex
+              fontSize="14px"
+              color="#37352F"
+              key={blog.pageId}
+              fontFamily="Segoe UI"
+              fontWeight={"600"}
+              px="2"
+              borderRadius={"2"}
+              py="1"
+              _hover={{
+                bg: "#E2E2E1",
+              }}
+            >
+              <Text px="1">{blog.icon}</Text>
+              <Text>{blog.title}</Text>
+            </Flex>
+          </Link>
+        </Box>
       ))}
     </VStack>
   );
@@ -94,7 +101,7 @@ const sideVariants = {
   },
   open: {
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0,
       staggerDirection: 1,
     },
   },
@@ -108,20 +115,25 @@ const SidebarDrawar = ({
   cycleOpenSidebar,
 }: Props) => {
   return variant === "sidebar" ? (
-    <AnimatePresence>
+    <AnimatePresence exitBeforeEnter initial={false}>
       {openSidebar && (
         <motion.aside
           initial={{ width: 0 }}
           animate={{
-            width: 300,
+            width: 305,
+            height: "100vh",
           }}
+          transition={{ bounce: 0 }}
           exit={{
             width: 0,
-            transition: { delay: 0.7, duration: 0.3 },
+            transition: { delay: 0.1, duration: 0.1, bounce: 0 },
           }}
         >
           <motion.div
             className="container"
+            style={{
+              height: "100vh",
+            }}
             initial="closed"
             animate="open"
             exit="closed"
@@ -138,6 +150,7 @@ const SidebarDrawar = ({
               minH="100%"
             >
               <SidebarContent
+                closeDrawer={onClose}
                 blogData={blogData}
                 isSidebarOpen={openSidebar}
                 toggleSidebar={cycleOpenSidebar}
@@ -163,6 +176,7 @@ const SidebarDrawar = ({
               isSidebarOpen={openSidebar}
               toggleSidebar={cycleOpenSidebar}
               blogData={blogData}
+              closeDrawer={onClose}
             />
           </DrawerBody>
         </DrawerContent>

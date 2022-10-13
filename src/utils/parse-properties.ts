@@ -17,5 +17,6 @@ export const parseProperties = (database: QueryDatabaseResponse): BlogPages[] =>
     const title = row.properties.Article.title[0].plain_text;
     const pageId = getPageId(row.url);
     const icon = row.icon?.emoji ?? null;
+    console.log(row.properties.Category.select.name);
     return { title, pageId, icon };
   });
