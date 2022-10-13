@@ -38,7 +38,6 @@ const SidebarContent = ({
   menu.forEach((value, key) => {
     menuList.push({ category: key, blogs: value });
   });
-  console.log(menuList);
 
   return (
     <VStack w="100%" alignItems={"left"}>
