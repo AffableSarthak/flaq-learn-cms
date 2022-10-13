@@ -28,8 +28,8 @@ function Layout({
         </Show>
       )}
 
-      <div className="flex-container">
-        <div>
+      <Flex >
+        <Box height="100vh" minH="100vh" position={'relative'} top={0} left={0} zIndex={1 }>
           <SideBar
             isSidebarOpen={isSidebarOpen}
             toggleSidebar={toggleSidebar}
@@ -51,10 +51,10 @@ function Layout({
               </Show>
             </Flex>
           </Box>
-        </div>
+        </Box>
 
-        <div className="flex-item">{children}</div>
-      </div>
+        <Box h="100vh" overflowY="scroll" flex="1">{children}</Box>
+      </Flex>
     </div>
   );
 }
