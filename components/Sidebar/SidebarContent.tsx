@@ -1,7 +1,7 @@
 import { VStack, Flex, Link, IconButton, Show } from "@chakra-ui/react";
-import React from 'react'
+import React from "react";
 import { AiOutlineDoubleLeft } from "react-icons/ai";
-import { BlogPages } from '../../src/utils/parse-properties';
+import { BlogPages } from "../../src/utils/parse-properties";
 import SidebarLink from "./SidebarLink";
 
 interface SidebarContentProps {
@@ -49,7 +49,9 @@ const SidebarContent = ({
         alignItems="center"
       >
         <Show above="md">
-          <Link href="/">Flaq Academy</Link>
+          <Link fontSize={"20px"} fontWeight={"bold"} href="/">
+            Flaq Academy
+          </Link>
 
           <IconButton
             variant={"outline"}
@@ -65,4 +67,4 @@ const SidebarContent = ({
   );
 };
 
-export default SidebarContent
+export default SidebarContent;
