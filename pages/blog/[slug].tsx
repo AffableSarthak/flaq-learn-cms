@@ -24,7 +24,7 @@ const Blog = ({ recordMap }: { recordMap: any }) => {
       <NotionRenderer
         recordMap={recordMap}
         fullPage={true}
-        darkMode={false}
+        darkMode={true}
         // TODO: Enable this when the sidebar is added.
         // showTableOfContents={true}
         disableHeader={true}
