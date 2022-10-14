@@ -16,7 +16,7 @@ const Home = ({ recordMap }: { recordMap: ExtendedRecordMap }) => {
       <NotionRenderer
         recordMap={recordMap}
         fullPage={true}
-        darkMode={false}
+        darkMode={true}
         showTableOfContents={true}
         components={{
           nextImage: Image,
