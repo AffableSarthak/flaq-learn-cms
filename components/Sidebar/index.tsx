@@ -1,20 +1,20 @@
-import { useBreakpointValue } from "@chakra-ui/react";
-import React from "react";
-import { BlogPages } from "../../src/utils/parse-properties";
+import { useBreakpointValue } from '@chakra-ui/react'
+import React from 'react'
+import { BlogPages } from '../../src/utils/parse-properties'
+import DesktopSidebar from './DesktopSidebar'
 
-import MobileDrawer from "./MobileDrawer";
-import DesktopSidebar from "./DesktopSidebar";
+import MobileDrawer from './MobileDrawer'
 
 interface Props {
-  onClose: Function;
-  isOpen: boolean;
-  variant: string;
-  blogData: BlogPages[];
-  openSidebar: boolean;
-  cycleOpenSidebar: () => void;
+  onClose: Function
+  isOpen: boolean
+  variant: string
+  blogData: BlogPages[]
+  openSidebar: boolean
+  cycleOpenSidebar: () => void
 }
-const smVariant = { navigation: "drawer", navigationButton: true };
-const mdVariant = { navigation: "sidebar", navigationButton: false };
+const smVariant = { navigation: 'drawer', navigationButton: true }
+const mdVariant = { navigation: 'sidebar', navigationButton: false }
 
 const SidebarDrawar = ({
   isOpen,
@@ -24,7 +24,7 @@ const SidebarDrawar = ({
   openSidebar,
   cycleOpenSidebar,
 }: Props) => {
-  return variant === "sidebar" ? (
+  return variant === 'sidebar' ? (
     <DesktopSidebar
       blogData={blogData}
       cycleOpenSidebar={cycleOpenSidebar}
@@ -40,15 +40,14 @@ const SidebarDrawar = ({
       openSidebar={openSidebar}
       cycleOpenSidebar={cycleOpenSidebar}
     />
-  );
-};
-// TODO: Create a new responsive sidebar component.
+  )
+}
 interface SidebarProps {
-  isSidebarOpen: boolean;
-  blogData: BlogPages[];
-  toggleSidebar: () => void;
-  cycleOpenSidebar: () => void;
-  openSidebar: boolean;
+  isSidebarOpen: boolean
+  blogData: BlogPages[]
+  toggleSidebar: () => void
+  cycleOpenSidebar: () => void
+  openSidebar: boolean
 }
 function SideBar({
   blogData,
@@ -57,7 +56,7 @@ function SideBar({
   cycleOpenSidebar,
   openSidebar,
 }: SidebarProps) {
-  const variants = useBreakpointValue({ base: smVariant, md: mdVariant });
+  const variants = useBreakpointValue({ base: smVariant, md: mdVariant })
 
   return (
     <SidebarDrawar
@@ -68,7 +67,7 @@ function SideBar({
       isOpen={isSidebarOpen}
       onClose={toggleSidebar}
     />
-  );
+  )
 }
 
-export default SideBar;
+export default SideBar

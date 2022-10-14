@@ -1,19 +1,19 @@
-import { VStack, Flex, Link, IconButton, Show } from "@chakra-ui/react";
-import React from "react";
-import { AiOutlineDoubleLeft } from "react-icons/ai";
-import { BlogPages } from "../../src/utils/parse-properties";
-import SidebarLink from "./SidebarLink";
+import { VStack, Flex, Link, IconButton, Show } from '@chakra-ui/react'
+import React from 'react'
+import { AiOutlineDoubleLeft } from 'react-icons/ai'
+import { BlogPages } from '../../src/utils/parse-properties'
+import SidebarLink from './SidebarLink'
 
 interface SidebarContentProps {
-  blogData: BlogPages[];
-  isSidebarOpen: boolean;
-  toggleSidebar: () => void;
-  closeDrawer: Function;
+  blogData: BlogPages[]
+  isSidebarOpen: boolean
+  toggleSidebar: () => void
+  closeDrawer: Function
 }
 
 interface MenuListProps {
-  category: string;
-  blogs: BlogPages[];
+  category: string
+  blogs: BlogPages[]
 }
 
 const SidebarContent = ({
@@ -24,36 +24,36 @@ const SidebarContent = ({
 }: SidebarContentProps) => {
   const groupByToMap = <T, Q>(
     array: T[],
-    predicate: (value: T, index: number, array: T[]) => Q
+    predicate: (value: T, index: number, array: T[]) => Q,
   ) =>
     array.reduce((map, value, index, array) => {
-      const key = predicate(value, index, array);
-      map.get(key)?.push(value) ?? map.set(key, [value]);
-      return map;
-    }, new Map<Q, T[]>());
+      const key = predicate(value, index, array)
+      map.get(key)?.push(value) ?? map.set(key, [value])
+      return map
+    }, new Map<Q, T[]>())
 
-  const menu = groupByToMap(blogData, (v) => v.category);
+  const menu = groupByToMap(blogData, (v) => v.category)
 
-  const menuList: MenuListProps[] = [];
+  const menuList: MenuListProps[] = []
   menu.forEach((value, key) => {
-    menuList.push({ category: key, blogs: value });
-  });
+    menuList.push({ category: key, blogs: value })
+  })
 
   return (
-    <VStack w="100%" alignItems={"left"}>
+    <VStack w="100%" alignItems={'left'}>
       <Flex
         py="4"
         w="100%"
-        justifyContent={"space-between"}
+        justifyContent={'space-between'}
         alignItems="center"
       >
         <Show above="md">
-          <Link fontSize={"20px"} fontWeight={"bold"} href="/">
+          <Link fontSize={'20px'} fontWeight={'bold'} href="/">
             Flaq Academy
           </Link>
 
           <IconButton
-            variant={"outline"}
+            variant={'outline'}
             mx="1"
             onClick={() => toggleSidebar()}
             aria-label="open close drawer"
@@ -63,7 +63,7 @@ const SidebarContent = ({
       </Flex>
       <SidebarLink menuList={menuList} closeDrawer={() => closeDrawer()} />
     </VStack>
-  );
-};
+  )
+}
 
-export default SidebarContent;
+export default SidebarContent

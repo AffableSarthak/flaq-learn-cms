@@ -13,13 +13,13 @@ function Layout({
 }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false)
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen)
-  const [openSidebar, cycleOpenSidebar] = useCycle(true, false);
+  const [openSidebar, cycleOpenSidebar] = useCycle(true, false)
   return (
     <div>
       {!openSidebar && (
         <Show above="md">
           <IconButton
-            variant={"outline"}
+            variant={'outline'}
             mx="1"
             onClick={() => cycleOpenSidebar()}
             aria-label="open close drawer"
@@ -28,8 +28,8 @@ function Layout({
         </Show>
       )}
 
-      <Flex >
-        <Box height="100vh" minH="100vh" position={'relative'} top={0} left={0} zIndex={1 }>
+      <Flex flexDirection={{ base: 'column', md: 'row', lg: 'row' }}>
+        <Box position={'relative'} top={0} left={0} zIndex={1}>
           <SideBar
             isSidebarOpen={isSidebarOpen}
             toggleSidebar={toggleSidebar}
@@ -38,11 +38,11 @@ function Layout({
             openSidebar={openSidebar}
           />
 
-          <Box flex="1" px="1">
-            <Flex py="4" alignItems="center">
+          <Box flex="1" mt="1">
+            <Flex alignItems="center">
               <Show below="md">
                 <IconButton
-                  variant={"outline"}
+                  variant={'outline'}
                   mx="1"
                   onClick={() => toggleSidebar()}
                   aria-label="open close drawer"
@@ -53,10 +53,12 @@ function Layout({
           </Box>
         </Box>
 
-        <Box h="100vh" overflowY="scroll" flex="1">{children}</Box>
+        <Box h="100vh" overflowY="scroll" flex="1">
+          {children}
+        </Box>
       </Flex>
     </div>
-  );
+  )
 }
 
 export default Layout

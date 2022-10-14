@@ -7,10 +7,10 @@ import {
   queryDatabase,
 } from '../../src/api/query-database'
 import { parseProperties } from '../../src/utils/parse-properties'
-import * as types from "notion-types";
+import * as types from 'notion-types'
 import { Box, Flex } from '@chakra-ui/react'
 interface MyHeadingProps {
-  children: React.PropsWithChildren<React.ReactChild>;
+  children: React.PropsWithChildren<React.ReactChild>
 }
 
 const Blog = ({ recordMap }: { recordMap: any }) => {
@@ -27,14 +27,14 @@ const Blog = ({ recordMap }: { recordMap: any }) => {
         darkMode={false}
         // TODO: Enable this when the sidebar is added.
         // showTableOfContents={true}
-
+        disableHeader={true}
         components={{
           nextImage: Image,
           nextLink: Link,
         }}
       />
     </div>
-  );
+  )
 }
 
 export async function getServerSideProps(context: any) {
