@@ -8,7 +8,7 @@ import {
   Flex,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { BlogPages } from "../../src/utils/parse-properties";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -25,16 +25,21 @@ const SidebarLink = ({
 }) => {
   const router = useRouter();
   const { slug } = router.query;
-    const [activeAccordion, setActiveAccordion] = React.useState(-1);
-    const handleAccordion = (index: number) => { 
-        
-        setActiveAccordion(index);
-        return "";
+  const [activeAccordion, setActiveAccordion] = React.useState(-1);
+  useEffect(() => {
+    menuList.forEach((menu, index) => {
+      menu.blogs.forEach((blog) => {
+        if (blog.pageId === slug) {
+          console.log("active", index);
+          setActiveAccordion(index);
+        }
+      });
+    });
+  }, [activeAccordion, menuList]);
 
-    }
   return (
     <Box w="full">
-      <Accordion defaultIndex={[activeAccordion]} allowToggle>
+      <Accordion allowMultiple>
         {menuList.map((menu, tabkey) => (
           <AccordionItem key={tabkey}>
             <h2>
