@@ -7,12 +7,7 @@ class Document extends NextDocument<Props> {
   render() {
     return (
       <Html>
-        <Head>
-          <link
-            href="http://fonts.cdnfonts.com/css/segoe-ui-4"
-            rel="stylesheet"
-          ></link>
-        </Head>
+        <Head/>
         <body>
           <Main />
           <NextScript />
