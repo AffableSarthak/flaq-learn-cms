@@ -2,15 +2,14 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
+    Droid Sans, Helvetica Neue, sans-serif;
 }
 
-a{
-color: inherit;
-text-decoration: none;
+a {
+  color: inherit;
+  text-decoration: none;
 }
-
 
 * {
   box-sizing: border-box;
@@ -20,7 +19,7 @@ text-decoration: none;
   display: flex;
 }
 
-.flex-item{
+.flex-item {
   flex: 2;
 }
 
@@ -29,19 +28,24 @@ text-decoration: none;
     display: contents;
   }
 }
-  
+
 *::-webkit-scrollbar {
   width: 0.5em;
   border-radius: 10px;
 }
- 
+
 *::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  borderRadius: 10px;
+  borderradius: 10px;
 }
- 
+
 *::-webkit-scrollbar-thumb {
-  background-color: #EDEDEB;
+  background-color: #ededeb;
   outline: 1px solid slategrey;
-  borderRadius: 1px;
+  borderradius: 1px;
+}
+
+@font-face {
+  font-family: "Segoe UI";
+  src: url("/fonts/SEGOEUI.TTF");
 }
