@@ -1,4 +1,4 @@
-import { Box, Flex, Icon, IconButton, Show, Text } from '@chakra-ui/react'
+import { Box, Flex, Icon, IconButton, Show, Text, useColorModeValue } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { BlogPages } from '../src/utils/parse-properties'
 import SideBar from './Sidebar'
@@ -14,12 +14,15 @@ function Layout({
   const [isSidebarOpen, setSidebarOpen] = useState(false)
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen)
   const [openSidebar, cycleOpenSidebar] = useCycle(true, false)
+  const bgColor = useColorModeValue("#2F3437", "#2F3437");
+  const textColor = useColorModeValue("#FBFBFA", "#2F3437");
   return (
-    <div>
+    <Box position={"relative"} bg={bgColor} color={textColor}>
       {!openSidebar && (
         <Show above="md">
           <IconButton
-            variant={'outline'}
+            position="static"
+            variant={"outline"}
             mx="1"
             onClick={() => cycleOpenSidebar()}
             aria-label="open close drawer"
@@ -28,8 +31,14 @@ function Layout({
         </Show>
       )}
 
-      <Flex flexDirection={{ base: 'column', md: 'row', lg: 'row' }}>
-        <Box position={'relative'} top={0} left={0} zIndex={1}>
+      <Flex flexDirection={{ base: "column", md: "row", lg: "row" }}>
+        <Box
+          fontFamily={"Poppins"}
+          position={"relative"}
+          top={0}
+          left={0}
+          zIndex={1}
+        >
           <SideBar
             isSidebarOpen={isSidebarOpen}
             toggleSidebar={toggleSidebar}
@@ -42,7 +51,8 @@ function Layout({
             <Flex alignItems="center">
               <Show below="md">
                 <IconButton
-                  variant={'outline'}
+                  position={'fixed'}
+                  variant={"outline"}
                   mx="1"
                   onClick={() => toggleSidebar()}
                   aria-label="open close drawer"
@@ -53,12 +63,12 @@ function Layout({
           </Box>
         </Box>
 
-        <Box h="100vh" overflowY="scroll" flex="1">
+        <Box mt={!openSidebar?"0":"6"} h="100vh" overflowY="scroll" flex="1">
           {children}
         </Box>
       </Flex>
-    </div>
-  )
+    </Box>
+  );
 }
 
 export default Layout
