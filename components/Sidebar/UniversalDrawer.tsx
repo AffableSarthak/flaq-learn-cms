@@ -9,6 +9,7 @@ import {
   IconButton,
   Box,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import React from "react";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { BlogPages } from "../../src/utils/parse-properties";
@@ -44,7 +45,10 @@ const UniversalDrawer = ({ blogData }: Props) => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Flaq Academy</DrawerHeader>
+
+          <DrawerHeader>
+            <Link href={"/"}>Flaq Academy</Link>
+          </DrawerHeader>
 
           <DrawerBody>
             <SidebarContent blogData={blogData} closeDrawer={onClose} />
