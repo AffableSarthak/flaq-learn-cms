@@ -1,4 +1,9 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
+
+const config: ThemeConfig = {
+  initialColorMode: 'dark',
+  useSystemColorMode: false,
+}
 
 const theme = extendTheme({
   fonts: {
@@ -6,6 +11,7 @@ const theme = extendTheme({
     body: `'Segoe UI', sans-serif`,
     subHeading: `'Segoe UI', sans-serif`,
   },
+  config,
 });
 
 export default theme;

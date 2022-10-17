@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react'
 import { BlogPages } from '../../src/utils/parse-properties';
@@ -25,6 +25,8 @@ const sideVariants = {
   },
 };
 const DesktopSidebar = ({openSidebar,blogData,cycleOpenSidebar,onClose }: DesktopSidebarProps) => {
+  const color = useColorModeValue("#2F3437", "#FBFBFA");
+  const textColor = useColorModeValue("#FBFBFA", "#2F3437");
   return (
     <AnimatePresence exitBeforeEnter initial={false}>
       {openSidebar && (
@@ -51,9 +53,10 @@ const DesktopSidebar = ({openSidebar,blogData,cycleOpenSidebar,onClose }: Deskto
             variants={sideVariants}
           >
             <Box
+              color={textColor}
               px="4"
-              bgColor="#FBFBFA"
-              borderRight={"2px solid #ebebe1"}
+              bgColor={color}
+              borderRight={`1px solid #ffffff`}
               mx="1"
               left={0}
               w="298px"

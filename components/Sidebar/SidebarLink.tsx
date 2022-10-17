@@ -7,6 +7,7 @@ import {
   Box,
   Flex,
   Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { BlogPages } from "../../src/utils/parse-properties";
@@ -36,7 +37,7 @@ const SidebarLink = ({
       });
     });
   }, [activeAccordion, menuList]);
-
+const textColor = useColorModeValue("#FFFFFF", "#37352F");
   return (
     <Box w="full">
       <Accordion allowMultiple>
@@ -53,19 +54,21 @@ const SidebarLink = ({
             <AccordionPanel pb={4}>
               {menu.blogs.map((blog, key) => (
                 <Box key={key} cursor={"pointer"} onClick={closeDrawer}>
-                  <Link href={`/blog/${blog.pageId}`}>
+                  <Link href={`/blog/${blog.url}`}>
                     <Flex
                       fontSize="14px"
-                      color={`#37352F`}
+                      // color={textColor}
                       key={blog.pageId}
-                      fontFamily="Segoe UI"
+                      fontFamily="Poppins"
                       fontWeight={"600"}
                       px="2"
                       borderRadius={"2"}
                       py="1"
                       bg={`${slug === blog.pageId ? "#E2E2E1" : ""}`}
+                      color={`${slug === blog.pageId ? "#37352F" : "#FFFFFF"}`}
                       _hover={{
                         bg: "#E2E2E1",
+                        color: "#37352F",
                       }}
                     >
                       <Text px="1">{blog.icon}</Text>

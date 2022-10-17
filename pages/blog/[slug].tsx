@@ -39,6 +39,7 @@ const Blog = ({ recordMap }: { recordMap: any }) => {
 
 export async function getServerSideProps(context: any) {
   const { slug } = context.query
+  // console.log("slug", context);
   const recordMap = await getRecordDataForPage(slug)
   const database = await queryDatabase()
   const blogData = parseProperties(database!)

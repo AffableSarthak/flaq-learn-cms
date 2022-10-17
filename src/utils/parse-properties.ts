@@ -5,6 +5,7 @@ export type BlogPages = {
   pageId: string;
   icon: string;
   category: string;
+  url: string;
 };
 
 const getPageId = (url: string): string => {
@@ -17,7 +18,8 @@ export const parseProperties = (database: QueryDatabaseResponse): BlogPages[] =>
   database.results.map((row: any) => {
     const title = row.properties.Article.title[0].plain_text;
     const pageId = getPageId(row.url);
+    const url = row.url.replace("https://www.notion.so/", "");
     const icon = row.icon?.emoji ?? null;
     const category = row.properties.Category.select.name;
-    return { title, pageId, icon, category };
+    return { title, pageId, icon, category, url };
   });
