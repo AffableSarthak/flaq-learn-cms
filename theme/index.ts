@@ -1,4 +1,5 @@
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
+import Drawer from "./Drawer";
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',
@@ -12,6 +13,9 @@ const theme = extendTheme({
     subHeading: `'Segoe UI', sans-serif`,
   },
   config,
+  components: {
+    Drawer,
+  },
 });
 
 export default theme;
