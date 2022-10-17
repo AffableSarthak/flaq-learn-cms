@@ -1,18 +1,9 @@
-import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-  Flex,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react'
+import { Box, Divider, Flex, Text } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { BlogPages } from '../../src/utils/parse-properties'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { BsPen } from 'react-icons/bs'
 interface MenuListProps {
   category: string
   blogs: BlogPages[]
@@ -36,51 +27,45 @@ const SidebarLink = ({
         }
       })
     })
-  }, [activeAccordion, menuList])
-  const textColor = useColorModeValue('#FFFFFF', '#37352F')
+  }, [activeAccordion, menuList, slug])
   return (
     <Box w="full">
-      <Accordion defaultIndex={[activeAccordion]} allowMultiple>
-        {menuList.map((menu, tabkey) => (
-          <AccordionItem key={tabkey}>
-            <h2>
-              <AccordionButton>
-                <Box flex="1" textAlign="left">
-                  {menu.category}
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel pb={4}>
-              {menu.blogs.map((blog, key) => (
-                <Box key={key} cursor={'pointer'} onClick={closeDrawer}>
-                  <Link href={`/blog/${blog.url}`}>
-                    <Flex
-                      fontSize="14px"
-                      // color={textColor}
-                      key={blog.pageId}
-                      fontFamily="Poppins"
-                      fontWeight={'600'}
-                      px="2"
-                      borderRadius={'2'}
-                      py="1"
-                      bg={`${slug === blog.pageId ? '#E2E2E1' : ''}`}
-                      color={`${slug === blog.pageId ? '#37352F' : '#FFFFFF'}`}
-                      _hover={{
-                        bg: '#E2E2E1',
-                        color: '#37352F',
-                      }}
-                    >
+      {menuList.map((menu, tabkey) => (
+        <Box key={tabkey} my="1">
+          <Text>{menu.category}</Text>
+          <Box py="4">
+            {menu.blogs.map((blog, key) => (
+              <Box key={key} py="1" cursor={'pointer'} onClick={closeDrawer}>
+                <Link href={`/blog/${blog.url}`}>
+                  <Flex
+                    fontSize="14px"
+                    // color={textColor}
+                    key={blog.pageId}
+                    fontFamily="Poppins"
+                    fontWeight={'600'}
+                    px="2"
+                    borderRadius={'2'}
+                    py="1"
+                    _hover={{
+                      bg: '#E2E2E1',
+                      color: '#37352F',
+                    }}
+                  >
+                    {blog.icon ? (
                       <Text px="1">{blog.icon}</Text>
-                      <Text>{blog.title}</Text>
-                    </Flex>
-                  </Link>
-                </Box>
-              ))}
-            </AccordionPanel>
-          </AccordionItem>
-        ))}
-      </Accordion>
+                    ) : (
+                      <Box p="1.5">
+                        <BsPen />
+                      </Box>
+                    )}
+                    <Text>{blog.title}</Text>
+                  </Flex>
+                </Link>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      ))}
     </Box>
   )
 }

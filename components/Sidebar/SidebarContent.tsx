@@ -1,14 +1,11 @@
-import { VStack, Flex, Link, IconButton, Show } from '@chakra-ui/react'
+import { VStack, Flex} from '@chakra-ui/react'
 import React from 'react'
-import { AiOutlineDoubleLeft } from 'react-icons/ai'
 import { BlogPages } from '../../src/utils/parse-properties'
 import SidebarLink from './SidebarLink'
 
 interface SidebarContentProps {
-  blogData: BlogPages[]
-  isSidebarOpen: boolean
-  toggleSidebar: () => void
-  closeDrawer: Function
+  blogData: BlogPages[];
+  closeDrawer: () => void;
 }
 
 interface MenuListProps {
@@ -18,8 +15,6 @@ interface MenuListProps {
 
 const SidebarContent = ({
   blogData,
-  isSidebarOpen,
-  toggleSidebar,
   closeDrawer,
 }: SidebarContentProps) => {
   const groupByToMap = <T, Q>(
@@ -47,19 +42,6 @@ const SidebarContent = ({
         justifyContent={'space-between'}
         alignItems="center"
       >
-        <Show above="md">
-          <Link fontSize={'20px'} fontWeight={'bold'} href="/">
-            Flaq Academy
-          </Link>
-
-          <IconButton
-            variant={'outline'}
-            mx="1"
-            onClick={() => toggleSidebar()}
-            aria-label="open close drawer"
-            icon={<AiOutlineDoubleLeft />}
-          />
-        </Show>
       </Flex>
       <SidebarLink menuList={menuList} closeDrawer={() => closeDrawer()} />
     </VStack>
