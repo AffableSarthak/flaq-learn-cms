@@ -28,6 +28,7 @@ const UniversalDrawer = ({ blogData }: Props) => {
         <IconButton
           position="static"
           variant={"unstyled"}
+          color="#ffffff"
           mx="1"
           onClick={onOpen}
           fontSize="4xl"
