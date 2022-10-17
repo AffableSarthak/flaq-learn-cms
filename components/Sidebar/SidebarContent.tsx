@@ -36,13 +36,6 @@ const SidebarContent = ({
 
   return (
     <VStack w="100%" alignItems={'left'}>
-      <Flex
-        py="4"
-        w="100%"
-        justifyContent={'space-between'}
-        alignItems="center"
-      >
-      </Flex>
       <SidebarLink menuList={menuList} closeDrawer={() => closeDrawer()} />
     </VStack>
   )
