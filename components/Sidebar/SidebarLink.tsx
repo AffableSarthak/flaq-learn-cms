@@ -17,22 +17,12 @@ const SidebarLink = ({
 }) => {
   const router = useRouter()
   const { slug } = router.query
-  const [activeAccordion, setActiveAccordion] = React.useState(0)
-  useEffect(() => {
-    menuList.forEach((menu, index) => {
-      menu.blogs.forEach((blog) => {
-        if (blog.pageId === slug) {
-          console.log('active', index)
-          setActiveAccordion(index)
-        }
-      })
-    })
-  }, [activeAccordion, menuList, slug])
+
   return (
     <Box w="full">
       {menuList.map((menu, tabkey) => (
         <Box key={tabkey} my="1">
-          <Text>{menu.category}</Text>
+          <Text color="#dad6d6">{menu.category}</Text>
           <Box py="4">
             {menu.blogs.map((blog, key) => (
               <Box key={key} py="1" cursor={'pointer'} onClick={closeDrawer}>
@@ -46,6 +36,8 @@ const SidebarLink = ({
                     px="2"
                     borderRadius={'2'}
                     py="1"
+                    bg={slug === blog.url ? '#E2E2E1' : 'transparent'}
+                    color={`${slug === blog.url ? '#37352F' : '#FFFFFF'}`}
                     _hover={{
                       bg: '#E2E2E1',
                       color: '#37352F',
