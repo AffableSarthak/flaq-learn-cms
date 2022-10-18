@@ -3,7 +3,7 @@ const Drawer = {
     mainsidebar: {
       dialog: {
         pointerEvents: "auto",
-        bg: "#2F3437",
+        bg: "#161B20",
         color: "white",
       },
       dialogBody: {
