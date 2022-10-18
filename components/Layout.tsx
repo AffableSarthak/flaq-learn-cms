@@ -14,7 +14,6 @@ function Layout({
   children: React.ReactNode;
   blogData: BlogPages[];
 }) {
-  const bgColor = useColorModeValue("#D0D1D2", "#D0D1D2");
   const textColor = useColorModeValue("#FBFBFA", "#D0D1D2");
   return (
     <>
@@ -27,7 +26,7 @@ function Layout({
         ></link>
         <link href="xyz.com"></link>
       </Head>
-      <Box position={"relative"} bg={bgColor} color={textColor}>
+      <Box position={"relative"} bg="#D0D1D2" color={textColor}>
         <Flex flexDirection={{ base: "column", md: "row", lg: "row" }}>
           <Box
             fontFamily={"Nunito Sans"}

@@ -68,3 +68,7 @@ a {
     width: 99%;
   }
 }
+
+.dark-mode {
+  --bg-color: #161B20;
+}
