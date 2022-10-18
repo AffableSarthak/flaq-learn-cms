@@ -2,7 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Poppins, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
+  font-family: Nunito Sans, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
     Droid Sans, Helvetica Neue, sans-serif;
 }
 
@@ -13,7 +13,7 @@ a {
 
 * {
   box-sizing: border-box;
-  font-family: "Poppins";
+  font-family: "Nunito Sans";
 }
 
 .flex-container {
@@ -51,10 +51,7 @@ a {
   src: url("/fonts/SEGOEUI.TTF");
 }
 
-@font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-Regular.ttf");
-}
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
 
 .notion-page {
   width: 80%;
@@ -62,12 +59,12 @@ a {
 
 @media only screen and (max-width: 600px) {
   .notion-page {
-    width: 90%;
+    width: 95%;
   }
 }
 
 @media only screen and (max-width: 400px) {
   .notion-page {
-    width: 95%;
+    width: 99%;
   }
 }
