@@ -31,7 +31,7 @@ const UniversalDrawer = ({ blogData }: Props) => {
           color="#ffffff"
           mx="1"
           onClick={onOpen}
-          fontSize="4xl"
+          fontSize="2xl"
           aria-label="open close drawer"
           icon={<AiOutlineDoubleRight />}
         />
