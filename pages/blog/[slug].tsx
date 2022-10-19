@@ -9,6 +9,7 @@ import {
 import { parseProperties } from '../../src/utils/parse-properties'
 import * as types from 'notion-types'
 import { Box, Flex } from '@chakra-ui/react'
+import Page404 from '../../components/Page404'
 interface MyHeadingProps {
   children: React.PropsWithChildren<React.ReactChild>
 }
@@ -16,7 +17,7 @@ interface MyHeadingProps {
 const Blog = ({ recordMap }: { recordMap: any }) => {
   // TODO: Show an error comopnent or link to a error page.
   if (recordMap === null) {
-    return 'Oh shit, record map is undefined'
+    return <Page404/>
   }
 
   return (

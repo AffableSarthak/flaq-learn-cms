@@ -2,13 +2,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ExtendedRecordMap } from 'notion-types'
 import { NotionRenderer } from 'react-notion-x'
+import Page404 from '../components/Page404'
 import { getRecordDataForPage, queryDatabase } from '../src/api/query-database'
 import { parseProperties } from '../src/utils/parse-properties'
 
 const Home = ({ recordMap }: { recordMap: ExtendedRecordMap }) => {
   // TODO: Show an error comopnent or link to a error page.
   if (recordMap === null) {
-    return 'Oh shit, record map is undefined'
+    return <Page404/>
   }
 
   return (
