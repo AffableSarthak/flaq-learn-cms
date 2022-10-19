@@ -1,5 +1,5 @@
 .notion-page {
-  width: 80%;
+  width: 90%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -40,22 +40,42 @@
 .notion-aside {
   top: calc((100vh - 100%) / 2);
 }
+
+/* Notion Aside Table of content header css */
 .notion-aside-table-of-contents-header {
   font-weight: 600;
   font-size: 1.2rem;
 }
+
+/* Notion Aside Table of content item css */
 .notion-table-of-contents-item {
   font-weight: 500;
   font-size: 1rem;
 }
 
+/* Notion Aside Table of content scrollbar css */
 .notion-aside-table-of-contents::-webkit-scrollbar {
   width: 0.2em;
   border-radius: 3.125rem;
 }
+
 .notion-aside-table-of-contents::-webkit-scrollbar-thumb {
   background-color: #474c50;
   outline: 1px solid slategrey;
   border-radius: 2px;
 }
+/* 
+.notion-aside {
+  width: 10%;
+}
 
+.notion-aside-table-of-contents {
+  width: 100%;
+  padding-left: 1rem;
+}
+
+.notion-table-of-contents-item-body {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+} */
