@@ -19,8 +19,8 @@
 }
 
 /* overiding the title and h1 tags of notion content */
-.notion-title{
-    font-weight: 800;
+.notion-title {
+  font-weight: 800;
 }
 .notion-h-title {
   color: #f2f2f2;
@@ -31,6 +31,31 @@
   font-weight: 800;
 }
 /* overiding the p tags of notion content */
-.notion-text{
-    font-weight: 600;
+.notion-text {
+  font-weight: 500;
+  font-size: 1.2rem;
 }
+
+/* Notion Aside Table of content css */
+.notion-aside {
+  top: calc((100vh - 100%) / 2);
+}
+.notion-aside-table-of-contents-header {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.notion-table-of-contents-item {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.notion-aside-table-of-contents::-webkit-scrollbar {
+  width: 0.2em;
+  border-radius: 3.125rem;
+}
+.notion-aside-table-of-contents::-webkit-scrollbar-thumb {
+  background-color: #474c50;
+  outline: 1px solid slategrey;
+  border-radius: 2px;
+}
+

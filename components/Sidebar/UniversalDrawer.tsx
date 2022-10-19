@@ -27,7 +27,7 @@ const UniversalDrawer = ({ blogData }: Props) => {
     <>
       <Box position="fixed">
         <IconButton
-          m="1"
+          m="2"
           display={"flex"}
           alignItems={"center"}
           backdropBlur="md"
@@ -36,9 +36,9 @@ const UniversalDrawer = ({ blogData }: Props) => {
           position="static"
           variant={"unstyled"}
           color="#ffffff"
-          mx="1"
+          
           onClick={onOpen}
-          fontSize="2xl"
+          fontSize="3xl"
           aria-label="open close drawer"
           icon={<GiHamburgerMenu />}
         />

@@ -26,7 +26,7 @@ const Blog = ({ recordMap }: { recordMap: any }) => {
         fullPage={true}
         darkMode={true}
         // TODO: Enable this when the sidebar is added.
-        // showTableOfContents={true}
+        showTableOfContents={true}
         disableHeader={true}
         components={{
           nextImage: Image,
