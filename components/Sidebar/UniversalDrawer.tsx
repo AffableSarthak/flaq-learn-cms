@@ -12,6 +12,7 @@ import {
 import Link from "next/link";
 import React from "react";
 import { AiOutlineDoubleRight } from "react-icons/ai";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { BlogPages } from "../../src/utils/parse-properties";
 import SidebarContent from "./SidebarContent";
 
@@ -26,6 +27,12 @@ const UniversalDrawer = ({ blogData }: Props) => {
     <>
       <Box position="fixed">
         <IconButton
+          m="1"
+          display={"flex"}
+          alignItems={"center"}
+          backdropBlur="md"
+          justifyContent={"center"}
+          bg="#000000"
           position="static"
           variant={"unstyled"}
           color="#ffffff"
@@ -33,7 +40,7 @@ const UniversalDrawer = ({ blogData }: Props) => {
           onClick={onOpen}
           fontSize="2xl"
           aria-label="open close drawer"
-          icon={<AiOutlineDoubleRight />}
+          icon={<GiHamburgerMenu />}
         />
       </Box>
 

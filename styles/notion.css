@@ -1,0 +1,36 @@
+.notion-page {
+  width: 80%;
+}
+
+@media only screen and (max-width: 600px) {
+  .notion-page {
+    width: 95%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .notion-page {
+    width: 99%;
+  }
+}
+
+.dark-mode {
+  --bg-color: #161b20;
+}
+
+/* overiding the title and h1 tags of notion content */
+.notion-title{
+    font-weight: 800;
+}
+.notion-h-title {
+  color: #f2f2f2;
+  font-size: 2rem;
+}
+
+.notion-h-title b {
+  font-weight: 800;
+}
+/* overiding the p tags of notion content */
+.notion-text{
+    font-weight: 600;
+}
