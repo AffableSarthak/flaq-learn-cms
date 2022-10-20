@@ -11,7 +11,6 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
-import { AiOutlineDoubleRight } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BlogPages } from "../../src/utils/parse-properties";
 import SidebarContent from "./SidebarContent";
@@ -36,7 +35,6 @@ const UniversalDrawer = ({ blogData }: Props) => {
           position="static"
           variant={"unstyled"}
           color="#ffffff"
-          
           onClick={onOpen}
           fontSize="3xl"
           aria-label="open close drawer"

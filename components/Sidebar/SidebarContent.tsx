@@ -17,6 +17,7 @@ const SidebarContent = ({
   blogData,
   closeDrawer,
 }: SidebarContentProps) => {
+  // this utils groups the blog data by category
   const groupByToMap = <T, Q>(
     array: T[],
     predicate: (value: T, index: number, array: T[]) => Q,

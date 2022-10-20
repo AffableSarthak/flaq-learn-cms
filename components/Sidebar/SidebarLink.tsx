@@ -1,5 +1,5 @@
-import { Box, Divider, Flex, Text } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
+import { Box, Flex, Text } from '@chakra-ui/react'
+import React from 'react'
 import { BlogPages } from '../../src/utils/parse-properties'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -29,7 +29,6 @@ const SidebarLink = ({
                 <Link href={`/blog/${blog.url}`} passHref>
                   <Flex
                     fontSize="14px"
-                    // color={textColor}
                     key={blog.pageId}
                     fontFamily="Poppins"
                     fontWeight={'600'}
