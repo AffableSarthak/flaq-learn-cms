@@ -57,3 +57,14 @@ a {
     display: contents;
   }
 }
+/* np prgress inter page loader style overide */
+#nprogress .bar {
+    background: #30823D !important;
+    padding: 0 5px !important;
+    height: 2px !important;
+}
+
+ #nprogress .spinner .spinner-icon {
+    border-top-color: #30823D !important;
+    border-left-color: #30823D !important;
+ }
