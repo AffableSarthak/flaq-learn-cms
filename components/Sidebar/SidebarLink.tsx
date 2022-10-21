@@ -22,8 +22,18 @@ const SidebarLink = ({
     <Box w="full">
       {menuList.map((menu, tabkey) => (
         <Box key={tabkey} my="1">
-          <Text color="#dad6d6">{menu.category}</Text>
-          <Box py="4">
+          <Text
+            fontSize={'xs'}
+            textAlign={'center'}
+            fontWeight={'600'}
+            backgroundColor="#020F02"
+            py={'1'}
+            borderRadius={'sm'}
+            backdropFilter="blur(100px)"
+          >
+            {menu.category}
+          </Text>
+          <Box pb="2">
             {menu.blogs.map((blog, key) => (
               <Box key={key} py="1" cursor={'pointer'} onClick={closeDrawer}>
                 <Link href={`/blog/${blog.url}`} passHref>
@@ -33,14 +43,20 @@ const SidebarLink = ({
                     fontFamily="Poppins"
                     fontWeight={'600'}
                     px="2"
-                    borderRadius={'2'}
+                    borderRadius={'50'}
                     py="1"
-                    bg={slug === blog.url ? '#E2E2E1' : 'transparent'}
-                    color={`${slug === blog.url ? '#37352F' : '#FFFFFF'}`}
-                    _hover={{
-                      bg: '#E2E2E1',
-                      color: '#37352F',
-                    }}
+                    // bgGradient={
+                    //   slug === blog.url
+                    //     ? 'linear(to-r, #4f759b,#d0fef5)'
+                    //     : 'transparent'
+                    // }
+
+                    // color={`${slug === blog.url ? '#0A0908' : '#f2f2f2'}`}
+                    // textDecoration={`${slug === blog.url ? 'underline' : ''}`}
+                    // _hover={{
+                    //   textDecoration: 'underline',
+                    //   backdropFilter: 'blur(100px)',
+                    // }}
                   >
                     {blog.icon ? (
                       <Text px="1">{blog.icon}</Text>

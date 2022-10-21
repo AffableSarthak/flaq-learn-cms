@@ -8,33 +8,34 @@ import {
   DrawerCloseButton,
   IconButton,
   Box,
-} from "@chakra-ui/react";
-import Link from "next/link";
-import React from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { BlogPages } from "../../src/utils/parse-properties";
-import SidebarContent from "./SidebarContent";
+  Text,
+} from '@chakra-ui/react'
+import Link from 'next/link'
+import React from 'react'
+import { GiHamburgerMenu } from 'react-icons/gi'
+import { BlogPages } from '../../src/utils/parse-properties'
+import SidebarContent from './SidebarContent'
 
 type Props = {
-  blogData: BlogPages[];
-};
+  blogData: BlogPages[]
+}
 
 const UniversalDrawer = ({ blogData }: Props) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
       <Box position="fixed">
         <IconButton
           m="2"
-          display={"flex"}
-          alignItems={"center"}
+          display={'flex'}
+          alignItems={'center'}
           backdropBlur="md"
-          justifyContent={"center"}
-          bg="#000000"
+          justifyContent={'center'}
+          bg="#005704"
           position="static"
-          variant={"unstyled"}
-          color="#ffffff"
+          variant={'unstyled'}
+          color="#A6EBC9"
           onClick={onOpen}
           fontSize="3xl"
           aria-label="open close drawer"
@@ -43,17 +44,29 @@ const UniversalDrawer = ({ blogData }: Props) => {
       </Box>
 
       <Drawer
-        variant={"mainsidebar"}
+        variant={'mainsidebar'}
         isOpen={isOpen}
         placement="left"
         onClose={onClose}
       >
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton />
+          <DrawerCloseButton size={'lg'} />
 
           <DrawerHeader>
-            <Link href={"/"}>Flaq Academy</Link>
+            <Link href={'/'}>
+              <Text
+                fontSize="2xl"
+                fontFamily={'Dela Gothic One'}
+                cursor={'pointer'}
+                _hover={{
+                  scale: 1.2,
+                  transform: 'translateY(-1px)',
+                }}
+              >
+                Flaq Academy
+              </Text>
+            </Link>
           </DrawerHeader>
 
           <DrawerBody>
@@ -62,7 +75,7 @@ const UniversalDrawer = ({ blogData }: Props) => {
         </DrawerContent>
       </Drawer>
     </>
-  );
-};
+  )
+}
 
-export default UniversalDrawer;
+export default UniversalDrawer

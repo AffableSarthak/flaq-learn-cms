@@ -1,36 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
+
+
 .notion-page {
   width: 90%;
 }
 
-@media only screen and (max-width: 600px) {
-  .notion-page {
-    width: 95%;
-  }
-}
-
-@media only screen and (max-width: 400px) {
-  .notion-page {
-    width: 99%;
-  }
-}
-
 .dark-mode {
-  --bg-color: #161b20;
+  --bg-color: #020F02;
 }
 
 /* overiding the title and h1 tags of notion content */
+/* Page title */
 .notion-title {
   font-weight: 800;
-}
-.notion-h-title {
-  color: #f2f2f2;
-  font-size: 2rem;
+  font-size: 6rem;
+  font-family: 'Dela Gothic One', cursive;
+  background: -webkit-linear-gradient(#A6EBC9, #005704);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+/* h1 */
 .notion-h-title b {
   font-weight: 700;
-  font-size: 2.2rem;
+  font-size: 2.4rem;
 }
+
+/* h2 */
+.notion-h-title {
+  color: #f2f2f2;
+  font-size: 1.8rem;
+}
+
 /* overiding the p tags of notion content */
 .notion-text {
   font-weight: 500;
@@ -45,24 +48,66 @@
 /* Notion Aside Table of content header css */
 .notion-aside-table-of-contents-header {
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  opacity: 1;
+  padding: 0.5rem;
+  margin: 1rem;
+  border: 1px solid transparent;
+  border-image: linear-gradient(60deg, #A6EBC9, #005704);
+  border-image-slice: 1;
+  border-radius: 10px; 
+}
+
+.notion-table-of-contents-active-item{
+  color: #fff !important
+}
+.notion-table-of-contents-item:hover{
+  background: none;
+}
+
+.notion-table-of-contents-item{
+  opacity: 1;
 }
 
 /* Notion Aside Table of content item css */
-.notion-table-of-contents-item {
-  font-weight: 500;
+.notion-table-of-contents-item span {
+  font-weight: 300;
   font-size: 1rem;
+  color: #fff;
+  display: inline-block;
+  position: relative;
+  color: #f2f2f2;
 }
+
+.notion-table-of-contents-item span:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: green;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+ }
+
+.notion-table-of-contents-item span:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+
 
 /* Notion Aside Table of content scrollbar css */
 .notion-aside-table-of-contents::-webkit-scrollbar {
-  width: 0.2em;
+  width: 0.1em;
   border-radius: 3.125rem;
 }
 
 .notion-aside-table-of-contents::-webkit-scrollbar-thumb {
-  background-color: #474c50;
-  outline: 1px solid slategrey;
+  background-color: #A6EBC9;
+  outline: 1px solid #005704;
   border-radius: 2px;
 }
 
@@ -89,5 +134,102 @@
     width: 100%;
     max-width: 100%;
     flex-grow: 1;
+  }
+}
+
+
+/* Notion divider for dark mode */
+.notion-hr{
+  width: 100%;
+margin: 0.75rem 0;
+border-top: 0.05rem solid rgb(166, 235, 201,0.5);
+
+}
+
+.notion-link{
+  color: green;
+  opacity: 1;
+  border:none;
+  font-weight: 600;
+  display: inline-block;
+  position: relative;
+}
+
+.notion-link::after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: #005704;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.notion-link:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.notion-audio audio{
+background-color: #005704;
+}
+
+.notion-page-icon-hero.notion-page-icon-image{
+width: 64px;
+height: 64px;
+}
+
+.notion-page-no-cover.notion-page-has-image-icon{
+  padding-top: 5rem;
+}
+
+.notion-page-icon-hero.notion-page-icon-image img{
+  object-fit: contain;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .notion-page {
+    width: 95%;
+  }
+
+  .notion-title {
+    font-size: 3rem;
+  }
+
+  .notion-h-title b {
+    font-size: 2.4rem;
+  }
+
+  .notion-h-title {
+    font-size: 1.8rem;
+  }
+  
+  .notion-text {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .notion-page {
+    width: 99%;
+  }
+  .notion-title {
+    font-size: 2.4rem;
+  }
+
+  .notion-h-title b {
+    font-size: 1.8rem;
+  }
+
+  .notion-h-title {
+    font-size: 1.2rem;
+  }
+  
+  .notion-text {
+    font-size: 1rem;
   }
 }
