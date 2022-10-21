@@ -70,6 +70,7 @@
 .notion-table-of-contents-item span {
   font-weight: 300;
   font-size: 1rem;
+  text-underline-offset: 5rem;
   color: #fff;
   display: inline-block;
   position: relative;

@@ -42,6 +42,12 @@ a {
   borderradius: 1px;
 }
 
+/* custom scroolbar color for Firefox only  */
+:root {
+  scrollbar-color: #a6ebc9 #a6ebc9 !important;
+  scrollbar-width: thin !important;
+}
+
 @font-face {
   font-family: "Segoe UI";
   src: url("/fonts/SEGOEUI.TTF");
@@ -57,14 +63,15 @@ a {
     display: contents;
   }
 }
+
 /* np prgress inter page loader style overide */
 #nprogress .bar {
-    background: #30823D !important;
-    padding: 0 5px !important;
-    height: 2px !important;
+  background: #30823d !important;
+  padding: 0 5px !important;
+  height: 2px !important;
 }
 
- #nprogress .spinner .spinner-icon {
-    border-top-color: #30823D !important;
-    border-left-color: #30823D !important;
- }
+#nprogress .spinner .spinner-icon {
+  border-top-color: #30823d !important;
+  border-left-color: #30823d !important;
+}
