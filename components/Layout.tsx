@@ -6,6 +6,7 @@ import {
 import Head from "next/head";
 import React from "react";
 import { BlogPages } from "../src/utils/parse-properties";
+import ReadProgressBar from "./ReadProgressBar";
 import SideBar from "./Sidebar";
 function Layout({
   children,
@@ -38,7 +39,8 @@ function Layout({
             <SideBar blogData={blogData} />
           </Box>
 
-          <Box h="100vh" overflowY="scroll" flex="1">
+          <Box h="100vh" id="box" overflowY="scroll" flex="1">
+            <ReadProgressBar/>
             {children}
           </Box>
         </Flex>
