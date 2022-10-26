@@ -50,12 +50,12 @@ a {
 
 @font-face {
   font-family: "Segoe UI";
-  src: url("/fonts/SEGOEUI.TTF");
+  src: url("/assets/fonts/SEGOEUI.TTF");
 }
 
 @font-face {
   font-family: "Dela Gothic One";
-  src: url("/fonts/DelaGothicOne-Regular.ttf");
+  src: url("/assets/fonts/DelaGothicOne-Regular.ttf");
 }
 
 @media screen and (max-width: 600px) {

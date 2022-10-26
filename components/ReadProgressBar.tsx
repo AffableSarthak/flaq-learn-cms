@@ -13,7 +13,6 @@ const ReadProgressBar = (props: Props) => {
     var percent = (ScrollTop / (ScrollHeight - el.clientHeight)) * 100;
     // store percentage in state
     setWidth(percent);
-    console.log(width);
   };
   useEffect(() => {
     const el = document.getElementById("box") || document.body;

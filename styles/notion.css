@@ -7,7 +7,7 @@
   --bg-color: #020f02;
 }
 
-/* overiding the title and h1 tags of notion content */
+/* overiding the title */
 /* Page title */
 .notion-title {
   font-weight: 800;
@@ -19,17 +19,6 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* h1 */
-.notion-h-title b {
-  font-weight: 700;
-  font-size: 2.4rem;
-}
-
-/* h2 */
-.notion-h-title {
-  color: #f2f2f2;
-  font-size: 1.8rem;
-}
 
 /* overiding the p tags of notion content */
 .notion-text {
@@ -227,4 +216,27 @@
   .notion-text {
     font-size: 1rem;
   }
+}
+
+
+/* Notion Headings Stylings */
+
+
+h2 span.notion-h-title {
+  font-weight: 700;
+  font-size: 2.4rem;
+}
+
+h3 span.notion-h-title {
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+h4 span.notion-h-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.notion-h-title b {
+  font-weight: 800;
 }
