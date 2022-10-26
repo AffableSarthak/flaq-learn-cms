@@ -9,8 +9,7 @@
 
 /* overiding the title and h1 tags of notion content */
 /* Page title */
-/* The real h1 */
-.notion-title {
+h1.notion-title {
   font-weight: 800;
   font-size: 6rem;
   font-family: "Dela Gothic One", sans-serif;
@@ -18,14 +17,83 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
+}
+
+h2.notion-h1{
+  font-weight: 700;
+  font-size: 3.2rem;
+  color: #a6ebc9;
+}
+
+h3.notion-h2{
+  font-weight: 700;
+  font-size: 2.6rem;
+  margin-top: 1em;
+}
+
+h4.notion-h3{
+  font-weight: 700;
+  font-size: 2rem;
+  margin-top: 1em;
 }
 
 /* overiding the p tags of notion content */
 .notion-text {
-  font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
+
+.notion-text span.notion-inline-underscore b, .notion-text b{
+  font-weight: 800;
+}
+
+.notion-text span.notion-inline-underscore{
+  text-underline-offset: 0.2em;
+}
+
+table.notion-simple-table {
+  width: 80%;
+}
+
+table.notion-simple-table,
+table.notion-simple-table td,
+table.notion-simple-table tr {
+  border: none;
+  font-weight: 500;
+}
+
+table.notion-simple-table tr:first-child td {
+  background: #005704;
+  font-weight: 600;
+  color: #f2f2f2;
+}
+
+.notion-property-checkbox-checked {
+  background: #005704;
+}
+
+.notion-property-checkbox-unchecked {
+  background: transparent;
+  border: 1.3px solid #f2f2f2;
+}
+
+.notion-property-checkbox-checked svg {
+  fill: #f2f2f2;
+}
+
+/* toggle details styling */
+
+details.notion-toggle > summary::marker {
+  color: #005704;
+}
+
+/* Quote Styling */
+
+.notion-quote {
+  border-left: 3px solid #005704;
+}
+
+
 
 /* Notion Aside Table of content css */
 .notion-aside {
@@ -168,17 +236,6 @@
   object-fit: contain;
 }
 
-span.notion-inline-underscore{
-  text-decoration: none;
-  color: #ffffff;
-
-  font-weight: bold;
-}
-
-b{
-  color: #a6ebc9;
-}
-
 @media (min-width: 1300px) and (min-height: 300px) {
   .notion-page-content-has-aside .notion-page-content-inner {
     width: 100%;
@@ -192,12 +249,31 @@ b{
     width: 95%;
   }
 
-   .notion-title {
-    font-size: 3rem;
+  h1.notion-title {
+    font-weight: 800;
+    font-size: 4.2rem;
+    margin-bottom: 0.5em;
   }
-
+  
+  h2.notion-h1{
+    font-weight: 700;
+    font-size: 3rem;
+    color: #a6ebc9;
+  }
+  
+  h3.notion-h2{
+    font-weight: 700;
+    font-size: 2.4rem;
+  
+  }
+  
+  h4.notion-h3{
+    font-weight: 700;
+    font-size: 1.8rem;
+  }
+  
   .notion-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -205,11 +281,30 @@ b{
   .notion-page {
     width: 99%;
   }
-   .notion-title {
-    font-size: 2.4rem;
+  h1.notion-title {
+    font-weight: 800;
+    font-size: 3rem;
+    margin-bottom: 0.5em;
   }
-
+  
+  h2.notion-h1{
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: #a6ebc9;
+  }
+  
+  h3.notion-h2{
+    font-weight: 700;
+    font-size: 1.8rem;
+  
+  }
+  
+  h4.notion-h3{
+    font-weight: 700;
+    font-size: 1.4rem;
+  }
+  
   .notion-text {
-    font-size: 0.9rem;
-  } 
+    font-size: 1rem;
+  }
 }
