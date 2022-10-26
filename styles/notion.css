@@ -266,3 +266,15 @@ table.notion-simple-table tr:first-child td {
 .notion-property-checkbox-checked svg {
   fill: #f2f2f2;
 }
+
+/* toggle details styling */
+
+details.notion-toggle > summary::marker {
+  color: #6cb885;
+}
+
+/* Quote Styling */
+
+.notion-quote {
+  border-left: 3px solid #216224;
+}
