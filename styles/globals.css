@@ -66,12 +66,12 @@ a {
 
 /* np prgress inter page loader style overide */
 #nprogress .bar {
-  background: #30823d !important;
+  background: #a6ebc9 !important;
   padding: 0 5px !important;
   height: 2px !important;
 }
 
 #nprogress .spinner .spinner-icon {
-  border-top-color: #30823d !important;
-  border-left-color: #30823d !important;
+  border-top-color: #a6ebc9 !important;
+  border-left-color: #a6ebc9 !important;
 }
