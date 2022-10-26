@@ -184,7 +184,7 @@ details.notion-toggle > summary::marker {
 /* Notion divider for dark mode */
 .notion-hr {
   width: 100%;
-  margin: 0.75rem 0;
+  margin: 0.4rem 0;
   border-top: 0.05rem solid rgb(166, 235, 201, 0.5);
 }
 
