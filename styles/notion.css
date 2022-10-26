@@ -19,7 +19,6 @@
   -webkit-text-fill-color: transparent;
 }
 
-
 /* overiding the p tags of notion content */
 .notion-text {
   font-weight: 500;
@@ -218,9 +217,7 @@
   }
 }
 
-
 /* Notion Headings Stylings */
-
 
 h2 span.notion-h-title {
   font-weight: 700;
@@ -240,3 +237,20 @@ h4 span.notion-h-title {
 .notion-h-title b {
   font-weight: 800;
 }
+
+table.notion-simple-table {
+  width: 100%;
+}
+
+table.notion-simple-table,
+table.notion-simple-table td,
+table.notion-simple-table tr {
+  border: 1px solid #469557;
+  font-weight: 500;
+}
+table.notion-simple-table tr:first-child td {
+  background: #216224;
+  font-weight: 600;
+  color: #f2f2f2;
+}
+/* #020F02 */
