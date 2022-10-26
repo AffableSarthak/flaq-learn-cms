@@ -9,6 +9,7 @@
 
 /* overiding the title and h1 tags of notion content */
 /* Page title */
+/* The real h1 */
 .notion-title {
   font-weight: 800;
   font-size: 6rem;
@@ -17,24 +18,13 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-/* h1 */
-.notion-h-title b {
-  font-weight: 700;
-  font-size: 2.4rem;
-}
-
-/* h2 */
-.notion-h-title {
-  color: #f2f2f2;
-  font-size: 1.8rem;
+  margin-bottom: 0.5em;
 }
 
 /* overiding the p tags of notion content */
 .notion-text {
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 /* Notion Aside Table of content css */
@@ -178,6 +168,17 @@
   object-fit: contain;
 }
 
+span.notion-inline-underscore{
+  text-decoration: none;
+  color: #ffffff;
+
+  font-weight: bold;
+}
+
+b{
+  color: #a6ebc9;
+}
+
 @media (min-width: 1300px) and (min-height: 300px) {
   .notion-page-content-has-aside .notion-page-content-inner {
     width: 100%;
@@ -191,20 +192,12 @@
     width: 95%;
   }
 
-  .notion-title {
+   .notion-title {
     font-size: 3rem;
   }
 
-  .notion-h-title b {
-    font-size: 2.4rem;
-  }
-
-  .notion-h-title {
-    font-size: 1.8rem;
-  }
-
   .notion-text {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 }
 
@@ -212,19 +205,11 @@
   .notion-page {
     width: 99%;
   }
-  .notion-title {
+   .notion-title {
     font-size: 2.4rem;
   }
 
-  .notion-h-title b {
-    font-size: 1.8rem;
-  }
-
-  .notion-h-title {
-    font-size: 1.2rem;
-  }
-
   .notion-text {
-    font-size: 1rem;
-  }
+    font-size: 0.9rem;
+  } 
 }

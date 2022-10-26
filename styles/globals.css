@@ -72,6 +72,5 @@ a {
 }
 
 #nprogress .spinner .spinner-icon {
-  border-top-color: #30823d !important;
-  border-left-color: #30823d !important;
+  display: none !important;
 }
