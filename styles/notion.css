@@ -253,4 +253,16 @@ table.notion-simple-table tr:first-child td {
   font-weight: 600;
   color: #f2f2f2;
 }
-/* #020F02 */
+
+.notion-property-checkbox-checked {
+  background: #519f64;
+}
+
+.notion-property-checkbox-unchecked {
+  background: transparent;
+  border: 1.3px solid #f2f2f2;
+}
+
+.notion-property-checkbox-checked svg {
+  fill: #f2f2f2;
+}
