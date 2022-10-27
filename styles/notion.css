@@ -241,6 +241,25 @@ details.notion-toggle > summary::marker {
   }
 }
 
+
+
+@media screen and (min-width:981px){
+
+  .notion-page-content{
+    flex-direction: unset;
+  }
+
+  .notion-aside{
+    display: flex;
+    max-width: 25vw;
+  }
+
+  .notion-aside-table-of-contents {
+    max-height: calc(100vh - 20px - 16px);
+  }
+}
+
+
 @media only screen and (max-width: 600px) {
   .notion-page {
     width: 95%;
