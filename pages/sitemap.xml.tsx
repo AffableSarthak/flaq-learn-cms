@@ -7,12 +7,20 @@ import { getBlogXmldata } from "../src/utils/get-xml-data";
 const Sitemap = () => {
   return null;
 };
-
-export const getServerSideProps = async ({
-  res,
-}: GetServerSidePropsContext) => {
-  const BASE_URL = "http://localhost:3000";
-
+function return_url(context: GetServerSidePropsContext) {
+  if (process.env.NODE_ENV === "production") {
+    // if you are hosting a http website use http instead of https
+    return `https://${context.req.rawHeaders[1]}`;
+  } else {
+    return "http://localhost:3000";
+  }
+}
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const { res, req } = context;
+  const BASE_URL = return_url(context) || "http://localhost:3000";
+  console.log(return_url(context));
   const database = await queryDatabase();
   const blogData = getBlogXmldata(database!);
 
@@ -21,11 +29,12 @@ export const getServerSideProps = async ({
     .filter((staticPage) => {
       return ![
         "api",
-        "product",
-        "_app.js",
-        "_document.js",
-        "404.js",
-        "sitemap.xml.js",
+        "index.tsx",
+        "_app.tsx",
+        "_document.tsx",
+        "404.tsx",
+        "blog",
+        "sitemap.xml.tsx",
       ].includes(staticPage);
     })
     .map((staticPagePath) => {
@@ -51,7 +60,7 @@ export const getServerSideProps = async ({
           .map((blog) => {
             return `
             <url>
-              <loc>${blog.url}</loc>
+              <loc>${BASE_URL}/blog/${blog.url}</loc>
               <lastmod>${blog.lastModified}</lastmod>
               <changefreq>monthly</changefreq>
               <priority>1.0</priority>
