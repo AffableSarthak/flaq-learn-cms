@@ -1,12 +1,12 @@
-import React from "react";
 import { GetServerSidePropsContext } from "next";
 import * as fs from "fs";
-import { parseProperties } from "../src/utils/parse-properties";
+
 import { queryDatabase } from "../src/api/query-database";
 import { getBlogXmldata } from "../src/utils/get-xml-data";
 const Sitemap = () => {
   return null;
 };
+
 function return_url(context: GetServerSidePropsContext) {
   if (process.env.NODE_ENV === "production") {
     // if you are hosting a http website use http instead of https
@@ -15,12 +15,13 @@ function return_url(context: GetServerSidePropsContext) {
     return "http://localhost:3000";
   }
 }
+
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const { res, req } = context;
+
+  const { res } = context;
   const BASE_URL = return_url(context) || "http://localhost:3000";
-  console.log(return_url(context));
   const database = await queryDatabase();
   const blogData = getBlogXmldata(database!);
 
