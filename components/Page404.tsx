@@ -1,4 +1,4 @@
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box, Button, Container, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import React from 'react'
 
@@ -6,13 +6,15 @@ type Props = {}
 
 const Page404 = (props: Props) => {
   return (
-    <Box
+    <Container
       display={"flex"}
       alignItems="center"
       justifyContent="center"
-      bg="#161B20"
+      bg="#020f02"
       h="100vh"
+      color="rgba(255, 255, 255, 0.9)"
       maxWidth="100%"
+      w="100%"
     >
       <Box textAlign={"center"}>
         <Box
@@ -25,7 +27,7 @@ const Page404 = (props: Props) => {
           </Text>
         </Box>
         <Text fontSize={"2rem"} textDecorationThickness={"1px black"}>
-          OH OH! You have lost
+          The page you are looking for doesn't exist.
         </Text>
         <Button
           mt="2"
@@ -38,7 +40,7 @@ const Page404 = (props: Props) => {
           <Link href="/">Go Home</Link>
         </Button>
       </Box>
-    </Box>
+    </Container>
   );
 }
 
