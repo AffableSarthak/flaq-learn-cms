@@ -27,7 +27,7 @@ const Page404 = (props: Props) => {
           </Text>
         </Box>
         <Text fontSize={"2rem"} textDecorationThickness={"1px black"}>
-          The page you are looking for doesn't exist.
+          The page you are looking for doesn&apos;t exist.
         </Text>
         <Button
           mt="2"
