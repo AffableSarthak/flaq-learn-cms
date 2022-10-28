@@ -1,6 +1,6 @@
 import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
 import Head from "next/head";
-import React, { useRef, useEffect, useState } from "react";
+import React from "react";
 import { BlogPages } from "../src/utils/parse-properties";
 import ReadProgressBar from "./ReadProgressBar";
 import SideBar from "./Sidebar";
@@ -21,7 +21,6 @@ function Layout({
           href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet"
         ></link>
-        <link href="xyz.com"></link>
       </Head>
       <Box position={"relative"} bg="#D0D1D2" color={textColor}>
         <Flex flexDirection={{ base: "column", md: "row", lg: "row" }}>
@@ -39,6 +38,7 @@ function Layout({
             style={{
               height: "100vh",
               overflow: "auto",
+              width: "100%",
             }}
             id="box"
           >
