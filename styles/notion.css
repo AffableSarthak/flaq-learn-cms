@@ -299,28 +299,28 @@ details.notion-toggle > summary::marker {
   }
   h1.notion-title {
     font-weight: 800;
-    font-size: 3rem;
+    font-size: 2rem;
     margin-bottom: 0.5em;
   }
   
   h2.notion-h1{
     font-weight: 700;
-    font-size: 2.4rem;
+    font-size: 1.8rem;
     color: #a6ebc9;
   }
   
   h3.notion-h2{
     font-weight: 700;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   
   }
   
   h4.notion-h3{
     font-weight: 700;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
   
   .notion-text {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 }
