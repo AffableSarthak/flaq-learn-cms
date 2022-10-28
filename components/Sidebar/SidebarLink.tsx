@@ -45,18 +45,6 @@ const SidebarLink = ({
                     px="2"
                     borderRadius={'50'}
                     py="1"
-                    // bgGradient={
-                    //   slug === blog.url
-                    //     ? 'linear(to-r, #4f759b,#d0fef5)'
-                    //     : 'transparent'
-                    // }
-
-                    // color={`${slug === blog.url ? '#0A0908' : '#f2f2f2'}`}
-                    // textDecoration={`${slug === blog.url ? 'underline' : ''}`}
-                    // _hover={{
-                    //   textDecoration: 'underline',
-                    //   backdropFilter: 'blur(100px)',
-                    // }}
                   >
                     {blog.icon ? (
                       <Text px="1">{blog.icon}</Text>
