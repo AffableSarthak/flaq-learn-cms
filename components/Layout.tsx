@@ -1,10 +1,6 @@
-import {
-  Box,
-  Flex,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
 import Head from "next/head";
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { BlogPages } from "../src/utils/parse-properties";
 import ReadProgressBar from "./ReadProgressBar";
 import SideBar from "./Sidebar";
@@ -38,11 +34,16 @@ function Layout({
           >
             <SideBar blogData={blogData} />
           </Box>
-
-          <Box h="100vh" id="box" overflowY="scroll" flex="1">
-            <ReadProgressBar/>
+          <ReadProgressBar />
+          <div
+            style={{
+              height: "100vh",
+              overflow: "auto",
+            }}
+            id="box"
+          >
             {children}
-          </Box>
+          </div>
         </Flex>
       </Box>
     </>
