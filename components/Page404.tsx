@@ -22,7 +22,7 @@ const Page404 = (props: Props) => {
             "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
           }
         >
-          <Text fontSize={"6rem"} textDecorationThickness={"1px black"}>
+          <Text fontSize={"4rem"} textDecorationThickness={"1px black"}>
             404
           </Text>
         </Box>
