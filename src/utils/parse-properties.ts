@@ -22,6 +22,6 @@ export const parseProperties = (database: QueryDatabaseResponse): BlogPages[] =>
     const url = row.url.replace("https://www.notion.so/", "");
     const icon = row.icon?.emoji ?? null;
     const category = row.properties.Category.select.name;
-    const created_time = row.created_time;
+    const created_time = row.properties["Created time"].date.start;
     return { title, pageId, icon, category, url, created_time };
   });

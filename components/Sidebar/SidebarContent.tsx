@@ -29,6 +29,7 @@ const SidebarContent = ({ blogData, closeDrawer }: SidebarContentProps) => {
 
   const menuList: MenuListProps[] = [];
   menu.forEach((value, key) => {
+    // sort the blogs by created_time
     menuList.push({
       category: key,
       blogs: value.sort(function (a, b) {
@@ -38,7 +39,6 @@ const SidebarContent = ({ blogData, closeDrawer }: SidebarContentProps) => {
       }),
     });
   });
-
   return (
     <VStack w="100%" alignItems={"left"}>
       <SidebarLink menuList={menuList} closeDrawer={() => closeDrawer()} />
