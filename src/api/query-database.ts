@@ -14,7 +14,7 @@ export const queryDatabase = async () => {
     });
     return response;
   } catch (error) {
-    console.log({ error });
+    console.log({ error }, "Databese query error");
   }
 };
 
@@ -24,6 +24,6 @@ export const getRecordDataForPage = async (pageId: string) => {
     const recordMap = await notionApi.getPage(pageId);
     return recordMap;
   } catch (error) {
-    console.log({ error });
+    console.log({ error }, "Page not found");
   }
 };
