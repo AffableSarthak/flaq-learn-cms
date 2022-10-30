@@ -15,9 +15,12 @@ const getPageId = (url: string): string => {
 };
 
 // Parse the notion database response to get the blog pages data.
-export const parseProperties = (database: QueryDatabaseResponse): BlogPages[] =>
-  database.results.map((row: any) => {
-    const title = row.properties.Article.title[0].plain_text;
+export const parseProperties = (
+  database: QueryDatabaseResponse
+): BlogPages[] => {
+  return database.results.map((row: any) => {
+    const title =
+      row.properties.Article?.title[0].plain_text ?? "fallback title";
     const pageId = getPageId(row.url);
     const url = row.url.replace("https://www.notion.so/", "");
     const icon = row.icon?.emoji ?? null;
@@ -25,3 +28,4 @@ export const parseProperties = (database: QueryDatabaseResponse): BlogPages[] =>
     const created_time = row.created_time;
     return { title, pageId, icon, category, url, created_time };
   });
+};
