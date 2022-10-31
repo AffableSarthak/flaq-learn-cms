@@ -12,7 +12,7 @@ const PageHead = (props: Props) => {
   const title = getBlockTitle(block, props.recordMap) || "Flaq Academy";
   const description =
     getPageProperty<string>("Description", block, props.recordMap) ||
-    "Learn Web3 development with Flaq Academy";
+    "Learn Web3 with Flaq Academy";
     const imageUrl = getPageImageUrls(props.recordMap, {
       mapImageUrl(url, block) {
         return url;
