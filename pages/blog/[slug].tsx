@@ -9,6 +9,7 @@ import {
 import { parseProperties } from '../../src/utils/parse-properties'
 import Page404 from '../../components/Page404'
 import PageHead from '../../components/PageHead'
+import DashboardLayout from '../../components/layouts/DashboardLayout'
 interface MyHeadingProps {
   children: React.PropsWithChildren<React.ReactChild>
 }
@@ -49,5 +50,7 @@ export async function getServerSideProps(context: any) {
     },
   }
 }
+
+Blog.PageLayout = DashboardLayout;
 
 export default Blog

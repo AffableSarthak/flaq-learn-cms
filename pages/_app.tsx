@@ -4,7 +4,6 @@ import "../styles/globals.css";
 import "../styles/notion.css";
 import type { AppProps } from "next/app";
 import { useEffect } from "react";
-import Layout from "../components/Layout";
 import { ChakraProvider } from "@chakra-ui/react";
 import Router, { useRouter } from "next/router";
 import NProgress from "nprogress";
@@ -19,7 +18,15 @@ Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
-function MyApp({ Component, pageProps }: AppProps) {
+
+type ComponentWithPageLayout = AppProps & {
+  Component: AppProps["Component"] & {
+    PageLayout?: React.ComponentType<any>;
+  };
+};
+
+
+function MyApp({ Component, pageProps }: ComponentWithPageLayout) {
   const router = useRouter();
 
   // to track events on page change
@@ -34,14 +41,17 @@ function MyApp({ Component, pageProps }: AppProps) {
     };
   }, [router.events]);
 
-
-  const getLayout = (page: any) => (
-    <Layout blogData={pageProps.blogData}>{page}</Layout>
-  );
-
   return (
     <ChakraProvider theme={theme}>
-      {getLayout(<Component {...pageProps} />)}
+
+      {/* if the layout is provided then it will use that layout otherwise not */}
+      {Component.PageLayout ? (
+        <Component.PageLayout blogData={pageProps.blogData}>
+          <Component {...pageProps} />
+        </Component.PageLayout>
+      ) : (
+        <Component {...pageProps} />
+      )}
     </ChakraProvider>
   );
 }
