@@ -11,7 +11,16 @@ interface SidebarContentProps {
 interface MenuListProps {
   category: string;
   blogs: BlogPages[];
+  priority: number;
 }
+
+const category_utils = (inpCategory: string) => {
+  const priority = parseInt(inpCategory.split(" ").slice(-1).join(" "));
+  if (isNaN(priority)) {
+    return inpCategory;
+  }
+  return inpCategory.split(" ").slice(0, -1).join(" ");
+};
 
 const SidebarContent = ({ blogData, closeDrawer }: SidebarContentProps) => {
   // this utils groups the blog data by category
@@ -28,17 +37,25 @@ const SidebarContent = ({ blogData, closeDrawer }: SidebarContentProps) => {
   const menu = groupByToMap(blogData, (v) => v.category);
 
   const menuList: MenuListProps[] = [];
+
   menu.forEach((value, key) => {
-    // sort the blogs by created_time
+    // sort the blogs by published_on date and priority
     menuList.push({
-      category: key,
+      priority: parseInt(key.split(" ").slice(-1).join(" ")) || 5000,
+      category: category_utils(key),
       blogs: value.sort(function (a, b) {
-        var dateA = new Date(a.created_time).getTime();
-        var dateB = new Date(b.created_time).getTime();
+        var dateA = new Date(a.published_on).getTime();
+        var dateB = new Date(b.published_on).getTime();
         return dateA > dateB ? 1 : -1;
       }),
     });
   });
+
+  // sort the menuList by priority
+  menuList.sort(function (a, b) {
+    return a.priority > b.priority ? 1 : -1;
+  });
+
   return (
     <VStack w="100%" alignItems={"left"}>
       <SidebarLink menuList={menuList} closeDrawer={() => closeDrawer()} />

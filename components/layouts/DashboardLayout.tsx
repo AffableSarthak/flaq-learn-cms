@@ -1,10 +1,12 @@
 import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
 import Head from "next/head";
 import React from "react";
-import { BlogPages } from "../src/utils/parse-properties";
-import ReadProgressBar from "./ReadProgressBar";
-import SideBar from "./Sidebar";
-function Layout({
+import { BlogPages } from "../../src/utils/parse-properties";
+import ReadProgressBar from "../ReadProgressBar";
+import SideBar from "../Sidebar";
+
+
+function DashboardLayout({
   children,
   blogData,
 }: {
@@ -50,4 +52,4 @@ function Layout({
   );
 }
 
-export default Layout;
+export default DashboardLayout;

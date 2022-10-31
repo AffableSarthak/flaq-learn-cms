@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ExtendedRecordMap } from "notion-types";
 import { NotionRenderer } from "react-notion-x";
+import DashboardLayout from "../components/layouts/DashboardLayout";
 import Page404 from "../components/Page404";
 import { getRecordDataForPage, queryDatabase } from "../src/api/query-database";
 import { parseProperties } from "../src/utils/parse-properties";
@@ -27,6 +28,8 @@ const Home = ({ recordMap }: { recordMap: ExtendedRecordMap }) => {
     </div>
   );
 };
+
+Home.PageLayout = DashboardLayout;
 
 export default Home;
 
