@@ -7,6 +7,7 @@ export type BlogPages = {
   category: string;
   url: string;
   published_on: string;
+  coverImage: string;
 };
 
 const getPageId = (url: string): string => {
@@ -25,9 +26,13 @@ export const parseProperties = (
     const url = row.url.replace("https://www.notion.so/", "");
     const icon = row.icon?.emoji ?? null;
     const category = row.properties.Category.select.name;
+
     const published_on =
       row.properties["Published On"].date?.start ||
       new Date().toISOString().slice(0, 10);
-    return { title, pageId, icon, category, url, published_on };
+    
+    const coverImage =
+      row.properties["Cover Image"].rich_text[0]?.plain_text || null;
+    return { title, pageId, icon, category, url, published_on, coverImage };
   });
 };

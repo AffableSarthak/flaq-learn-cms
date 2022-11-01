@@ -4,16 +4,24 @@ import { ExtendedRecordMap } from "notion-types";
 import { NotionRenderer } from "react-notion-x";
 import DashboardLayout from "../components/layouts/DashboardLayout";
 import Page404 from "../components/Page404";
+import PageHead from "../components/PageHead";
 import { getRecordDataForPage, queryDatabase } from "../src/api/query-database";
-import { parseProperties } from "../src/utils/parse-properties";
+import { BlogPages, parseProperties } from "../src/utils/parse-properties";
 
-const Home = ({ recordMap }: { recordMap: ExtendedRecordMap }) => {
+const Home = ({
+  recordMap,
+  blogData,
+}: {
+  recordMap: ExtendedRecordMap;
+  blogData: BlogPages[];
+}) => {
   if (recordMap === null) {
     return <Page404 />;
   }
 
   return (
     <div>
+      <PageHead blogData={blogData} recordMap={recordMap} />
       <NotionRenderer
         recordMap={recordMap}
         fullPage={true}
