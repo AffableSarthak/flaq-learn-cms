@@ -14,7 +14,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
+
 import { BlogPages } from "../../src/utils/parse-properties";
+import SearchBar from "../Search";
 import SidebarContent from "./SidebarContent";
 
 type Props = {
@@ -24,7 +26,7 @@ type Props = {
 const UniversalDrawer = ({ blogData }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
-  
+
   useEffect(() => {
     if (router.pathname === "/") {
       onOpen();
@@ -49,6 +51,7 @@ const UniversalDrawer = ({ blogData }: Props) => {
           aria-label="open close drawer"
           icon={<GiHamburgerMenu />}
         />
+        <SearchBar />
       </Box>
 
       <Drawer

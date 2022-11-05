@@ -1,6 +1,7 @@
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
 import Drawer from "./Drawer";
 import Heading from "./Heading";
+import Input from "./Input";
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',
@@ -16,7 +17,8 @@ const theme = extendTheme({
   config,
   components: {
     Drawer,
-    Heading
+    Heading,
+    Input
   },
 });
 
