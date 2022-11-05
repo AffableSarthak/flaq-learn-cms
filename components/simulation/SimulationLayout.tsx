@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react'
 import {
   CloseButton,
   Flex,
@@ -8,27 +8,26 @@ import {
   useDisclosure,
   BoxProps,
   Button,
-  Box
-} from "@chakra-ui/react";
+  Box,
+} from '@chakra-ui/react'
 
-import { simulationProps } from "./SimulationProps";
-import { MobileNav, NavItem } from "./navbar";
-
+import { simulationProps } from './SimulationProps'
+import { MobileNav, NavItem } from './navbar'
 
 export default function SidebarWithNavbar({
   children,
   simulationData,
 }: {
-  children: ReactNode;
-  simulationData: simulationProps[];
+  children: ReactNode
+  simulationData: simulationProps[]
 }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <Box
       color="#5c5c5c"
-      fontFamily={"Nunito Sans"}
+      fontFamily={'Nunito Sans'}
       minH="100vh"
-      bg={useColorModeValue("gray.100", "#ffffff")}
+      bg={useColorModeValue('gray.100', '#ffffff')}
     >
       <Drawer
         autoFocus={false}
@@ -47,15 +46,15 @@ export default function SidebarWithNavbar({
       <MobileNav onOpen={onOpen} />
       <SidebarContent
         onClose={() => onClose}
-        display={{ base: "none", md: "block" }}
+        display={{ base: 'none', md: 'block' }}
         simulationData={simulationData}
       />
       <Box h="100%" ml={{ base: 0, md: 64 }}>
-        <Box h="100%"  p="4">
+        <Box h="100%" p="4">
           {children}
         </Box>
 
-        <Flex
+        {/* <Flex
           transform={"translateX(-50%)"}
           left={{ base: "50%", md: "58%" }}
           bottom={0}
@@ -67,25 +66,25 @@ export default function SidebarWithNavbar({
         >
           <Button colorScheme="twitter">Back</Button>
           <Button colorScheme="twitter">Next</Button>
-        </Flex>
+        </Flex> */}
       </Box>
     </Box>
-  );
+  )
 }
 
 interface SidebarProps extends BoxProps {
-  onClose: () => void;
-  simulationData: simulationProps[];
+  onClose: () => void
+  simulationData: simulationProps[]
 }
 
 const SidebarContent = ({ onClose, simulationData, ...rest }: SidebarProps) => {
   return (
     <Box
       transition="3s ease"
-      bg={useColorModeValue("white", "#F8F9FA")}
+      bg={useColorModeValue('white', '#F8F9FA')}
       borderRight="1px"
-      borderRightColor={useColorModeValue("gray.200", "gray.700")}
-      w={{ base: "full", md: 64 }}
+      borderRightColor={useColorModeValue('gray.200', 'gray.700')}
+      w={{ base: 'full', md: 64 }}
       pos="fixed"
       h="full"
       {...rest}
@@ -93,15 +92,15 @@ const SidebarContent = ({ onClose, simulationData, ...rest }: SidebarProps) => {
       <Flex alignItems="right" mx="8" justifyContent="flex-end">
         <CloseButton
           color="#000000"
-          display={{ base: "flex", md: "none" }}
+          display={{ base: 'flex', md: 'none' }}
           onClick={onClose}
         />
       </Flex>
       {simulationData.map((simulation, key) => (
-        <NavItem key={key} linkkey={ key} url={simulation.slug}>
+        <NavItem key={key} linkkey={key} url={simulation.slug}>
           {simulation.name}
         </NavItem>
       ))}
     </Box>
-  );
-};
+  )
+}
