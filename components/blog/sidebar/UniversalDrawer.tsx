@@ -13,7 +13,7 @@ import {
 import Link from 'next/link'
 import React from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
-import { BlogPages } from '../../src/utils/parse-properties'
+import { BlogPages } from '../../../src/utils/parse-properties'
 import SidebarContent from './SidebarContent'
 
 type Props = {
