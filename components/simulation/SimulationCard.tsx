@@ -35,7 +35,7 @@ const SimulationCard = ({ currentSimulation, simulationHeader }: Props) => {
       return list.map((item, index) => {
         const { head, body, image, simKey } = item
         return (
-          <>
+          <Box key = {index}>
             <Box mt={4} mb={10}>
               <Text as="samp" fontSize="2xl">
                 {head}
@@ -58,24 +58,24 @@ const SimulationCard = ({ currentSimulation, simulationHeader }: Props) => {
               </Flex>
               {simKey && renderSimulation(simKey)}
             </Box>
-          </>
+          </Box>
         )
       })
     }
   }
 
   const renderUiForBlocks = (blocks: Block[]): ReactNode => {
-    return blocks.map((block: Block) => {
+    return blocks.map((block: Block,key) => {
       const { image, subHeader, list } = block
       return (
-        <>
+        <Box key={key }>
           <Box>
             <Text as="samp" fontSize="4xl">
               {subHeader}
             </Text>
           </Box>
           <Box>{renderList(list)}</Box>
-        </>
+        </Box>
       )
     })
   }
