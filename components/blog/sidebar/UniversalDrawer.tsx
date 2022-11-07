@@ -9,16 +9,14 @@ import {
   IconButton,
   Box,
   Text,
-} from "@chakra-ui/react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { useEffect } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
-
-import { BlogPages } from "../../src/utils/parse-properties";
-import SearchBar from "../Search";
-import SidebarContent from "./SidebarContent";
-
+} from '@chakra-ui/react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
+import { GiHamburgerMenu } from 'react-icons/gi'
+import { BlogPages } from '../../../src/utils/parse-properties'
+import SidebarContent from './SidebarContent'
+import SearchBar from "../../Search"
 type Props = {
   blogData: BlogPages[];
 };
@@ -65,7 +63,7 @@ const UniversalDrawer = ({ blogData }: Props) => {
           <DrawerCloseButton size={"lg"} />
 
           <DrawerHeader>
-            <Link href={"/"}>
+            <Link href={'/'} passHref>
               <Text
                 fontSize="2xl"
                 fontFamily={"Dela Gothic One"}

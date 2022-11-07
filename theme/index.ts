@@ -4,9 +4,9 @@ import Heading from "./Heading";
 import Input from "./Input";
 
 const config: ThemeConfig = {
-  initialColorMode: 'dark',
+  initialColorMode: "dark",
   useSystemColorMode: false,
-}
+};
 
 const theme = extendTheme({
   fonts: {
