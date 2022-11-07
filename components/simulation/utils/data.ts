@@ -155,11 +155,11 @@ export const getCreateWalletSimulationData = (): SimulationType[] => {
       ],
     },
     {
-      name: "Request for testnet airdrop on for the wallet",
+      name: "Request for Airdrop on the wallet",
       slug: "request-for-testnet-airdrop-on-for-the-wallet",
       renderBlocks: [
         {
-          subHeader: "Request for testnet airdrop on for the wallet",
+          subHeader: "Request for Airdrop on the wallet",
           list: [
             {
               head: "I made a wallet, now what? 🤔",
