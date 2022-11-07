@@ -3,7 +3,9 @@ import * as solanaWeb3 from "@solana/web3.js";
 import * as bip39 from "bip39";
 import { Box, Button, Center, Flex, Text, Textarea } from "@chakra-ui/react";
 import { AiOutlineLock } from "react-icons/ai";
-function GenKeyPair() {
+import { CreateWalletState, UpdateCreateWalletState } from "../../../types";
+
+function GenKeyPair({simState, updateSimState}: {simState: CreateWalletState,  updateSimState: UpdateCreateWalletState}) {
   const { Keypair } = solanaWeb3;
   const [mnemonicValue, setMnemonicValue] = React.useState("");
   const [publicKey, setPublicKey] = React.useState("");
@@ -18,6 +20,11 @@ function GenKeyPair() {
     const keypair = Keypair.fromSeed(seed.slice(0, 32));
     setPublicKey(keypair.publicKey.toString());
     console.log(`${keypair.publicKey.toBase58()}`); // 5ZWj7a1f8tWkjBESHKgrLmXshuXxqeY9SYcfbshpAqPG
+    console.log("Updating sim state", mnemonic);
+    updateSimState({
+      publicKey: keypair.publicKey.toString(),
+      seedPhrase: mnemonic,
+    });
   };
   
   return (

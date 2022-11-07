@@ -1,5 +1,6 @@
 import { Box, Button, Center, Grid, GridItem, useToast } from '@chakra-ui/react'
 import React, { useCallback, useEffect } from 'react'
+import { CreateWalletState, UpdateCreateWalletState } from '../../../types'
 
 export interface AllOptions {
   word: string
@@ -114,13 +115,12 @@ const RenderButton = ({
   )
 }
 
-function ShowcasePublicKey() {
-  const mmnonic =
-    'candy maple cake sugar pudding cream honey rich smooth crumble sweet treat'
+function ShowcasePublicKey({simState}: {simState: CreateWalletState}) {
 
   // util functions
   const jumble = () => {
-    const words = mmnonic.split(' ')
+    const words = simState.seedPhrase.split(' ')
+    console.log(words)
     const jumbled = words.sort(() => Math.random() - 0.5)
     return jumbled.join(' ')
   }
@@ -178,7 +178,7 @@ function ShowcasePublicKey() {
 
   // 3. submit
   const submitHandler = useCallback(() => {
-    if (selectedList.join(' ') === mmnonic) {
+    if (selectedList.join(' ') === simState.seedPhrase) {
       toast({
         title: 'Success',
         description: 'Mnemonic is correct',
