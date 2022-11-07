@@ -117,7 +117,7 @@ const RenderButton = ({
 
 function ShowcasePublicKey() {
   const userWalletDetails = useCreateWalletStore(
-    (state) => state.userWalletDetails,
+    (state: { userWalletDetails: any }) => state.userWalletDetails,
   )
   const { seedPhrase, publicKey } = userWalletDetails
 
@@ -137,7 +137,7 @@ function ShowcasePublicKey() {
     ;(() => {
       const jumbledVlaues = jumble()
       const tempAllOtpions: AllOptions[] = []
-      jumbledVlaues.split(' ').forEach((word, index) => {
+      jumbledVlaues.split(' ').forEach((word: any, index: any) => {
         tempAllOtpions.push({
           word,
           index,
