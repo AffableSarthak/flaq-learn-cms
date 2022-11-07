@@ -96,8 +96,8 @@ const SimulationCard = ({ cardData, simulationHeader, setCardData }: Props) => {
         const { head, body, image, simKey } = item
         return (
           <Box key={index}>
-            <Box mt={4} mb={10}>
-              <Text fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}>
+            <Box mb={8}>
+              <Text fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }} mb={2}>
                 {head}
               </Text>
 
@@ -122,7 +122,7 @@ const SimulationCard = ({ cardData, simulationHeader, setCardData }: Props) => {
       const { image, subHeader, list } = block
       return (
         <Box key={key}>
-          <Box>
+          <Box mb={2}>
             <Text
               fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
               fontWeight={'bold'}
@@ -130,7 +130,7 @@ const SimulationCard = ({ cardData, simulationHeader, setCardData }: Props) => {
               {subHeader}
             </Text>
           </Box>
-          <Divider />
+          <Divider mb={4} />
 
           <Box>{renderList(list)}</Box>
         </Box>
