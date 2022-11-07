@@ -2,9 +2,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ExtendedRecordMap } from 'notion-types'
 import { NotionRenderer } from 'react-notion-x'
-import DashboardLayout from '../components/layouts/DashboardLayout'
-import Page404 from '../components/Page404'
-import PageHead from '../components/PageHead'
+import BlogLayout from '../components/blog/BlogLayout'
+import Page404 from '../components/fallback/Page404'
+import PageHead from '../components/seo/PageHead'
 import { getRecordDataForPage, queryDatabase } from '../src/api/query-database'
 import { BlogPages, parseProperties } from '../src/utils/parse-properties'
 
@@ -37,7 +37,7 @@ const Home = ({
   )
 }
 
-Home.PageLayout = DashboardLayout
+Home.PageLayout = BlogLayout
 
 export default Home
 
@@ -46,10 +46,7 @@ export async function getServerSideProps() {
   const blogData = parseProperties(database!)
 
   const rootPageId = '9f83939fc49b41378b18f6a63338a136'
-  console.log(process.env.NOTION_ROOT_PAGE_ID)
-  const recordMap = await getRecordDataForPage(
-    process.env.NOTION_ROOT_PAGE_ID ?? rootPageId,
-  )
+  const recordMap = await getRecordDataForPage(rootPageId)
 
   return {
     props: {

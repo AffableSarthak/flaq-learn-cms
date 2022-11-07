@@ -7,9 +7,9 @@ import {
   queryDatabase,
 } from '../../src/api/query-database'
 import { BlogPages, parseProperties } from '../../src/utils/parse-properties'
-import Page404 from '../../components/Page404'
-import PageHead from '../../components/PageHead'
-import DashboardLayout from '../../components/layouts/DashboardLayout'
+import Page404 from '../../components/fallback/Page404'
+import PageHead from '../../components/seo/PageHead'
+import BlogLayout from '../../components/blog/BlogLayout'
 interface MyHeadingProps {
   children: React.PropsWithChildren<React.ReactChild>
 }
@@ -18,13 +18,13 @@ const Blog = ({
   recordMap,
   blogData,
 }: {
-  recordMap: any;
-  blogData: BlogPages[];
+  recordMap: any
+  blogData: BlogPages[]
 }) => {
   if (recordMap === null) {
-    return <Page404 />;
+    return <Page404 />
   }
-  
+
   return (
     <div>
       <PageHead blogData={blogData} recordMap={recordMap} />
@@ -40,8 +40,8 @@ const Blog = ({
         }}
       />
     </div>
-  );
-};
+  )
+}
 
 export async function getServerSideProps(context: any) {
   const { slug } = context.query
@@ -58,6 +58,6 @@ export async function getServerSideProps(context: any) {
   }
 }
 
-Blog.PageLayout = DashboardLayout;
+Blog.PageLayout = BlogLayout
 
 export default Blog
