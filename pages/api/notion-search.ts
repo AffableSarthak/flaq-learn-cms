@@ -30,7 +30,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const searchParams: types.SearchParams = req.body;
-
+  if ((searchParams.query.length < 3)) { 
+    return res.status(200).json([]);
+  }
   const allResults = await notion.search({
     ...searchParams,
   });
