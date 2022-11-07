@@ -135,10 +135,9 @@ const SidebarContent = ({
               }
               onClick={() => setCardData(index)}
             >
-              <Flex>
-                <Text fontSize={'md'} fontWeight="bold">
-                  {index + 1}. {simulation.name}
-                </Text>
+              <Flex fontSize={'md'} fontWeight="bold">
+                <Text mr={2}>{index + 1}.</Text>
+                <Text>{simulation.name}</Text>
               </Flex>
             </Box>
           )
