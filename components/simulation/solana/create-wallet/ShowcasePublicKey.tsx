@@ -49,8 +49,13 @@ const RenderAllWords = ({
 }) => {
   return (
     <Center>
-      <Box h="140px" mt="5" w="fit-content">
-        <Grid templateColumns="repeat(4, 1fr)" gap={2} p="2" px="4">
+      <Box minH="140px" mt="5" w="fit-content">
+        <Grid
+          templateColumns={{ md: "repeat(4, 1fr)", base: "repeat(2, 1fr)" }}
+          gap={2}
+          p="2"
+          px="4"
+        >
           {allOptions.map((wordObj, index) => (
             <GridItem
               border={"1px solid #037dd6"}
@@ -205,6 +210,7 @@ function ShowcasePublicKey() {
           selectWord={selectWord}
           unselectWord={unselectWord}
         />
+        
         <RenderButton
           selectedList={selectedList}
           submitHandler={submitHandler}
