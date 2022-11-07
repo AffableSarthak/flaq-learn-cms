@@ -1,9 +1,20 @@
-import { Box, Button, Center, Flex, Spacer, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Center,
+  Divider,
+  Flex,
+  List,
+  ListIcon,
+  ListItem,
+  Spacer,
+  Text,
+} from '@chakra-ui/react'
 import Image from 'next/image'
 import React, { ReactNode } from 'react'
 import { RenderSimulation } from '../../simulations'
-
-import { BlockType, ListType, CardDataType } from '../../types'
+import { BlockType, ListType, CardDataType, BodyType } from '../../types'
+import { HiHashtag } from 'react-icons/hi'
 
 type Props = {
   cardData: CardDataType
@@ -20,6 +31,65 @@ const SimulationCard = ({ cardData, simulationHeader, setCardData }: Props) => {
   } = cardData
   const { renderBlocks } = currentSimulation
 
+  const renderPoints = (point: string[]) => {
+    return point.map((point, index) => {
+      return (
+        <List key={index} spacing={3}>
+          <Flex>
+            <ListIcon as={HiHashtag} color="green.500" />
+            <ListItem textAlign={'justify'}>{point}</ListItem>
+          </Flex>
+        </List>
+      )
+    })
+  }
+
+  const renderBody = (body: BodyType[]) => {
+    return body.map((item, index) => {
+      const { paragraph, pointHeader, points, image } = item
+      return (
+        <Flex direction={'column'} gap={4} key={index}>
+          {paragraph && (
+            <Box>
+              <Text
+                fontSize={{ base: 'md', md: 'lg' }}
+                lineHeight={'1.8'}
+                textAlign={'justify'}
+              >
+                {paragraph}
+              </Text>
+            </Box>
+          )}
+          <Spacer />
+          {image && (
+            <Center>
+              <Box>
+                <Image
+                  src={image}
+                  height="200px"
+                  width="400px"
+                  alt={'Fallback image'}
+                  style={{ borderRadius: '10px' }}
+                />
+              </Box>
+            </Center>
+          )}
+          {pointHeader && (
+            <Box>
+              <Text
+                fontSize={{ base: 'lg', md: 'xl', lg: '2xl' }}
+                className="point-header-text"
+              >
+                {pointHeader}
+              </Text>
+            </Box>
+          )}
+          {points && renderPoints(points)}
+        </Flex>
+      )
+    })
+  }
+
   const renderList = (list: ListType[] | undefined): ReactNode => {
     if (list !== undefined) {
       return list.map((item, index) => {
@@ -27,25 +97,19 @@ const SimulationCard = ({ cardData, simulationHeader, setCardData }: Props) => {
         return (
           <Box key={index}>
             <Box mt={4} mb={10}>
-              <Text fontSize="2xl">{head}</Text>
-              <Flex>
-                <Box width={image !== undefined ? '60vw' : '100vw'}>
-                  <Text>{body}</Text>
-                </Box>
-                <Spacer />
-                {image && (
-                  <Box ml={4}>
-                    <Image
-                      src={image}
-                      height="141px"
-                      width="248px"
-                      alt={head}
-                      style={{ borderRadius: '25px' }}
-                    />
+              <Text fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}>
+                {head}
+              </Text>
+
+              {renderBody(body)}
+
+              {simKey && (
+                <Center>
+                  <Box p={10} borderWidth="0.5px">
+                    <RenderSimulation simkey={simKey} />
                   </Box>
-                )}
-              </Flex>
-              {simKey && <RenderSimulation simkey={simKey} />}
+                </Center>
+              )}
             </Box>
           </Box>
         )
@@ -59,8 +123,15 @@ const SimulationCard = ({ cardData, simulationHeader, setCardData }: Props) => {
       return (
         <Box key={key}>
           <Box>
-            <Text fontSize="4xl">{subHeader}</Text>
+            <Text
+              fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
+              fontWeight={'bold'}
+            >
+              {subHeader}
+            </Text>
           </Box>
+          <Divider />
+
           <Box>{renderList(list)}</Box>
         </Box>
       )
@@ -76,9 +147,18 @@ const SimulationCard = ({ cardData, simulationHeader, setCardData }: Props) => {
           boxShadow={'sm'}
           p={5}
         >
-          <Box>
-            <Text fontSize="6xl">{simulationHeader}</Text>
-          </Box>
+          <Center>
+            <Box mb={10}>
+              <Text
+                fontFamily={'Dela Gothic One'}
+                fontSize={{ base: '3xl', md: '5xl', lg: '6xl' }}
+                bgGradient="linear(to-l, green.100,green.800)"
+                bgClip="text"
+              >
+                {simulationHeader}
+              </Text>
+            </Box>
+          </Center>
           <Box>{renderUiForBlocks(renderBlocks)}</Box>
           <Flex bottom={0} mx="auto" justifyContent={'space-between'} py="4">
             <Button

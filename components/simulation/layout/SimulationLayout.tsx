@@ -16,9 +16,8 @@ import MobileNav from './navbar'
 
 function SimulationLayout(props: SimulationPageType) {
   const { simulationData, simulationHeader } = props
-  const [currentSimulation, setCurrentSimulation] = React.useState<
-    SimulationType
-  >(simulationData[0])
+
+  // State for the current simulation.
   const [cardData, setCard] = React.useState<CardDataType>({
     currentSimulation: simulationData[0],
     isBackDisabled: true,
@@ -28,6 +27,7 @@ function SimulationLayout(props: SimulationPageType) {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
+  // Callback to set the current simulation.
   const setCardData = useCallback(
     (index: number) => {
       setCard({
@@ -103,30 +103,36 @@ const SidebarContent = ({
         w={{ base: 'full', md: 64 }}
         pos="fixed"
         h="full"
-        borderRight={'1px'}
-        borderColor={'whiteAlpha.200'}
+        bg="#020f02"
         {...rest}
+        boxShadow="2xl"
         p={4}
+        mx={4}
       >
         <Flex alignItems="right" mx="8" justifyContent="flex-end">
           <CloseButton
             display={{ base: 'flex', md: 'none' }}
             onClick={onClose}
+            mb={{ base: '4' }}
           />
         </Flex>
         {simulationData.map((simulation, index) => {
           return (
             <Box
-              as="div"
-              maxW="xs"
-              p="4"
-              my={4}
-              borderWidth="0.5px"
-              borderColor={'#a6ebc9'}
+              maxW={{ base: 'full', md: 'xs' }}
               rounded="md"
+              p={4}
+              my={4}
               cursor={'pointer'}
+              borderWidth={
+                cardData.currentSimulationIndex === index ? 'none' : '0.5px'
+              }
               key={`${simulation.name}_${index}`}
-              bg={cardData.currentSimulationIndex === index ? 'green.800' : ''}
+              bgGradient={
+                cardData.currentSimulationIndex === index
+                  ? 'linear(to-l, green.900,green.700)'
+                  : ''
+              }
               onClick={() => setCardData(index)}
             >
               <Flex>

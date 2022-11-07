@@ -58,6 +58,15 @@ a {
   src: url("/fonts/DelaGothicOne-Regular.ttf");
 }
 
+.point-header-text{
+  padding: 0.5rem;
+  border: 1px solid transparent;
+  border-image: linear-gradient(60deg, #a6ebc9, #005704);
+  border-image-slice: 1;
+  border-radius: 10px;
+  width: max-content;
+}
+
 @media screen and (max-width: 600px) {
   .flex-container {
     display: contents;

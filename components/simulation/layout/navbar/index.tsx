@@ -24,8 +24,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       w="full"
       position={'sticky'}
       top={0}
-      zIndex={1}
-      bg={'green.900'}
+      zIndex={1000}
+      bgGradient="linear(to-l, green.900,green.700)"
       boxShadow={'md'}
       {...rest}
     >
@@ -40,13 +40,13 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       <Text
         display="flex"
         fontSize="2xl"
-        fontFamily="Nunito Sans"
-        fontWeight="bold"
+        fontFamily="Dela Gothic One"
+        colorScheme={'blue'}
       >
-        Flaq
+        Flaq Academy
       </Text>
 
-      <HStack spacing={{ base: '0', md: '6' }}>
+      {/* <HStack spacing={{ base: '0', md: '6' }}>
         <IconButton
           size="lg"
           variant="ghost"
@@ -73,7 +73,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             </Box>
           </HStack>
         </Flex>
-      </HStack>
+      </HStack> */}
     </Flex>
   )
 }

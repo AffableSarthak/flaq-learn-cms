@@ -21,7 +21,7 @@ export async function getServerSideProps(context: any) {
   return {
     props: {
       simulationData: simulationData,
-      simulationHeader: 'Wallet Creation',
+      simulationHeader: 'Wallet Creation Simulation',
     },
   }
 }

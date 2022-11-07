@@ -12,10 +12,17 @@ export interface CardDataType {
   currentSimulationIndex: number;
 }
 
+export interface BodyType {
+  paragraph?: string;
+  pointHeader?: string;
+  points?: string[];
+  image?: string;
+}
+
 // Simulation Data
 export interface ListType {
   head: string;
-  body: string;
+  body: BodyType[];
   image?: string;
   simKey?: CreateWalletSimulationKeys;
 }
