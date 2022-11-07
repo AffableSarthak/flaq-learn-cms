@@ -39,6 +39,7 @@ const SimulationCard = ({ cardData, simulationHeader, setCardData }: Props) => {
                       src={image}
                       height="141px"
                       width="248px"
+                      alt={head}
                       style={{ borderRadius: '25px' }}
                     />
                   </Box>

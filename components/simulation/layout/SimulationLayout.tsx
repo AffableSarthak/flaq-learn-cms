@@ -37,7 +37,7 @@ function SimulationLayout(props: SimulationPageType) {
         currentSimulationIndex: index,
       })
     },
-    [simulationData, currentSimulation],
+    [simulationData],
   )
 
   return (
@@ -125,6 +125,7 @@ const SidebarContent = ({
               borderColor={'#a6ebc9'}
               rounded="md"
               cursor={'pointer'}
+              key={`${simulation.name}_${index}`}
               bg={cardData.currentSimulationIndex === index ? 'green.800' : ''}
               onClick={() => setCardData(index)}
             >

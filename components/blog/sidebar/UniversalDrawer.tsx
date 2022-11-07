@@ -54,7 +54,7 @@ const UniversalDrawer = ({ blogData }: Props) => {
           <DrawerCloseButton size={'lg'} />
 
           <DrawerHeader>
-            <Link href={'/'}>
+            <Link href={'/'} passHref>
               <Text
                 fontSize="2xl"
                 fontFamily={'Dela Gothic One'}
