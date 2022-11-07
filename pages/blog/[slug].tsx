@@ -7,9 +7,9 @@ import {
   queryDatabase,
 } from '../../src/api/query-database'
 import { parseProperties } from '../../src/utils/parse-properties'
-import Page404 from '../../components/Page404'
-import PageHead from '../../components/PageHead'
-import DashboardLayout from '../../components/layouts/DashboardLayout'
+import Page404 from '../../components/fallback/Page404'
+import PageHead from '../../components/seo/PageHead'
+import BlogLayout from '../../components/blog/BlogLayout'
 interface MyHeadingProps {
   children: React.PropsWithChildren<React.ReactChild>
 }
@@ -51,6 +51,6 @@ export async function getServerSideProps(context: any) {
   }
 }
 
-Blog.PageLayout = DashboardLayout;
+Blog.PageLayout = BlogLayout
 
 export default Blog

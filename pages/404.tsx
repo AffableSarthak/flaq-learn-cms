@@ -1,12 +1,10 @@
 import React from 'react'
-import Page404 from '../components/Page404';
+import Page404 from '../components/fallback/Page404'
 
 type Props = {}
 
 const FourOFour = (props: Props) => {
-  return (
-    <Page404/>
-  )
+  return <Page404 />
 }
 
-export default FourOFour;
+export default FourOFour

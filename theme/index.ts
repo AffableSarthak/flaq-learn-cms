@@ -3,9 +3,9 @@ import Drawer from "./Drawer";
 import Heading from "./Heading";
 
 const config: ThemeConfig = {
-  initialColorMode: 'dark',
+  initialColorMode: "dark",
   useSystemColorMode: false,
-}
+};
 
 const theme = extendTheme({
   fonts: {
@@ -16,7 +16,7 @@ const theme = extendTheme({
   config,
   components: {
     Drawer,
-    Heading
+    Heading,
   },
 });
 

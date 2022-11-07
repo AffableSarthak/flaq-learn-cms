@@ -13,7 +13,7 @@ import {
 import Link from 'next/link'
 import React from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
-import { BlogPages } from '../../src/utils/parse-properties'
+import { BlogPages } from '../../../src/utils/parse-properties'
 import SidebarContent from './SidebarContent'
 
 type Props = {
@@ -54,7 +54,7 @@ const UniversalDrawer = ({ blogData }: Props) => {
           <DrawerCloseButton size={'lg'} />
 
           <DrawerHeader>
-            <Link href={'/'}>
+            <Link href={'/'} passHref>
               <Text
                 fontSize="2xl"
                 fontFamily={'Dela Gothic One'}
