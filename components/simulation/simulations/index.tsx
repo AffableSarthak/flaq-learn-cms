@@ -10,16 +10,15 @@ export const RenderSimulation = ({
 }: {
   simkey: CreateWalletSimulationKeys
 }) => {
-  const [createWalletState, updateCreateWalletState] = React.useState<CreateWalletState>({seedPhrase: "", publicKey: ""});
   switch (simkey) {
     case CreateWalletSimulationKeys.GenKeyPair:
-      return <GenKeyPair simState={createWalletState!} updateSimState={updateCreateWalletState} />
+      return <GenKeyPair />
     case CreateWalletSimulationKeys.BackupSeedPhrase:
       return <BackupSeedPhrase />
     case CreateWalletSimulationKeys.ShowcasePublicKey:
-      return <ShowcasePublicKey simState={createWalletState}/>
+      return <ShowcasePublicKey />
     case CreateWalletSimulationKeys.Airdrop:
-      return <Airdrop simState={createWalletState}/>
+      return <Airdrop />
     default:
       return <></>
   }

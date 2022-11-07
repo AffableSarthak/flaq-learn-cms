@@ -1,7 +1,7 @@
 import React from 'react'
 import { CreateWalletState } from '../../../types'
 
-function Airdrop({simState}: {simState: CreateWalletState}) {
+function Airdrop() {
   return <div>Airdrop</div>
 }
 
