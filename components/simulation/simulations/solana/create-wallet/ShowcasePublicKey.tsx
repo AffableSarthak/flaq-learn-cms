@@ -131,7 +131,7 @@ const RenderButton = ({
 
 function ShowcasePublicKey() {
   const userWalletDetails = useCreateWalletStore(
-    (state: { userWalletDetails: any }) => state.userWalletDetails,
+    (state) => state.userWalletDetails,
   )
   const { seedPhrase, publicKey } = userWalletDetails
 
@@ -214,9 +214,16 @@ function ShowcasePublicKey() {
     }
   }, [selectedList, toast])
 
+  const isUserDataAvailable = () => {
+    return (
+      userWalletDetails.publicKey.length !== 0 ||
+      userWalletDetails.seedPhrase.length !== 0
+    )
+  }
+
   return (
     <Center my="8">
-      {allOptions.length === 0 ? (
+      {isUserDataAvailable() ? (
         <Box w="fit-content">
           <RenderSelectedWords selectedList={selectedList} />
 
