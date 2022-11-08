@@ -104,11 +104,9 @@ const SimulationCard = ({ cardData, simulationHeader, setCardData }: Props) => {
               {renderBody(body)}
 
               {simKey && (
-                <Center>
-                  <Box>
-                    <RenderSimulation simkey={simKey} />
-                  </Box>
-                </Center>
+                <Box>
+                  <RenderSimulation simkey={simKey} />
+                </Box>
               )}
             </Box>
           </Box>

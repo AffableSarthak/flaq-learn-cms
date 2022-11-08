@@ -1,17 +1,24 @@
 import React from 'react'
 import * as solanaWeb3 from '@solana/web3.js'
 import * as bip39 from 'bip39'
-import { Box, Button, Divider, Flex, Hide, Show, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Center,
+  Divider,
+  Flex,
+  Hide,
+  Text,
+} from '@chakra-ui/react'
 import { useCreateWalletStore } from '../../../store/create-wallet'
 
 function GenKeyPair() {
   const { Keypair } = solanaWeb3
-  const setUserWalletDetails = useCreateWalletStore(
-    (state: { setUserWalletDetails: any }) => state.setUserWalletDetails,
-  )
-
   const userWalletDetails = useCreateWalletStore(
-    (state: { userWalletDetails: any }) => state.userWalletDetails,
+    (state) => state.userWalletDetails,
+  )
+  const setUserWalletDetails = useCreateWalletStore(
+    (state) => state.setUserWalletDetails,
   )
 
   const generateKey = async () => {
@@ -25,24 +32,31 @@ function GenKeyPair() {
     })
   }
 
+  const isUserDataAvailable = () => {
+    return (
+      userWalletDetails.publicKey.length !== 0 ||
+      userWalletDetails.seedPhrase.length !== 0
+    )
+  }
+
   return (
     <Box>
-      <Box>
+      <Center my="8">
         <Button variant={'primarybtn'} onClick={generateKey}>
           Create New Wallet
         </Button>
-      </Box>
+      </Center>
 
-      <Flex
-        borderWidth={'0.5px'}
-        borderColor="whiteAlpha.200"
-        borderRadius="2xl"
-        p={2}
-        mt={4}
-        flexDirection={{ base: 'column', md: 'column', lg: 'row' }}
-        gap={{ md: 4 }}
-      >
-        {userWalletDetails.seedPhrase && (
+      {isUserDataAvailable() && (
+        <Flex
+          borderWidth={'0.5px'}
+          borderColor="whiteAlpha.200"
+          borderRadius="2xl"
+          p={2}
+          mt={4}
+          flexDirection={{ base: 'column', md: 'column', lg: 'row' }}
+          gap={{ md: 4 }}
+        >
           <Flex
             flexDirection={'column'}
             justifyContent="center"
@@ -67,14 +81,13 @@ function GenKeyPair() {
               {userWalletDetails.seedPhrase}
             </Box>
           </Flex>
-        )}
-        <Hide below="lg">
-          <Divider orientation="vertical" height="23ex" m="4" />
-        </Hide>
-        <Hide above="md">
-          <Divider orientation="horizontal" width={'90%'} m="4" />
-        </Hide>
-        {userWalletDetails.publicKey && (
+
+          <Hide below="lg">
+            <Divider orientation="vertical" height="23ex" m="4" />
+          </Hide>
+          <Hide above="md">
+            <Divider orientation="horizontal" width={'90%'} m="4" />
+          </Hide>
           <Flex
             flexDirection={'column'}
             justifyContent="center"
@@ -90,8 +103,8 @@ function GenKeyPair() {
               </Text>
             </Box>
           </Flex>
-        )}
-      </Flex>
+        </Flex>
+      )}
     </Box>
   )
 }

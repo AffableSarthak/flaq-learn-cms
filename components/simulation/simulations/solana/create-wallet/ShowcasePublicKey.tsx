@@ -1,4 +1,12 @@
-import { Box, Button, Center, Grid, GridItem, useToast } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Center,
+  Grid,
+  GridItem,
+  Text,
+  useToast,
+} from '@chakra-ui/react'
 import React, { useCallback, useEffect } from 'react'
 import { useCreateWalletStore } from '../../../store/create-wallet'
 
@@ -208,19 +216,27 @@ function ShowcasePublicKey() {
 
   return (
     <Center my="8">
-      <Box w="fit-content">
-        <RenderSelectedWords selectedList={selectedList} />
+      {allOptions.length === 0 ? (
+        <Box w="fit-content">
+          <RenderSelectedWords selectedList={selectedList} />
 
-        <RenderAllWords
-          allOptions={allOptions}
-          selectWord={selectWord}
-          unselectWord={unselectWord}
-        />
-        <RenderButton
-          selectedList={selectedList}
-          submitHandler={submitHandler}
-        />
-      </Box>
+          <RenderAllWords
+            allOptions={allOptions}
+            selectWord={selectWord}
+            unselectWord={unselectWord}
+          />
+          <RenderButton
+            selectedList={selectedList}
+            submitHandler={submitHandler}
+          />
+        </Box>
+      ) : (
+        <Box>
+          <Text color="#a6ebc9">
+            Create a wallet to get your secret recovery phrase in previous step
+          </Text>
+        </Box>
+      )}
     </Center>
   )
 }
