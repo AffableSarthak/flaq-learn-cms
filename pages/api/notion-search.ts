@@ -1,11 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { ExtendedRecordMap, SearchParams, SearchResults } from "notion-types";
 import * as types from "notion-types";
 import { notion } from "../../src/api/client";
-import {
-  QueryDatabaseResponse,
-  SearchResponse,
-} from "@notionhq/client/build/src/api-endpoints";
 
 export type SearchResult = {
   title: string;
@@ -30,12 +25,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const searchParams: types.SearchParams = req.body;
-  if ((searchParams.query.length < 3)) { 
+  if (searchParams.query.length < 3) {
     return res.status(200).json([]);
   }
   const allResults = await notion.search({
     ...searchParams,
   });
+
   const filterfunction = (result: any) => {
     return result.properties.Status?.select?.name === "Approved";
   };
@@ -46,5 +42,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     "Cache-Control",
     "public, s-maxage=60, max-age=60, stale-while-revalidate=60"
   );
+
   res.status(200).json(parseProperties(approved));
 };

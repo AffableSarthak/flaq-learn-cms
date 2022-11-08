@@ -16,33 +16,33 @@ import React, { useEffect } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { BlogPages } from '../../../src/utils/parse-properties'
 import SidebarContent from './SidebarContent'
-import SearchBar from "../../Search"
+import SearchBar from '../../common/Search'
 type Props = {
-  blogData: BlogPages[];
-};
+  blogData: BlogPages[]
+}
 
 const UniversalDrawer = ({ blogData }: Props) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const router = useRouter();
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const router = useRouter()
 
   useEffect(() => {
-    if (router.pathname === "/") {
-      onOpen();
+    if (router.pathname === '/') {
+      onOpen()
     }
-  }, []);
+  }, [])
 
   return (
     <>
       <Box position="fixed">
         <IconButton
           m="2"
-          display={"flex"}
-          alignItems={"center"}
+          display={'flex'}
+          alignItems={'center'}
           backdropBlur="md"
-          justifyContent={"center"}
+          justifyContent={'center'}
           bg="#005704"
           position="static"
-          variant={"unstyled"}
+          variant={'unstyled'}
           color="#A6EBC9"
           onClick={onOpen}
           fontSize="3xl"
@@ -53,24 +53,24 @@ const UniversalDrawer = ({ blogData }: Props) => {
       </Box>
 
       <Drawer
-        variant={"mainsidebar"}
+        variant={'mainsidebar'}
         isOpen={isOpen}
         placement="left"
         onClose={onClose}
       >
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton size={"lg"} />
+          <DrawerCloseButton size={'lg'} />
 
           <DrawerHeader>
             <Link href={'/'} passHref>
               <Text
                 fontSize="2xl"
-                fontFamily={"Dela Gothic One"}
-                cursor={"pointer"}
+                fontFamily={'Dela Gothic One'}
+                cursor={'pointer'}
                 _hover={{
                   scale: 1.2,
-                  transform: "translateY(-1px)",
+                  transform: 'translateY(-1px)',
                 }}
               >
                 Flaq Academy
@@ -84,7 +84,7 @@ const UniversalDrawer = ({ blogData }: Props) => {
         </DrawerContent>
       </Drawer>
     </>
-  );
-};
+  )
+}
 
-export default UniversalDrawer;
+export default UniversalDrawer
