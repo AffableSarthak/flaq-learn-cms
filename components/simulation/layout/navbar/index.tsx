@@ -20,7 +20,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       px={{ base: 4, md: 4 }}
       height="16"
       alignItems="center"
-      justifyContent="space-between"
+      
       w="full"
       position={'sticky'}
       top={0}
@@ -38,6 +38,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       />
 
       <Text
+        mx="5"
         display="flex"
         fontSize="2xl"
         fontFamily="Dela Gothic One"

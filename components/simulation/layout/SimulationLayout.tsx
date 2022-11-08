@@ -111,7 +111,7 @@ const SidebarContent = ({
         {...rest}
         boxShadow="2xl"
         p={4}
-        mx={4}
+        
       >
         <Flex alignItems="right" mx="8" justifyContent="flex-end">
           <CloseButton

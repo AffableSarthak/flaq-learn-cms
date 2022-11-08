@@ -1,4 +1,5 @@
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
+import Button from "./Button";
 import Drawer from "./Drawer";
 import Heading from "./Heading";
 import Input from "./Input";
@@ -18,7 +19,8 @@ const theme = extendTheme({
   components: {
     Drawer,
     Heading,
-    Input
+    Input,
+    Button
   },
 });
 

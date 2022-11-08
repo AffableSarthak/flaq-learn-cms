@@ -105,7 +105,7 @@ const SimulationCard = ({ cardData, simulationHeader, setCardData }: Props) => {
 
               {simKey && (
                 <Center>
-                  <Box p={10} borderWidth="0.5px">
+                  <Box p={10} >
                     <RenderSimulation simkey={simKey} />
                   </Box>
                 </Center>
@@ -143,15 +143,15 @@ const SimulationCard = ({ cardData, simulationHeader, setCardData }: Props) => {
       <Center>
         <Box
           h="100%"
-          w={{ base: '90vw', md: '60vw', lg: '70vw' }}
-          boxShadow={'sm'}
+          w={{ base: "90vw", md: "60vw", lg: "70vw" }}
+          boxShadow={"sm"}
           p={5}
         >
           <Center>
             <Box mb={10}>
               <Text
-                fontFamily={'Dela Gothic One'}
-                fontSize={{ base: '3xl', md: '5xl', lg: '6xl' }}
+                fontFamily={"Dela Gothic One"}
+                fontSize={{ base: "3xl", md: "5xl", lg: "6xl" }}
                 bgGradient="linear(to-l, green.100,green.800)"
                 bgClip="text"
               >
@@ -160,18 +160,16 @@ const SimulationCard = ({ cardData, simulationHeader, setCardData }: Props) => {
             </Box>
           </Center>
           <Box>{renderUiForBlocks(renderBlocks)}</Box>
-          <Flex bottom={0} mx="auto" justifyContent={'space-between'} py="4">
+          <Flex bottom={0} mx="auto" justifyContent={"space-between"} py="4">
             <Button
-              color={'black'}
-              bg={'#a6ebc9'}
+              variant={"primarybtn"}
               disabled={isBackDisabled}
               onClick={() => setCardData(currentSimulationIndex - 1)}
             >
               Back
             </Button>
             <Button
-              color={'black'}
-              bg={'#a6ebc9'}
+              variant={"primarybtn"}
               disabled={isNextDisabled}
               onClick={() => setCardData(currentSimulationIndex + 1)}
             >
@@ -181,7 +179,7 @@ const SimulationCard = ({ cardData, simulationHeader, setCardData }: Props) => {
         </Box>
       </Center>
     </>
-  )
+  );
 }
 
 export default SimulationCard

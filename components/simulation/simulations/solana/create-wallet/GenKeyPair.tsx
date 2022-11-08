@@ -1,68 +1,91 @@
-import React from 'react'
-import * as solanaWeb3 from '@solana/web3.js'
-import * as bip39 from 'bip39'
-import { Box, Button, Center, Flex, Text, Textarea } from '@chakra-ui/react'
-import { AiOutlineLock } from 'react-icons/ai'
-import { CreateWalletState, UpdateCreateWalletState } from '../../../types'
-import { useCreateWalletStore } from '../../../store/create-wallet'
+import React, { useEffect } from "react";
+import * as solanaWeb3 from "@solana/web3.js";
+import * as bip39 from "bip39";
+import { Box, Button, Text } from "@chakra-ui/react";
+import { useCreateWalletStore } from "../../../store/create-wallet";
 
 function GenKeyPair() {
-  const { Keypair } = solanaWeb3
+  const { Keypair } = solanaWeb3;
   const setUserWalletDetails = useCreateWalletStore(
-    (state: { setUserWalletDetails: any }) => state.setUserWalletDetails,
-  )
-  // const { seedPhrase, publickey } = userWalletDetails
-  const [mnemonicValue, setMnemonicValue] = React.useState('')
-  const [publicKey, setPublicKey] = React.useState('')
-  const [hideKey, setHideKey] = React.useState(true)
-  const generateKey = async () => {
-    setHideKey(true)
-    const mnemonic = bip39.generateMnemonic()
-    console.log(mnemonic)
-    setMnemonicValue(mnemonic)
+    (state: { setUserWalletDetails: any }) => state.setUserWalletDetails
+  );
 
-    const seed = bip39.mnemonicToSeedSync(mnemonic, '') // (mnemonic, password)
-    const keypair = Keypair.fromSeed(seed.slice(0, 32))
-    setPublicKey(keypair.publicKey.toString())
-    console.log(`${keypair.publicKey.toBase58()}`) // 5ZWj7a1f8tWkjBESHKgrLmXshuXxqeY9SYcfbshpAqPG
-    console.log('Updating sim state', mnemonic)
+  const userWalletDetails = useCreateWalletStore(
+    (state: { userWalletDetails: any }) => state.userWalletDetails
+  );
+
+  const generateKey = async () => {
+    const mnemonic = bip39.generateMnemonic();
+    console.log(mnemonic);
+
+    const seed = bip39.mnemonicToSeedSync(mnemonic, ""); // (mnemonic, password)
+    const keypair = Keypair.fromSeed(seed.slice(0, 32));
+
+    console.log(`${keypair.publicKey.toBase58()}`); // 5ZWj7a1f8tWkjBESHKgrLmXshuXxqeY9SYcfbshpAqPG
+    console.log("Updating sim state", mnemonic);
     setUserWalletDetails({
       publicKey: keypair.publicKey.toString(),
       seedPhrase: mnemonic,
-    })
-  }
+    });
+  };
 
   return (
-    <Box>
-      <Box>
-        <Button colorScheme="blue" onClick={generateKey}>
-          Generate Key
-        </Button>
-      </Box>
-      <Box my="12">
-        {mnemonicValue && (
+    <Box textAlign={"center"} fontFamily="Nunito Sans">
+      {!userWalletDetails.seedPhrase && (
+        <Box>
+          <Button variant={"primarybtn"} onClick={generateKey}>
+            Create Wallet
+          </Button>
+        </Box>
+      )}
+
+      <Box
+        my="12"
+        display={"flex"}
+        justifyContent="center"
+        alignContent={"center"}
+      >
+        {userWalletDetails.seedPhrase && (
           <Box>
+            <Box mb="12">
+              <Text fontSize="2xl" fontWeight="bold">
+                Secret Recovery Phrase
+              </Text>
+            </Box>
             <Box
               my="4"
-              borderRadius={'8px'}
-              border="1px solid #bbc0c5"
-              maxW={'350px'}
+              style={{
+                borderImage: "linear-gradient(60deg, #a6ebc9, #005704)",
+                borderImageSlice: 1,
+              }}
+              borderRadius={"8px"}
+              border="1px solid transparent"
+              maxW={"350px"}
               textAlign="center"
               fontSize="xl"
               px="8"
               py="4"
             >
-              {mnemonicValue}
+              {userWalletDetails.seedPhrase}
             </Box>
-            
+            <Text>Can be used in future to recover account</Text>
           </Box>
         )}
       </Box>
-      <Text as="samp" fontSize="2xl">
-        {publicKey}
-      </Text>
+      {userWalletDetails.publicKey && (
+        <Box>
+          <Text>
+            <Text as="span" fontWeight="bold">
+              Public Key
+            </Text>
+          </Text>
+          <Text as="samp" fontSize="2xl">
+            {userWalletDetails.publicKey}
+          </Text>
+        </Box>
+      )}
     </Box>
-  )
+  );
 }
 
-export default GenKeyPair
+export default GenKeyPair;
