@@ -11,17 +11,25 @@ import {
   Text,
 } from '@chakra-ui/react'
 import Link from 'next/link'
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { BlogPages } from '../../../src/utils/parse-properties'
 import SidebarContent from './SidebarContent'
-
+import SearchBar from '../../common/Search'
 type Props = {
   blogData: BlogPages[]
 }
 
 const UniversalDrawer = ({ blogData }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (router.pathname === '/') {
+      onOpen()
+    }
+  }, [])
 
   return (
     <>
@@ -41,6 +49,7 @@ const UniversalDrawer = ({ blogData }: Props) => {
           aria-label="open close drawer"
           icon={<GiHamburgerMenu />}
         />
+        <SearchBar />
       </Box>
 
       <Drawer

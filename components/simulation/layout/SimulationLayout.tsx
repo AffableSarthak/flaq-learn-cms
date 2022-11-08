@@ -9,7 +9,7 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { CardDataType, SimulationPageType, SimulationType } from '../types'
 import SimulationCard from './main/SimulationCard'
 import MobileNav from './navbar'
@@ -39,6 +39,10 @@ function SimulationLayout(props: SimulationPageType) {
     },
     [simulationData],
   )
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [cardData])
 
   return (
     <Box fontFamily={'Nunito Sans'} minH="100vh" bg="#020f02">
