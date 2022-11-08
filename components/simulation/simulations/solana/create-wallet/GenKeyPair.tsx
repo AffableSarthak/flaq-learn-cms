@@ -31,13 +31,11 @@ function GenKeyPair() {
 
   return (
     <Box textAlign={"center"} fontFamily="Nunito Sans">
-      {!userWalletDetails.seedPhrase && (
-        <Box>
-          <Button variant={"primarybtn"} onClick={generateKey}>
-            Create Wallet
-          </Button>
-        </Box>
-      )}
+      <Box>
+        <Button variant={"primarybtn"} onClick={generateKey}>
+          Create New Wallet
+        </Button>
+      </Box>
 
       <Box
         my="12"
