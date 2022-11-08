@@ -1,4 +1,5 @@
-import { CreateWalletSimulationKeys } from '../types'
+import React from 'react'
+import { CreateWalletSimulationKeys, CreateWalletState } from '../types'
 import Airdrop from './solana/create-wallet/Airdrop'
 import BackupSeedPhrase from './solana/create-wallet/BackupSeedPhrase'
 import GenKeyPair from './solana/create-wallet/GenKeyPair'

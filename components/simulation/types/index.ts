@@ -5,6 +5,18 @@ export enum CreateWalletSimulationKeys {
   Airdrop = "airprop",
 }
 
+/**
+ * The state for managing the "Create Wallet" Simulation
+ */
+export interface CreateWalletState {
+  publicKey: string;
+  seedPhrase: string;
+}
+
+export interface UpdateCreateWalletState {
+  (state: CreateWalletState): void;
+}
+
 export interface CardDataType {
   currentSimulation: SimulationType;
   isBackDisabled: boolean;
