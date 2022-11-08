@@ -1,89 +1,99 @@
-import React, { useEffect } from "react";
-import * as solanaWeb3 from "@solana/web3.js";
-import * as bip39 from "bip39";
-import { Box, Button, Text } from "@chakra-ui/react";
-import { useCreateWalletStore } from "../../../store/create-wallet";
+import React from 'react'
+import * as solanaWeb3 from '@solana/web3.js'
+import * as bip39 from 'bip39'
+import { Box, Button, Divider, Flex, Hide, Show, Text } from '@chakra-ui/react'
+import { useCreateWalletStore } from '../../../store/create-wallet'
 
 function GenKeyPair() {
-  const { Keypair } = solanaWeb3;
+  const { Keypair } = solanaWeb3
   const setUserWalletDetails = useCreateWalletStore(
-    (state: { setUserWalletDetails: any }) => state.setUserWalletDetails
-  );
+    (state: { setUserWalletDetails: any }) => state.setUserWalletDetails,
+  )
 
   const userWalletDetails = useCreateWalletStore(
-    (state: { userWalletDetails: any }) => state.userWalletDetails
-  );
+    (state: { userWalletDetails: any }) => state.userWalletDetails,
+  )
 
   const generateKey = async () => {
-    const mnemonic = bip39.generateMnemonic();
-    console.log(mnemonic);
+    const mnemonic = bip39.generateMnemonic()
+    const seed = bip39.mnemonicToSeedSync(mnemonic, '') // (mnemonic, password)
+    const keypair = Keypair.fromSeed(seed.slice(0, 32))
 
-    const seed = bip39.mnemonicToSeedSync(mnemonic, ""); // (mnemonic, password)
-    const keypair = Keypair.fromSeed(seed.slice(0, 32));
-
-    console.log(`${keypair.publicKey.toBase58()}`); // 5ZWj7a1f8tWkjBESHKgrLmXshuXxqeY9SYcfbshpAqPG
-    console.log("Updating sim state", mnemonic);
     setUserWalletDetails({
       publicKey: keypair.publicKey.toString(),
       seedPhrase: mnemonic,
-    });
-  };
+    })
+  }
 
   return (
-    <Box textAlign={"center"} fontFamily="Nunito Sans">
+    <Box>
       <Box>
-        <Button variant={"primarybtn"} onClick={generateKey}>
+        <Button variant={'primarybtn'} onClick={generateKey}>
           Create New Wallet
         </Button>
       </Box>
 
-      <Box
-        my="12"
-        display={"flex"}
-        justifyContent="center"
-        alignContent={"center"}
+      <Flex
+        borderWidth={'0.5px'}
+        borderColor="whiteAlpha.200"
+        borderRadius="2xl"
+        p={2}
+        mt={4}
+        flexDirection={{ base: 'column', md: 'column', lg: 'row' }}
+        gap={{ md: 4 }}
       >
         {userWalletDetails.seedPhrase && (
-          <Box>
-            <Box mb="12">
-              <Text fontSize="2xl" fontWeight="bold">
-                Secret Recovery Phrase
-              </Text>
+          <Flex
+            flexDirection={'column'}
+            justifyContent="center"
+            alignItems={{ lg: 'center', base: 'flex-start' }}
+            gap={{ base: 2, md: 4 }}
+          >
+            <Box>
+              <Text fontFamily={'Dela Gothic One'}>Secret Recovery Phrase</Text>
             </Box>
             <Box
-              my="4"
               style={{
-                borderImage: "linear-gradient(60deg, #a6ebc9, #005704)",
+                borderImage: 'linear-gradient(60deg, #a6ebc9, #005704)',
                 borderImageSlice: 1,
               }}
-              borderRadius={"8px"}
+              borderRadius={'8px'}
               border="1px solid transparent"
-              maxW={"350px"}
               textAlign="center"
-              fontSize="xl"
-              px="8"
+              as="samp"
+              px="2"
               py="4"
             >
               {userWalletDetails.seedPhrase}
             </Box>
-            <Text>Can be used in future to recover account</Text>
-          </Box>
+          </Flex>
         )}
-      </Box>
-      {userWalletDetails.publicKey && (
-        <Box>
-          <Text>
-            <Text as="span" fontWeight="bold">
-              Public Key
-            </Text>
-          </Text>
-          <Text as="samp" fontSize="2xl">
-            {userWalletDetails.publicKey}
-          </Text>
-        </Box>
-      )}
+        <Hide below="lg">
+          <Divider orientation="vertical" height="23ex" m="4" />
+        </Hide>
+        <Hide above="md">
+          <Divider orientation="horizontal" width={'90%'} m="4" />
+        </Hide>
+        {userWalletDetails.publicKey && (
+          <Flex
+            flexDirection={'column'}
+            justifyContent="center"
+            alignItems={{ lg: 'center', base: 'flex-start' }}
+            gap={{ base: 2, md: 4 }}
+          >
+            <Box>
+              <Text fontFamily={'Dela Gothic One'}>Your Public Key</Text>
+            </Box>
+            <Box maxW={{ base: '70vw' }}>
+              <Text as="samp" px="2">
+                {userWalletDetails.publicKey}
+              </Text>
+            </Box>
+          </Flex>
+        )}
+      </Flex>
     </Box>
-  );
+  )
 }
 
-export default GenKeyPair;
+export default GenKeyPair
