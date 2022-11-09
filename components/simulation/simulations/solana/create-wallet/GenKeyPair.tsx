@@ -1,6 +1,6 @@
 import React from 'react'
-import * as solanaWeb3 from '@solana/web3.js'
 import * as bip39 from 'bip39'
+import shallow from 'zustand/shallow'
 import {
   Box,
   Button,
@@ -10,33 +10,27 @@ import {
   Hide,
   Text,
 } from '@chakra-ui/react'
-import { useCreateWalletStore } from '../../../store/create-wallet'
+import {
+  getUserPublicKey,
+  useCreateWalletStore,
+} from '../../../store/create-wallet'
 
 function GenKeyPair() {
-  const { Keypair } = solanaWeb3
-  const userWalletDetails = useCreateWalletStore(
-    (state) => state.userWalletDetails,
-  )
-  const setUserWalletDetails = useCreateWalletStore(
-    (state) => state.setUserWalletDetails,
+  const { seedPhrase, setSeedPhrase } = useCreateWalletStore(
+    (state) => ({
+      seedPhrase: state.seedPhrase,
+      setSeedPhrase: state.setSeedPhrase,
+    }),
+    shallow,
   )
 
   const generateKey = async () => {
     const mnemonic = bip39.generateMnemonic()
-    const seed = bip39.mnemonicToSeedSync(mnemonic, '') // (mnemonic, password)
-    const keypair = Keypair.fromSeed(seed.slice(0, 32))
-
-    setUserWalletDetails({
-      publicKey: keypair.publicKey.toString(),
-      seedPhrase: mnemonic,
-    })
+    setSeedPhrase(mnemonic)
   }
 
   const isUserDataAvailable = () => {
-    return (
-      userWalletDetails.publicKey.length !== 0 ||
-      userWalletDetails.seedPhrase.length !== 0
-    )
+    return seedPhrase.length !== 0
   }
 
   return (
@@ -78,7 +72,7 @@ function GenKeyPair() {
               px="2"
               py="4"
             >
-              {userWalletDetails.seedPhrase}
+              {seedPhrase}
             </Box>
           </Flex>
 
@@ -99,7 +93,7 @@ function GenKeyPair() {
             </Box>
             <Box maxW={{ base: '70vw' }}>
               <Text as="samp" px="2">
-                {userWalletDetails.publicKey}
+                {getUserPublicKey(seedPhrase).toString()}
               </Text>
             </Box>
           </Flex>

@@ -16,6 +16,119 @@ export interface AllOptions {
   isSelected: boolean
 }
 
+function ShowcasePublicKey() {
+  const seedPhrase = useCreateWalletStore((state) => state.seedPhrase)
+
+  // util functions
+  const jumble = () => {
+    const words = seedPhrase.split(' ')
+    const jumbled = words.sort(() => Math.random() - 0.5)
+    return jumbled.join(' ')
+  }
+  const toast = useToast()
+  // state
+  const [allOptions, setAllOptions] = React.useState<AllOptions[]>([])
+  const [selectedList, setSelectedList] = React.useState<Array<string>>([])
+
+  useEffect(() => {
+    ;(() => {
+      const jumbledVlaues = jumble()
+      const tempAllOtpions: AllOptions[] = []
+      jumbledVlaues.split(' ').forEach((word: any, index: any) => {
+        tempAllOtpions.push({
+          word,
+          index,
+          isSelected: false,
+        })
+      })
+      setAllOptions(tempAllOtpions)
+    })()
+
+    return () => {
+      setAllOptions([])
+      setSelectedList([])
+    }
+  }, [])
+
+  // Actions
+  // 1. select word
+  const selectWord = useCallback(
+    (selectedWordObj: AllOptions) => {
+      const tempAllOptions = [...allOptions]
+      const tempSelectedList = [...selectedList]
+      tempAllOptions[selectedWordObj.index].isSelected = true
+      tempSelectedList.push(selectedWordObj.word)
+      setAllOptions(tempAllOptions)
+      setSelectedList(tempSelectedList)
+    },
+    [allOptions, selectedList],
+  )
+
+  // 2. unselect word
+  const unselectWord = useCallback(
+    (selectedWordObj: AllOptions) => {
+      const tempAllOptions = [...allOptions]
+      const tempSelectedList = [...selectedList]
+      tempAllOptions[selectedWordObj.index].isSelected = false
+      tempSelectedList.splice(tempSelectedList.indexOf(selectedWordObj.word), 1)
+      setAllOptions(tempAllOptions)
+      setSelectedList(tempSelectedList)
+    },
+    [allOptions, selectedList],
+  )
+
+  // 3. submit
+  const submitHandler = useCallback(() => {
+    if (selectedList.join(' ') === seedPhrase) {
+      toast({
+        title: 'Success',
+        description: 'Mnemonic is correct',
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      })
+    } else {
+      toast({
+        title: 'Failed',
+        description: 'Mnemonic is incorrect',
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      })
+    }
+  }, [selectedList, toast])
+
+  const isUserDataAvailable = () => {
+    return seedPhrase.length !== 0
+  }
+
+  return (
+    <Center my="8">
+      {isUserDataAvailable() ? (
+        <Box w="fit-content">
+          <RenderSelectedWords selectedList={selectedList} />
+
+          <RenderAllWords
+            allOptions={allOptions}
+            selectWord={selectWord}
+            unselectWord={unselectWord}
+          />
+          <RenderButton
+            selectedList={selectedList}
+            submitHandler={submitHandler}
+          />
+        </Box>
+      ) : (
+        <Box>
+          <Text color="#a6ebc9">
+            Create a wallet to get your secret recovery phrase in previous step
+          </Text>
+        </Box>
+      )}
+    </Center>
+  )
+}
+
 const RenderSelectedWords = ({
   selectedList,
 }: {
@@ -126,125 +239,6 @@ const RenderButton = ({
         Submit
       </Button>
     </Box>
-  )
-}
-
-function ShowcasePublicKey() {
-  const userWalletDetails = useCreateWalletStore(
-    (state) => state.userWalletDetails,
-  )
-  const { seedPhrase, publicKey } = userWalletDetails
-
-  // util functions
-  const jumble = () => {
-    const words = seedPhrase.split(' ')
-    const jumbled = words.sort(() => Math.random() - 0.5)
-    return jumbled.join(' ')
-  }
-  const toast = useToast()
-  // state
-  const [allOptions, setAllOptions] = React.useState<AllOptions[]>([])
-  const [selectedList, setSelectedList] = React.useState<Array<string>>([])
-
-  useEffect(() => {
-    ;(() => {
-      const jumbledVlaues = jumble()
-      const tempAllOtpions: AllOptions[] = []
-      jumbledVlaues.split(' ').forEach((word: any, index: any) => {
-        tempAllOtpions.push({
-          word,
-          index,
-          isSelected: false,
-        })
-      })
-      setAllOptions(tempAllOtpions)
-    })()
-
-    return () => {
-      setAllOptions([])
-      setSelectedList([])
-    }
-  }, [])
-
-  // Actions
-  // 1. select word
-  const selectWord = useCallback(
-    (selectedWordObj: AllOptions) => {
-      const tempAllOptions = [...allOptions]
-      const tempSelectedList = [...selectedList]
-      tempAllOptions[selectedWordObj.index].isSelected = true
-      tempSelectedList.push(selectedWordObj.word)
-      setAllOptions(tempAllOptions)
-      setSelectedList(tempSelectedList)
-    },
-    [allOptions, selectedList],
-  )
-
-  // 2. unselect word
-  const unselectWord = useCallback(
-    (selectedWordObj: AllOptions) => {
-      const tempAllOptions = [...allOptions]
-      const tempSelectedList = [...selectedList]
-      tempAllOptions[selectedWordObj.index].isSelected = false
-      tempSelectedList.splice(tempSelectedList.indexOf(selectedWordObj.word), 1)
-      setAllOptions(tempAllOptions)
-      setSelectedList(tempSelectedList)
-    },
-    [allOptions, selectedList],
-  )
-
-  // 3. submit
-  const submitHandler = useCallback(() => {
-    if (selectedList.join(' ') === seedPhrase) {
-      toast({
-        title: 'Success',
-        description: 'Mnemonic is correct',
-        status: 'success',
-        duration: 9000,
-        isClosable: true,
-      })
-    } else {
-      toast({
-        title: 'Failed',
-        description: 'Mnemonic is incorrect',
-        status: 'error',
-        duration: 9000,
-        isClosable: true,
-      })
-    }
-  }, [selectedList, toast])
-
-  const isUserDataAvailable = () => {
-    return (
-      userWalletDetails.publicKey.length !== 0 ||
-      userWalletDetails.seedPhrase.length !== 0
-    )
-  }
-
-  return (
-    <Center my="8">
-      {isUserDataAvailable() ? (
-        <Box w="fit-content">
-          <RenderSelectedWords selectedList={selectedList} />
-
-          <RenderAllWords
-            allOptions={allOptions}
-            selectWord={selectWord}
-            unselectWord={unselectWord}
-          />
-          <RenderButton
-            selectedList={selectedList}
-            submitHandler={submitHandler}
-          />
-        </Box>
-      ) : (
-        <Box>
-          <Text color="#a6ebc9">
-            Create a wallet to get your secret recovery phrase in previous step
-          </Text>
-        </Box>
-      )}
-    </Center>
   )
 }
 
