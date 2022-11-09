@@ -40,8 +40,17 @@ export const useCreateWalletStore = create<CreateWalletState>()(
             publicKey,
             web3.LAMPORTS_PER_SOL
           );
-          // connection.confirmTransaction(tx);
           console.log({ tx });
+
+          // connection.confirmTransaction(tx);
+          const latestBlockHash = await connection.getLatestBlockhash();
+
+          const confirmTx = await connection.confirmTransaction({
+            blockhash: latestBlockHash.blockhash,
+            lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
+            signature: tx,
+          });
+          console.log(confirmTx);
           get().setBalance();
         },
       }),

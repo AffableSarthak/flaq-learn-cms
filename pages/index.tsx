@@ -45,8 +45,11 @@ export async function getServerSideProps() {
   const database = await queryDatabase()
   const blogData = parseProperties(database!)
 
-  const rootPageId = '9f83939fc49b41378b18f6a63338a136'
-  const recordMap = await getRecordDataForPage(rootPageId)
+  const recordMap = await getRecordDataForPage(
+    process.env.NOTION_ROOT_PAGE_ID
+      ? process.env.NOTION_ROOT_PAGE_ID
+      : '9f83939fc49b41378b18f6a63338a136',
+  )
 
   return {
     props: {
