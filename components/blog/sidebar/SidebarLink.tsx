@@ -36,7 +36,10 @@ const SidebarLink = ({
           <Box pb="2">
             {menu.blogs.map((blog, key) => (
               <Box key={key} py="1" cursor={'pointer'} onClick={closeDrawer}>
-                <Link href={`/blog/${blog.url}`} passHref>
+                <Link
+                  href={`/${blog.category.split(' ').join('-')}/${blog.url}`}
+                  passHref
+                >
                   <Flex
                     fontSize="14px"
                     key={blog.pageId}
