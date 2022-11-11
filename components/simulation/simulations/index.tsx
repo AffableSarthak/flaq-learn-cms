@@ -1,24 +1,47 @@
 import React from 'react'
-import { CreateWalletSimulationKeys, CreateWalletState } from '../types'
+import {
+  AlgorandSimulationKeys,
+  Blockchains,
+  SolanaSimulationKeys,
+} from '../types'
+import CreateWallet from './algorand/CreateWallet'
 import Airdrop from './solana/create-wallet/Airdrop'
 import BackupSeedPhrase from './solana/create-wallet/BackupSeedPhrase'
 import GenKeyPair from './solana/create-wallet/GenKeyPair'
 import ShowcasePublicKey from './solana/create-wallet/ShowcasePublicKey'
 
-export const RenderSimulation = ({
-  simkey,
-}: {
-  simkey: CreateWalletSimulationKeys
-}) => {
+export const renderSimulation = (
+  simKey: SolanaSimulationKeys | AlgorandSimulationKeys,
+  blockchain: string,
+) => {
+  switch (blockchain) {
+    case Blockchains.Solana:
+      return renderSolanaSimulation(simKey as SolanaSimulationKeys)
+
+    case Blockchains.Algorand:
+      return renderAlgorandSimulation(simKey as AlgorandSimulationKeys)
+  }
+}
+
+const renderSolanaSimulation = (simkey: SolanaSimulationKeys) => {
   switch (simkey) {
-    case CreateWalletSimulationKeys.GenKeyPair:
+    case SolanaSimulationKeys.GenKeyPair:
       return <GenKeyPair />
-    case CreateWalletSimulationKeys.BackupSeedPhrase:
+    case SolanaSimulationKeys.BackupSeedPhrase:
       return <BackupSeedPhrase />
-    case CreateWalletSimulationKeys.ShowcasePublicKey:
+    case SolanaSimulationKeys.ShowcasePublicKey:
       return <ShowcasePublicKey />
-    case CreateWalletSimulationKeys.Airdrop:
+    case SolanaSimulationKeys.Airdrop:
       return <Airdrop />
+    default:
+      return <></>
+  }
+}
+
+const renderAlgorandSimulation = (simkey: AlgorandSimulationKeys) => {
+  switch (simkey) {
+    case AlgorandSimulationKeys.CreateWallet:
+      return <CreateWallet />
     default:
       return <></>
   }

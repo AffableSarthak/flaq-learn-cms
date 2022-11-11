@@ -15,7 +15,7 @@ import SimulationCard from './main/SimulationCard'
 import MobileNav from './navbar'
 
 function SimulationLayout(props: SimulationPageType) {
-  const { simulationData, simulationHeader } = props
+  const { simulationData, simulationHeader, blockchain } = props
 
   // State for the current simulation.
   const [cardData, setCard] = React.useState<CardDataType>({
@@ -79,6 +79,7 @@ function SimulationLayout(props: SimulationPageType) {
             simulationHeader={simulationHeader}
             cardData={cardData}
             setCardData={setCardData}
+            blockchain={blockchain}
           />
         </Box>
       </Box>
@@ -111,7 +112,6 @@ const SidebarContent = ({
         {...rest}
         boxShadow="2xl"
         p={4}
-        
       >
         <Flex alignItems="right" mx="8" justifyContent="flex-end">
           <CloseButton

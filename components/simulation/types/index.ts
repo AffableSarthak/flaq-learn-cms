@@ -1,20 +1,17 @@
-export enum CreateWalletSimulationKeys {
+export enum SolanaSimulationKeys {
   GenKeyPair = "genKeyPair",
   BackupSeedPhrase = "backupSeedPhrase",
   ShowcasePublicKey = "showcasePublicKey",
   Airdrop = "airprop",
 }
 
-/**
- * The state for managing the "Create Wallet" Simulation
- */
-export interface CreateWalletState {
-  publicKey: string;
-  seedPhrase: string;
+export enum AlgorandSimulationKeys {
+  CreateWallet = "createWallet",
 }
 
-export interface UpdateCreateWalletState {
-  (state: CreateWalletState): void;
+export enum Blockchains {
+  Solana = "solana",
+  Algorand = "algorand",
 }
 
 export interface CardDataType {
@@ -36,7 +33,7 @@ export interface ListType {
   head: string;
   body: BodyType[];
   image?: string;
-  simKey?: CreateWalletSimulationKeys;
+  simKey?: SolanaSimulationKeys | AlgorandSimulationKeys;
 }
 export interface BlockType {
   subHeader: string;
@@ -54,4 +51,5 @@ export interface SimulationType {
 export interface SimulationPageType {
   simulationData: SimulationType[];
   simulationHeader: string;
+  blockchain: string;
 }

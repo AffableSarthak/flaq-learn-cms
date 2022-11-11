@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react'
 import Image from 'next/image'
 import React, { ReactNode } from 'react'
-import { RenderSimulation } from '../../simulations'
+import { renderSimulation } from '../../simulations'
 import { BlockType, ListType, CardDataType, BodyType } from '../../types'
 import { HiHashtag } from 'react-icons/hi'
 
@@ -20,9 +20,15 @@ type Props = {
   cardData: CardDataType
   simulationHeader: string
   setCardData: (index: number) => void
+  blockchain: string
 }
 
-const SimulationCard = ({ cardData, simulationHeader, setCardData }: Props) => {
+const SimulationCard = ({
+  cardData,
+  simulationHeader,
+  setCardData,
+  blockchain,
+}: Props) => {
   const {
     currentSimulation,
     currentSimulationIndex,
@@ -103,11 +109,7 @@ const SimulationCard = ({ cardData, simulationHeader, setCardData }: Props) => {
 
               {renderBody(body)}
 
-              {simKey && (
-                <Box>
-                  <RenderSimulation simkey={simKey} />
-                </Box>
-              )}
+              {simKey && <Box>{renderSimulation(simKey, blockchain)}</Box>}
             </Box>
           </Box>
         )
