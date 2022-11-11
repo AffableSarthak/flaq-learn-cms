@@ -13,19 +13,34 @@ import {
   Hide,
   Link,
   Text,
+  useToast,
 } from '@chakra-ui/react'
 import shallow from 'zustand/shallow'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 
 function Airdrop() {
-  const { seedPhrase, airdropTokenIntoWallet, balance } = useCreateWalletStore(
+  const {
+    seedPhrase,
+    airdropTokenIntoWallet,
+    balance,
+    error,
+    isLoading,
+    fakeAirdrop,
+    fakeBalance,
+  } = useCreateWalletStore(
     (state) => ({
       seedPhrase: state.seedPhrase,
       airdropTokenIntoWallet: state.airdropTokenIntoWallet,
       balance: state.balance,
+      error: state.error,
+      isLoading: state.isLoading,
+      fakeAirdrop: state.setFakeBalance,
+      fakeBalance: state.fakeBalance,
     }),
     shallow,
   )
+
+  const toast = useToast()
 
   const isUserDataAvailable = () => {
     return seedPhrase.length !== 0
@@ -36,7 +51,22 @@ function Airdrop() {
       {isUserDataAvailable() ? (
         <>
           <Center my="8">
-            <Button variant={'primarybtn'} onClick={airdropTokenIntoWallet}>
+            <Button
+              variant={'primarybtn'}
+              onClick={async () => {
+                await airdropTokenIntoWallet()
+                toast({
+                  title: 'Success',
+                  description: 'Airdrop successful',
+                  status: 'success',
+                  duration: 4000,
+                  isClosable: true,
+                  position: 'top-right',
+                })
+              }}
+              isLoading={isLoading}
+              loadingText="Bling Bling on your way!"
+            >
               Airdrop some 🪙 into your wallet
             </Button>
           </Center>
@@ -67,7 +97,9 @@ function Airdrop() {
               </Box>
               <Box>
                 <Link
-                  href="https://explorer.solana.com/?cluster=testnet"
+                  href={`https://explorer.solana.com/address/${getUserPublicKey(
+                    seedPhrase,
+                  ).toString()}?cluster=testnet`}
                   isExternal
                 >
                   Explore on SolScan <ExternalLinkIcon mx="2px" />
@@ -93,7 +125,7 @@ function Airdrop() {
               </Box>
               <Box maxW={{ base: '70vw' }}>
                 <Text as="samp" px="2">
-                  {balance}
+                  {fakeBalance}
                 </Text>
               </Box>
             </Flex>

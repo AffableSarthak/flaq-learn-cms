@@ -3,12 +3,23 @@ import { devtools, persist } from "zustand/middleware";
 import * as web3 from "@solana/web3.js";
 import * as bip39 from "bip39";
 
+enum WalltetErrors {
+  SolanaInternalError = "There seems to be an internal error with Solana, please try again later.",
+}
+
 interface CreateWalletState {
   seedPhrase: string;
   balance: number;
+  isLoading: boolean;
+  error?: WalltetErrors;
+  fakeBalance: number;
   setSeedPhrase: (seedPhrase: string) => void;
   setBalance: () => void;
   airdropTokenIntoWallet: () => void;
+  setLoader: (isLoading: boolean) => void;
+  setError: (error?: WalltetErrors) => void;
+  setFakeBalance: () => void;
+  resetState: () => void;
 }
 
 // utils
@@ -24,7 +35,19 @@ export const useCreateWalletStore = create<CreateWalletState>()(
       (set, get) => ({
         seedPhrase: "",
         balance: 0,
-        setSeedPhrase: (deets) => set(() => ({ seedPhrase: deets })),
+        error: undefined,
+        isLoading: false,
+        fakeBalance: 0,
+        setLoader: (isLoading: boolean) => set({ isLoading }),
+        setError: (error?: WalltetErrors) => set({ error }),
+        setFakeBalance: () => {
+          set({ fakeBalance: get().fakeBalance + 1 });
+          // get().setError();
+        },
+        setSeedPhrase: (deets) => {
+          set(() => ({ seedPhrase: deets }));
+          get().resetState();
+        },
         setBalance: async () => {
           let connection = new web3.Connection(web3.clusterApiUrl("testnet"));
           const mnemonic = get().seedPhrase;
@@ -33,25 +56,34 @@ export const useCreateWalletStore = create<CreateWalletState>()(
           set({ balance: balance });
         },
         airdropTokenIntoWallet: async () => {
-          let connection = new web3.Connection(web3.clusterApiUrl("testnet"));
+          get().setLoader(true);
+          let connection = new web3.Connection(web3.clusterApiUrl("devnet"));
           const mnemonic = get().seedPhrase;
           const publicKey = getUserPublicKey(mnemonic);
-          const tx = await connection.requestAirdrop(
-            publicKey,
-            web3.LAMPORTS_PER_SOL
-          );
-          console.log({ tx });
+          try {
+            const tx = await connection.requestAirdrop(
+              publicKey,
+              web3.LAMPORTS_PER_SOL
+            );
+            const latestBlockHash = await connection.getLatestBlockhash();
 
-          // connection.confirmTransaction(tx);
-          const latestBlockHash = await connection.getLatestBlockhash();
+            const confirmTx = await connection.confirmTransaction({
+              blockhash: latestBlockHash.blockhash,
+              lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
+              signature: tx,
+            });
 
-          const confirmTx = await connection.confirmTransaction({
-            blockhash: latestBlockHash.blockhash,
-            lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
-            signature: tx,
-          });
-          console.log(confirmTx);
-          get().setBalance();
+            console.log(confirmTx);
+          } catch (error) {
+            console.log(error);
+          } finally {
+            get().setBalance();
+            get().setFakeBalance();
+            get().setLoader(false);
+          }
+        },
+        resetState: () => {
+          set({ balance: 0, error: undefined, fakeBalance: 0 });
         },
       }),
       {

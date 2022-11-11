@@ -82,18 +82,20 @@ function ShowcasePublicKey() {
     if (selectedList.join(' ') === seedPhrase) {
       toast({
         title: 'Success',
-        description: 'Mnemonic is correct',
+        description: 'Seed Phrase backup is correct',
         status: 'success',
         duration: 9000,
         isClosable: true,
+        position: 'top-right',
       })
     } else {
       toast({
         title: 'Failed',
-        description: 'Mnemonic is incorrect',
+        description: 'Seed Phrase backup is incorrect',
         status: 'error',
         duration: 9000,
         isClosable: true,
+        position: 'top-right',
       })
     }
   }, [selectedList, toast])
@@ -236,7 +238,7 @@ const RenderButton = ({
         disabled={selectedList.length !== 12}
         onClick={submitHandler}
       >
-        Submit
+        Verify Seed Phrase
       </Button>
     </Box>
   )

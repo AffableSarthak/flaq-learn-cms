@@ -39,6 +39,10 @@ function BackupSeedPhrase() {
                   title: `Copied to clipboard`,
                   status: 'success',
                   isClosable: true,
+                  description:
+                    "Please keep this safe, as you won't be able to recover your wallet without it.",
+                  duration: 4000,
+                  position: 'top-right',
                 })
               }}
               variant={'primarybtn'}
