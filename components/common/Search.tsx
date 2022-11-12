@@ -70,7 +70,6 @@ const Search = (props: Props) => {
 
     return () => {
       clearTimeout(getData)
-      setSearchQuery('')
       setDefaultFallback(true)
       setSearchResults([])
       setSearchResultsLoading(false)
@@ -108,7 +107,9 @@ const Search = (props: Props) => {
                 size="lg"
                 type="text"
                 placeholder="Search"
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                }}
               />
             </InputGroup>
             {searchResults.length > 0 ? (
