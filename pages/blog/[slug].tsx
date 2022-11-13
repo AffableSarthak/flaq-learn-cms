@@ -10,6 +10,7 @@ import { BlogPages, parseProperties } from '../../src/utils/parse-properties'
 import Page404 from '../../components/fallback/Page404'
 import PageHead from '../../components/seo/PageHead'
 import BlogLayout from '../../components/blog/BlogLayout'
+import { NotionPageHeader } from '../../components/blog/Header'
 interface MyHeadingProps {
   children: React.PropsWithChildren<React.ReactChild>
 }
@@ -33,14 +34,15 @@ const Blog = ({
         fullPage={true}
         darkMode={true}
         showTableOfContents={true}
-        disableHeader={true}
+        
         components={{
           nextImage: Image,
           nextLink: Link,
+          Header: NotionPageHeader,
         }}
       />
     </div>
-  )
+  );
 }
 
 export async function getServerSideProps(context: any) {
