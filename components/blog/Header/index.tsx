@@ -1,15 +1,12 @@
 import React from "react";
 import * as types from "notion-types";
-import { Breadcrumbs, Header, Search, useNotionContext } from "react-notion-x";
+import { Breadcrumbs, Header, useNotionContext } from "react-notion-x";
 import {
   Container,
   Flex,
   Box,
   Text,
   HStack,
-  Hide,
-  Show,
-  useDisclosure,
   IconButton,
   Icon,
 } from "@chakra-ui/react";
@@ -17,10 +14,13 @@ import Image from "next/image";
 import logo from "../../../public/img/logo.svg";
 import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { AiOutlineClose } from "react-icons/ai";
-import { motion, AnimatePresence } from "framer-motion";
+import SearchBar from "../../common/Search";
 
-type Props = {};
+type Props = {
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+};
 const MenuLinks = [
   {
     name: "Home",
@@ -47,21 +47,44 @@ const MenuLinks = [
     link: "mailto:welcome@flaq.club?subject=Hi!%20I'm%20interested%20in%20knowing%20more%20about%20Flaq",
   },
 ];
-export const NotionPageHeader: React.FC<{
-  block: types.CollectionViewPageBlock | types.PageBlock;
-}> = ({ block }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+
+export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
   return (
-    <Container maxW="1200px">
+    <Container
+      zIndex={"1000"}
+      position={"fixed"}
+      top="0"
+      left="0"
+      right="0"
+      bg="#020f02"
+      minW="100%"
+    >
       <Flex
-        direction={{
-          base: "column",
-          md: "row",
-        }}
-        py="8"
+        mx="auto"
+        maxW="1200px"
         alignItems={"center"}
-        justifyContent={{ md: "space-between", base: "center" }}
+        py="4"
+        justifyContent={{
+          base: "space-between",
+        }}
       >
+        <Box>
+          <IconButton
+            m="2"
+            display={"flex"}
+            alignItems={"center"}
+            backdropBlur="md"
+            justifyContent={"center"}
+            bg="#005704"
+            position="static"
+            variant={"unstyled"}
+            color="#A6EBC9"
+            onClick={onOpen}
+            fontSize="3xl"
+            aria-label="open close drawer"
+            icon={<GiHamburgerMenu />}
+          />
+        </Box>
         <Box>
           <HStack gap="2">
             <Image src={logo} width="40px" height="40px" />
@@ -75,86 +98,10 @@ export const NotionPageHeader: React.FC<{
                 FLAQ ACADEMY
               </Text>
             </Box>
-            <IconButton
-              size={"md"}
-              justifyContent={"center"}
-              alignItems={"center"}
-              alignContent={"center"}
-              icon={
-                isOpen ? (
-                  <Icon as={AiOutlineClose} />
-                ) : (
-                  <Icon as={GiHamburgerMenu} />
-                )
-              }
-              aria-label={"Open Menu"}
-              display={{ md: "none" }}
-              onClick={isOpen ? onClose : onOpen}
-            />
           </HStack>
         </Box>
         <Box>
-          <Show above="md">
-            <Flex>
-              {MenuLinks.map((link, key) => (
-                <Link key={key} passHref href={link.link}>
-                  <a>
-                    <Box ml="50">
-                      <Text
-                        color="#ffffff"
-                        _hover={{
-                          color: "#1bd423",
-                        }}
-                        fontFamily={"Poppins"}
-                        fontWeight="400"
-                      >
-                        {link.name}
-                      </Text>
-                    </Box>
-                  </a>
-                </Link>
-              ))}
-            </Flex>
-          </Show>
-          <Show below="md">
-            <AnimatePresence>
-              {isOpen ? (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <Flex
-                    mt="8"
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    direction={{
-                      base: "column",
-                    }}
-                  >
-                    {MenuLinks.map((link,key) => (
-                      <Link key={key} passHref href={link.link}>
-                        <a>
-                          <Box my="3">
-                            <Text
-                              color="#ffffff"
-                              _hover={{
-                                color: "#1bd423",
-                              }}
-                              fontFamily={"Poppins"}
-                              fontWeight="400"
-                            >
-                              {link.name}
-                            </Text>
-                          </Box>
-                        </a>
-                      </Link>
-                    ))}
-                  </Flex>
-                </motion.div>
-              ) : null}
-            </AnimatePresence>
-          </Show>
+          <SearchBar />
         </Box>
       </Flex>
     </Container>

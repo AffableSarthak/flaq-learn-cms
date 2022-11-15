@@ -34,10 +34,10 @@ const CategoryItem = ({
         fullPage={true}
         darkMode={true}
         showTableOfContents={true}
+        disableHeader={true}
         components={{
           nextImage: Image,
           nextLink: Link,
-          Header: NotionPageHeader,
         }}
       />
     </div>
