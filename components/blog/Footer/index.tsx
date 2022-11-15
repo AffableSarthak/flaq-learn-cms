@@ -10,6 +10,7 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
+  Show,
   Text,
   transition,
   VStack,
@@ -71,15 +72,16 @@ const socialLink = [
 ];
 const Footer = (props: Props) => {
   return (
-    <Container mb="32" fontFamily={"Poppins"} minW="100%" w="100%">
+    <Container mb="16" fontFamily={"Poppins"} minW="100%" w="100%">
       <Flex
-        px="8"
+        px={{ md: "8", base: "2" }}
         maxW={"1240px"}
+        direction={{ base: "column", md: "row" }}
         mx="auto"
         justifyContent={"space-between"}
         w="100%"
       >
-        <Box w="40%">
+        <Box w="49%">
           <HStack mb="16" gap="2">
             <Image src={logo} width="40px" height="40px" />
             <Box>
@@ -97,70 +99,125 @@ const Footer = (props: Props) => {
             <HStack>
               <Box>
                 <IconButton
-                  borderRadius={"50%"}
                   bg="transparent"
-                  border="1px solid #D2D2D2"
-                  aria-label="Search database"
+                  border="0.1px solid #343538 "
+                  borderRadius={"50%"}
+                  aria-label="Email"
+                  size={"lg"}
                   icon={<HiOutlineMail />}
                 />
               </Box>
               <Box fontSize={"14px"}>
-                <Text>Contact us at</Text>
+                <Text color="#8c8c8c" fontFamily={"Poppins"}>
+                  Contact us at
+                </Text>
                 <Link
                   passHref
                   href="mailto:welcome@flaq.club?subject=Hi!%20I'm%20interested%20in%20knowing%20more%20about%20Flaq"
                 >
                   <a target="_blank">
-                    <Text color="#fff">welcome@flaq.club</Text>
+                    <Text fontFamily={"Poppins"} color="#fff">
+                      welcome@flaq.club
+                    </Text>
                   </a>
                 </Link>
               </Box>
             </HStack>
           </Box>
         </Box>
-        <Box maxW={"470px"}>
-          <Text mb="4" fontWeight={700} fontSize={"30px"} color="#ffffff">
+        <Box
+          mt={{
+            md: "2",
+            base: "6",
+          }}
+          w={{ md: "49%", base: "100%" }}
+          maxW={"470px"}
+        >
+          <Text
+            fontFamily={"Poppins"}
+            mb="4"
+            fontWeight={700}
+            fontSize={{ md: "30px", base: "18px" }}
+            color="#ffffff"
+          >
             Newsletter
           </Text>
-          <Text mb="8" color="#8c8c8c" fontWeight={400} fontSize="14px">
+          <Text
+            fontFamily={"Poppins"}
+            mb="8"
+            color="#8c8c8c"
+            fontWeight={400}
+            fontSize="14px"
+          >
             Be the first to know about every publication, every new feature, and
             every event of Flaq, in your mailbox.
           </Text>
-          <InputGroup size="md" h="40px">
+          <InputGroup w={{md:"90%",base:"100%"}} size="md">
             <InputLeftElement
               display={"flex"}
+              flexDirection="column"
               alignItems="center"
+              h="3.5rem"
+              px="6"
               justifyContent={"center"}
             >
               <Icon as={HiOutlineMail} />
             </InputLeftElement>
             <Input
+              _active={{
+                borderColor: "#8c8c8c",
+                outline: "none",
+              }}
+              _focusVisible={{
+                borderColor: "#8c8c8c",
+              }}
               borderWidth={"2px"}
               borderColor={"#FFFFFF"}
               type={"email"}
               borderRadius={"70px"}
-              placeholder="Enter password"
+              h="3.5rem"
+              placeholder="Enter Email"
             />
-            <InputRightElement width={"fit-content"}>
-              <Button
-                _hover={{
-                  border: "1px solid #D2D2D2",
-                }}
-                w="185px"
-                borderRadius={"70px"}
-                bg="#1bd423"
-                onClick={() => console.log("Email")}
-              >
-                Subscribe
-              </Button>
-            </InputRightElement>
+            <Show above="md">
+              <InputRightElement h="3.5rem" width={"fit-content"}>
+                <Button
+                  h="3.5rem"
+                  _hover={{
+                    border: "1px solid #D2D2D2",
+                  }}
+                  w="185px"
+                  borderRadius={"70px"}
+                  bg="#1bd423"
+                  color="#ffffff"
+                  onClick={() => console.log("Email")}
+                >
+                  Subscribe
+                </Button>
+              </InputRightElement>
+            </Show>
           </InputGroup>
         </Box>
+        <Show below="md">
+          <Box>
+            <Button
+              mt="1"
+              h="3.5rem"
+              _hover={{
+                border: "1px solid #D2D2D2",
+              }}
+              w="100%"
+              borderRadius={"70px"}
+              bg="#1bd423"
+              color="#ffffff"
+              onClick={() => console.log("Email")}
+            >
+              Subscribe
+            </Button>
+          </Box>
+        </Show>
       </Flex>
-      <Container maxW="1240px" mx="auto" mt="16">
+      <Container maxW="1240px" mx="auto" mt="14">
         <Flex
-          mb="4"
-          mt="16"
           maxW={"1240px"}
           mx="auto"
           justifyContent={"space-between"}
@@ -171,6 +228,7 @@ const Footer = (props: Props) => {
               <Link passHref href={link.link} key={key}>
                 <a target={"_blank"}>
                   <Text
+                    fontFamily={"Poppins"}
                     fontSize={"14px"}
                     color="#8c8c8c"
                     fontWeight={"400"}
@@ -189,10 +247,14 @@ const Footer = (props: Props) => {
         </Flex>
       </Container>
       <Flex
-        mt="32"
-        px="8"
+        mt="10"
+        px={{ base: "2", md: "8" }}
         maxW={"1240px"}
         mx="auto"
+        direction={{
+          md: "row",
+          base: "column",
+        }}
         justifyContent={"space-between"}
       >
         <HStack gap="4">
@@ -200,19 +262,26 @@ const Footer = (props: Props) => {
             return (
               <Link key={key} passHref href={socialLink.link}>
                 <IconButton
+                  bg="transparent"
                   color={socialLink.color}
                   border="0.1px solid #343538 "
                   borderRadius={"50%"}
                   icon={socialLink.icon}
                   aria-label={socialLink.name}
+                  size="lg"
                 />
               </Link>
             );
           })}
           <Box></Box>
         </HStack>
-        <Box>
-          <Text color="#8c8c8c" fontSize={"14px"} fontWeight={"400"}>
+        <Box mt={{ md: "2", base: "6" }}>
+          <Text
+            fontFamily={"Poppins"}
+            color="#8c8c8c"
+            fontSize={"14px"}
+            fontWeight={"400"}
+          >
             © 2022, Flaq Academy
           </Text>
         </Box>
