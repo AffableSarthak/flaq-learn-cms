@@ -13,7 +13,7 @@ import {
 import Image from "next/image";
 import logo from "../../../public/img/logo.svg";
 import Link from "next/link";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { HiMenu } from "react-icons/hi";
 import SearchBar from "../../common/Search";
 
 type Props = {
@@ -68,38 +68,36 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
           base: "space-between",
         }}
       >
-        <Box>
-          <IconButton
-            m="2"
-            display={"flex"}
-            alignItems={"center"}
-            backdropBlur="md"
-            justifyContent={"center"}
-            bg="#005704"
-            position="static"
-            variant={"unstyled"}
-            color="#A6EBC9"
-            onClick={onOpen}
-            fontSize="3xl"
-            aria-label="open close drawer"
-            icon={<GiHamburgerMenu />}
-          />
-        </Box>
-        <Box>
-          <HStack gap="2">
-            <Image src={logo} width="40px" height="40px" />
-            <Box>
-              <Text
-                fontSize={"12"}
-                color="#ffffff"
-                fontWeight={"800"}
-                fontFamily="Poppins"
-              >
-                FLAQ ACADEMY
-              </Text>
-            </Box>
+        <HStack>
+          <HStack onClick={onOpen} cursor="pointer">
+            <Text
+              fontWeight={"700"}
+              fontSize={"20px"}
+              color="#FFFFFF"
+              fontFamily={"Druk Wide Bold"}
+            >
+              menu
+            </Text>
+            <IconButton
+              m="2"
+              display={"flex"}
+              alignItems={"center"}
+              backdropBlur="md"
+              justifyContent={"center"}
+              position="static"
+              variant={"unstyled"}
+              fontSize="2xl"
+              color="#B5E9CA"
+              aria-label="open close drawer"
+              icon={<HiMenu />}
+            />
           </HStack>
-        </Box>
+
+          <Box>
+            <Image src={logo} width="40px" height="40px" />
+          </Box>
+        </HStack>
+
         <Box>
           <SearchBar />
         </Box>
