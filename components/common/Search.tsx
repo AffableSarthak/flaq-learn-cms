@@ -79,7 +79,7 @@ const Search = (props: Props) => {
 
   return (
     <>
-      <HStack>
+      <HStack onClick={onOpen} cursor="pointer">
         <Text
           fontWeight={"700"}
           fontSize={"20px"}
@@ -96,7 +96,6 @@ const Search = (props: Props) => {
           justifyContent={"center"}
           position="static"
           variant={"unstyled"}
-          onClick={onOpen}
           fontSize="2xl"
           color={"#63D247"}
           aria-label="Search"
