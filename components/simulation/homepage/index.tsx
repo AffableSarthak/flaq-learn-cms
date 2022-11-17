@@ -266,10 +266,13 @@ const HomePage = (props: Props) => {
                     gap={6}
                   >
                     {chain.simulations.map((simulation, key) => (
-                      <Link passHref href={`simulation/${simulation.link}`}>
+                      <Link
+                        key={key}
+                        passHref
+                        href={`simulation/${simulation.link}`}
+                      >
                         <GridItem
                           cursor="pointer"
-                          key={key}
                           border="1px solid #000000"
                           bg="#1A1A1A"
                           w={{ base: "306px", md: "384px" }}
