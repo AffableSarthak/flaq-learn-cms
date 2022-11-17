@@ -6,7 +6,9 @@ export enum SolanaSimulationKeys {
 }
 
 export enum AlgorandSimulationKeys {
-  CreateWallet = "createWallet",
+  GenAccount = "genAccount",
+  BackupSeedPhrase = "backupSeedPhrase",
+  ShowcasePublicKey = "showcasePublicKey",
 }
 
 export enum Blockchains {
@@ -15,7 +17,7 @@ export enum Blockchains {
 }
 
 export interface CardDataType {
-  currentSimulation: SimulationType;
+  currentSimulation: SimulationBlockType;
   isBackDisabled: boolean;
   isNextDisabled: boolean;
   currentSimulationIndex: number;
@@ -35,12 +37,7 @@ export interface ListType {
   image?: string;
   simKey?: SolanaSimulationKeys | AlgorandSimulationKeys;
 }
-export interface BlockType {
-  subHeader: string;
-  description?: string;
-  image?: string;
-  list?: ListType[];
-}
+
 export interface SimulationType {
   name: string;
   slug: string;
@@ -49,7 +46,47 @@ export interface SimulationType {
 }
 
 export interface SimulationPageType {
-  simulationData: SimulationType[];
+  simulationData: SimulationBlockType[];
   simulationHeader: string;
   blockchain: string;
+}
+
+export interface SimulationBlockType {
+  title: string; // main header
+  block: BlockType[];
+  simKey?: SolanaSimulationKeys | AlgorandSimulationKeys;
+}
+
+export interface BlockType {
+  blockTitle?: string; // Subheader
+  paraBlock?: ParaBlockType[];
+  listBlock?: ListBlockType[];
+  accordianBlock?: AccordianBlockType[];
+}
+
+export interface TextType {
+  text: string;
+  linkItems: string[];
+}
+
+export interface ImageType {
+  src: string;
+  alt: string;
+  height: string;
+  width: string;
+}
+export interface ParaBlockType {
+  textItems: TextType[];
+  paraTitle?: string; // Block header
+  image?: ImageType;
+}
+
+export interface ListBlockType {
+  textItems: TextType[];
+  listTitle: string; // Block header
+}
+
+export interface AccordianBlockType {
+  accordianTitle: string; // Block header
+  accordianPanel: BlockType[];
 }

@@ -1,36 +1,47 @@
 import React from 'react'
-import * as bip39 from 'bip39'
 import shallow from 'zustand/shallow'
 import { Box, Button, Center, Text } from '@chakra-ui/react'
-import {
-  getUserPublicKey,
-  useCreateWalletStore,
-} from '../../../store/solana/create-wallet'
 import ToolTip from '../../../../common/ToolTip'
+import { useCreateWalletStore } from '../../../store/algorand/createWalletStore'
+import * as algosdk from 'algosdk'
 
-function GenKeyPair() {
-  const { seedPhrase, setSeedPhrase } = useCreateWalletStore(
+function GenerateAccount() {
+  const {
+    seedPhrase,
+    publicKey,
+    setPublicKey,
+    setSeedPhrase,
+  } = useCreateWalletStore(
     (state) => ({
       seedPhrase: state.seedPhrase,
+      publicKey: state.publicKey,
       setSeedPhrase: state.setSeedPhrase,
+      setPublicKey: state.setPublicKey,
     }),
     shallow,
   )
 
-  const generateKey = async () => {
-    const mnemonic = bip39.generateMnemonic()
-    setSeedPhrase(mnemonic)
+  const createAlgorandWallet = () => {
+    try {
+      const myaccount = algosdk.generateAccount()
+      const publicKey = myaccount.addr
+      const account_mnemonic = algosdk.secretKeyToMnemonic(myaccount.sk)
+      setPublicKey(publicKey)
+      setSeedPhrase(account_mnemonic)
+    } catch (err) {
+      console.log('err', err)
+    }
   }
 
   const isUserDataAvailable = () => {
-    return seedPhrase.length !== 0
+    return seedPhrase.length !== 0 && publicKey.length !== 0
   }
 
   return (
     <Box>
       <Center my="8">
         <ToolTip text="click here to start test running web3!">
-          <Button variant={'primarybtn'} onClick={generateKey}>
+          <Button variant={'primarybtn'} onClick={createAlgorandWallet}>
             Create New Wallet
           </Button>
         </ToolTip>
@@ -73,4 +84,4 @@ function GenKeyPair() {
   )
 }
 
-export default GenKeyPair
+export default GenerateAccount

@@ -10,12 +10,12 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import React, { useCallback, useEffect } from 'react'
-import { CardDataType, SimulationPageType, SimulationType } from '../types'
+import { CardDataType, SimulationBlockType, SimulationPageType } from '../types'
 import SimulationCard from './main/SimulationCard'
 import MobileNav from './navbar'
 
 function SimulationLayout(props: SimulationPageType) {
-  const { simulationData, simulationHeader, blockchain } = props
+  const { simulationData, blockchain } = props
 
   // State for the current simulation.
   const [cardData, setCard] = React.useState<CardDataType>({
@@ -76,7 +76,6 @@ function SimulationLayout(props: SimulationPageType) {
       <Box h="100%" ml={{ base: 0, md: '64' }}>
         <Box h="100%" p="4">
           <SimulationCard
-            simulationHeader={simulationHeader}
             cardData={cardData}
             setCardData={setCardData}
             blockchain={blockchain}
@@ -89,7 +88,7 @@ function SimulationLayout(props: SimulationPageType) {
 
 interface SidebarProps extends BoxProps {
   onClose: () => void
-  simulationData: SimulationType[]
+  simulationData: SimulationBlockType[]
   setCardData: (index: number) => void
   cardData: CardDataType
 }
@@ -131,7 +130,7 @@ const SidebarContent = ({
               borderWidth={
                 cardData.currentSimulationIndex === index ? 'none' : '0.5px'
               }
-              key={`${simulation.name}_${index}`}
+              key={`${simulation.title}_${index}`}
               bgGradient={
                 cardData.currentSimulationIndex === index
                   ? 'linear(to-l, green.900,green.700)'
@@ -141,7 +140,7 @@ const SidebarContent = ({
             >
               <Flex fontSize={'md'} fontWeight="bold">
                 <Text mr={2}>{index + 1}.</Text>
-                <Text>{simulation.name}</Text>
+                <Text>{simulation.title}</Text>
               </Flex>
             </Box>
           )

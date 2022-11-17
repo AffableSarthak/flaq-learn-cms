@@ -4,7 +4,9 @@ import {
   Blockchains,
   SolanaSimulationKeys,
 } from '../types'
-import CreateWallet from './algorand/CreateWallet'
+import BackupSeed from './algorand/create-wallet/BackupSeed'
+import GenerateAccount from './algorand/create-wallet/GenerateAccount'
+import ShowcasePubKey from './algorand/create-wallet/ShowcasePubKey'
 import Airdrop from './solana/create-wallet/Airdrop'
 import BackupSeedPhrase from './solana/create-wallet/BackupSeedPhrase'
 import GenKeyPair from './solana/create-wallet/GenKeyPair'
@@ -40,8 +42,12 @@ const renderSolanaSimulation = (simkey: SolanaSimulationKeys) => {
 
 const renderAlgorandSimulation = (simkey: AlgorandSimulationKeys) => {
   switch (simkey) {
-    case AlgorandSimulationKeys.CreateWallet:
-      return <CreateWallet />
+    case AlgorandSimulationKeys.GenAccount:
+      return <GenerateAccount />
+    case AlgorandSimulationKeys.BackupSeedPhrase:
+      return <BackupSeed />
+    case AlgorandSimulationKeys.ShowcasePublicKey:
+      return <ShowcasePubKey />
     default:
       return <></>
   }

@@ -2,7 +2,7 @@ import React from 'react'
 import {
   getUserPublicKey,
   useCreateWalletStore,
-} from '../../../store/create-wallet'
+} from '../../../store/solana/create-wallet'
 
 import {
   Box,
@@ -11,12 +11,10 @@ import {
   Divider,
   Flex,
   Hide,
-  Link,
   Text,
   useToast,
 } from '@chakra-ui/react'
 import shallow from 'zustand/shallow'
-import { ExternalLinkIcon } from '@chakra-ui/icons'
 
 function Airdrop() {
   const {
@@ -70,6 +68,15 @@ function Airdrop() {
               Airdrop some 🪙 into your wallet
             </Button>
           </Center>
+
+          <Center>
+            <Box>
+              <Text color="#a6ebc9">
+                your balance in this wallet identified by your public key 🪪
+              </Text>
+            </Box>
+          </Center>
+
           <Flex
             borderWidth={'0.5px'}
             borderColor="whiteAlpha.200"
@@ -95,7 +102,7 @@ function Airdrop() {
                   {getUserPublicKey(seedPhrase).toString()}
                 </Text>
               </Box>
-              <Box>
+              {/* <Box>
                 <Link
                   href={`https://explorer.solana.com/address/${getUserPublicKey(
                     seedPhrase,
@@ -104,7 +111,7 @@ function Airdrop() {
                 >
                   Explore on SolScan <ExternalLinkIcon mx="2px" />
                 </Link>
-              </Box>
+              </Box> */}
             </Flex>
 
             <Hide below="lg">
@@ -125,7 +132,7 @@ function Airdrop() {
               </Box>
               <Box maxW={{ base: '70vw' }}>
                 <Text as="samp" px="2">
-                  {fakeBalance}
+                  {fakeBalance} SOL
                 </Text>
               </Box>
             </Flex>
@@ -133,7 +140,7 @@ function Airdrop() {
         </>
       ) : (
         <Box>
-          <Text color="#a6ebc9">
+          <Text color="#a6ebc9" textAlign={'center'}>
             Create a wallet to get your secret recovery phrase in previous step
           </Text>
         </Box>
