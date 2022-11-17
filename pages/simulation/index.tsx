@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { Center, Text, Box, Heading, Flex } from '@chakra-ui/react'
 import { getBlockchainData } from '../../components/simulation/utils/blockchain'
 import Link from 'next/link'
+import HomePage from '../../components/simulation/homepage'
 
 function SimulationHomePage() {
   const [blockchainData, setBlockchainData] = React.useState<any>([])
@@ -15,7 +16,7 @@ function SimulationHomePage() {
 
   return (
     <>
-      <Box height={'100vh'} bgColor="#010801">
+      {/* <Box height={'100vh'} bgColor="#010801">
         <Center>
           <Flex gap={3} mt={'5vw'} flexDirection={'column'}>
             {blockchainData.map((blockchain: any) => {
@@ -61,7 +62,8 @@ function SimulationHomePage() {
             })}
           </Flex>
         </Center>
-      </Box>
+      </Box> */}
+      <HomePage/>
     </>
   )
 }
