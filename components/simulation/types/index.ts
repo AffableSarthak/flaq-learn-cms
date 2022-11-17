@@ -1,24 +1,23 @@
-export enum CreateWalletSimulationKeys {
+export enum SolanaSimulationKeys {
   GenKeyPair = "genKeyPair",
   BackupSeedPhrase = "backupSeedPhrase",
   ShowcasePublicKey = "showcasePublicKey",
   Airdrop = "airprop",
 }
 
-/**
- * The state for managing the "Create Wallet" Simulation
- */
-export interface CreateWalletState {
-  publicKey: string;
-  seedPhrase: string;
+export enum AlgorandSimulationKeys {
+  GenAccount = "genAccount",
+  BackupSeedPhrase = "backupSeedPhrase",
+  ShowcasePublicKey = "showcasePublicKey",
 }
 
-export interface UpdateCreateWalletState {
-  (state: CreateWalletState): void;
+export enum Blockchains {
+  Solana = "solana",
+  Algorand = "algorand",
 }
 
 export interface CardDataType {
-  currentSimulation: SimulationType;
+  currentSimulation: SimulationBlockType;
   isBackDisabled: boolean;
   isNextDisabled: boolean;
   currentSimulationIndex: number;
@@ -36,14 +35,9 @@ export interface ListType {
   head: string;
   body: BodyType[];
   image?: string;
-  simKey?: CreateWalletSimulationKeys;
+  simKey?: SolanaSimulationKeys | AlgorandSimulationKeys;
 }
-export interface BlockType {
-  subHeader: string;
-  description?: string;
-  image?: string;
-  list?: ListType[];
-}
+
 export interface SimulationType {
   name: string;
   slug: string;
@@ -52,6 +46,47 @@ export interface SimulationType {
 }
 
 export interface SimulationPageType {
-  simulationData: SimulationType[];
+  simulationData: SimulationBlockType[];
   simulationHeader: string;
+  blockchain: string;
+}
+
+export interface SimulationBlockType {
+  title: string; // main header
+  block: BlockType[];
+  simKey?: SolanaSimulationKeys | AlgorandSimulationKeys;
+}
+
+export interface BlockType {
+  blockTitle?: string; // Subheader
+  paraBlock?: ParaBlockType[];
+  listBlock?: ListBlockType[];
+  accordianBlock?: AccordianBlockType[];
+}
+
+export interface TextType {
+  text: string;
+  linkItems: string[];
+}
+
+export interface ImageType {
+  src: string;
+  alt: string;
+  height: string;
+  width: string;
+}
+export interface ParaBlockType {
+  textItems: TextType[];
+  paraTitle?: string; // Block header
+  image?: ImageType;
+}
+
+export interface ListBlockType {
+  textItems: TextType[];
+  listTitle: string; // Block header
+}
+
+export interface AccordianBlockType {
+  accordianTitle: string; // Block header
+  accordianPanel: BlockType[];
 }

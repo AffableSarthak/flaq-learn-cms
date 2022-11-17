@@ -9,13 +9,11 @@ import {
   useToast,
 } from '@chakra-ui/react'
 import React, { useCallback, useEffect } from 'react'
+import shallow from 'zustand/shallow'
 import ToolTip from '../../../../common/ToolTip'
 import RenderBlock from '../../../layout/main/RenderBlock'
-import {
-  getUserPublicKey,
-  useCreateWalletStore,
-} from '../../../store/solana/create-wallet'
-import { BlockType } from '../../../types'
+import { useCreateWalletStore } from '../../../store/algorand/createWalletStore'
+import { BlockType, SimulationBlockType } from '../../../types'
 
 export interface AllOptions {
   word: string
@@ -23,12 +21,21 @@ export interface AllOptions {
   isSelected: boolean
 }
 
-function ShowcasePublicKey() {
-  const seedPhrase = useCreateWalletStore((state) => state.seedPhrase)
-  const setShowPublicKey = useCreateWalletStore(
-    (state) => state.setShowPublicKey,
+function ShowcasePubKey() {
+  const {
+    seedPhrase,
+    publicKey,
+    showPublicKey,
+    setShowPublicKey,
+  } = useCreateWalletStore(
+    (state) => ({
+      seedPhrase: state.seedPhrase,
+      publicKey: state.publicKey,
+      showPublicKey: state.showPublicKey,
+      setShowPublicKey: state.setShowPublicKey,
+    }),
+    shallow,
   )
-  const showPublicKey = useCreateWalletStore((state) => state.showPublicKey)
 
   // util functions
   const jumble = () => {
@@ -45,7 +52,7 @@ function ShowcasePublicKey() {
     ;(() => {
       const jumbledVlaues = jumble()
       const tempAllOtpions: AllOptions[] = []
-      jumbledVlaues.split(' ').forEach((word: any, index: any) => {
+      seedPhrase.split(' ').forEach((word: any, index: any) => {
         tempAllOtpions.push({
           word,
           index,
@@ -168,7 +175,7 @@ function ShowcasePublicKey() {
                 py="4"
                 maxW={'80vw'}
               >
-                {getUserPublicKey(seedPhrase).toString()}
+                {publicKey}
               </Box>
             </Center>
           </ToolTip>
@@ -201,14 +208,14 @@ function ShowcasePublicKey() {
           </Flex>
         </>
       ) : (
-        <Box>
-          <Center>
+        <Center>
+          <Box>
             <Text color="#a6ebc9">
               Create a wallet to get your secret recovery phrase in previous
               step
             </Text>
-          </Center>
-        </Box>
+          </Box>
+        </Center>
       )}
     </Center>
   )
@@ -222,7 +229,7 @@ const RenderSelectedWords = ({
   return (
     <Center>
       <Box
-        minH={{ base: '267px', md: '155px' }}
+        minH={{ base: '267px', md: '300px' }}
         border={'1px solid #d6d9dc'}
         borderRadius="6px"
         w="96%"
@@ -230,7 +237,7 @@ const RenderSelectedWords = ({
         <Grid
           templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }}
           gap={1}
-          m={2}
+          m={8}
         >
           {selectedList.map((word, index) => (
             <GridItem key={index}>
@@ -315,7 +322,7 @@ const RenderButton = ({
       <Button
         px="12"
         variant={'primarybtn'}
-        disabled={selectedList.length !== 12}
+        disabled={selectedList.length !== 25}
         onClick={submitHandler}
       >
         Verify Seed Phrase
@@ -324,4 +331,4 @@ const RenderButton = ({
   )
 }
 
-export default ShowcasePublicKey
+export default ShowcasePubKey
