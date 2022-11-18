@@ -44,7 +44,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             mx="5"
             display="flex"
             fontSize={{ base: 'lg', md: 'xl', lg: '2xl' }}
-            fontFamily="Dela Gothic One"
+            fontFamily="Druk Wide Bold "
             colorScheme={'blue'}
             justifyContent="space-between"
           >

@@ -149,7 +149,7 @@ function ShowcasePublicKey() {
         >
           <Center mb={2}>
             <Box>
-              <Text fontFamily={'Dela Gothic One'}>Public key</Text>
+              <Text fontFamily={'Druk Wide Bold '}>Public key</Text>
             </Box>
           </Center>
 

@@ -28,7 +28,7 @@ const SimulationCard = ({ cardData, setCardData, blockchain }: Props) => {
             <Center>
               <Box mb={5}>
                 <Text
-                  fontFamily={'Dela Gothic One'}
+                  fontFamily={'Druk Wide Bold '}
                   fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
                   bgGradient="linear(to-l, green.100,green.800)"
                   bgClip="text"

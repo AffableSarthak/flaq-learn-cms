@@ -1,21 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 
-import { Center, Text, Box, Heading, Flex } from '@chakra-ui/react'
-import { getBlockchainData } from '../../components/simulation/utils/blockchain'
-import Link from 'next/link'
-import HomePage from '../../components/simulation/homepage'
+import { Box } from "@chakra-ui/react";
+import HomePage from "../../components/simulation/homepage";
 
 function SimulationHomePage() {
-  const [blockchainData, setBlockchainData] = React.useState<any>([])
-  useEffect(() => {
-    setBlockchainData(getBlockchainData())
-    return () => {
-      setBlockchainData([])
-    }
-  }, [])
-
   return (
-    <>
+    <Box w="100%" h="100vh" bg="#040F03">
       {/* <Box height={'100vh'} bgColor="#010801">
         <Center>
           <Flex gap={3} mt={'5vw'} flexDirection={'column'}>
@@ -32,7 +22,7 @@ function SimulationHomePage() {
                 >
                   <Heading size="md" my="2">
                     <Text
-                      fontFamily={'Dela Gothic One'}
+                      fontFamily={'Druk Wide Bold '}
                       fontSize="4xl"
                       color={'green.900'}
                     >
@@ -63,9 +53,9 @@ function SimulationHomePage() {
           </Flex>
         </Center>
       </Box> */}
-      <HomePage/>
-    </>
-  )
+      <HomePage />
+    </Box>
+  );
 }
 
-export default SimulationHomePage
+export default SimulationHomePage;

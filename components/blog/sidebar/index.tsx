@@ -69,7 +69,7 @@ const Sidebar = ({ blogData, isOpen, onOpen, onClose }: Props) => {
             <Link href={"/"} passHref>
               <Text
                 fontSize="2xl"
-                fontFamily={"Dela Gothic One"}
+                fontFamily={"Druk Wide Bold "}
                 cursor={"pointer"}
                 _hover={{
                   scale: 1.2,

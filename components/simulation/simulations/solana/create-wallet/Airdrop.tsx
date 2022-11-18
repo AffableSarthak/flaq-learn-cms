@@ -94,7 +94,7 @@ function Airdrop() {
               margin={'auto'}
             >
               <Box>
-                <Text fontFamily={'Dela Gothic One'}>Your Public key</Text>
+                <Text fontFamily={'Druk Wide Bold '}>Your Public key</Text>
               </Box>
 
               <Box maxW={{ base: '30ex', md: 'none' }}>
@@ -128,7 +128,7 @@ function Airdrop() {
               margin={'auto'}
             >
               <Box>
-                <Text fontFamily={'Dela Gothic One'}>Your Balance</Text>
+                <Text fontFamily={'Druk Wide Bold '}>Your Balance</Text>
               </Box>
               <Box maxW={{ base: '70vw' }}>
                 <Text as="samp" px="2">

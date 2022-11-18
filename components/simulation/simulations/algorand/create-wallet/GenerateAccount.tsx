@@ -56,7 +56,7 @@ function GenerateAccount() {
         >
           <Center mb={2}>
             <Box>
-              <Text fontFamily={'Dela Gothic One'}>Secret Recovery Phrase</Text>
+              <Text fontFamily={'Druk Wide Bold '}>Secret Recovery Phrase</Text>
             </Box>
           </Center>
 
