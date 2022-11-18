@@ -82,19 +82,24 @@ const Footer = (props: Props) => {
         w="100%"
       >
         <Box w="49%">
-          <HStack mb="16" gap="2">
-            <Image src={logo} width="40px" height="40px" />
-            <Box>
-              <Text
-                fontSize={"12"}
-                color="#ffffff"
-                fontWeight={"800"}
-                fontFamily="Poppins"
-              >
-                FLAQ ACADEMY
-              </Text>
-            </Box>
-          </HStack>
+          <Link passHref href={"https://flaq.club/"}>
+            <a>
+              <HStack mb="16" gap="2">
+                <Image src={logo} width="40px" height="40px" />
+                <Box>
+                  <Text
+                    fontSize={"12"}
+                    color="#ffffff"
+                    fontWeight={"800"}
+                    fontFamily="Poppins"
+                  >
+                    FLAQ ACADEMY
+                  </Text>
+                </Box>
+              </HStack>
+            </a>
+          </Link>
+
           <Box>
             <HStack>
               <Box>
@@ -152,7 +157,7 @@ const Footer = (props: Props) => {
             Be the first to know about every publication, every new feature, and
             every event of Flaq, in your mailbox.
           </Text>
-          <InputGroup w={{md:"90%",base:"100%"}} size="md">
+          <InputGroup w={{ md: "90%", base: "100%" }} size="md">
             <InputLeftElement
               display={"flex"}
               flexDirection="column"

@@ -12,6 +12,7 @@ import {
   ModalOverlay,
   useDisclosure,
   HStack,
+  Hide,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
@@ -80,14 +81,17 @@ const Search = (props: Props) => {
   return (
     <>
       <HStack onClick={onOpen} cursor="pointer">
-        <Text
-          fontWeight={"700"}
-          fontSize={"20px"}
-          fontFamily={"Druk Wide Bold"}
-          color="#FFFFFF"
-        >
-          search
-        </Text>
+        <Hide below="md">
+          <Text
+            fontWeight={"700"}
+            fontSize={"20px"}
+            fontFamily={"Druk Wide Bold"}
+            color="#FFFFFF"
+          >
+            search
+          </Text>
+        </Hide>
+
         <IconButton
           m="2"
           display={"flex"}

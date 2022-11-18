@@ -70,14 +70,6 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
       >
         <HStack>
           <HStack onClick={onOpen} cursor="pointer">
-            <Text
-              fontWeight={"700"}
-              fontSize={"20px"}
-              color="#FFFFFF"
-              fontFamily={"Druk Wide Bold"}
-            >
-              menu
-            </Text>
             <IconButton
               m="2"
               display={"flex"}
@@ -94,7 +86,23 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
           </HStack>
 
           <Box>
-            <Image src={logo} width="40px" height="40px" />
+            <Link passHref href={"https://flaq.club/"}>
+              <a>
+                <HStack cursor={"pointer"} gap="2">
+                  <Image src={logo} width="40px" height="40px" />
+                  <Box>
+                    <Text
+                      fontSize={"12"}
+                      color="#ffffff"
+                      fontWeight={"800"}
+                      fontFamily="Poppins"
+                    >
+                      FLAQ ACADEMY
+                    </Text>
+                  </Box>
+                </HStack>
+              </a>
+            </Link>
           </Box>
         </HStack>
 

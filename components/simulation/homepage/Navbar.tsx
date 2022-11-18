@@ -56,19 +56,23 @@ const Navbar = (props: Props) => {
     <>
       <Flex py="6" justifyContent={"space-between"}>
         <Box>
-          <HStack gap="2">
-            <Image src={logo} width="40px" height="40px" />
-            <Box>
-              <Text
-                fontSize={"12"}
-                color="#ffffff"
-                fontWeight={"800"}
-                fontFamily="Poppins"
-              >
-                FLAQ ACADEMY
-              </Text>
-            </Box>
-          </HStack>
+          <Link passHref href={"https://flaq.club/"}>
+            <a>
+              <HStack gap="2">
+                <Image src={logo} width="40px" height="40px" />
+                <Box>
+                  <Text
+                    fontSize={"12"}
+                    color="#ffffff"
+                    fontWeight={"800"}
+                    fontFamily="Poppins"
+                  >
+                    FLAQ ACADEMY
+                  </Text>
+                </Box>
+              </HStack>
+            </a>
+          </Link>
         </Box>
         <Box h="100%">
           <Show above="md">
