@@ -13,6 +13,7 @@ interface CreateWalletState {
   isLoading: boolean;
   error?: WalltetErrors;
   fakeBalance: number;
+  showPublicKey: boolean;
   setSeedPhrase: (seedPhrase: string) => void;
   setBalance: () => void;
   airdropTokenIntoWallet: () => void;
@@ -20,6 +21,7 @@ interface CreateWalletState {
   setError: (error?: WalltetErrors) => void;
   setFakeBalance: () => void;
   resetState: () => void;
+  setShowPublicKey: (isSeedPhraseCorrect: boolean) => void;
 }
 
 // utils
@@ -38,6 +40,7 @@ export const useCreateWalletStore = create<CreateWalletState>()(
         error: undefined,
         isLoading: false,
         fakeBalance: 0,
+        showPublicKey: false,
         setLoader: (isLoading: boolean) => set({ isLoading }),
         setError: (error?: WalltetErrors) => set({ error }),
         setFakeBalance: () => {
@@ -82,8 +85,16 @@ export const useCreateWalletStore = create<CreateWalletState>()(
             get().setLoader(false);
           }
         },
+        setShowPublicKey: (isSeedPhraseCorrect: boolean) => {
+          set({ showPublicKey: isSeedPhraseCorrect });
+        },
         resetState: () => {
-          set({ balance: 0, error: undefined, fakeBalance: 0 });
+          set({
+            balance: 0,
+            error: undefined,
+            fakeBalance: 0,
+            showPublicKey: false,
+          });
         },
       }),
       {

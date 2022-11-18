@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ExtendedRecordMap } from 'notion-types'
 import { NotionRenderer } from 'react-notion-x'
 import BlogLayout from '../components/blog/BlogLayout'
+import {  NotionPageHeader } from '../components/blog/Header'
 import Page404 from '../components/fallback/Page404'
 import PageHead from '../components/seo/PageHead'
 import { getRecordDataForPage, queryDatabase } from '../src/api/query-database'
@@ -27,14 +28,15 @@ const Home = ({
         fullPage={true}
         darkMode={true}
         showTableOfContents={true}
+        disableHeader={true}
         components={{
           nextImage: Image,
           nextLink: Link,
         }}
-        disableHeader={true}
+        
       />
     </div>
-  )
+  );
 }
 
 Home.PageLayout = BlogLayout

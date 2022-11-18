@@ -1,13 +1,93 @@
-import React from 'react'
-import { BlogPages } from '../../../src/utils/parse-properties'
-import UniversalDrawer from './UniversalDrawer'
+import {
+  DrawerBody,
+  DrawerHeader,
+  DrawerContent,
+  DrawerOverlay,
+  Drawer,
+  useDisclosure,
+  DrawerCloseButton,
+  IconButton,
+  Box,
+  Text,
+} from "@chakra-ui/react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { BlogPages } from "../../../src/utils/parse-properties";
+import SidebarContent from "./SidebarContent";
+import SearchBar from "../../common/Search";
+type Props = {
+  blogData: BlogPages[];
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+};
 
-interface SidebarProps {
-  blogData: BlogPages[]
-}
+const Sidebar = ({ blogData, isOpen, onOpen, onClose }: Props) => {
+  
+  const router = useRouter();
 
-function SideBar({ blogData }: SidebarProps) {
-  return <UniversalDrawer blogData={blogData} />
-}
+  useEffect(() => {
+    if (router.pathname === "/") {
+      onOpen();
+    }
+  }, []);
 
-export default SideBar
+  return (
+    <>
+      {/* <Box position="fixed">
+        <IconButton
+          m="2"
+          display={"flex"}
+          alignItems={"center"}
+          backdropBlur="md"
+          justifyContent={"center"}
+          bg="#005704"
+          position="static"
+          variant={"unstyled"}
+          color="#A6EBC9"
+          onClick={onOpen}
+          fontSize="3xl"
+          aria-label="open close drawer"
+          icon={<GiHamburgerMenu />}
+        />
+        <SearchBar />
+      </Box> */}
+
+      <Drawer
+        variant={"mainsidebar"}
+        isOpen={isOpen}
+        placement="left"
+        onClose={onClose}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton size={"lg"} />
+
+          <DrawerHeader>
+            <Link href={"/"} passHref>
+              <Text
+                fontSize="2xl"
+                fontFamily={"Dela Gothic One"}
+                cursor={"pointer"}
+                _hover={{
+                  scale: 1.2,
+                  transform: "translateY(-1px)",
+                }}
+              >
+                Flaq Academy
+              </Text>
+            </Link>
+          </DrawerHeader>
+
+          <DrawerBody>
+            <SidebarContent blogData={blogData} closeDrawer={onClose} />
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+    </>
+  );
+};
+
+export default Sidebar;

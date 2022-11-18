@@ -1,11 +1,17 @@
-import { Box, Button, Center, Flex, Text, useToast } from '@chakra-ui/react'
 import React from 'react'
-import { useCreateWalletStore } from '../../../store/solana/create-wallet'
+import { Box, Button, Center, Flex, Text, useToast } from '@chakra-ui/react'
+import { useCreateWalletStore } from '../../../store/algorand/createWalletStore'
+import shallow from 'zustand/shallow'
 
-function BackupSeedPhrase() {
-  const seedPhrase = useCreateWalletStore((state) => state.seedPhrase)
-
+function BackupSeed() {
   const toast = useToast()
+  const { seedPhrase } = useCreateWalletStore(
+    (state) => ({
+      seedPhrase: state.seedPhrase,
+    }),
+    shallow,
+  )
+
   return (
     <Box>
       {seedPhrase.length !== 0 ? (
@@ -62,4 +68,4 @@ function BackupSeedPhrase() {
   )
 }
 
-export default BackupSeedPhrase
+export default BackupSeed
