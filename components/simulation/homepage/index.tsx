@@ -13,7 +13,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar";
+import Navbar from "../../common/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 import { getBlockchainData } from "../utils/blockchain";

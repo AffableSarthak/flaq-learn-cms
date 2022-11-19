@@ -1,9 +1,11 @@
+import { Box } from '@chakra-ui/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ExtendedRecordMap } from 'notion-types'
 import { NotionRenderer } from 'react-notion-x'
 import BlogLayout from '../components/blog/BlogLayout'
 import {  NotionPageHeader } from '../components/blog/Header'
+import HomePage from '../components/blog/Homepage'
 import Page404 from '../components/fallback/Page404'
 import PageHead from '../components/seo/PageHead'
 import { getRecordDataForPage, queryDatabase } from '../src/api/query-database'
@@ -22,7 +24,7 @@ const Home = ({
 
   return (
     <div>
-      <PageHead blogData={blogData} recordMap={recordMap} />
+      {/* <PageHead blogData={blogData} recordMap={recordMap} />
       <NotionRenderer
         recordMap={recordMap}
         fullPage={true}
@@ -34,12 +36,15 @@ const Home = ({
           nextLink: Link,
         }}
         
-      />
+      /> */}
+      <Box w="100%" h="100vh" bg="#040F03">
+        <HomePage />
+      </Box>
     </div>
   );
 }
 
-Home.PageLayout = BlogLayout
+
 
 export default Home
 

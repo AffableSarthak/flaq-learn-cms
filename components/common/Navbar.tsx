@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import Image from "next/image";
-import logo from "../../../public/img/logo.svg";
+import logo from "../../public/img/logo.svg";
 import Link from "next/link";
 import { TbMenu } from "react-icons/tb";
 import { AnimatePresence, motion } from "framer-motion";
