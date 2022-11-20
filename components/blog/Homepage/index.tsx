@@ -7,9 +7,14 @@ import bgpattern from "../../../public/img/blog/bgpattern.svg";
 import LooperGroup from "../../../public/img/blog/LooperGroup.svg";
 
 import Image from "next/image";
-type Props = {};
+import { BlogPages } from "../../../src/utils/parse-properties";
+import blogsToCategoryMap from "../utils/blogUtils";
+type Props = {
+  blogData: BlogPages[];
+};
 
-const HomePage = (props: Props) => {
+const HomePage = ({ blogData }: Props) => {
+  const blogs = blogsToCategoryMap(blogData);
   return (
     <Box position={"relative"} bg="#040F03" maxWidth={"100%"}>
       <Container pb="16" mb="16" maxW="1200px">
@@ -57,7 +62,7 @@ const HomePage = (props: Props) => {
             justifyItems="center"
             gap={6}
           >
-            {[1, 2, 3, 4].map((val) => {
+            {blogs.map((val,key) => {
               return (
                 <GridItem
                   py="4"
@@ -67,7 +72,7 @@ const HomePage = (props: Props) => {
                   bg="#1A1A1A"
                   w={{ md: "556px", base: "350px" }}
                   h={{ md: "304px", base: "195px" }}
-                  key={val}
+                  key={key}
                   display="flex"
                   flexDirection="column"
                   justifyContent={"space-between"}
@@ -80,7 +85,7 @@ const HomePage = (props: Props) => {
                       fontWeight={700}
                       fontFamily={"Druk Wide Bold"}
                     >
-                      dive into web3
+                      {val.category}
                     </Text>
                     <Text
                       fontSize={{ md: "16px", base: "12px" }}
@@ -112,10 +117,10 @@ const HomePage = (props: Props) => {
               );
             })}
           </Grid>
-        </Box>
+        </Box> 
       </Container>
       <Box position={"absolute"} bottom={-1} right={0}>
-        <Image src={LooperGroup}  width="100%" height="100%" />
+        <Image src={LooperGroup} width="100%" height="100%" />
       </Box>
     </Box>
   );

@@ -38,7 +38,7 @@ const Home = ({
         
       /> */}
       <Box w="100%" h="100vh" bg="#040F03">
-        <HomePage />
+        <HomePage blogData={blogData} />
       </Box>
     </div>
   );

@@ -57,6 +57,11 @@ a {
   src: url("/fonts/Druk-Wide-Bold.ttf");
 }
 
+@font-face {
+  font-family: "Space Mono";
+  src: url("/fonts/SpaceMono-Regular.ttf");
+}
+
 .point-header-text{
   padding: 0.5rem;
   border: 1px solid transparent;
