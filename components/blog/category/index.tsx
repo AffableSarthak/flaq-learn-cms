@@ -6,73 +6,73 @@ import {
   Highlight,
   Show,
   Text,
-} from "@chakra-ui/react";
-import React from "react";
-import Navbar from "../../common/Navbar";
-import Image from "next/image";
-import web3icon from "../../../public/img/blog/web3Icon.svg";
-import blogcover from "../../../public/img/blog/blogcover.svg";
-import LooperGroup from "../../../public/img/blog/LooperGroup.svg";
-import { BlogPages, getBlogUrl } from "../../../src/utils/parse-properties";
-import { useRouter } from "next/router";
-import Page404 from "../../fallback/Page404";
-import { category_utils } from "../utils/blogUtils";
-import Link from "next/link";
-import categoryInfo from "../data/categoryInfo";
+} from '@chakra-ui/react'
+import React from 'react'
+import Navbar from '../../common/Navbar'
+import Image from 'next/image'
+import web3icon from '../../../public/img/blog/web3Icon.svg'
+import blogcover from '../../../public/img/blog/blogcover.svg'
+import LooperGroup from '../../../public/img/blog/LooperGroup.svg'
+import { BlogPages, getBlogUrl } from '../../../src/utils/parse-properties'
+import { useRouter } from 'next/router'
+import Page404 from '../../fallback/Page404'
+import { category_utils } from '../utils/blogUtils'
+import Link from 'next/link'
+import categoryInfo from '../data/categoryInfo'
 
 type Props = {
-  BlogsByCategory: BlogPages[];
-};
+  BlogsByCategory: BlogPages[]
+}
 
 const CategoryPage = ({ BlogsByCategory }: Props) => {
   if (BlogsByCategory.length === 0) {
-    return <Page404 />;
+    return <Page404 />
   }
-  const category = category_utils(BlogsByCategory[0].category).split(" ");
+  const category = category_utils(BlogsByCategory[0].category).split(' ')
 
   const desc = categoryInfo.find(
-    (a) => a.name.toLowerCase() === category.join(" ").toLowerCase()
+    (a) => a.name.toLowerCase() === category.join(' ').toLowerCase(),
   )
-  
+
   return (
-    <Box position={"relative"} bg="#040F03" maxWidth={"100%"}>
-      <Container pb="16" mb="16" maxW="1200px">
+    <Box position={'relative'} bg="#040F03" maxWidth={'100%'}>
+      <Container pb="16" maxW="1200px">
         <Navbar />
         <Box mt="12">
-          <Box position={"relative"} w="fit-content">
+          <Box position={'relative'} w="fit-content">
             <Text
               my="3"
-              lineHeight={"5.7rem"}
-              fontFamily={"Druk Wide Bold"}
-              fontWeight={"700"}
-              fontSize={{ base: "3xl", md: "7xl" }}
+              lineHeight={'5.7rem'}
+              fontFamily={'Druk Wide Bold'}
+              fontWeight={'700'}
+              fontSize={{ base: '3xl', md: '7xl' }}
               as="h1"
             >
               <Highlight
                 query={category[category.length - 1]}
                 styles={{
-                  color: "#70FFE9",
-                  my: "3",
-                  lineHeight: "5.7rem",
-                  fontFamily: "Druk Wide Bold",
-                  fontWeight: "700",
+                  color: '#70FFE9',
+                  my: '3',
+                  lineHeight: '5.7rem',
+                  fontFamily: 'Druk Wide Bold',
+                  fontWeight: '700',
                 }}
               >
-                {category.join(" ")}
+                {category.join(' ')}
               </Highlight>
             </Text>
             <Text
               color="#9999A5"
-              fontSize={{ md: "md", base: "sm" }}
-              fontFamily={"Poppins"}
+              fontSize={{ md: 'md', base: 'sm' }}
+              fontFamily={'Poppins'}
               fontWeight={500}
             >
               {desc?.desc}
             </Text>
             <Box
-              right={{ md: "-90px", base: "5px" }}
-              top={{ md: "-18px", base: "-55px" }}
-              position={"absolute"}
+              right={{ md: '-90px', base: '5px' }}
+              top={{ md: '-18px', base: '-55px' }}
+              position={'absolute'}
             >
               <Image src={web3icon} width="90" height="90" />
             </Box>
@@ -81,8 +81,8 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
         <Box my="8">
           <Grid
             templateColumns={{
-              xl: "repeat(3, 1fr)",
-              base: "repeat(1, 1fr)",
+              xl: 'repeat(3, 1fr)',
+              base: 'repeat(1, 1fr)',
             }}
             justifyItems="center"
             gap={6}
@@ -91,19 +91,19 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
               return (
                 <Link
                   href={`/${category
-                    .join("-")
+                    .join('-')
                     .toLowerCase()
-                    .split(" ")
-                    .join("-")}/${getBlogUrl(val.url)}`}
+                    .split(' ')
+                    .join('-')}/${getBlogUrl(val.url)}`}
                   passHref
                   key={key}
                 >
                   <a>
                     <GridItem
-                      borderRadius={"2xl"}
+                      borderRadius={'2xl'}
                       bg="#393953"
-                      w={{ md: "392px", base: "350px" }}
-                      h={{ md: "440px", base: "392px" }}
+                      w={{ md: '392px', base: '350px' }}
+                      h={{ md: '440px', base: '392px' }}
                     >
                       <Box>
                         <Image src={blogcover} width="392" height="220" />
@@ -112,50 +112,50 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                         <Box
                           display="flex"
                           flexDirection="column"
-                          justifyContent={"space-between"}
-                          alignItems={"left"}
+                          justifyContent={'space-between'}
+                          alignItems={'left'}
                           flexWrap="wrap"
-                          h={{ md: "175px", base: "120px" }}
+                          h={{ md: '175px', base: '120px' }}
                         >
                           <Box>
                             <Text
-                              fontSize={"md"}
+                              fontSize={'md'}
                               fontWeight={400}
-                              fontFamily={"Space Mono"}
+                              fontFamily={'Space Mono'}
                             >
                               Article
                             </Text>
                             <Text
-                              fontSize={{ md: "24px", base: "16px" }}
+                              fontSize={{ md: '24px', base: '16px' }}
                               fontWeight={700}
-                              fontFamily={"Poppins"}
+                              fontFamily={'Poppins'}
                             >
                               {val.title}
                             </Text>
                           </Box>
-                          <Box alignSelf={"auto"}>
+                          <Box alignSelf={'auto'}>
                             <Text
-                              fontSize={"md"}
+                              fontSize={'md'}
                               fontWeight={400}
-                              fontFamily={"Space Mono"}
+                              fontFamily={'Space Mono'}
                             >
                               {
                                 [
-                                  "January",
-                                  "February",
-                                  "March",
-                                  "April",
-                                  "May",
-                                  "June",
-                                  "July",
-                                  "August",
-                                  "September",
-                                  "October",
-                                  "November",
-                                  "December",
+                                  'January',
+                                  'February',
+                                  'March',
+                                  'April',
+                                  'May',
+                                  'June',
+                                  'July',
+                                  'August',
+                                  'September',
+                                  'October',
+                                  'November',
+                                  'December',
                                 ][new Date(val.published_on).getMonth()]
-                              }{" "}
-                              {"  "}
+                              }{' '}
+                              {'  '}
                               {new Date(val.published_on).getDate()},
                               {new Date(val.published_on).getFullYear()}
                             </Text>
@@ -165,12 +165,12 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                     </GridItem>
                   </a>
                 </Link>
-              );
+              )
             })}
           </Grid>
         </Box>
       </Container>
-      <Box position={"absolute"} bottom={-1} right={0}>
+      <Box position={'absolute'} bottom={-1} right={0}>
         <Show above="md">
           <Image src={LooperGroup} width="171" height="221" />
         </Show>
@@ -179,7 +179,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
         </Show>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default CategoryPage;
+export default CategoryPage

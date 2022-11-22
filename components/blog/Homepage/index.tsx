@@ -1,62 +1,62 @@
-import { Box, Container, Grid, GridItem, Text } from "@chakra-ui/react";
-import React from "react";
-import Navbar from "../../common/Navbar";
-import LeftArrowIcon from "../../../public/img/blog/left arrow.svg";
-import web3icon from "../../../public/img/blog/web3Icon.svg";
-import bgpattern from "../../../public/img/blog/bgpattern.svg";
-import LooperGroup from "../../../public/img/blog/LooperGroup.svg";
+import { Box, Container, Grid, GridItem, Text } from '@chakra-ui/react'
+import React from 'react'
+import Navbar from '../../common/Navbar'
+import LeftArrowIcon from '../../../public/img/blog/left arrow.svg'
+import web3icon from '../../../public/img/blog/web3Icon.svg'
+import bgpattern from '../../../public/img/blog/bgpattern.svg'
+import LooperGroup from '../../../public/img/blog/LooperGroup.svg'
 
-import Image from "next/image";
-import Link from "next/link";
-import categoryInfo from "../data/categoryInfo";
+import Image from 'next/image'
+import Link from 'next/link'
+import categoryInfo from '../data/categoryInfo'
 
 interface IAllCategories {
-  category: string;
-  priority: number;
-  slug: string;
+  category: string
+  priority: number
+  slug: string
 }
 
 type Props = {
-  allCategories: IAllCategories[];
-};
+  allCategories: IAllCategories[]
+}
 
 const HomePage = ({ allCategories }: Props) => {
-  const categoryUtil = (category:string) => {
+  const categoryUtil = (category: string) => {
     return categoryInfo.find(
-      (a) => a.name.toLowerCase() === category.toLowerCase()
-    )?.desc;
-  };
-   
+      (a) => a.name.toLowerCase() === category.toLowerCase(),
+    )?.desc
+  }
+
   return (
-    <Box position={"relative"} bg="#040F03" maxWidth={"100%"}>
+    <Box position={'relative'} bg="#040F03" maxWidth={'100%'}>
       <Container pb="16" mb="16" maxW="1200px">
         <Navbar />
         <Box mt="12">
           <Box>
             <Text
               my="3"
-              lineHeight={"5.7rem"}
-              fontFamily={"Druk Wide Bold"}
-              fontWeight={"700"}
-              fontSize={{ base: "3xl", md: "7xl" }}
+              lineHeight={'5.7rem'}
+              fontFamily={'Druk Wide Bold'}
+              fontWeight={'700'}
+              fontSize={{ base: '3xl', md: '7xl' }}
               as="h1"
             >
-              select a{" "}
+              select a{' '}
               <Text
                 as="span"
-                lineHeight={"5.7rem"}
-                fontFamily={"Druk Wide Bold"}
-                fontWeight={"700"}
-                fontSize={{ base: "3xl", md: "7xl" }}
-                color={"#70FFE9"}
+                lineHeight={'5.7rem'}
+                fontFamily={'Druk Wide Bold'}
+                fontWeight={'700'}
+                fontSize={{ base: '3xl', md: '7xl' }}
+                color={'#70FFE9'}
               >
                 course
               </Text>
             </Text>
             <Text
               color="#9999A5"
-              fontSize={"md"}
-              fontFamily={"Poppins"}
+              fontSize={'md'}
+              fontFamily={'Poppins'}
               fontWeight={500}
             >
               In publishing and graphic design, Lorem ipsum is a placeholder
@@ -68,11 +68,11 @@ const HomePage = ({ allCategories }: Props) => {
         <Box my="8">
           <Grid
             templateColumns={{
-              xl: "repeat(2, 1fr)",
-              base: "repeat(1, 1fr)",
+              xl: 'repeat(2, 1fr)',
+              base: 'repeat(1, 1fr)',
             }}
             justifyItems="center"
-            gap={6}
+            gap={5}
           >
             {allCategories.map((val, key) => {
               return (
@@ -88,39 +88,40 @@ const HomePage = ({ allCategories }: Props) => {
                     <GridItem
                       py="4"
                       px="6"
-                      cursor={"pointer"}
-                      border={"3px solid #BA2FE4"}
-                      borderRadius={"20px"}
+                      cursor={'pointer'}
+                      border={'0.5px solid #70ffe9'}
+                      borderRadius={'20px'}
                       bg="#1A1A1A"
-                      w={{ md: "556px", base: "350px" }}
-                      h={{ md: "304px", base: "195px" }}
+                      w={{ md: '525px', base: '325px' }}
+                      h={{ md: '250px', base: '150px' }}
                       display="flex"
                       flexDirection="column"
-                      justifyContent={"space-between"}
+                      justifyContent={'space-evenly'}
                       position="relative"
                       backgroundImage={`url(${bgpattern.src})`}
                     >
                       <Box>
                         <Text
-                          fontSize={{ md: "2.5rem", base: "1.2rem" }}
+                          fontSize={{ md: '2.5rem', base: '1.2rem' }}
                           fontWeight={700}
-                          fontFamily={"Druk Wide Bold"}
+                          fontFamily={'Druk Wide Bold'}
+                          textShadow="2px 2px #70ffe9"
                         >
                           {val.category}
                         </Text>
                         <Text
-                          fontSize={{ md: "16px", base: "12px" }}
-                          color="#9999A5"
+                          fontSize={{ md: '16px', base: '12px' }}
+                          textShadow="1px 1px #005704"
                         >
                           {categoryUtil(val.category)}
                         </Text>
                       </Box>
-                      <Box alignSelf={"auto"}>
-                        <Box display={"flex"} alignItems="center" w="100%">
+                      <Box alignSelf={'auto'}>
+                        <Box display={'flex'} alignItems="center" w="100%">
                           <Text
-                            fontSize={{ md: "24px", base: "16px" }}
+                            fontSize={{ md: '24px', base: '16px' }}
                             fontWeight={700}
-                            fontFamily={"Poppins"}
+                            fontFamily={'Poppins'}
                           >
                             Start Learning
                           </Text>
@@ -132,25 +133,25 @@ const HomePage = ({ allCategories }: Props) => {
                         </Box>
                       </Box>
                       <Box
-                        right={{ md: "52px", base: "5px" }}
-                        bottom={{ md: "52px", base: "5px" }}
-                        position={"absolute"}
+                        right={{ md: '52px', base: '5px' }}
+                        bottom={{ md: '52px', base: '5px' }}
+                        position={'absolute'}
                       >
                         <Image src={web3icon} width="90" height="90" />
                       </Box>
                     </GridItem>
                   </a>
                 </Link>
-              );
+              )
             })}
           </Grid>
         </Box>
       </Container>
-      <Box position={"absolute"} bottom={-1} right={0}>
+      <Box position={'absolute'} bottom={-1} right={0}>
         <Image src={LooperGroup} width="100%" height="100%" />
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage
