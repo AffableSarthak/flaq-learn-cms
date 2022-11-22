@@ -114,6 +114,8 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                                     ? val.coverImage
                                     : blogcover
                                 }
+                                placeholder="blur"
+                                blurDataURL={blogcover}
                                 width="392"
                                 height="220"
                               />
