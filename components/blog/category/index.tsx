@@ -135,7 +135,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                                     fontWeight={400}
                                     fontFamily={'Space Mono'}
                                   >
-                                    Article
+                                    Ed-piece
                                   </Text>
                                   <Text
                                     fontSize={{ md: '24px', base: '16px' }}
