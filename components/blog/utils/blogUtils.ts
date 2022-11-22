@@ -4,9 +4,10 @@ interface MenuListProps {
   category: string;
   blogs: BlogPages[];
   priority: number;
+  slug: string;
 }
 
-const category_utils = (inpCategory: string) => {
+export const category_utils = (inpCategory: string) => {
   const priority = parseInt(inpCategory.split(" ").slice(-1).join(" "));
   if (isNaN(priority)) {
     return inpCategory;
@@ -34,6 +35,7 @@ const blogsToCategoryMap = (blogData: BlogPages[]) => {
     menuList.push({
       priority: parseInt(key.split(" ").slice(-1).join(" ")) || 5000,
       category: category_utils(key),
+      slug:category_utils(key).split(" ").join("-").toLowerCase(),
       blogs: value.sort(function (a, b) {
         var dateA = new Date(a.published_on).getTime();
         var dateB = new Date(b.published_on).getTime();

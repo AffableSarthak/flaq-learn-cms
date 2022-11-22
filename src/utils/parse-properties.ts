@@ -62,3 +62,28 @@ export const getBlogRoutes = (database: QueryDatabaseResponse) => {
   });
   return blogRoutes;
 };
+
+const category_utils = (inpCategory: string) => {
+  const priority = parseInt(inpCategory.split(" ").slice(-1).join(" "));
+  if (isNaN(priority)) {
+    return inpCategory;
+  }
+  return inpCategory.split(" ").slice(0, -1).join(" ");
+};
+
+export const getAllCategories = (database: QueryDatabaseResponse) => {
+  const category = new Set(
+    database.results.map((row: any) => {
+      const category = row.properties["Category"].select.name || null;
+      return category;
+    })
+  );
+
+  return Array.from(category).map((category) => {
+    return {
+      category: category_utils(category),
+      priority: parseInt(category.split(" ").slice(-1).join(" ")) || "",
+      slug: category_utils(category).split(" ").join("-"),
+    };
+  });
+};

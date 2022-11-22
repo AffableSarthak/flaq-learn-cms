@@ -1,3 +1,4 @@
+import { parseProperties } from "../utils/parse-properties";
 import { notion, notionApi } from "./client";
 
 // Query notion database to get all the approved pages blogs data.
@@ -26,4 +27,28 @@ export const getRecordDataForPage = async (pageId: string) => {
   } catch (error) {
     console.log({ error }, "Page not found");
   }
+};
+
+export const getBlogsByCategory = async (category:string) => {
+  // Flaq Academy 1
+  const response = await notion.databases.query({
+    database_id: process.env.NOTION_DATABASE_ID ?? "",
+    filter: {
+      and: [
+        {
+          property: "Status",
+          select: {
+            equals: "Approved",
+          },
+        }, {
+          property: "Category",
+          select: {
+            equals: category,
+          }
+        }
+      ],
+    },
+  });
+
+  return parseProperties(response);
 };

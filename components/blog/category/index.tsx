@@ -1,14 +1,39 @@
-import { Box, Container, Grid, GridItem, Show, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Grid,
+  GridItem,
+  Highlight,
+  Show,
+  Text,
+} from "@chakra-ui/react";
 import React from "react";
 import Navbar from "../../common/Navbar";
 import Image from "next/image";
 import web3icon from "../../../public/img/blog/web3Icon.svg";
 import blogcover from "../../../public/img/blog/blogcover.svg";
 import LooperGroup from "../../../public/img/blog/LooperGroup.svg";
+import { BlogPages, getBlogUrl } from "../../../src/utils/parse-properties";
+import { useRouter } from "next/router";
+import Page404 from "../../fallback/Page404";
+import { category_utils } from "../utils/blogUtils";
+import Link from "next/link";
+import categoryInfo from "../data/categoryInfo";
 
-type Props = {};
+type Props = {
+  BlogsByCategory: BlogPages[];
+};
 
-const CategoryPage = (props: Props) => {
+const CategoryPage = ({ BlogsByCategory }: Props) => {
+  if (BlogsByCategory.length === 0) {
+    return <Page404 />;
+  }
+  const category = category_utils(BlogsByCategory[0].category).split(" ");
+
+  const desc = categoryInfo.find(
+    (a) => a.name.toLowerCase() === category.join(" ").toLowerCase()
+  )
+  
   return (
     <Box position={"relative"} bg="#040F03" maxWidth={"100%"}>
       <Container pb="16" mb="16" maxW="1200px">
@@ -23,7 +48,18 @@ const CategoryPage = (props: Props) => {
               fontSize={{ base: "3xl", md: "7xl" }}
               as="h1"
             >
-              dive into web3
+              <Highlight
+                query={category[category.length - 1]}
+                styles={{
+                  color: "#70FFE9",
+                  my: "3",
+                  lineHeight: "5.7rem",
+                  fontFamily: "Druk Wide Bold",
+                  fontWeight: "700",
+                }}
+              >
+                {category.join(" ")}
+              </Highlight>
             </Text>
             <Text
               color="#9999A5"
@@ -31,14 +67,11 @@ const CategoryPage = (props: Props) => {
               fontFamily={"Poppins"}
               fontWeight={500}
             >
-              In publishing and graphic design, Lorem ipsum is a placeholder
-              text commonly
-              <br /> used to demonstrate the visual form of a document or a
-              typeface.
+              {desc?.desc}
             </Text>
             <Box
               right={{ md: "-90px", base: "5px" }}
-              top={{ md: "-18px", base: "5px" }}
+              top={{ md: "-18px", base: "-55px" }}
               position={"absolute"}
             >
               <Image src={web3icon} width="90" height="90" />
@@ -54,53 +87,84 @@ const CategoryPage = (props: Props) => {
             justifyItems="center"
             gap={6}
           >
-            {[0, 1, 2, 3].map((val, key) => {
+            {BlogsByCategory.map((val, key) => {
               return (
-                <GridItem
-                  borderRadius={"2xl"}
-                  bg="#393953"
-                  w={{ md: "392px", base: "350px" }}
-                  h={{ md: "440px", base: "392px" }}
+                <Link
+                  href={`/${category
+                    .join("-")
+                    .toLowerCase()
+                    .split(" ")
+                    .join("-")}/${getBlogUrl(val.url)}`}
+                  passHref
                   key={key}
-                  position="relative"
                 >
-                  <Box>
-                    <Image src={blogcover} width="392" height="220" />
-                  </Box>
-                  <Box py="4" px="6">
-                    <Box
-                      display="flex"
-                      flexDirection="column"
-                      justifyContent={"space-between"}
+                  <a>
+                    <GridItem
+                      borderRadius={"2xl"}
+                      bg="#393953"
+                      w={{ md: "392px", base: "350px" }}
+                      h={{ md: "440px", base: "392px" }}
                     >
                       <Box>
-                        <Text
-                          fontSize={"md"}
-                          fontWeight={400}
-                          fontFamily={"Space Mono"}
-                        >
-                          Article
-                        </Text>
-                        <Text
-                          fontSize={"24px"}
-                          fontWeight={700}
-                          fontFamily={"Poppins"}
-                        >
-                          The Technology Behind Web3: Blockchain
-                        </Text>
+                        <Image src={blogcover} width="392" height="220" />
                       </Box>
-                      <Box alignSelf={"auto"} mt={{ md: "12", base: "8" }}>
-                        <Text
-                          fontSize={"md"}
-                          fontWeight={400}
-                          fontFamily={"Space Mono"}
+                      <Box py="4" px="6">
+                        <Box
+                          display="flex"
+                          flexDirection="column"
+                          justifyContent={"space-between"}
+                          alignItems={"left"}
+                          flexWrap="wrap"
+                          h={{ md: "175px", base: "120px" }}
                         >
-                          January 1, 2023
-                        </Text>
+                          <Box>
+                            <Text
+                              fontSize={"md"}
+                              fontWeight={400}
+                              fontFamily={"Space Mono"}
+                            >
+                              Article
+                            </Text>
+                            <Text
+                              fontSize={{ md: "24px", base: "16px" }}
+                              fontWeight={700}
+                              fontFamily={"Poppins"}
+                            >
+                              {val.title}
+                            </Text>
+                          </Box>
+                          <Box alignSelf={"auto"}>
+                            <Text
+                              fontSize={"md"}
+                              fontWeight={400}
+                              fontFamily={"Space Mono"}
+                            >
+                              {
+                                [
+                                  "January",
+                                  "February",
+                                  "March",
+                                  "April",
+                                  "May",
+                                  "June",
+                                  "July",
+                                  "August",
+                                  "September",
+                                  "October",
+                                  "November",
+                                  "December",
+                                ][new Date(val.published_on).getMonth()]
+                              }{" "}
+                              {"  "}
+                              {new Date(val.published_on).getDate()},
+                              {new Date(val.published_on).getFullYear()}
+                            </Text>
+                          </Box>
+                        </Box>
                       </Box>
-                    </Box>
-                  </Box>
-                </GridItem>
+                    </GridItem>
+                  </a>
+                </Link>
               );
             })}
           </Grid>
