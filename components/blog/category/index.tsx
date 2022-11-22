@@ -13,15 +13,14 @@ import Image from 'next/image'
 import web3icon from '../../../public/img/blog/web3Icon.svg'
 import blogcover from '../../../public/img/blog/blogcover.svg'
 import LooperGroup from '../../../public/img/blog/LooperGroup.svg'
-import { BlogPages, getBlogUrl } from '../../../src/utils/parse-properties'
-import { useRouter } from 'next/router'
+import { getBlogUrl } from '../../../src/utils/parse-properties'
 import Page404 from '../../fallback/Page404'
-import { category_utils } from '../utils/blogUtils'
+import { category_utils, MenuListProps } from '../utils/blogUtils'
 import Link from 'next/link'
 import categoryInfo from '../data/categoryInfo'
 
 type Props = {
-  BlogsByCategory: BlogPages[]
+  BlogsByCategory: MenuListProps[]
 }
 
 const CategoryPage = ({ BlogsByCategory }: Props) => {
@@ -87,84 +86,98 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
             justifyItems="center"
             gap={6}
           >
-            {BlogsByCategory.map((val, key) => {
+            {BlogsByCategory.map((blogData, key) => {
               return (
-                <Link
-                  href={`/${category
-                    .join('-')
-                    .toLowerCase()
-                    .split(' ')
-                    .join('-')}/${getBlogUrl(val.url)}`}
-                  passHref
-                  key={key}
-                >
-                  <a>
-                    <GridItem
-                      borderRadius={'2xl'}
-                      bg="#393953"
-                      w={{ md: '392px', base: '350px' }}
-                      h={{ md: '440px', base: '392px' }}
-                    >
-                      <Box>
-                        <Image src={blogcover} width="392" height="220" />
-                      </Box>
-                      <Box py="4" px="6">
-                        <Box
-                          display="flex"
-                          flexDirection="column"
-                          justifyContent={'space-between'}
-                          alignItems={'left'}
-                          flexWrap="wrap"
-                          h={{ md: '175px', base: '120px' }}
-                        >
-                          <Box>
-                            <Text
-                              fontSize={'md'}
-                              fontWeight={400}
-                              fontFamily={'Space Mono'}
-                            >
-                              Article
-                            </Text>
-                            <Text
-                              fontSize={{ md: '24px', base: '16px' }}
-                              fontWeight={700}
-                              fontFamily={'Poppins'}
-                            >
-                              {val.title}
-                            </Text>
-                          </Box>
-                          <Box alignSelf={'auto'}>
-                            <Text
-                              fontSize={'md'}
-                              fontWeight={400}
-                              fontFamily={'Space Mono'}
-                            >
-                              {
-                                [
-                                  'January',
-                                  'February',
-                                  'March',
-                                  'April',
-                                  'May',
-                                  'June',
-                                  'July',
-                                  'August',
-                                  'September',
-                                  'October',
-                                  'November',
-                                  'December',
-                                ][new Date(val.published_on).getMonth()]
-                              }{' '}
-                              {'  '}
-                              {new Date(val.published_on).getDate()},
-                              {new Date(val.published_on).getFullYear()}
-                            </Text>
-                          </Box>
-                        </Box>
-                      </Box>
-                    </GridItem>
-                  </a>
-                </Link>
+                <>
+                  {blogData.blogs.map((val, key) => {
+                    return (
+                      <Link
+                        href={`/${category
+                          .join('-')
+                          .toLowerCase()
+                          .split(' ')
+                          .join('-')}/${getBlogUrl(val.url)}`}
+                        passHref
+                        key={key}
+                      >
+                        <a>
+                          <GridItem
+                            borderRadius={'2xl'}
+                            bg="#393953"
+                            w={{ md: '392px', base: '350px' }}
+                            h={{ md: '440px', base: '392px' }}
+                          >
+                            <Box>
+                              <Image
+                                src={
+                                  val.coverImage !== null
+                                    ? val.coverImage
+                                    : blogcover
+                                }
+                                width="392"
+                                height="220"
+                              />
+                            </Box>
+                            <Box py="4" px="6">
+                              <Box
+                                display="flex"
+                                flexDirection="column"
+                                justifyContent={'space-between'}
+                                alignItems={'left'}
+                                flexWrap="wrap"
+                                h={{ md: '175px', base: '120px' }}
+                              >
+                                <Box>
+                                  <Text
+                                    fontSize={'md'}
+                                    fontWeight={400}
+                                    fontFamily={'Space Mono'}
+                                  >
+                                    Article
+                                  </Text>
+                                  <Text
+                                    fontSize={{ md: '24px', base: '16px' }}
+                                    fontWeight={700}
+                                    fontFamily={'Poppins'}
+                                  >
+                                    {val.title}
+                                  </Text>
+                                </Box>
+                                <Box alignSelf={'auto'}>
+                                  <Text
+                                    fontSize={'md'}
+                                    fontWeight={400}
+                                    fontFamily={'Space Mono'}
+                                  >
+                                    {
+                                      [
+                                        'January',
+                                        'February',
+                                        'March',
+                                        'April',
+                                        'May',
+                                        'June',
+                                        'July',
+                                        'August',
+                                        'September',
+                                        'October',
+                                        'November',
+                                        'December',
+                                      ][new Date(val.published_on).getMonth()]
+                                    }{' '}
+                                    {'  '}
+                                    {new Date(val.published_on).getDate()},
+                                    {new Date(val.published_on).getFullYear()}
+                                  </Text>
+                                </Box>
+                              </Box>
+                            </Box>
+                          </GridItem>
+                        </a>
+                      </Link>
+                    )
+                  })}
+                </>
               )
             })}
           </Grid>

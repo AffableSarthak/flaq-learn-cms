@@ -1,6 +1,6 @@
 import { BlogPages } from "../../../src/utils/parse-properties";
 
-interface MenuListProps {
+export interface MenuListProps {
   category: string;
   blogs: BlogPages[];
   priority: number;
@@ -35,7 +35,7 @@ const blogsToCategoryMap = (blogData: BlogPages[]) => {
     menuList.push({
       priority: parseInt(key.split(" ").slice(-1).join(" ")) || 5000,
       category: category_utils(key),
-      slug:category_utils(key).split(" ").join("-").toLowerCase(),
+      slug: category_utils(key).split(" ").join("-").toLowerCase(),
       blogs: value.sort(function (a, b) {
         var dateA = new Date(a.published_on).getTime();
         var dateB = new Date(b.published_on).getTime();
