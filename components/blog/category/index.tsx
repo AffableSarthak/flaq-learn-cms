@@ -68,7 +68,6 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
             >
               {desc?.desc}
             </Text>
-            
           </Box>
         </Box>
         <Box my="8">
@@ -129,7 +128,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                                     fontWeight={400}
                                     fontFamily={'Space Mono'}
                                   >
-                                    Ed-piece
+                                    {` Ed-piece #${key + 1}`}
                                   </Text>
                                   <Text
                                     fontSize={{ md: '24px', base: '16px' }}
@@ -178,7 +177,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
             })}
           </Grid>
         </Box>
-        <Footer/>
+        <Footer />
       </Container>
       <Box position={'absolute'} bottom={-1} right={0}>
         <Show above="md">
