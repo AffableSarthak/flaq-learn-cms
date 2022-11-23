@@ -5,7 +5,6 @@ import { getBlogsByCategory } from '../../src/api/query-database'
 import { BlogPages } from '../../src/utils/parse-properties'
 
 const Category = ({ BlogsByCategory }: { BlogsByCategory: BlogPages[] }) => {
-  console.log(BlogsByCategory)
   return (
     <div>
       <Box w="100%" h="100vh" bg="#040F03">

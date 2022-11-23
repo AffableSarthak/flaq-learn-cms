@@ -17,6 +17,7 @@ import Navbar from "../../common/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 import { getBlockchainData } from "../utils/blockchain";
+import Footer from "../../common/Footer";
 
 type Props = {};
 
@@ -177,6 +178,7 @@ const HomePage = (props: Props) => {
             </Tabs>
           )}
         </Box>
+        <Footer/>
       </Container>
     </Box>
   );

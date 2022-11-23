@@ -98,7 +98,7 @@ const Footer = (props: Props) => {
     }
   };
   return (
-    <Container mb="16" fontFamily={"Poppins"} minW="100%" w="100%">
+    <Container mt={{base:"12",md:"16"}} pt={{base:"12",md:"16"}} pb="14" fontFamily={"Poppins"} minW="100%" w="100%">
       <form onSubmit={handleSubmit}>
         <Flex
           px={{ md: "8", base: "2" }}

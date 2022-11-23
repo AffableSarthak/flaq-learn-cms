@@ -20,7 +20,6 @@ interface IAllCategories {
   slug: string;
 }
 const Home = ({ allCategories }: { allCategories: IAllCategories[] }) => {
-  console.log(allCategories);
   return (
     <div>
       <Box w="100%" h="100vh" bg="#040F03">

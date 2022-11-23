@@ -2,7 +2,7 @@ import { Box, Flex, useColorModeValue, useDisclosure } from "@chakra-ui/react";
 import Head from "next/head";
 import React from "react";
 import { BlogPages } from "../../src/utils/parse-properties";
-import Footer from "./Footer";
+import Footer from "../common/Footer";
 import { NotionPageHeader } from "./Header";
 import ReadProgressBar from "./ReadProgressBar";
 import SideBar from "./sidebar";

@@ -10,7 +10,6 @@ import {
 import React from 'react'
 import Navbar from '../../common/Navbar'
 import Image from 'next/image'
-import web3icon from '../../../public/img/blog/web3Icon.svg'
 import blogcover from '../../../public/img/blog/blogcover.svg'
 import LooperGroup from '../../../public/img/blog/LooperGroup.svg'
 import { getBlogUrl } from '../../../src/utils/parse-properties'
@@ -18,6 +17,7 @@ import Page404 from '../../fallback/Page404'
 import { category_utils, MenuListProps } from '../utils/blogUtils'
 import Link from 'next/link'
 import categoryInfo from '../data/categoryInfo'
+import Footer from '../../common/Footer'
 
 type Props = {
   BlogsByCategory: MenuListProps[]
@@ -68,13 +68,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
             >
               {desc?.desc}
             </Text>
-            <Box
-              right={{ md: '-90px', base: '5px' }}
-              top={{ md: '-18px', base: '-55px' }}
-              position={'absolute'}
-            >
-              <Image src={web3icon} width="90" height="90" />
-            </Box>
+            
           </Box>
         </Box>
         <Box my="8">
@@ -184,6 +178,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
             })}
           </Grid>
         </Box>
+        <Footer/>
       </Container>
       <Box position={'absolute'} bottom={-1} right={0}>
         <Show above="md">

@@ -28,7 +28,7 @@ export const getBlockchainData = () => {
       ],
     },
     {
-      name: "Ethereuem",
+      name: "Ethereum",
       icon: ethereumIcon,
       simulations: [],
     },
