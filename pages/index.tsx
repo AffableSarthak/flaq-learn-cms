@@ -35,7 +35,9 @@ export async function getServerSideProps() {
   const database = await queryDatabase();
 
   // sort the categories by priority
-  const allCategories = getAllCategories(database!).sort((a, b) => a.priority>b.priority?1:-1);
+  const allCategories = getAllCategories(database!).sort((a, b) =>
+    a.priority > b.priority ? 1 : -1
+  );
 
   return {
     props: {

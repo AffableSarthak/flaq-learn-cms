@@ -18,6 +18,7 @@ import { category_utils, MenuListProps } from '../utils/blogUtils'
 import Link from 'next/link'
 import categoryInfo from '../data/categoryInfo'
 import Footer from '../../common/Footer'
+import Header from '../../common/Header'
 
 type Props = {
   BlogsByCategory: MenuListProps[]
@@ -36,7 +37,10 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
   return (
     <Box position={'relative'} bg="#040F03" maxWidth={'100%'}>
       <Container pb="16" maxW="1200px">
-        <Navbar />
+        <Header showSearch={true} showNavlinks={false} homeLink={'/'} secondaryLink={{
+          name: 'Simulation',
+          link: '/simulation',
+        }} showMenu={true} />
         <Box mt="12">
           <Box position={'relative'} w="fit-content">
             <Text
