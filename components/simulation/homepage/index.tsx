@@ -38,7 +38,7 @@ const HomePage = (props: Props) => {
 
   return (
     <Box bg="#040F03" maxWidth={"100%"}>
-      <Container maxWidth={"1200px"}>
+      <Container maxWidth={"90vw"}>
         <Header
           showSearch={false}
           showNavlinks={false}
@@ -50,7 +50,24 @@ const HomePage = (props: Props) => {
           }}
         />
         <Box my="8" w="100%">
-          <VStack gap="4" my="16">
+          <Text
+            fontFamily={"Druk Wide Bold"}
+            fontWeight={"700"}
+            fontSize={{ base: "3xl", md: "5xl" }}
+            as="h1"
+          >
+            <Highlight
+              query={"Simulations"}
+              styles={{
+                color: "#70FFE9",
+                fontFamily: "Druk Wide Bold",
+                fontWeight: "700",
+              }}
+            >
+             Introducing Web3 Simulations
+            </Highlight>
+          </Text>
+          <VStack gap="4" mb="8">
             <Box>
               <Text
                 my="4"
@@ -101,18 +118,18 @@ const HomePage = (props: Props) => {
           </VStack>
           <Text
             my="3"
-            fontFamily={'Druk Wide Bold'}
-            fontWeight={'700'}
-            fontSize={{ base: '3xl', md: '6xl' }}
+            fontFamily={"Druk Wide Bold"}
+            fontWeight={"700"}
+            fontSize={{ base: "3xl", md: "5xl" }}
             as="h1"
           >
             <Highlight
-              query={'chain'}
+              query={"chain"}
               styles={{
-                color: '#70FFE9',
-                my: '3',
-                fontFamily: 'Druk Wide Bold',
-                fontWeight: '700',
+                color: "#70FFE9",
+                my: "3",
+                fontFamily: "Druk Wide Bold",
+                fontWeight: "700",
               }}
             >
               Select a chain
@@ -123,27 +140,27 @@ const HomePage = (props: Props) => {
               index={tabIndex}
               onChange={handleTabsChange}
               my="8"
-              variant={'unstyled'}
+              variant={"unstyled"}
             >
-              <TabList overflowX={'scroll'}>
+              <TabList overflowX={"scroll"} className="hide-scrollbar">
                 {chainSimulations.map((chain: any, key: number) => (
                   <Tab m="4" p="0" key={key}>
                     <Box
-                      border={'1px solid #70ffe9'}
+                      border={"1px solid #70ffe9"}
                       px="8"
                       py="2"
-                      bg={`${key === tabIndex ? '#f2f2f2' : '#040F03'}`}
-                      color={`${key === tabIndex ? '#3D3D3D' : '#FFFFFF'}`}
-                      display={'flex'}
-                      alignItems={'center'}
-                      justifyContent={'center'}
-                      borderRadius={'20px'}
+                      bg={`${key === tabIndex ? "#f2f2f2" : "#040F03"}`}
+                      color={`${key === tabIndex ? "#3D3D3D" : "#FFFFFF"}`}
+                      display={"flex"}
+                      alignItems={"center"}
+                      justifyContent={"center"}
+                      borderRadius={"20px"}
                     >
                       <HStack>
                         <Image src={chain.icon} alt={chain.name} />
                         <Text
-                          fontSize={{ base: 'lg', md: 'xl' }}
-                          fontFamily={'Druk Wide Bold'}
+                          fontSize={{ base: "lg", md: "xl" }}
+                          fontFamily={"Druk Wide Bold"}
                         >
                           {chain.name}
                         </Text>
@@ -155,19 +172,19 @@ const HomePage = (props: Props) => {
               <Box pt="8" pl="4">
                 <Text
                   my="3"
-                  fontFamily={'Druk Wide Bold'}
-                  fontWeight={'700'}
-                  fontSize={{ base: 'xl', md: '2xl' }}
+                  fontFamily={"Druk Wide Bold"}
+                  fontWeight={"700"}
+                  fontSize={{ base: "xl", md: "2xl" }}
                 >
                   <Highlight
                     query={`${chainSimulations[tabIndex].name} blockchain`}
                     styles={{
-                      color: '#70FFE9',
-                      my: '3',
-                      fontFamily: 'Druk Wide Bold',
-                      fontWeight: '700',
-                      textDecoration: 'underline',
-                      textUnderlineOffset: '8px',
+                      color: "#70FFE9",
+                      my: "3",
+                      fontFamily: "Druk Wide Bold",
+                      fontWeight: "700",
+                      textDecoration: "underline",
+                      textUnderlineOffset: "8px",
                     }}
                   >
                     {`Explore the simulations on the ${chainSimulations[tabIndex].name} blockchain`}
@@ -180,15 +197,16 @@ const HomePage = (props: Props) => {
                     <TabPanel key={key}>
                       <Grid
                         templateColumns={{
-                          base: 'repeat(1, 1fr)',
-                          sm: 'repeat(1, 1fr)',
-                          md: 'repeat(3, 1fr)',
+                          base: "repeat(1, 1fr)",
+                          sm: "repeat(1, 1fr)",
+                          md: "repeat(2, 1fr)",
+                          lg: "repeat(3, 1fr)",
                         }}
                         gap={6}
                       >
                         {chain.simulations.map(
                           (simulation: any, key: number) => (
-                            <>
+                            <div key={key}>
                               {simulation.isActive ? (
                                 <Link
                                   key={key}
@@ -199,12 +217,12 @@ const HomePage = (props: Props) => {
                                     cursor="pointer"
                                     border="1px solid #000000"
                                     bg="#C4FFE614"
-                                    w={{ base: '306px', md: '384px' }}
-                                    h={{ base: '179px', md: '218px' }}
-                                    display={'flex'}
-                                    alignItems={'center'}
-                                    justifyContent={'center'}
-                                    borderRadius={'20px'}
+                                    w={{ base: "306px", md: "384px" }}
+                                    h={{ base: "179px", md: "218px" }}
+                                    display={"flex"}
+                                    alignItems={"center"}
+                                    justifyContent={"center"}
+                                    borderRadius={"20px"}
                                   >
                                     <VStack>
                                       <Image
@@ -212,8 +230,8 @@ const HomePage = (props: Props) => {
                                         alt={simulation.name}
                                       />
                                       <Text
-                                        fontFamily={'Poppins'}
-                                        fontSize={{ md: 'lg', base: 'md' }}
+                                        fontFamily={"Poppins"}
+                                        fontSize={{ md: "lg", base: "md" }}
                                         fontWeight={700}
                                       >
                                         {simulation.name}
@@ -223,14 +241,15 @@ const HomePage = (props: Props) => {
                                 </Link>
                               ) : (
                                 <GridItem
+                                  key={key}
                                   border="1px solid #000000"
                                   bg="#1A1A1A5C"
-                                  w={{ base: '306px', md: '384px' }}
-                                  h={{ base: '179px', md: '218px' }}
-                                  display={'flex'}
-                                  alignItems={'center'}
-                                  justifyContent={'center'}
-                                  borderRadius={'20px'}
+                                  w={{ base: "306px", md: "384px" }}
+                                  h={{ base: "179px", md: "218px" }}
+                                  display={"flex"}
+                                  alignItems={"center"}
+                                  justifyContent={"center"}
+                                  borderRadius={"20px"}
                                 >
                                   <VStack>
                                     <Image
@@ -238,8 +257,8 @@ const HomePage = (props: Props) => {
                                       alt={simulation.name}
                                     />
                                     <Text
-                                      fontFamily={'Poppins'}
-                                      fontSize={{ md: 'lg', base: 'md' }}
+                                      fontFamily={"Poppins"}
+                                      fontSize={{ md: "lg", base: "md" }}
                                       fontWeight={700}
                                     >
                                       {simulation.name}
@@ -248,8 +267,8 @@ const HomePage = (props: Props) => {
                                   </VStack>
                                 </GridItem>
                               )}
-                            </>
-                          ),
+                            </div>
+                          )
                         )}
                       </Grid>
                     </TabPanel>
@@ -257,10 +276,10 @@ const HomePage = (props: Props) => {
                     <TabPanel key={key}>
                       <Box key={key} w="100%" h="100%">
                         <Text
-                          lineHeight={'5.7rem'}
-                          fontFamily={'Druk Wide Bold'}
-                          fontWeight={'600'}
-                          fontSize={{ base: '2xl', md: '4xl' }}
+                          lineHeight={"5.7rem"}
+                          fontFamily={"Druk Wide Bold"}
+                          fontWeight={"600"}
+                          fontSize={{ base: "2xl", md: "4xl" }}
                           as="h2"
                         >
                           Coming Soon...
@@ -276,7 +295,7 @@ const HomePage = (props: Props) => {
         <Footer />
       </Container>
     </Box>
-  )
+  );
 }
 
 export default HomePage

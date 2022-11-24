@@ -3,6 +3,7 @@ import {
   BoxProps,
   CloseButton,
   Container,
+  Divider,
   Drawer,
   DrawerContent,
   Flex,
@@ -68,7 +69,7 @@ function SimulationLayout(props: SimulationPageType) {
           </DrawerContent>
         </Drawer>
         {/* mobilenav */}
-        <Container py="4" maxW={"1800"}>
+        <Container py="0" maxW={"1800"}>
           <Header
             showSearch={false}
             showNavlinks={false}
@@ -80,7 +81,7 @@ function SimulationLayout(props: SimulationPageType) {
             }}
           />
         </Container>
-
+        <Divider />
         <Flex direction={"row"}>
           <SidebarContent
             onClose={() => onClose}

@@ -1,6 +1,7 @@
 import {
   Box,
   Flex,
+  Hide,
   HStack,
   Show,
   Text,
@@ -187,32 +188,18 @@ const Header = ({ showNavlinks, homeLink,secondaryLink,showMenu,showSearch }: He
           </Show>
         </Box>
       </Flex>
-      <AnimatePresence>
-        {isMobMenuOpen && (
-          <motion.div
-            key="modal"
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            initial={{ height: 0, opacity: 0 }}
-          >
-            <VStack pb="4" zIndex={"200"} gap={6}>
-              <Box textAlign={"center"}>
-                <Link passHref href={homeLink}>
-                  <Text
-                    cursor={"pointer"}
-                    _hover={{
-                      color: "#1bd423",
-                    }}
-                    fontSize={"md"}
-                    fontFamily={"Poppins"}
-                  >
-                    Home
-                  </Text>
-                </Link>
-              </Box>
-              {secondaryLink && (
+      <Hide above="md">
+        <AnimatePresence>
+          {isMobMenuOpen && (
+            <motion.div
+              key="modal"
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              initial={{ height: 0, opacity: 0 }}
+            >
+              <VStack pb="4" zIndex={"200"} gap={6}>
                 <Box textAlign={"center"}>
-                  <Link passHref href={secondaryLink.link}>
+                  <Link passHref href={homeLink}>
                     <Text
                       cursor={"pointer"}
                       _hover={{
@@ -221,35 +208,51 @@ const Header = ({ showNavlinks, homeLink,secondaryLink,showMenu,showSearch }: He
                       fontSize={"md"}
                       fontFamily={"Poppins"}
                     >
-                      {secondaryLink.name}
+                      Home
                     </Text>
                   </Link>
                 </Box>
-              )}
+                {secondaryLink && (
+                  <Box textAlign={"center"}>
+                    <Link passHref href={secondaryLink.link}>
+                      <Text
+                        cursor={"pointer"}
+                        _hover={{
+                          color: "#1bd423",
+                        }}
+                        fontSize={"md"}
+                        fontFamily={"Poppins"}
+                      >
+                        {secondaryLink.name}
+                      </Text>
+                    </Link>
+                  </Box>
+                )}
 
-              {showNavlinks &&
-                navbarLinks.map((navLink, key) => {
-                  return (
-                    <Box textAlign={"center"} key={key}>
-                      <Link passHref href={navLink.link}>
-                        <Text
-                          cursor={"pointer"}
-                          _hover={{
-                            color: "#1bd423",
-                          }}
-                          fontSize={"md"}
-                          fontFamily={"Poppins"}
-                        >
-                          {navLink.name}
-                        </Text>
-                      </Link>
-                    </Box>
-                  );
-                })}
-            </VStack>
-          </motion.div>
-        )}{" "}
-      </AnimatePresence>
+                {showNavlinks &&
+                  navbarLinks.map((navLink, key) => {
+                    return (
+                      <Box textAlign={"center"} key={key}>
+                        <Link passHref href={navLink.link}>
+                          <Text
+                            cursor={"pointer"}
+                            _hover={{
+                              color: "#1bd423",
+                            }}
+                            fontSize={"md"}
+                            fontFamily={"Poppins"}
+                          >
+                            {navLink.name}
+                          </Text>
+                        </Link>
+                      </Box>
+                    );
+                  })}
+              </VStack>
+            </motion.div>
+          )}{" "}
+        </AnimatePresence>
+      </Hide>
     </>
   );
 };

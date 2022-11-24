@@ -38,7 +38,7 @@ const SimulationCard = ({ cardData, setCardData, blockchain }: Props) => {
               </Box>
             </Center>
 
-            <Divider />
+            
 
             {/* Render Blocks */}
             <Box>{<RenderBlock block={block} />}</Box>
