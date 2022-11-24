@@ -52,7 +52,6 @@ const HomePage = ({ allCategories }: Props) => {
             <Box>
               <Text
                 my="3"
-                lineHeight={'5.7rem'}
                 fontFamily={'Druk Wide Bold'}
                 fontWeight={'700'}
                 fontSize={{ base: '3xl', md: '6xl' }}
@@ -63,7 +62,6 @@ const HomePage = ({ allCategories }: Props) => {
                   styles={{
                     color: '#70FFE9',
                     my: '3',
-                    lineHeight: '5.7rem',
                     fontFamily: 'Druk Wide Bold',
                     fontWeight: '700',
                   }}
@@ -78,7 +76,7 @@ const HomePage = ({ allCategories }: Props) => {
                 fontWeight={500}
               >
                 Learn ALL things web3 - cryptocurrencies, wallets, tips in web3,
-                NFTs, <br />
+                NFTs, 
                 DeFi, DAOs and so much more! We will help you master web3, step
                 by step.
               </Text>

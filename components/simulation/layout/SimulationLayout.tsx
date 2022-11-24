@@ -2,7 +2,7 @@ import {
   Box,
   BoxProps,
   CloseButton,
-  Divider,
+  Container,
   Drawer,
   DrawerContent,
   Flex,
@@ -10,9 +10,11 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import React, { useCallback, useEffect } from 'react'
+import Footer from '../../common/Footer'
+import Header from '../../common/Header'
 import { CardDataType, SimulationBlockType, SimulationPageType } from '../types'
 import SimulationCard from './main/SimulationCard'
-import MobileNav from './navbar'
+
 
 function SimulationLayout(props: SimulationPageType) {
   const { simulationData, blockchain } = props
@@ -45,45 +47,62 @@ function SimulationLayout(props: SimulationPageType) {
   }, [cardData])
 
   return (
-    <Box fontFamily={'Nunito Sans'} minH="100vh" bg="#020f02">
-      <Drawer
-        autoFocus={false}
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        returnFocusOnClose={false}
-        onOverlayClick={onClose}
-        size="md"
-      >
-        <DrawerContent>
+    <Box>
+      <Box fontFamily={"Nunito Sans"} minH="100vh" bg="#020f02">
+        <Drawer
+          autoFocus={false}
+          isOpen={isOpen}
+          placement="left"
+          onClose={onClose}
+          returnFocusOnClose={false}
+          onOverlayClick={onClose}
+          size="md"
+        >
+          <DrawerContent>
+            <SidebarContent
+              onClose={onClose}
+              simulationData={simulationData}
+              setCardData={setCardData}
+              cardData={cardData}
+            />
+          </DrawerContent>
+        </Drawer>
+        {/* mobilenav */}
+        <Container py="4" maxW={"1800"}>
+          <Header
+            showSearch={false}
+            showNavlinks={false}
+            showMenu={false}
+            homeLink={"/simulation"}
+            secondaryLink={{
+              name: "Learn Web3",
+              link: "/",
+            }}
+          />
+        </Container>
+
+        <Flex direction={"row"}>
           <SidebarContent
-            onClose={onClose}
+            onClose={() => onClose}
+            display={{ base: "none", md: "block" }}
             simulationData={simulationData}
             setCardData={setCardData}
             cardData={cardData}
           />
-        </DrawerContent>
-      </Drawer>
-      {/* mobilenav */}
-      <MobileNav onOpen={onOpen} />
-      <SidebarContent
-        onClose={() => onClose}
-        display={{ base: 'none', md: 'block' }}
-        simulationData={simulationData}
-        setCardData={setCardData}
-        cardData={cardData}
-      />
-      <Box h="100%" ml={{ base: 0, md: '64' }}>
-        <Box h="100%" p="4">
-          <SimulationCard
-            cardData={cardData}
-            setCardData={setCardData}
-            blockchain={blockchain}
-          />
-        </Box>
+          <Box h="100%">
+            <Box h="100%" p="4">
+              <SimulationCard
+                cardData={cardData}
+                setCardData={setCardData}
+                blockchain={blockchain}
+              />
+            </Box>
+          </Box>
+        </Flex>
+        <Footer />
       </Box>
     </Box>
-  )
+  );
 }
 
 interface SidebarProps extends BoxProps {
@@ -105,7 +124,7 @@ const SidebarContent = ({
       <Box
         transition="3s ease"
         w={{ base: 'full', md: 64 }}
-        pos="fixed"
+        pos="relative"
         h="full"
         bg="#020f02"
         {...rest}
@@ -146,7 +165,6 @@ const SidebarContent = ({
           )
         })}
       </Box>
-      <Divider />
     </>
   )
 }

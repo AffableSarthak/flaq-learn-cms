@@ -13,11 +13,11 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import Navbar from "../../common/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 import { getBlockchainData } from "../utils/blockchain";
 import Footer from "../../common/Footer";
+import Header from "../../common/Header";
 
 type Props = {};
 
@@ -38,8 +38,66 @@ const HomePage = (props: Props) => {
   return (
     <Box bg="#040F03" maxWidth={"100%"}>
       <Container maxWidth={"1200px"}>
-        <Navbar />
+        <Header
+          showSearch={false}
+          showNavlinks={false}
+          showMenu={false}
+          homeLink={"/simulation"}
+          secondaryLink={{
+            name: "Learn",
+            link: "/",
+          }}
+        />
         <Box my="8" w="100%">
+          <VStack gap="4" my="16">
+            <Box>
+              <Text
+                my="4"
+                fontFamily={"Poppins"}
+                fontWeight={"500"}
+                fontSize={{ base: "xl", md: "4xl" }}
+                as="h2"
+                color="#a6ebc9"
+              >
+                What are simulations - why are they the future of web3
+                education? 🔮
+              </Text>
+              <Text pl="3" fontSize={{ base: "xl", md: "lg" }}>
+                Aren’t we all tired of the bookish academic learning in schools
+                and colleges that seldom help us in our daily lives? 📚The
+                education system needs to take a leap to practical education,
+                and Flaq aims to do just that! We offer free interactive
+                simulations that give you a comprehensive testrun of everything
+                web3 and ease your transition from web2 to web3. You will not
+                only understand the academic side of things through our
+                ed-pieces, but you’ll also understand the practical side of web3
+                through our originally designed, one-of-a-kind, world’s first,
+                interactive simulations. 🥂 Now, isn’t this holistic education?
+                🚀
+              </Text>
+            </Box>
+            <Box>
+              <Text
+                my="4"
+                fontFamily={"Poppins"}
+                fontWeight={"500"}
+                fontSize={{ base: "xl", md: "4xl" }}
+                as="h2"
+                color="#a6ebc9"
+              >
+                But what will I learn through these interactive simulations? 🤔
+              </Text>
+              <Text pl="3" fontSize={{ base: "xl", md: "lg" }}>
+                These simulations offer exactly what we claim - a testrun of
+                web3! This means that you’ll be learning how to create a wallet,
+                backup a seed phrase, swap tokens, and so much more, on the
+                widely used chains in the web3 space - Solana, Algorand,
+                Ethereum, and NEAR. Best part? You can try these simulations on
+                any number of chains of your choice! The more you practice, the
+                better you get when you’re out there in the real world. 🏃🏼‍♀️ 🚀
+              </Text>
+            </Box>
+          </VStack>
           <Text
             lineHeight={"5.7rem"}
             fontFamily={"Druk Wide Bold"}
@@ -109,7 +167,6 @@ const HomePage = (props: Props) => {
               </Box>
               <TabPanels>
                 {chainSimulations.map((chain: any, key: number) => {
-
                   return chain.simulations.length > 0 ? (
                     <TabPanel key={key}>
                       <Grid
@@ -172,13 +229,12 @@ const HomePage = (props: Props) => {
                       </Box>
                     </TabPanel>
                   );
-
                 })}
               </TabPanels>
             </Tabs>
           )}
         </Box>
-        <Footer/>
+        <Footer />
       </Container>
     </Box>
   );

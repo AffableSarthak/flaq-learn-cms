@@ -8,7 +8,6 @@ import {
   Text,
 } from '@chakra-ui/react'
 import React from 'react'
-import Navbar from '../../common/Navbar'
 import Image from 'next/image'
 import blogcover from '../../../public/img/blog/blogcover.svg'
 import LooperGroup from '../../../public/img/blog/LooperGroup.svg'
@@ -47,11 +46,10 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
           }}
           showMenu={true}
         />
-        <Box mt="12">
+        <Box mt="12" mb="3">
           <Box position={'relative'} w="fit-content">
             <Text
               my="3"
-              lineHeight={'5.7rem'}
               fontFamily={'Druk Wide Bold'}
               fontWeight={'700'}
               fontSize={{ base: '3xl', md: '6xl' }}
@@ -62,7 +60,6 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                 styles={{
                   color: '#70FFE9',
                   my: '3',
-                  lineHeight: '5.7rem',
                   fontFamily: 'Druk Wide Bold',
                   fontWeight: '700',
                 }}

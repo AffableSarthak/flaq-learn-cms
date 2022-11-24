@@ -2,7 +2,6 @@ import {
   Box,
   Flex,
   HStack,
-  IconButton,
   Show,
   Text,
   useDisclosure,
@@ -12,8 +11,6 @@ import React from "react";
 import Image from "next/image";
 import logo from "../../../public/img/logo.svg";
 import Link from "next/link";
-import { TbMenu } from "react-icons/tb";
-import SideBar from "../../blog/sidebar";
 import { AnimatePresence, motion } from "framer-motion";
 type HeaderProps = {
   showSearch: boolean;
@@ -72,14 +69,7 @@ const Header = ({ showNavlinks, homeLink,secondaryLink,showMenu,showSearch }: He
         top={0}
         left={0}
         zIndex={1}
-      >
-        {/* <SideBar
-          isOpen={isOpen}
-          onOpen={onOpen}
-          onClose={onClose}
-          blogData={blogData}
-        /> */}
-      </Box>
+      ></Box>
       <Flex py="6" justifyContent={"space-between"}>
         <Box>
           <Link passHref href={"https://flaq.club/"}>
@@ -206,24 +196,56 @@ const Header = ({ showNavlinks, homeLink,secondaryLink,showMenu,showSearch }: He
             initial={{ height: 0, opacity: 0 }}
           >
             <VStack pb="4" zIndex={"200"} gap={6}>
-              {navbarLinks.map((navLink, key) => {
-                return (
-                  <Box textAlign={"center"} key={key}>
-                    <Link passHref href={navLink.link}>
-                      <Text
-                        cursor={"pointer"}
-                        _hover={{
-                          color: "#1bd423",
-                        }}
-                        fontSize={"md"}
-                        fontFamily={"Poppins"}
-                      >
-                        {navLink.name}
-                      </Text>
-                    </Link>
-                  </Box>
-                );
-              })}
+              <Box textAlign={"center"}>
+                <Link passHref href={homeLink}>
+                  <Text
+                    cursor={"pointer"}
+                    _hover={{
+                      color: "#1bd423",
+                    }}
+                    fontSize={"md"}
+                    fontFamily={"Poppins"}
+                  >
+                    Home
+                  </Text>
+                </Link>
+              </Box>
+              {secondaryLink && (
+                <Box textAlign={"center"}>
+                  <Link passHref href={secondaryLink.link}>
+                    <Text
+                      cursor={"pointer"}
+                      _hover={{
+                        color: "#1bd423",
+                      }}
+                      fontSize={"md"}
+                      fontFamily={"Poppins"}
+                    >
+                      {secondaryLink.name}
+                    </Text>
+                  </Link>
+                </Box>
+              )}
+
+              {showNavlinks &&
+                navbarLinks.map((navLink, key) => {
+                  return (
+                    <Box textAlign={"center"} key={key}>
+                      <Link passHref href={navLink.link}>
+                        <Text
+                          cursor={"pointer"}
+                          _hover={{
+                            color: "#1bd423",
+                          }}
+                          fontSize={"md"}
+                          fontFamily={"Poppins"}
+                        >
+                          {navLink.name}
+                        </Text>
+                      </Link>
+                    </Box>
+                  );
+                })}
             </VStack>
           </motion.div>
         )}{" "}

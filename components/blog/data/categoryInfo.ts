@@ -1,6 +1,6 @@
 const categoryInfo = [
   {
-    name: "Gm! Welcome to Flaq",
+    name: "Gm! Welcome to Flaq 🤝",
     desc: "Brief yourself for what’s in store and check out our content roadmap!",
   },
   {
