@@ -37,10 +37,16 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
   return (
     <Box position={'relative'} bg="#040F03" maxWidth={'100%'}>
       <Container pb="16" maxW="1200px">
-        <Header showSearch={true} showNavlinks={false} homeLink={'/'} secondaryLink={{
-          name: 'Simulation',
-          link: '/simulation',
-        }} showMenu={true} />
+        <Header
+          showSearch={true}
+          showNavlinks={false}
+          homeLink={'/'}
+          secondaryLink={{
+            name: 'Testrun Web3',
+            link: '/simulation',
+          }}
+          showMenu={true}
+        />
         <Box mt="12">
           <Box position={'relative'} w="fit-content">
             <Text

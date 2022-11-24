@@ -1,27 +1,27 @@
-import { Box, Container } from '@chakra-ui/react';
+import { Box, Container } from '@chakra-ui/react'
 import React from 'react'
-import Footer from './Footer';
-import Image from 'next/image';
-import Header from './Header';
+import Footer from './Footer'
+import Image from 'next/image'
+import Header from './Header'
 
 type Props = {
-    children: React.ReactNode
+  children: React.ReactNode
 }
 
-const CommonLayout = ({ children}: Props) => {
+const CommonLayout = ({ children }: Props) => {
   return (
     <div>
       <Box w="100%" h="100vh" bg="#040F03">
-        <Box position={"relative"} bg="#040F03" maxWidth={"100%"}>
+        <Box position={'relative'} bg="#040F03" maxWidth={'100%'}>
           <Container pb="16" mb="16" maxW="1200px">
             <Header
               secondaryLink={{
-                name: "Simulation",
-                link: "/simulation",
+                name: 'Testrun Web3',
+                link: '/simulation',
               }}
               showNavlinks={false}
               showSearch={true}
-              homeLink={"/"}
+              homeLink={'/'}
               showMenu={false}
             />
             {children}
@@ -33,5 +33,5 @@ const CommonLayout = ({ children}: Props) => {
         </Box>
       </Box>
     </div>
-  );
+  )
 }

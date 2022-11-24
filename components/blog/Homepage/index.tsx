@@ -32,7 +32,7 @@ const HomePage = ({ allCategories }: Props) => {
       <Container pb="16" mb="16" maxW="1200px">
         <Header
           secondaryLink={{
-            name: 'Simulation',
+            name: 'Testrun Web3',
             link: '/simulation',
           }}
           showNavlinks={false}

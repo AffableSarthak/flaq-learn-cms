@@ -30,7 +30,6 @@ export interface BodyType {
   image?: string;
 }
 
-// Simulation Data
 export interface ListType {
   head: string;
   body: BodyType[];
