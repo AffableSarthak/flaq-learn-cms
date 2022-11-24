@@ -72,7 +72,7 @@ function Airdrop() {
           <Center>
             <Box>
               <Text color="#a6ebc9">
-                your balance in this wallet identified by your public key 🪪
+                your balance in this wallet identified by your public key 🔑
               </Text>
             </Box>
           </Center>
