@@ -1,4 +1,11 @@
-import { Box, Container, Grid, GridItem, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Container,
+  Grid,
+  GridItem,
+  Highlight,
+  Text,
+} from '@chakra-ui/react'
 import React from 'react'
 import LeftArrowIcon from '../../../public/img/blog/left arrow.svg'
 import bgpattern from '../../../public/img/blog/bgpattern.svg'
@@ -29,7 +36,7 @@ const HomePage = ({ allCategories }: Props) => {
 
   return (
     <Box position={'relative'} bg="#040F03" maxWidth={'100%'}>
-      <Container pb="16" mb="16" maxW="1200px">
+      <Container pb="16" maxW="1200px">
         <Header
           secondaryLink={{
             name: 'Testrun Web3',
@@ -45,12 +52,24 @@ const HomePage = ({ allCategories }: Props) => {
             <Box>
               <Text
                 my="3"
+                lineHeight={'5.7rem'}
                 fontFamily={'Druk Wide Bold'}
                 fontWeight={'700'}
-                fontSize={{ base: '3xl', md: '7xl' }}
+                fontSize={{ base: '3xl', md: '6xl' }}
                 as="h1"
               >
-                Learn web3 with Flaq
+                <Highlight
+                  query={'Learn web3'}
+                  styles={{
+                    color: '#70FFE9',
+                    my: '3',
+                    lineHeight: '5.7rem',
+                    fontFamily: 'Druk Wide Bold',
+                    fontWeight: '700',
+                  }}
+                >
+                  Learn web3 with Flaq
+                </Highlight>
               </Text>
               <Text
                 color="#9999A5"

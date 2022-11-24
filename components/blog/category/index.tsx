@@ -54,7 +54,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
               lineHeight={'5.7rem'}
               fontFamily={'Druk Wide Bold'}
               fontWeight={'700'}
-              fontSize={{ base: '3xl', md: '7xl' }}
+              fontSize={{ base: '3xl', md: '6xl' }}
               as="h1"
             >
               <Highlight
