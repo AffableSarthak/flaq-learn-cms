@@ -4,7 +4,7 @@ export interface Links {
 
 const links: Links = {
   "Wallet: Your Crypto Storage":
-    "https://learn.flaq.club/dive-into-web3/wallet-your-crypto-storage-4ec7a0ed2a834f5aafb0c4f23ba1f9ba",
+    "https://learn.flaq.club/dive-into-web3/wallet-your-crypto-storage",
   "cold wallet":
     "https://learn.flaq.club/blog/Web3-Dictionary-a656e60e6e364a92854a697e0ba23cfb#a1262e90d73b4043b4d6d7d12f40e629",
   "hot wallet":

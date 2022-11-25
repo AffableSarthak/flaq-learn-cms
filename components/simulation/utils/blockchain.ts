@@ -6,6 +6,8 @@ import filecoinIcon from "../../../public/img/simulations/filecoin.svg";
 import walletIcon from "../../../public/img/simulations/wallets.svg";
 import nftIcon from "../../../public/img/simulations/nft.svg";
 import swapIcon from "../../../public/img/simulations/swap.svg";
+import stakingIcon from "../../../public/img/simulations/staking.png";
+import lendingIcon from "../../../public/img/simulations/lending.png";
 
 export const getBlockchainData = () => {
   const data = [
@@ -44,14 +46,14 @@ export const getBlockchainData = () => {
         {
           name: "Stake and earn yield",
           link: "solana/create-wallet",
-          icon: walletIcon,
+          icon: stakingIcon,
           badgeText: "DeFi",
           isActive: false,
         },
         {
           name: "Lend and Borrow ",
           link: "solana/create-wallet",
-          icon: walletIcon,
+          icon: lendingIcon,
           badgeText: "DeFi",
           isActive: false,
         },
@@ -92,14 +94,14 @@ export const getBlockchainData = () => {
         {
           name: "Stake and earn yield",
           link: "solana/create-wallet",
-          icon: walletIcon,
+          icon: stakingIcon,
           badgeText: "DeFi",
           isActive: false,
         },
         {
           name: "Lend and Borrow ",
           link: "solana/create-wallet",
-          icon: walletIcon,
+          icon: lendingIcon,
           badgeText: "DeFi",
           isActive: false,
         },
@@ -114,7 +116,7 @@ export const getBlockchainData = () => {
           link: "algorand/create-wallet",
           icon: walletIcon,
           badgeText: "Basic",
-          isActive: true,
+          isActive: false,
         },
         {
           name: "Transfer Cryptocurrencies",
@@ -140,14 +142,14 @@ export const getBlockchainData = () => {
         {
           name: "Stake and earn yield",
           link: "solana/create-wallet",
-          icon: walletIcon,
+          icon: stakingIcon,
           badgeText: "DeFi",
           isActive: false,
         },
         {
           name: "Lend and Borrow ",
           link: "solana/create-wallet",
-          icon: walletIcon,
+          icon: lendingIcon,
           badgeText: "DeFi",
           isActive: false,
         },
@@ -162,7 +164,7 @@ export const getBlockchainData = () => {
           link: "algorand/create-wallet",
           icon: walletIcon,
           badgeText: "Basic",
-          isActive: true,
+          isActive: false,
         },
         {
           name: "Transfer Cryptocurrencies",
@@ -188,14 +190,14 @@ export const getBlockchainData = () => {
         {
           name: "Stake and earn yield",
           link: "solana/create-wallet",
-          icon: walletIcon,
+          icon: stakingIcon,
           badgeText: "DeFi",
           isActive: false,
         },
         {
           name: "Lend and Borrow ",
           link: "solana/create-wallet",
-          icon: walletIcon,
+          icon: lendingIcon,
           badgeText: "DeFi",
           isActive: false,
         },
