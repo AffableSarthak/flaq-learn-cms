@@ -160,44 +160,24 @@ export const getBlockchainData = () => {
       icon: filecoinIcon,
       simulations: [
         {
-          name: "Create Wallet",
+          name: "Create Fil Wallet",
           link: "algorand/create-wallet",
           icon: walletIcon,
           badgeText: "Basic",
           isActive: false,
         },
         {
-          name: "Transfer Cryptocurrencies",
+          name: "Transfer Fil to addresses",
           link: "solana/create-wallet",
           icon: swapIcon,
           badgeText: "Basic",
           isActive: false,
         },
+
         {
-          name: "Mint an NFT",
-          link: "solana/create-wallet",
-          icon: nftIcon,
-          badgeText: "NFT",
-          isActive: false,
-        },
-        {
-          name: "Swap your Tokens",
-          link: "solana/create-wallet",
-          icon: swapIcon,
-          badgeText: "DeFi",
-          isActive: false,
-        },
-        {
-          name: "Stake and earn yield",
+          name: "Web3 storage",
           link: "solana/create-wallet",
           icon: stakingIcon,
-          badgeText: "DeFi",
-          isActive: false,
-        },
-        {
-          name: "Lend and Borrow ",
-          link: "solana/create-wallet",
-          icon: lendingIcon,
           badgeText: "DeFi",
           isActive: false,
         },
