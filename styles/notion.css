@@ -12,11 +12,15 @@
 h1.notion-title {
   font-weight: 800;
   font-size: 3.6rem;
-  font-family: "Druk Wide Bold ", sans-serif;
+  font-family: "Druk Wide Bold", sans-serif;
   background: -webkit-linear-gradient(#a6ebc9, #005704);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+h1.notion-title b {
+  font-family: "Druk Wide Bold", sans-serif;
 }
 
 h2.notion-h1{
