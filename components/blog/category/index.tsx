@@ -18,6 +18,7 @@ import Link from 'next/link'
 import categoryInfo from '../data/categoryInfo'
 import Footer from '../../common/Footer'
 import Header from '../../common/Header'
+import Quiz from '../../quiz'
 
 type Props = {
   BlogsByCategory: MenuListProps[]
@@ -183,6 +184,9 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
               )
             })}
           </Grid>
+        </Box>
+        <Box>
+          <Quiz/>
         </Box>
         <Footer />
       </Container>
