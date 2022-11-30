@@ -185,9 +185,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
             })}
           </Grid>
         </Box>
-        <Box>
-          <Quiz/>
-        </Box>
+        
         <Footer />
       </Container>
       <Box position={'absolute'} bottom={-1} right={0}>
