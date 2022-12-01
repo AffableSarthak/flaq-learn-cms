@@ -10,39 +10,88 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export interface IQuestion {
-  questionText: string;
-  answerOptions: Array<{
-    answerText: string;
-    isCorrect: boolean;
-  }>;
+  question: string;
+  options: Array<string>;
+  answer: number;
+  isAnswered?: boolean;
 }
 export interface Props {
   questions: Array<IQuestion>;
 }
+// Utility function to check if clicked in first half of the screen or second half
+function isFirstHalf(
+  event: React.MouseEvent<HTMLButtonElement>,
+  referenceElement: any
+) {
+  const position = {
+    x: event.pageX,
+    y: event.pageY,
+  };
+
+  const offset = {
+    left: referenceElement.offsetLeft,
+    top: referenceElement.offsetTop,
+  };
+
+  let reference = referenceElement.offsetParent;
+
+  while (reference) {
+    offset.left += reference.offsetLeft;
+    offset.top += reference.offsetTop;
+    reference = reference.offsetParent;
+  }
+  const isFirstHalf =
+    Math.round(
+      ((position.x - offset.left) * 100) / referenceElement.offsetWidth
+    ) >= 50
+      ? false
+      : true;
+
+  return isFirstHalf;
+}
 
 const Quiz = ({ questions }: Props) => {
-  const [currentQuestion, setCurrentQuestion] = React.useState(0);
+  const [questionList, setQuestionList] = useState<Array<IQuestion>>(questions);
+
+  const ref = useRef(null);
+
+  const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const toast = useToast();
-  const [selected, setSelected] = React.useState(-1);
-  const handleAnswerOptionClick = (isCorrect: boolean, key: number) => {
+  const [selected, setSelected] = useState(-1);
+  const handleAnswerOptionClick = (key: number) => {
     setSelected(key);
-    if (isCorrect) {
+
+    // check if the answer is correct
+    if (questionList[currentQuestion].answer === key) {
       toast.closeAll();
+
+      // updating if the question is answered or not
+      const prevQuestionList = questionList;
+      prevQuestionList[currentQuestion] = {
+        ...prevQuestionList[currentQuestion],
+        isAnswered: true,
+      };
+      setQuestionList(prevQuestionList);
+
+      // show toast of correct answer
       toast({
         title: "Correct",
         status: "success",
         duration: 1000,
       });
+
+      // wait for a seconds move to next question
       setTimeout(() => {
         setCurrentQuestion(currentQuestion + 1);
         setSelected(-1);
       }, 1000);
     } else {
       toast.closeAll();
+      // show toast of wrong answer
       toast({
         title: "Incorrect try again...",
         status: "error",
@@ -51,6 +100,20 @@ const Quiz = ({ questions }: Props) => {
       });
     }
   };
+
+  // handle on click events on card and decide move to next or previous
+  const handleNavigationClick = (e: any) => {
+    if (isFirstHalf(e, ref.current)) {
+      // if current question is not first question then move to previous question
+      currentQuestion > 0 && setCurrentQuestion(currentQuestion - 1);
+    } else {
+      // if current question is not last question and Answered Already then move to next question
+      currentQuestion != questionList.length &&
+        questionList[currentQuestion].isAnswered &&
+        setCurrentQuestion(currentQuestion + 1);
+    }
+  };
+
   return (
     <Container
       maxW="1200px"
@@ -83,18 +146,25 @@ const Quiz = ({ questions }: Props) => {
         border="1px solid rgb(49 51 66/1 )"
         p="8"
         bg="#0F111B"
+        onClick={handleNavigationClick}
+        ref={ref}
       >
-        {questions.length === currentQuestion ? (
-          <>
+        {questionList.length === currentQuestion ? (
+          <Box
+            h="100%"
+            display={"flex"}
+            justifyContent="center"
+            alignItems={"center"}
+          >
             <Text>
               You have completed the quiz. You can now go back to the article.
             </Text>
-          </>
+          </Box>
         ) : (
           <Flex direction={"column"}>
             <Box py="6" my="3">
               <Progress
-                value={(currentQuestion * 100) / questions.length}
+                value={(currentQuestion * 100) / questionList.length}
                 size="xs"
                 sx={{
                   "& > div": {
@@ -113,32 +183,40 @@ const Quiz = ({ questions }: Props) => {
                 textTransform={"uppercase"}
                 color="#ffffff"
               >
-                {questions[currentQuestion].questionText}
+                {questionList[currentQuestion].question}
               </Text>
             </Box>
-            <Box
-              pos={"relative"}
-              zIndex={0}
-              onClick={() => console.log("bg clciked")}
-            >
+            <Box pos={"relative"} zIndex={0}>
               <VStack my="8" gap="3">
-                {questions[currentQuestion].answerOptions.map((val, key) => {
+                {questionList[currentQuestion].options.map((val, key) => {
                   return (
                     <Button
                       zIndex={500}
                       _hover={{ opacity: 0.8 }}
                       bg={`${
-                        key === selected
+                        questionList[currentQuestion].isAnswered &&
+                        questionList[currentQuestion].answer === key + 1
+                          ? "rgb(95 158 59/1)"
+                          : key + 1 === selected
                           ? `${
-                              val.isCorrect
+                              questionList[currentQuestion].answer === key + 1
                                 ? "rgb(95 158 59/1)"
                                 : "rgb(149 39 39/1)"
                             }`
                           : "rgb(20 22 36/1)"
-                      }`}
+                      }
+                      
+                        `}
                       color={`${
-                        key === selected
-                          ? `${val.isCorrect ? "#12200a" : "#ffffff"}`
+                        questionList[currentQuestion].isAnswered &&
+                        questionList[currentQuestion].answer === key + 1
+                          ? "#12200a"
+                          : key + 1 === selected
+                          ? `${
+                              questionList[currentQuestion].answer === key + 1
+                                ? "#12200a"
+                                : "#ffffff"
+                            }`
                           : "#a3a4aa"
                       }`}
                       py="6"
@@ -146,11 +224,12 @@ const Quiz = ({ questions }: Props) => {
                       key={key}
                       textAlign="left"
                       fontWeight={400}
-                      onClick={() =>
-                        handleAnswerOptionClick(val.isCorrect, key)
-                      }
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAnswerOptionClick(key + 1);
+                      }}
                     >
-                      {val.answerText}
+                      {val}
                     </Button>
                   );
                 })}
