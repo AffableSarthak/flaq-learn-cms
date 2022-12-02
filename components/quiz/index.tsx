@@ -10,7 +10,12 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
+import Footer from "../common/Footer";
+import Header from "../common/Header";
+import Navbar from "../common/Navbar";
+import useQuizStore from "./store";
 
 export interface IQuestion {
   question: string;
@@ -20,7 +25,9 @@ export interface IQuestion {
 }
 export interface Props {
   questions: Array<IQuestion>;
+  categoryLink: string
 }
+
 // Utility function to check if clicked in first half of the screen or second half
 function isFirstHalf(
   event: React.MouseEvent<HTMLButtonElement>,
@@ -53,12 +60,20 @@ function isFirstHalf(
   return isFirstHalf;
 }
 
-const Quiz = ({ questions }: Props) => {
-  const [questionList, setQuestionList] = useState<Array<IQuestion>>(questions);
+const Quiz = ({ questions, categoryLink }: Props) => {
+  const {
+    questionList,
+    setQuestionList,
+    currentQuestion,
+    setCurrentQuestion,
+    retakeQuiz,
+  } = useQuizStore();
+
+  useEffect(() => {
+    questionList.length === 0 && setQuestionList(questions);
+  }, []);
 
   const ref = useRef(null);
-
-  const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const toast = useToast();
   const [selected, setSelected] = useState(-1);
@@ -91,6 +106,14 @@ const Quiz = ({ questions }: Props) => {
       }, 1000);
     } else {
       toast.closeAll();
+
+      const prevQuestionList = questionList;
+      prevQuestionList[currentQuestion] = {
+        ...prevQuestionList[currentQuestion],
+        isAnswered: false,
+      };
+      setQuestionList(prevQuestionList);
+
       // show toast of wrong answer
       toast({
         title: "Incorrect try again...",
@@ -108,6 +131,14 @@ const Quiz = ({ questions }: Props) => {
       currentQuestion > 0 && setCurrentQuestion(currentQuestion - 1);
     } else {
       // if current question is not last question and Answered Already then move to next question
+      !(currentQuestion >= questionList.length) &&
+        !questionList[currentQuestion].isAnswered &&
+        toast({
+          title: "Click the right answer to continue",
+          status: "info",
+          duration: 1000,
+          isClosable: true,
+        });
       currentQuestion != questionList.length &&
         questionList[currentQuestion].isAnswered &&
         setCurrentQuestion(currentQuestion + 1);
@@ -116,27 +147,42 @@ const Quiz = ({ questions }: Props) => {
 
   return (
     <Container
-      maxW="1200px"
-      h="100vh"
       display="flex"
       alignItems="center"
       justifyContent="center"
       flexDirection={"column"}
+      maxWidth={"90vw"}
     >
+      <Box w="100%">
+        <Header
+          showSearch={false}
+          showNavlinks={false}
+          showMenu={false}
+          homeLink={"/simulation"}
+          secondaryLink={{
+            name: "Learn",
+            link: "/",
+          }}
+        />
+      </Box>
+
       <Box my="4" w="425px">
-        <Flex
-          color={"#fffc"}
-          _hover={{ color: "#ffffff" }}
-          w="100%"
-          alignContent={"flex-start"}
-          alignItems="left"
-          cursor={"pointer"}
-        >
-          <Icon fontSize={25} as={ArrowBackIcon} />
-          <Text mx="2" fontSize="14px" fontWeight="md">
-            Deep Dive into Web3
-          </Text>
-        </Flex>
+        <Link passHref href={`/${categoryLink}`}>
+          <Flex
+            color={"#fffc"}
+            _hover={{ color: "#ffffff" }}
+            w="100%"
+            alignContent={"flex-start"}
+            alignItems="left"
+            cursor={"pointer"}
+            textAlign="center"
+          >
+            <Icon fontSize={25} as={ArrowBackIcon} />
+            <Text mx="2" fontSize="14px" fontWeight="md">
+              Deep Dive into Web3
+            </Text>
+          </Flex>
+        </Link>
       </Box>
       <Box
         mx="auto"
@@ -153,12 +199,24 @@ const Quiz = ({ questions }: Props) => {
           <Box
             h="100%"
             display={"flex"}
+            flexDirection={"column"}
             justifyContent="center"
             alignItems={"center"}
+            p="2"
           >
             <Text>
               You have completed the quiz. You can now go back to the article.
             </Text>
+            <Box my="5">
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  retakeQuiz(questions);
+                }}
+              >
+                Retake Quiz
+              </Button>
+            </Box>
           </Box>
         ) : (
           <Flex direction={"column"}>
@@ -237,6 +295,9 @@ const Quiz = ({ questions }: Props) => {
             </Box>
           </Flex>
         )}
+      </Box>
+      <Box w="100%">
+        <Footer />
       </Box>
     </Container>
   );
