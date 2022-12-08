@@ -6,6 +6,7 @@ export interface IQuestion {
   options: Array<string>;
   answer: number;
   isAnswered?: boolean;
+  selectedOption?: number;
 }
 export interface Props {
   questions: Array<IQuestion>;
@@ -14,7 +15,11 @@ export interface Props {
 interface IQuizStore {
   questionList: Array<IQuestion>;
   currentQuestion: number;
-  setQuestionList: (questions: Array<IQuestion>) => void;
+  progress: number;
+  setQuestionList: (
+    questions: Array<IQuestion>,
+    currentQuestion: number
+  ) => void;
   setCurrentQuestion: (question: number) => void;
   retakeQuiz: (questionList: Array<IQuestion>) => void;
 }
@@ -25,11 +30,27 @@ export const useQuizStore = create<IQuizStore>()(
       (set) => ({
         questionList: [],
         currentQuestion: 0,
+        progress: 0,
         setCurrentQuestion: (currentQuestion: number) =>
           set({ currentQuestion }),
-        setQuestionList: (questionList) => set({ questionList }),
-        retakeQuiz: (questionList: Array<IQuestion>) =>
-          set({ currentQuestion: 0, questionList }),
+        setQuestionList: (questionList, currentQuestion) =>
+          set({
+            questionList,
+            progress: (currentQuestion * 100) / questionList.length,
+          }),
+        retakeQuiz: (questionList: Array<IQuestion>) => {
+          const updatedQuestions: Array<IQuestion> = questionList.map(
+            (question) => {
+              return {
+                ...question,
+                isAnswered: false,
+                selectedOption: -1,
+              };
+            }
+          );
+
+          set({ currentQuestion: 0, questionList: updatedQuestions });
+        },
       }),
       {
         name: "quiz-store",
