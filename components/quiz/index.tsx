@@ -41,9 +41,9 @@ const ScoreCard = ({
   categoryLink: string;
   retakeQuiz: (questions: Array<IQuestion>) => void;
 }) => {
-  const [score, setScore] = useState(-1);
+  const [score, setScore] = useState(0);
   useEffect(() => {
-    if (score === -1) {
+    if (score === 0) {
       checkScore(questionList).then((score) => setScore(score));
     }
   }, []);
@@ -58,14 +58,12 @@ const ScoreCard = ({
     >
       <Text>You Scored</Text>
       <CircularProgress
-        value={(score * 100) / questionList.length}
+        value={score}
         size="100px"
         color="green.400"
         thickness="4px"
       >
-        <CircularProgressLabel>
-          {(score * 100) / questionList.length}%
-        </CircularProgressLabel>
+        <CircularProgressLabel>{score}%</CircularProgressLabel>
       </CircularProgress>
       <Box my="5">
         <Button
@@ -108,8 +106,18 @@ const Quiz = ({ questions, categoryLink }: Props) => {
   }, []);
 
   const ref = useRef(null);
-
-  const [selected, setSelected] = useState(-1);
+  const jumpToUnanswered = () => {
+    const unanswered = questionList.findIndex(
+      (question) => question.selectedOption === -1
+    );
+    unanswered != -1 && setCurrentQuestion(unanswered);
+    unanswered === -1 && setCurrentQuestion(questionList.length);
+  };
+  const handleNextQuestion = () => {
+    currentQuestion != questionList.length - 1 &&
+      setCurrentQuestion(currentQuestion + 1);
+    currentQuestion === questionList.length - 1 && jumpToUnanswered();
+  };
   const handleAnswerOptionClick = (key: number) => {
     const prevQuestionList = questionList;
     prevQuestionList[currentQuestion] = {
@@ -118,10 +126,18 @@ const Quiz = ({ questions, categoryLink }: Props) => {
     };
     setQuestionList(prevQuestionList, currentQuestion);
     setTimeout(() => {
-      setCurrentQuestion(currentQuestion + 1);
+      handleNextQuestion();
     }, 500);
   };
 
+  const handlePrevQuestion = () => {
+    currentQuestion > 0 && setCurrentQuestion(currentQuestion - 1);
+  };
+
+  const countAnweredQuestions = () => {
+    return questionList.filter((question) => question.selectedOption !== -1)
+      .length;
+  };
   return (
     <Container
       display="flex"
@@ -183,7 +199,7 @@ const Quiz = ({ questions, categoryLink }: Props) => {
           <Flex direction={"column"}>
             <Box py="6" my="3">
               <Progress
-                value={(currentQuestion * 100) / questionList.length}
+                value={(countAnweredQuestions() * 100) / questionList.length}
                 size="xs"
                 sx={{
                   "& > div": {
@@ -224,18 +240,6 @@ const Quiz = ({ questions, categoryLink }: Props) => {
                           ? "#12200a"
                           : "#ffffff"
                       }`}
-                      // color={`${
-                      //   questionList[currentQuestion].isAnswered &&
-                      //   questionList[currentQuestion].answer === key + 1
-                      //     ? "#12200a"
-                      //     : key + 1 === selected
-                      //     ? `${
-                      //         questionList[currentQuestion].answer === key + 1
-                      //           ? "#12200a"
-                      //           : "#ffffff"
-                      //       }`
-                      //     : "#a3a4aa"
-                      // }`}
                       py="6"
                       key={key}
                       textAlign="left"
@@ -254,8 +258,7 @@ const Quiz = ({ questions, categoryLink }: Props) => {
                 <IconButton
                   onClick={(e) => {
                     e.stopPropagation();
-                    currentQuestion > 0 &&
-                      setCurrentQuestion(currentQuestion - 1);
+                    handlePrevQuestion();
                   }}
                   icon={<VscArrowLeft />}
                   aria-label={""}
@@ -263,9 +266,7 @@ const Quiz = ({ questions, categoryLink }: Props) => {
                 <IconButton
                   onClick={(e) => {
                     e.stopPropagation();
-                    console.log("next");
-                    currentQuestion != questionList.length &&
-                      setCurrentQuestion(currentQuestion + 1);
+                    handleNextQuestion();
                   }}
                   icon={<VscArrowRight />}
                   aria-label={""}

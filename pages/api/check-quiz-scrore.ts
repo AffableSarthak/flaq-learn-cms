@@ -20,6 +20,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   );
 
   res.status(200).json({
-    score: score,
+    score: (score * 100) / questions.length,
   });
 };
