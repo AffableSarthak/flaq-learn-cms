@@ -4,9 +4,9 @@ import { devtools, persist } from "zustand/middleware";
 export interface IQuestion {
   question: string;
   options: Array<string>;
-  answer: number;
+  answer?: number;
   isAnswered?: boolean;
-  selectedOption?: number;
+  selectedOption: number;
 }
 export interface Props {
   questions: Array<IQuestion>;
