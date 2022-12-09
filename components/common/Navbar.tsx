@@ -58,7 +58,7 @@ const Navbar = (props: Props) => {
         <Box>
           <Link passHref href={"https://flaq.club/"}>
             <a>
-              <HStack gap="2">
+              <HStack gap="1">
                 <Image src={logo} width="40px" height="40px" />
                 <Box>
                   <Text
@@ -67,7 +67,7 @@ const Navbar = (props: Props) => {
                     fontWeight={"800"}
                     fontFamily="Poppins"
                   >
-                    FLAQ ACADEMY
+                    FLAQ
                   </Text>
                 </Box>
               </HStack>
