@@ -21,7 +21,7 @@ type HeaderProps = {
   secondaryLink: {
     name: string;
     link: string;
-  }
+  };
 };
 const navbarLinks = [
   {
@@ -59,7 +59,13 @@ const Path = (props: any) => (
     {...props}
   />
 );
-const Header = ({ showNavlinks, homeLink,secondaryLink,showMenu,showSearch }: HeaderProps) => {
+const Header = ({
+  showNavlinks,
+  homeLink,
+  secondaryLink,
+  showMenu,
+  showSearch,
+}: HeaderProps) => {
   const [isMobMenuOpen, setIsMobMenuOpen] = React.useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -75,7 +81,7 @@ const Header = ({ showNavlinks, homeLink,secondaryLink,showMenu,showSearch }: He
         <Box>
           <Link passHref href={"https://flaq.club/"}>
             <a>
-              <HStack gap="2">
+              <HStack gap="">
                 <Image src={logo} width="40px" height="40px" />
                 <Box>
                   <Text
@@ -84,7 +90,7 @@ const Header = ({ showNavlinks, homeLink,secondaryLink,showMenu,showSearch }: He
                     fontWeight={"800"}
                     fontFamily="Poppins"
                   >
-                    FLAQ ACADEMY
+                    FLAQ
                   </Text>
                 </Box>
               </HStack>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   Container,
   Flex,
@@ -11,28 +11,28 @@ import {
   MenuList,
   MenuItem,
   Show,
-} from '@chakra-ui/react'
-import Image from 'next/image'
-import logo from '../../../public/img/logo.svg'
-import Link from 'next/link'
-import { HiMenu } from 'react-icons/hi'
-import SearchBar from '../../common/Search'
-import { ChevronDownIcon } from '@chakra-ui/icons'
-import { useRouter } from 'next/router'
+} from "@chakra-ui/react";
+import Image from "next/image";
+import logo from "../../../public/img/logo.svg";
+import Link from "next/link";
+import { HiMenu } from "react-icons/hi";
+import SearchBar from "../../common/Search";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import { useRouter } from "next/router";
 
 type Props = {
-  isOpen: boolean
-  onOpen: () => void
-  onClose: () => void
-}
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+};
 
 export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <Container
-      zIndex={'1000'}
-      position={'fixed'}
+      zIndex={"1000"}
+      position={"fixed"}
       top="0"
       left="0"
       right="0"
@@ -42,26 +42,26 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
       <Flex
         mx="auto"
         maxW="90vw"
-        alignItems={'center'}
+        alignItems={"center"}
         py="4"
         justifyContent={{
-          base: 'space-between',
+          base: "space-between",
         }}
       >
         <HStack>
           <HStack onClick={onOpen} cursor="pointer">
             <IconButton
-              display={'flex'}
-              alignItems={'center'}
-              justifyContent={'center'}
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"center"}
               position="static"
               _hover={{
-                bgColor: '#020f02',
+                bgColor: "#020f02",
                 scale: 1.1,
-                transform: 'translateY(-2px)',
-                transition: 'all 0.2s ease-in-out',
+                transform: "translateY(-2px)",
+                transition: "all 0.2s ease-in-out",
               }}
-              variant={'unstyled'}
+              variant={"unstyled"}
               fontSize="2xl"
               color="#B5E9CA"
               aria-label="open close drawer"
@@ -70,19 +70,19 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
           </HStack>
 
           <Box>
-            <Link passHref href={'https://flaq.club/'}>
+            <Link passHref href={"https://flaq.club/"}>
               <a>
-                <HStack cursor={'pointer'}>
+                <HStack cursor={"pointer"}>
                   <Image src={logo} width="30px" height="30px" />
                   <Show above="md">
                     <Box>
                       <Text
-                        fontSize={'14'}
+                        fontSize={"14"}
                         color="#ffffff"
-                        fontWeight={'800'}
+                        fontWeight={"800"}
                         fontFamily="Poppins"
                       >
-                        FLAQ ACADEMY
+                        FLAQ
                       </Text>
                     </Box>
                   </Show>
@@ -93,53 +93,53 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
         </HStack>
 
         <Flex
-          gap={{ base: '0', md: '10' }}
-          justifyItems={'center'}
+          gap={{ base: "0", md: "10" }}
+          justifyItems={"center"}
           alignItems="center"
         >
           <Menu>
             <MenuButton>
               <Text
-                fontWeight={'400'}
-                fontSize={'14px'}
-                fontFamily={'Druk Wide Bold'}
+                fontWeight={"400"}
+                fontSize={"14px"}
+                fontFamily={"Druk Wide Bold"}
                 color="#FFFFFF"
               >
                 GO TO <ChevronDownIcon />
               </Text>
             </MenuButton>
 
-            <MenuList bg={'#020f02'}>
+            <MenuList bg={"#020f02"}>
               <MenuItem
-                bg={'#020f02'}
+                bg={"#020f02"}
                 onClick={() => {
                   if (router.back() !== undefined) {
-                    router.back()
+                    router.back();
                   } else {
-                    router.push('/')
+                    router.push("/");
                   }
                 }}
               >
                 <Text
-                  cursor={'pointer'}
+                  cursor={"pointer"}
                   _hover={{
-                    color: '#1bd423',
+                    color: "#1bd423",
                   }}
-                  fontSize={'md'}
-                  fontFamily={'Poppins'}
+                  fontSize={"md"}
+                  fontFamily={"Poppins"}
                 >
                   Ed Path
                 </Text>
               </MenuItem>
-              <MenuItem bg={'#020f02'}>
-                <Link passHref href={'/simulation'}>
+              <MenuItem bg={"#020f02"}>
+                <Link passHref href={"/simulation"}>
                   <Text
-                    cursor={'pointer'}
+                    cursor={"pointer"}
                     _hover={{
-                      color: '#1bd423',
+                      color: "#1bd423",
                     }}
-                    fontSize={'md'}
-                    fontFamily={'Poppins'}
+                    fontSize={"md"}
+                    fontFamily={"Poppins"}
                   >
                     Testrun Web3
                   </Text>
@@ -153,5 +153,5 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
         </Flex>
       </Flex>
     </Container>
-  )
-}
+  );
+};
