@@ -29,7 +29,7 @@ export const useQuizStore = create<IQuizStore>()(
     persist(
       (set) => ({
         questionList: [],
-        currentQuestion: 0,
+        currentQuestion: -1,
         progress: 0,
         setCurrentQuestion: (currentQuestion: number) =>
           set({ currentQuestion }),
@@ -49,7 +49,7 @@ export const useQuizStore = create<IQuizStore>()(
             }
           );
 
-          set({ currentQuestion: 0, questionList: updatedQuestions });
+          set({ currentQuestion: -1, questionList: updatedQuestions });
         },
       }),
       {
