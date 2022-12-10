@@ -28,33 +28,8 @@ const Sidebar = ({ blogData, isOpen, onOpen, onClose }: Props) => {
   
   const router = useRouter();
 
-  useEffect(() => {
-    if (router.pathname === "/") {
-      onOpen();
-    }
-  }, []);
-
   return (
     <>
-      {/* <Box position="fixed">
-        <IconButton
-          m="2"
-          display={"flex"}
-          alignItems={"center"}
-          backdropBlur="md"
-          justifyContent={"center"}
-          bg="#005704"
-          position="static"
-          variant={"unstyled"}
-          color="#A6EBC9"
-          onClick={onOpen}
-          fontSize="3xl"
-          aria-label="open close drawer"
-          icon={<GiHamburgerMenu />}
-        />
-        <SearchBar />
-      </Box> */}
-
       <Drawer
         variant={"mainsidebar"}
         isOpen={isOpen}
