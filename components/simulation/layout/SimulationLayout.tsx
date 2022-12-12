@@ -9,16 +9,19 @@ import {
   Flex,
   Text,
   useDisclosure,
-} from '@chakra-ui/react'
-import React, { useCallback, useEffect } from 'react'
-import Footer from '../../common/Footer'
-import Header from '../../common/Header'
-import { CardDataType, SimulationBlockType, SimulationPageType } from '../types'
-import SimulationCard from './main/SimulationCard'
-
+} from "@chakra-ui/react";
+import React, { useCallback, useEffect } from "react";
+import Footer from "../../common/Footer";
+import Header from "../../common/Header";
+import {
+  CardDataType,
+  SimulationBlockType,
+  SimulationPageType,
+} from "../types";
+import SimulationCard from "./main/SimulationCard";
 
 function SimulationLayout(props: SimulationPageType) {
-  const { simulationData, blockchain } = props
+  const { simulationData, blockchain } = props;
 
   // State for the current simulation.
   const [cardData, setCard] = React.useState<CardDataType>({
@@ -26,9 +29,9 @@ function SimulationLayout(props: SimulationPageType) {
     isBackDisabled: true,
     isNextDisabled: false,
     currentSimulationIndex: 0,
-  })
+  });
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   // Callback to set the current simulation.
   const setCardData = useCallback(
@@ -38,14 +41,14 @@ function SimulationLayout(props: SimulationPageType) {
         isBackDisabled: index === 0,
         isNextDisabled: index === simulationData.length - 1,
         currentSimulationIndex: index,
-      })
+      });
     },
-    [simulationData],
-  )
+    [simulationData]
+  );
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [cardData])
+    window.scrollTo(0, 0);
+  }, [cardData]);
 
   return (
     <Box>
@@ -69,7 +72,7 @@ function SimulationLayout(props: SimulationPageType) {
           </DrawerContent>
         </Drawer>
         {/* mobilenav */}
-        <Container py="0" maxW={"1800"}>
+        <Container py="0" maxW={"90vw"}>
           <Header
             showSearch={false}
             showNavlinks={false}
@@ -100,17 +103,19 @@ function SimulationLayout(props: SimulationPageType) {
             </Box>
           </Box>
         </Flex>
-        <Footer />
+        <Container py="0" maxW={"90vw"}>
+          <Footer />
+        </Container>
       </Box>
     </Box>
   );
 }
 
 interface SidebarProps extends BoxProps {
-  onClose: () => void
-  simulationData: SimulationBlockType[]
-  setCardData: (index: number) => void
-  cardData: CardDataType
+  onClose: () => void;
+  simulationData: SimulationBlockType[];
+  setCardData: (index: number) => void;
+  cardData: CardDataType;
 }
 
 const SidebarContent = ({
@@ -124,7 +129,7 @@ const SidebarContent = ({
     <>
       <Box
         transition="3s ease"
-        w={{ base: 'full', md: 64 }}
+        w={{ base: "full", md: 64 }}
         pos="relative"
         h="full"
         bg="#020f02"
@@ -134,40 +139,40 @@ const SidebarContent = ({
       >
         <Flex alignItems="right" mx="8" justifyContent="flex-end">
           <CloseButton
-            display={{ base: 'flex', md: 'none' }}
+            display={{ base: "flex", md: "none" }}
             onClick={onClose}
-            mb={{ base: '4' }}
+            mb={{ base: "4" }}
           />
         </Flex>
         {simulationData.map((simulation, index) => {
           return (
             <Box
-              maxW={{ base: 'full', md: 'xs' }}
+              maxW={{ base: "full", md: "xs" }}
               rounded="md"
               p={4}
               my={4}
-              cursor={'pointer'}
+              cursor={"pointer"}
               borderWidth={
-                cardData.currentSimulationIndex === index ? 'none' : '0.5px'
+                cardData.currentSimulationIndex === index ? "none" : "0.5px"
               }
               key={`${simulation.title}_${index}`}
               bgGradient={
                 cardData.currentSimulationIndex === index
-                  ? 'linear(to-l, green.900,green.700)'
-                  : ''
+                  ? "linear(to-l, green.900,green.700)"
+                  : ""
               }
               onClick={() => setCardData(index)}
             >
-              <Flex fontSize={'md'} fontWeight="bold">
+              <Flex fontSize={"md"} fontWeight="bold">
                 <Text mr={2}>{index + 1}.</Text>
                 <Text>{simulation.title}</Text>
               </Flex>
             </Box>
-          )
+          );
         })}
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default SimulationLayout
+export default SimulationLayout;

@@ -107,9 +107,11 @@ const Footer = (props: Props) => {
         p="8"
         fontFamily={"Poppins"}
         minW="100%"
+        maxW={"1200px"}
         w="100%"
         bg="blackAlpha.900"
         borderRadius="25px"
+        mb="12"
       >
         <form onSubmit={handleSubmit}>
           <Flex
