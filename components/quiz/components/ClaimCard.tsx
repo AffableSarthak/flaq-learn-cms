@@ -25,7 +25,6 @@ const ClaimCard = (props: Props) => {
             alignContent="center"
             alignItems={"center"}
           >
-            <Image w="250px" h="250px" my="6" src={logo.src} alt="claim-nft" />
             <Input
               value={email}
               onChange={(e) => setEmail(e.target.value)}

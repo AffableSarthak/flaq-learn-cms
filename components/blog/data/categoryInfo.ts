@@ -17,7 +17,7 @@ const categoryInfo = [
   },
   {
     name: "NFTs: The basics sorted",
-    desc: "",
+    desc: "Learn all you need to know about NFTs - the new revolution!",
   },
 ];
 

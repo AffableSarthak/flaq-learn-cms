@@ -35,7 +35,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
 
   return (
     <Box position={"relative"} bg="#040F03" maxWidth={"100%"}>
-      <Container pb="16" maxW="1200px">
+      <Container pb="16" maxW="90vw">
         <Header
           showSearch={true}
           showNavlinks={false}
@@ -46,6 +46,8 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
           }}
           showMenu={true}
         />
+      </Container>
+      <Container maxW="1200px">
         <Box mt="12" mb="3">
           <Box position={"relative"} w="fit-content">
             <Text
@@ -131,13 +133,16 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                                 h={{ md: "175px", base: "120px" }}
                               >
                                 <Box>
-                                  <Text
-                                    fontSize={"md"}
-                                    fontWeight={400}
-                                    fontFamily={"Space Mono"}
-                                  >
-                                    {` Ed-piece #${key + 1}`}
-                                  </Text>
+                                  {BlogsByCategory[0].priority !== 1 && (
+                                    <Text
+                                      fontSize={"md"}
+                                      fontWeight={400}
+                                      fontFamily={"Space Mono"}
+                                    >
+                                      {` Ed-piece #${key + 1}`}
+                                    </Text>
+                                  )}
+
                                   <Text
                                     fontSize={{ md: "24px", base: "16px" }}
                                     fontWeight={700}
@@ -184,7 +189,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
               );
             })}
           </Grid>
-          <Box
+          {/* <Box
             py="16"
             display={"flex"}
             flexDirection="row"
@@ -193,11 +198,13 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
             <Button bg="#1bd423">
               <Link href={`${category.join("-")}/quiz`}>Take Quiz</Link>
             </Button>
-          </Box>
+          </Box> */}
         </Box>
-
+      </Container>
+      <Container maxW="90vw">
         <Footer />
       </Container>
+
       <Box position={"absolute"} bottom={-1} right={0}>
         <Show above="md">
           <Image src={LooperGroup} alt="lotus" width="171" height="221" />
