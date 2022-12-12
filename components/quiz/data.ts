@@ -39,6 +39,8 @@ export interface IQuestionsData {
     isAnswered: boolean;
   }>;
   thresholdPercent: number;
+  introContent: string;
+  nftImage: string;
 }
 export const questionsData = {
   id: "Dive-Into-Web3",
@@ -73,6 +75,9 @@ export const questionsData = {
     },
   ],
   thresholdPercent: 75,
+  nftImage: "https://i.imgur.com/8Km9tLL.png",
+  introContent:
+    "Welcome to the quiz lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.   Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
 };
 
 export default questionsData;

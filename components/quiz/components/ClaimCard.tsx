@@ -4,25 +4,42 @@ import logo from "../../../public/img/logo.svg";
 type Props = {};
 
 const ClaimCard = (props: Props) => {
+  const [email, setEmail] = React.useState("");
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(email);
+  };
+
   return (
     <Box>
-      <Flex direction={"column"}>
-        <Text fontSize={"lg"}>Enter your email</Text>
-        <Text my="5" fontSize={"sm"}>
-          We’ll send you a link you can use to redeem your badge when you’re
-          ready.
-        </Text>
-        <Flex
-          direction={"column"}
-          justifyContent={"center"}
-          alignContent="center"
-          alignItems={"center"}
-        >
-          <Image w="250px" h="250px" my="6" src={logo.src} alt="claim-nft" />
-          <Input placeholder="email" my="6" type="email" />
-          <Button w="full">Claim</Button>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <Flex direction={"column"}>
+          <Text fontSize={"lg"}>Enter your email</Text>
+          <Text my="5" fontSize={"sm"}>
+            We’ll send you a link you can use to redeem your badge when you’re
+            ready.
+          </Text>
+          <Flex
+            direction={"column"}
+            justifyContent={"center"}
+            alignContent="center"
+            alignItems={"center"}
+          >
+            <Image w="250px" h="250px" my="6" src={logo.src} alt="claim-nft" />
+            <Input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="email"
+              required
+              my="6"
+              type="email"
+            />
+            <Button type="submit" w="full">
+              Claim
+            </Button>
+          </Flex>
         </Flex>
-      </Flex>
+      </form>
     </Box>
   );
 };

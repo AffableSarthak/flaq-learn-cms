@@ -1,12 +1,14 @@
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
 
-type Props = {};
+type Props = {
+  content: string;
+};
 
-const IntroductionCard = (props: Props) => {
+const IntroductionCard = ({ content }: Props) => {
   return (
-    <Box>
-      <Text>Welcome to the quiz. Click on the next button to start the</Text>
+    <Box py="6">
+      <Text>{content}</Text>
     </Box>
   );
 };

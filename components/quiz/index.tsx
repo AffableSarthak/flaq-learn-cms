@@ -168,7 +168,7 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
                 />
               </Box>
               {currentQuestion === -1 ? (
-                <IntroductionCard />
+                <IntroductionCard content={questionsData.introContent} />
               ) : (
                 <Box>
                   <Box>

@@ -4,6 +4,7 @@ import {
   CircularProgress,
   CircularProgressLabel,
   Text,
+  Flex,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ClaimCard from "./ClaimCard";
@@ -66,16 +67,25 @@ const ScoreCard = ({
         >
           <CircularProgressLabel>{score}%</CircularProgressLabel>
         </CircularProgress>
-        <Box my="5">
+        <Flex direction={"column"} my="5">
           <Button
             onClick={(e) => {
               e.stopPropagation();
               retakeQuiz(questionList);
             }}
+            my="2"
           >
             Retake Quiz
           </Button>
-        </Box>
+          <Button
+            my="2"
+            onClick={(e) => {
+              setShowNFT(1);
+            }}
+          >
+            Claim NFT
+          </Button>
+        </Flex>
       </Box>
     );
   }
