@@ -103,10 +103,10 @@ function SimulationLayout(props: SimulationPageType) {
             </Box>
           </Box>
         </Flex>
-        <Container py="0" maxW={"90vw"}>
-          <Footer />
-        </Container>
       </Box>
+      <Container px="0" maxW="100vw">
+        <Footer />
+      </Container>
     </Box>
   );
 }

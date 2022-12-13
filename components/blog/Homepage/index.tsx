@@ -154,7 +154,8 @@ const HomePage = ({ allCategories }: Props) => {
             </Grid>
           </Box>
         </Container>
-
+      </Container>
+      <Container px="0" maxW="100vw">
         <Footer />
       </Container>
       <Box position={"absolute"} bottom={-1} right={0}>

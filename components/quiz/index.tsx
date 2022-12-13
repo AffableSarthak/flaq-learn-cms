@@ -241,9 +241,9 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
           </>
         )}
       </Box>
-      <Box w="100%">
+      <Container px="0" maxW="100vw">
         <Footer />
-      </Box>
+      </Container>
     </Container>
   );
 };

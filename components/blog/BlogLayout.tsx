@@ -57,7 +57,7 @@ function BlogLayout({
               onClose={onClose}
             />
             <Box mt="8">{children}</Box>
-            <Container maxW="90vw">
+            <Container px="0" maxW="100vw">
               <Footer />
             </Container>
           </div>
