@@ -1,8 +1,8 @@
 import { Box, Button, Container, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const Page404 = (props: Props) => {
   return (
@@ -10,7 +10,7 @@ const Page404 = (props: Props) => {
       display={"flex"}
       alignItems="center"
       justifyContent="center"
-      bg="#020f02"
+      bg="#040F03 "
       h="100vh"
       color="rgba(255, 255, 255, 0.9)"
       maxWidth="100%"
@@ -42,6 +42,6 @@ const Page404 = (props: Props) => {
       </Box>
     </Container>
   );
-}
+};
 
 export default Page404;

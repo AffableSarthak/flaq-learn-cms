@@ -36,7 +36,7 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
       top="0"
       left="0"
       right="0"
-      bg="#020f02"
+      bg="#040F03"
       minW="100%"
     >
       <Flex
@@ -56,7 +56,7 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
               justifyContent={"center"}
               position="static"
               _hover={{
-                bgColor: "#020f02",
+                bgColor: "#040F03 ",
                 scale: 1.1,
                 transform: "translateY(-2px)",
                 transition: "all 0.2s ease-in-out",
@@ -109,9 +109,9 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
               </Text>
             </MenuButton>
 
-            <MenuList bg={"#020f02"}>
+            <MenuList bg={"#040F03 "}>
               <MenuItem
-                bg={"#020f02"}
+                bg={"#040F03 "}
                 onClick={() => {
                   if (router.back() !== undefined) {
                     router.back();
@@ -131,7 +131,7 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
                   Ed Path
                 </Text>
               </MenuItem>
-              <MenuItem bg={"#020f02"}>
+              <MenuItem bg={"#040F03 "}>
                 <Link passHref href={"/simulation"}>
                   <Text
                     cursor={"pointer"}

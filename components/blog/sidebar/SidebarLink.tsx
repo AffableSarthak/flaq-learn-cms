@@ -38,10 +38,10 @@ const SidebarLink = ({
               fontSize={"xs"}
               textAlign={"center"}
               fontWeight={"600"}
-              backgroundColor="#020F02"
+              backgroundColor="#040F03 "
               py={"2"}
               _hover={{
-                backgroundColor: "#020F02",
+                backgroundColor: "#040F03 ",
                 outline: "1px solid #70FFE9",
               }}
               borderRadius={"sm"}

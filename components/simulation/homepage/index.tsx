@@ -292,6 +292,8 @@ const HomePage = (props: Props) => {
             </Tabs>
           )}
         </Box>
+      </Container>
+      <Container px="0" maxW="100vw">
         <Footer />
       </Container>
     </Box>

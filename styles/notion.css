@@ -1,10 +1,10 @@
 .notion-page {
   width: 90%;
-  background-color: #020f02;
+  background-color: #040f03;
 }
 
 .dark-mode {
-  --bg-color: #020f02;
+  --bg-color: #040f03;
 }
 
 /* overiding the title and h1 tags of notion content */
@@ -368,4 +368,10 @@ details.notion-toggle > summary::marker {
   .notion-text {
     font-size: 0.9rem;
   }
+}
+.notion {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #c8c7d8;
+  caret-color: #c8c7d8;
 }

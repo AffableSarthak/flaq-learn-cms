@@ -120,7 +120,6 @@ const HomePage = ({ allCategories }: Props) => {
                             fontSize={{ md: "2.5rem", base: "1.2rem" }}
                             fontWeight={700}
                             fontFamily={"Druk Wide Bold"}
-                            textShadow="2px 2px #70ffe9"
                           >
                             {val.category}
                           </Text>
@@ -155,7 +154,8 @@ const HomePage = ({ allCategories }: Props) => {
             </Grid>
           </Box>
         </Container>
-
+      </Container>
+      <Container px="0" maxW="100vw">
         <Footer />
       </Container>
       <Box position={"absolute"} bottom={-1} right={0}>
