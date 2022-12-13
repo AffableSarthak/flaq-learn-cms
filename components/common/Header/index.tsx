@@ -17,7 +17,7 @@ type HeaderProps = {
   showSearch: boolean;
   showNavlinks: boolean;
   showMenu: boolean;
-  homeLink: string;
+  homeLink?: string;
   secondaryLink: {
     name: string;
     link: string;
@@ -100,20 +100,23 @@ const Header = ({
         <Box h="100%">
           <Show above="md">
             <Flex h="full" alignItems={"center"} justifyContent="center">
-              <Box h="full" ml="12">
-                <Link passHref href={homeLink}>
-                  <Text
-                    cursor={"pointer"}
-                    _hover={{
-                      color: "#1bd423",
-                    }}
-                    fontSize={"md"}
-                    fontFamily={"Poppins"}
-                  >
-                    Home
-                  </Text>
-                </Link>
-              </Box>
+              {homeLink && (
+                <Box h="full" ml="12">
+                  <Link passHref href={homeLink}>
+                    <Text
+                      cursor={"pointer"}
+                      _hover={{
+                        color: "#1bd423",
+                      }}
+                      fontSize={"md"}
+                      fontFamily={"Poppins"}
+                    >
+                      Home
+                    </Text>
+                  </Link>
+                </Box>
+              )}
+
               {secondaryLink && (
                 <Box h="full" ml="12">
                   <Link passHref href={secondaryLink.link}>
@@ -204,20 +207,23 @@ const Header = ({
               initial={{ height: 0, opacity: 0 }}
             >
               <VStack pb="4" zIndex={"200"} gap={6}>
-                <Box textAlign={"center"}>
-                  <Link passHref href={homeLink}>
-                    <Text
-                      cursor={"pointer"}
-                      _hover={{
-                        color: "#1bd423",
-                      }}
-                      fontSize={"md"}
-                      fontFamily={"Poppins"}
-                    >
-                      Home
-                    </Text>
-                  </Link>
-                </Box>
+                {homeLink && (
+                  <Box textAlign={"center"}>
+                    <Link passHref href={homeLink}>
+                      <Text
+                        cursor={"pointer"}
+                        _hover={{
+                          color: "#1bd423",
+                        }}
+                        fontSize={"md"}
+                        fontFamily={"Poppins"}
+                      >
+                        Home
+                      </Text>
+                    </Link>
+                  </Box>
+                )}
+
                 {secondaryLink && (
                   <Box textAlign={"center"}>
                     <Link passHref href={secondaryLink.link}>

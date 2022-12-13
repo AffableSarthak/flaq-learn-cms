@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Container,
   Grid,
   GridItem,
@@ -28,14 +29,13 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
     return <Page404 />;
   }
   const category = category_utils(BlogsByCategory[0].category).split(" ");
-
   const desc = categoryInfo.find(
     (a) => a.name.toLowerCase() === category.join(" ").toLowerCase()
   );
 
   return (
     <Box position={"relative"} bg="#040F03" maxWidth={"100%"}>
-      <Container pb="16" maxW="1200px">
+      <Container pb="16" maxW="90vw">
         <Header
           showSearch={true}
           showNavlinks={false}
@@ -46,6 +46,8 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
           }}
           showMenu={true}
         />
+      </Container>
+      <Container maxW="1200px">
         <Box mt="12" mb="3">
           <Box position={"relative"} w="fit-content">
             <Text
@@ -103,7 +105,6 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                         <a>
                           <GridItem
                             borderRadius={"2xl"}
-                            overflow="hidden"
                             bg="#393953"
                             w={{ md: "392px", base: "350px" }}
                             h={{ md: "440px", base: "392px" }}
@@ -119,6 +120,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                                 blurDataURL={blogcover}
                                 width="392"
                                 height="220"
+                                alt="blur"
                               />
                             </Box>
                             <Box py="4" px="6">
@@ -131,13 +133,16 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                                 h={{ md: "175px", base: "120px" }}
                               >
                                 <Box>
-                                  <Text
-                                    fontSize={"md"}
-                                    fontWeight={400}
-                                    fontFamily={"Space Mono"}
-                                  >
-                                    {` Ed-piece #${key + 1}`}
-                                  </Text>
+                                  {BlogsByCategory[0].priority !== 1 && (
+                                    <Text
+                                      fontSize={"md"}
+                                      fontWeight={400}
+                                      fontFamily={"Space Mono"}
+                                    >
+                                      {` Ed-piece #${key + 1}`}
+                                    </Text>
+                                  )}
+
                                   <Text
                                     fontSize={{ md: "24px", base: "16px" }}
                                     fontWeight={700}
@@ -184,15 +189,28 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
               );
             })}
           </Grid>
+          {/* <Box
+            py="16"
+            display={"flex"}
+            flexDirection="row"
+            justifyContent={"flex-end"}
+          >
+            <Button bg="#1bd423">
+              <Link href={`${category.join("-")}/quiz`}>Take Quiz</Link>
+            </Button>
+          </Box> */}
         </Box>
+      </Container>
+      <Container maxW="90vw">
         <Footer />
       </Container>
+
       <Box position={"absolute"} bottom={-1} right={0}>
         <Show above="md">
-          <Image src={LooperGroup} width="171" height="221" />
+          <Image src={LooperGroup} alt="lotus" width="171" height="221" />
         </Show>
         <Show below="md">
-          <Image src={LooperGroup} width="100" height="130" />
+          <Image src={LooperGroup} width="100" alt="lotus" height="130" />
         </Show>
       </Box>
     </Box>
