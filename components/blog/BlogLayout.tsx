@@ -47,7 +47,7 @@ function BlogLayout({
               height: "100vh",
               overflow: "auto",
               width: "100%",
-              background: "#020f02",
+              background: "#040F03 ",
             }}
             id="box"
           >

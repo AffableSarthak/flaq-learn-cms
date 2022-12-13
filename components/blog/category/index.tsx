@@ -106,6 +106,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                           <GridItem
                             borderRadius={"2xl"}
                             bg="#393953"
+                            overflow={"hidden"}
                             w={{ md: "392px", base: "350px" }}
                             h={{ md: "440px", base: "392px" }}
                           >

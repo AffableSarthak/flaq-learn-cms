@@ -52,7 +52,7 @@ function SimulationLayout(props: SimulationPageType) {
 
   return (
     <Box>
-      <Box fontFamily={"Nunito Sans"} minH="100vh" bg="#020f02">
+      <Box fontFamily={"Nunito Sans"} minH="100vh" bg="#040F03 ">
         <Drawer
           autoFocus={false}
           isOpen={isOpen}
@@ -132,7 +132,7 @@ const SidebarContent = ({
         w={{ base: "full", md: 64 }}
         pos="relative"
         h="full"
-        bg="#020f02"
+        bg="#040F03"
         {...rest}
         boxShadow="2xl"
         p={4}
