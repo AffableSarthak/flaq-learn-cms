@@ -42,7 +42,7 @@ const links = [
   },
   {
     name: "About Us",
-    link: "https://www.flaq.club/about",
+    link: "https://www.flaq.club/who-are-we",
   },
 ];
 
@@ -82,7 +82,9 @@ const Footer = (props: Props) => {
       let res = await fetch("https://landing-form.vercel.app/api/submit", {
         method: "POST",
         body: JSON.stringify({
-          user_email: email,
+          data: {
+            user_email: email,
+          },
         }),
         headers: {
           "Content-Type": "application/json",
@@ -226,26 +228,35 @@ const Footer = (props: Props) => {
                   placeholder="Enter Email"
                 />
                 <Show above="md">
-                  <InputRightElement h="2.4rem" width={"fit-content"}>
-                    <Button
-                      h="2.4rem"
-                      _hover={{
-                        border: "1px solid #D2D2D2",
-                      }}
-                      w="160px"
-                      borderRadius={"70px"}
-                      bg="#1bd423"
-                      color="#ffffff"
-                      type="submit"
-                      fontSize={"12px"}
-                      fontWeight={700}
-                    >
-                      Subscribe
-                    </Button>
-                  </InputRightElement>
+                  <Box>
+                    <InputRightElement h="2.4rem" width={"fit-content"}>
+                      <Button
+                        h="2.4rem"
+                        _hover={{
+                          border: "1px solid #D2D2D2",
+                        }}
+                        w="160px"
+                        borderRadius={"70px"}
+                        bg="#1bd423"
+                        color="#ffffff"
+                        type="submit"
+                        fontSize={"12px"}
+                        fontWeight={700}
+                      >
+                        Subscribe
+                      </Button>
+                    </InputRightElement>
+                  </Box>
+                  <br />
                 </Show>
               </InputGroup>
+              <Show above="md">
+                <Box mx="4" textAlign={"center"}>
+                  <Text>{message}</Text>
+                </Box>
+              </Show>
             </Box>
+
             <Show below="md">
               <Box>
                 <Button
@@ -263,6 +274,7 @@ const Footer = (props: Props) => {
                   Subscribe
                 </Button>
               </Box>
+              <Text>{message}</Text>
             </Show>
           </Flex>
         </form>

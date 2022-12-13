@@ -10,31 +10,26 @@
 /* overiding the title and h1 tags of notion content */
 /* Page title */
 h1.notion-title {
-  font-weight: 800;
-  font-size: 3.6rem;
-  font-family: "Druk Wide Bold", sans-serif;
-  background: -webkit-linear-gradient(#a6ebc9, #005704);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  fontfamily: "Druk Wide Bold";
+  fontweight: "700";
 }
 
 h1.notion-title b {
   font-family: "Druk Wide Bold", sans-serif;
 }
 
-h2.notion-h1{
+h2.notion-h1 {
   font-weight: 700;
   font-size: 2.56rem;
   color: #a6ebc9;
 }
 
-h3.notion-h2{
+h3.notion-h2 {
   font-weight: 700;
   font-size: 2.08rem;
 }
 
-h4.notion-h3{
+h4.notion-h3 {
   font-weight: 700;
   font-size: 1.6rem;
 }
@@ -44,11 +39,12 @@ h4.notion-h3{
   font-size: 1.2rem;
 }
 
-.notion-text span.notion-inline-underscore b, .notion-text b{
+.notion-text span.notion-inline-underscore b,
+.notion-text b {
   font-weight: 800;
 }
 
-.notion-text span.notion-inline-underscore{
+.notion-text span.notion-inline-underscore {
   text-underline-offset: 0.2em;
 }
 
@@ -93,8 +89,6 @@ details.notion-toggle > summary::marker {
 .notion-quote {
   border-left: 3px solid #005704;
 }
-
-
 
 /* Notion Aside Table of content css */
 .notion-aside {
@@ -245,69 +239,22 @@ details.notion-toggle > summary::marker {
   }
 }
 
-@media (min-width: 1300px) and (min-height: 300px){
+@media (min-width: 1300px) and (min-height: 300px) {
   .notion-page-content-has-aside .notion-page-content-inner {
     width: 60vw;
-}
+  }
 }
 
-@media screen and (min-width:479px){
-
+@media screen and (min-width: 479px) {
   .notion-page-content-inner {
-     max-width: 60ex;
-  }
-  
-    .notion-page-content{
-      flex-direction: unset;
-    }
-  
-    .notion-aside{
-      display: flex;
-      max-width: 25vw;
-    }
-  
-    .notion-aside-table-of-contents {
-      max-height: calc(100vh - 20px - 16px);
-    }
+    max-width: 60ex;
   }
 
-  @media screen and (min-width:768px){
-
-    .notion-page-content-inner {
-       max-width: 63ex;
-
-    }
-    
-      .notion-page-content{
-        flex-direction: unset;
-        justify-content: space-between;
-        gap: 1em;
-      }
-    
-      .notion-aside{
-        display: flex;
-        max-width: 25vw;
-      }
-    
-      .notion-aside-table-of-contents {
-        max-height: calc(100vh - 20px - 16px);
-        min-width: none;
-      }
-    }
-
-@media screen and (min-width:981px){
-
-.notion-page-content-inner {
-   max-width: 80ex;
-}
-
-  .notion-page-content{
+  .notion-page-content {
     flex-direction: unset;
-    justify-content: space-between;
-    gap: 3em;
   }
 
-  .notion-aside{
+  .notion-aside {
     display: flex;
     max-width: 25vw;
   }
@@ -317,7 +264,48 @@ details.notion-toggle > summary::marker {
   }
 }
 
+@media screen and (min-width: 768px) {
+  .notion-page-content-inner {
+    max-width: 63ex;
+  }
 
+  .notion-page-content {
+    flex-direction: unset;
+    justify-content: space-between;
+    gap: 1em;
+  }
+
+  .notion-aside {
+    display: flex;
+    max-width: 25vw;
+  }
+
+  .notion-aside-table-of-contents {
+    max-height: calc(100vh - 20px - 16px);
+    min-width: none;
+  }
+}
+
+@media screen and (min-width: 981px) {
+  .notion-page-content-inner {
+    max-width: 80ex;
+  }
+
+  .notion-page-content {
+    flex-direction: unset;
+    justify-content: space-between;
+    gap: 3em;
+  }
+
+  .notion-aside {
+    display: flex;
+    max-width: 25vw;
+  }
+
+  .notion-aside-table-of-contents {
+    max-height: calc(100vh - 20px - 16px);
+  }
+}
 
 @media only screen and (max-width: 600px) {
   .notion-page {
@@ -329,24 +317,23 @@ details.notion-toggle > summary::marker {
     font-size: 2.6rem;
     margin-bottom: 0.5em;
   }
-  
-  h2.notion-h1{
+
+  h2.notion-h1 {
     font-weight: 700;
     font-size: 3rem;
     color: #a6ebc9;
   }
-  
-  h3.notion-h2{
+
+  h3.notion-h2 {
     font-weight: 700;
     font-size: 2.4rem;
-  
   }
-  
-  h4.notion-h3{
+
+  h4.notion-h3 {
     font-weight: 700;
     font-size: 1.8rem;
   }
-  
+
   .notion-text {
     font-size: 1.1rem;
   }
@@ -361,24 +348,23 @@ details.notion-toggle > summary::marker {
     font-size: 2rem;
     margin-bottom: 0.5em;
   }
-  
-  h2.notion-h1{
+
+  h2.notion-h1 {
     font-weight: 700;
     font-size: 1.8rem;
     color: #a6ebc9;
   }
-  
-  h3.notion-h2{
+
+  h3.notion-h2 {
     font-weight: 700;
     font-size: 1.4rem;
-  
   }
-  
-  h4.notion-h3{
+
+  h4.notion-h3 {
     font-weight: 700;
     font-size: 1.2rem;
   }
-  
+
   .notion-text {
     font-size: 0.9rem;
   }
