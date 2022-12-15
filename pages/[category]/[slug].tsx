@@ -19,23 +19,37 @@ import { Highlight, Text } from "@chakra-ui/react";
 const PageTitle = ({ title }: { title: string }) => {
   const titleArray = title.split(" ");
   return (
-    <Text
-      fontFamily={"Druk Wide Bold"}
-      fontWeight={"700"}
-      fontSize={{ base: "3xl", md: "6xl" }}
-    >
-      <Highlight
-        query={titleArray[titleArray.length - 1]}
-        styles={{
-          color: "#70FFE9",
-          my: "3",
-          fontFamily: "Druk Wide Bold",
-          fontWeight: "700",
+    <>
+      <Text
+        fontWeight={"400"}
+        fontSize={{
+          base: "14px",
+          md: "16px",
         }}
+        color={"#C8C7D8"}
       >
-        {titleArray.join(" ")}
-      </Highlight>
-    </Text>
+        Dive Into Web3
+      </Text>
+      <Text
+        fontFamily={"Druk Wide Bold"}
+        fontWeight={"700"}
+        fontSize={{ base: "3xl", md: "6xl" }}
+        color={"#B5E8CC"}
+      >
+        <Highlight
+          query={titleArray[titleArray.length - 1]}
+          styles={{
+            // color: "#70FFE9",
+            color: "#B5E8CC",
+            my: "3",
+            fontFamily: "Druk Wide Bold",
+            fontWeight: "700",
+          }}
+        >
+          {titleArray.join(" ")}
+        </Highlight>
+      </Text>
+    </>
   );
 };
 const CategoryItem = ({
@@ -58,6 +72,7 @@ const CategoryItem = ({
         darkMode={true}
         showTableOfContents={true}
         disableHeader={true}
+        defaultPageIcon={"📄"}
         pageTitle={<PageTitle title={getPageTitle(recordMap)} />}
         components={{
           nextImage: Image,

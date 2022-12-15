@@ -13,6 +13,7 @@ import {
   useDisclosure,
   HStack,
   Hide,
+  Show,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
@@ -81,6 +82,20 @@ const Search = (props: Props) => {
   return (
     <>
       <HStack onClick={onOpen} cursor="pointer">
+        <Show above="md">
+          <Text
+            fontSize={{ base: "14px", md: "20px" }}
+            fontWeight={300}
+            fontFamily={"Poppins"}
+            color="#9999A5"
+            _hover={{
+              color: "#1bd423",
+            }}
+          >
+            search
+          </Text>
+        </Show>
+
         <IconButton
           m="2"
           display={"flex"}

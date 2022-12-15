@@ -202,7 +202,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
           </Box> */}
         </Box>
       </Container>
-      <Container maxW="90vw">
+      <Container px="0" maxW="100vw">
         <Footer />
       </Container>
 
