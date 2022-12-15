@@ -25,7 +25,6 @@ type Props = {
 };
 
 const Sidebar = ({ blogData, isOpen, onOpen, onClose }: Props) => {
-  
   const router = useRouter();
 
   return (
@@ -44,19 +43,28 @@ const Sidebar = ({ blogData, isOpen, onOpen, onClose }: Props) => {
             <Link href={"/"} passHref>
               <Text
                 fontSize="2xl"
-                fontFamily={"Druk Wide Bold "}
+                fontFamily={"Poppins"}
                 cursor={"pointer"}
                 _hover={{
                   scale: 1.2,
                   transform: "translateY(-1px)",
                 }}
               >
-                Flaq Academy
+                Flaq
               </Text>
             </Link>
           </DrawerHeader>
 
           <DrawerBody>
+            <Text
+              fontSize={"16px"}
+              fontFamily={"Poppins"}
+              fontWeight={600}
+              color={"#C8C7D8"}
+              mb="2"
+            >
+              LEARNING PATHS
+            </Text>
             <SidebarContent blogData={blogData} closeDrawer={onClose} />
           </DrawerBody>
         </DrawerContent>
