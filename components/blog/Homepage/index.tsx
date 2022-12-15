@@ -36,16 +36,16 @@ const HomePage = ({ allCategories }: Props) => {
 
   return (
     <Box position={"relative"} bg="#040F03" maxWidth={"100%"}>
+      <Header
+        secondaryLink={{
+          name: "Testrun Web3",
+          link: "/simulation",
+        }}
+        showNavlinks={false}
+        showSearch={true}
+        showMenu={false}
+      />
       <Container pb="16" maxW="90vw">
-        <Header
-          secondaryLink={{
-            name: "Testrun Web3",
-            link: "/simulation",
-          }}
-          showNavlinks={false}
-          showSearch={true}
-          showMenu={false}
-        />
         <Container maxW="1200px">
           <Box mt="12">
             <Box>
