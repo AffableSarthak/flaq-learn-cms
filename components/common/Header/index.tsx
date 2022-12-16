@@ -79,7 +79,11 @@ const Header = ({
       bg="#000000"
       zIndex={1}
     >
-      <Container maxW="90vw" w="100%" fontFamily={"Nunito Sans"}>
+      <Container
+        maxW={{ md: "90vw", lg: "1300px", base: "100vw" }}
+        w="100%"
+        fontFamily={"Nunito Sans"}
+      >
         <Flex py="6" justifyContent={"space-between"}>
           <Box>
             <Link passHref href={"https://flaq.club/"}>

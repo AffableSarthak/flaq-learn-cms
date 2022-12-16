@@ -89,7 +89,7 @@ const Search = (props: Props) => {
             fontFamily={"Poppins"}
             color="#9999A5"
             _hover={{
-              color: "#1bd423",
+              color: "#B5E9CA",
             }}
           >
             search
@@ -105,7 +105,7 @@ const Search = (props: Props) => {
           position="static"
           variant={"unstyled"}
           fontSize="2xl"
-          color={"#63D247"}
+          color={"#B5E9CA"}
           aria-label="Search"
           icon={<BsSearch />}
         />

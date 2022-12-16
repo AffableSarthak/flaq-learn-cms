@@ -39,7 +39,7 @@ const Sidebar = ({ blogData, isOpen, onOpen, onClose }: Props) => {
         <DrawerContent>
           <DrawerCloseButton size={"lg"} />
 
-          <DrawerHeader>
+          <DrawerHeader w="fit-content">
             <Link href={"/"} passHref>
               <Text
                 fontSize="2xl"

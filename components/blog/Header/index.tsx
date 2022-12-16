@@ -49,7 +49,7 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
           base: "space-between",
         }}
       >
-        <HStack gap="4">
+        <HStack gap={{ md: "4", base: 2 }}>
           <HStack onClick={onOpen} cursor="pointer">
             <IconButton
               display={"flex"}
@@ -75,18 +75,17 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
               <a>
                 <HStack cursor={"pointer"}>
                   <Image alt="logo" src={logo} width="30px" height="30px" />
-                  <Show above="md">
-                    <Box>
-                      <Text
-                        fontSize={"14"}
-                        color="#ffffff"
-                        fontWeight={"800"}
-                        fontFamily="Poppins"
-                      >
-                        FLAQ
-                      </Text>
-                    </Box>
-                  </Show>
+
+                  <Box>
+                    <Text
+                      fontSize={"14"}
+                      color="#ffffff"
+                      fontWeight={"800"}
+                      fontFamily="Poppins"
+                    >
+                      FLAQ
+                    </Text>
+                  </Box>
                 </HStack>
               </a>
             </Link>
