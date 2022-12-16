@@ -19,7 +19,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (currentQuestion !== undefined) {
       if (
-        currentQuestion.answerText === question.options[question.selectedOption]
+        currentQuestion.answerText ===
+        question.options[question.selectedOption - 1]
       ) {
         score++;
       }

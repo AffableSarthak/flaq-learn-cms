@@ -7,6 +7,7 @@ export interface IQuestion {
   id?: string;
   groupId: number;
   createdTime: string;
+  category: string;
 }
 export interface IQuestionsData {
   id: string;

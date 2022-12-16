@@ -1,19 +1,38 @@
 import { Box, Button, Flex, Input, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import logo from "../../../public/img/logo.svg";
+import useAllQuizStore from "../completionStore";
+import { IQuestion } from "../data";
 type Props = {
-  groupId: number;
+  questionList: Array<IQuestion>;
 };
 
-const ClaimCard = ({ groupId }: Props) => {
+const ClaimCard = ({ questionList }: Props) => {
   const [formData, setFormData] = React.useState({
     email: "",
     name: "",
-    groupId: groupId,
+    groupId: questionList[0].groupId,
   });
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const { allQuiz, markCompleted, addQuiz, isClaimed } = useAllQuizStore();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
+    const data = await fetch(
+      "https://mailer-three.vercel.app/api/submit-quiz",
+      {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }
+    )
+      .then((response) => {
+        markCompleted(questionList[0].category);
+        return response.json();
+      })
+      .catch((err) => console.log(err));
+    console.log(data);
   };
 
   return (
