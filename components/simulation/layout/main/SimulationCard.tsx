@@ -31,6 +31,7 @@ const SimulationCard = ({ cardData, setCardData, blockchain }: Props) => {
                 fontFamily={"Druk Wide Bold "}
                 fontSize={{ base: "2rem", md: "2.2rem", lg: "2.5rem" }}
                 textAlign={"left"}
+                color={"#B5E8CC"}
               >
                 {title}
               </Text>

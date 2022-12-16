@@ -37,7 +37,7 @@ export const renderBlockTitle = (title: string) => {
   return (
     <Box>
       <Text
-        color="#FFFFFF"
+        color="#B5E8CC"
         fontSize={{
           base: "1rem",
           md: "2rem",
