@@ -18,18 +18,11 @@ import Header from "../common/Header";
 import Navbar from "../common/Navbar";
 import useQuizStore from "./store";
 import { VscArrowLeft, VscArrowRight } from "react-icons/vsc";
-import { IQuestionsData } from "./data";
+import { introData, IQuestionsData } from "./data";
 import { useRouter } from "next/router";
 import ScoreCard from "./components/ScoreCard";
 import IntroductionCard from "./components/IntroductionCard";
 
-export interface IQuestion {
-  question: string;
-  options: Array<string>;
-  answer?: number;
-  isAnswered?: boolean;
-  selectedOption: number;
-}
 export interface Props {
   categoryLink: string;
   questionsData: IQuestionsData;
@@ -59,7 +52,7 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
   // jump to unanswered question
   const jumpToUnanswered = () => {
     const unanswered = getUnAnswerdQuestions();
-    console.log(unanswered);
+
     unanswered != -1 && setCurrentQuestion(unanswered);
     unanswered === -1 && setCurrentQuestion(questionList.length);
   };
@@ -102,7 +95,8 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
       alignItems="center"
       justifyContent="center"
       flexDirection={"column"}
-      maxWidth={"90vw"}
+      maxWidth={"100vw"}
+      p="0"
     >
       <Box w="100%">
         <Header
@@ -168,7 +162,13 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
                 />
               </Box>
               {currentQuestion === -1 ? (
-                <IntroductionCard content={questionsData.introContent} />
+                <IntroductionCard
+                  content={`${
+                    questionsData.introContent === undefined
+                      ? introData.find((item) => item.id === category)?.content
+                      : questionsData.introContent
+                  }`}
+                />
               ) : (
                 <Box>
                   <Box>

@@ -1,13 +1,19 @@
 import { Box, Button, Flex, Input, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import logo from "../../../public/img/logo.svg";
-type Props = {};
+type Props = {
+  groupId: number;
+};
 
-const ClaimCard = (props: Props) => {
-  const [email, setEmail] = React.useState("");
+const ClaimCard = ({ groupId }: Props) => {
+  const [formData, setFormData] = React.useState({
+    email: "",
+    name: "",
+    groupId: groupId,
+  });
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(email);
+    console.log(formData);
   };
 
   return (
@@ -26,14 +32,36 @@ const ClaimCard = (props: Props) => {
             alignItems={"center"}
           >
             <Input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={(e) =>
+                setFormData((data) => {
+                  return {
+                    ...data,
+                    email: e.target.value,
+                  };
+                })
+              }
               placeholder="email"
               required
-              my="6"
+              my="3"
               type="email"
             />
-            <Button type="submit" w="full">
+            <Input
+              value={formData.name}
+              onChange={(e) =>
+                setFormData((data) => {
+                  return {
+                    ...data,
+                    name: e.target.value,
+                  };
+                })
+              }
+              placeholder="name"
+              required
+              my="3"
+              type="text"
+            />
+            <Button mt="3" type="submit" w="full">
               Claim
             </Button>
           </Flex>
