@@ -1,13 +1,7 @@
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
+import { IQuestion } from "./data";
 
-export interface IQuestion {
-  question: string;
-  options: Array<string>;
-  answer?: number;
-  isAnswered?: boolean;
-  selectedOption: number;
-}
 export interface Props {
   questions: Array<IQuestion>;
 }

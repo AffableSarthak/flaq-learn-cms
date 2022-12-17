@@ -7,15 +7,10 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import useAllQuizStore from "../completionStore";
+import { IQuestion } from "../data";
 import ClaimCard from "./ClaimCard";
 
-interface IQuestion {
-  question: string;
-  options: Array<string>;
-  answer?: number;
-  isAnswered?: boolean;
-  selectedOption: number;
-}
 const checkScore = async (questionList: Array<IQuestion>) => {
   const data = await fetch("/api/check-quiz-scrore", {
     method: "POST",
@@ -26,7 +21,7 @@ const checkScore = async (questionList: Array<IQuestion>) => {
       "Content-type": "application/json; charset=UTF-8",
     },
   }).then((response) => response.json());
-  console.log(data);
+
   return data.score;
 };
 const ScoreCard = ({
@@ -40,14 +35,23 @@ const ScoreCard = ({
 }) => {
   const [score, setScore] = useState(0);
   const [showNFT, setShowNFT] = useState(0);
+  const { allQuiz, markCompleted, addQuiz, isClaimed } = useAllQuizStore();
+
   useEffect(() => {
+    addQuiz({
+      questionArray: questionList,
+      name: questionList[0].category,
+      completed: false,
+      claimed: false,
+    });
+
     if (score === 0) {
       checkScore(questionList).then((score) => setScore(score));
     }
   }, []);
 
   if (showNFT) {
-    return <ClaimCard />;
+    return <ClaimCard questionList={questionList} />;
   } else {
     return (
       <Box
@@ -68,6 +72,21 @@ const ScoreCard = ({
           <CircularProgressLabel>{score}%</CircularProgressLabel>
         </CircularProgress>
         <Flex direction={"column"} my="5">
+          {score > 75 && !isClaimed(questionList[0].category, allQuiz) ? (
+            <Button
+              my="2"
+              onClick={(e) => {
+                setShowNFT(1);
+              }}
+            >
+              Claim NFT
+            </Button>
+          ) : (
+            <Text textAlign={"center"}>
+              You need to score above 75% to claim your NFT. You can retake the
+              quiz
+            </Text>
+          )}
           <Button
             onClick={(e) => {
               e.stopPropagation();
@@ -77,13 +96,8 @@ const ScoreCard = ({
           >
             Retake Quiz
           </Button>
-          <Button
-            my="2"
-            onClick={(e) => {
-              setShowNFT(1);
-            }}
-          >
-            Claim NFT
+          <Button onClick={() => markCompleted(questionList[0].category)}>
+            Test
           </Button>
         </Flex>
       </Box>

@@ -35,18 +35,17 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
 
   return (
     <Box position={"relative"} bg="#040F03" maxWidth={"100%"}>
-      <Container pb="16" maxW="90vw">
-        <Header
-          showSearch={true}
-          showNavlinks={false}
-          homeLink={"/"}
-          secondaryLink={{
-            name: "Testrun Web3",
-            link: "/simulation",
-          }}
-          showMenu={true}
-        />
-      </Container>
+      <Header
+        showSearch={true}
+        showNavlinks={false}
+        homeLink={"/"}
+        secondaryLink={{
+          name: "Testrun Web3",
+          link: "/simulation",
+        }}
+        showMenu={true}
+      />
+
       <Container maxW="1200px">
         <Box mt="12" mb="3">
           <Box position={"relative"} w="fit-content">
@@ -106,6 +105,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                           <GridItem
                             borderRadius={"2xl"}
                             bg="#393953"
+                            overflow={"hidden"}
                             w={{ md: "392px", base: "350px" }}
                             h={{ md: "440px", base: "392px" }}
                           >
@@ -201,7 +201,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
           </Box> */}
         </Box>
       </Container>
-      <Container maxW="90vw">
+      <Container px="0" maxW="100vw">
         <Footer />
       </Container>
 

@@ -14,7 +14,7 @@ a {
 
 * {
   box-sizing: border-box;
-  font-family: "Nunito Sans";
+  font-family: "Poppins", sans-serif;
 }
 
 .flex-container {
