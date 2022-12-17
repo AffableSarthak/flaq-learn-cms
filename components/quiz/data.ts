@@ -1,16 +1,22 @@
+export interface IQuestion {
+  question: string;
+  options: Array<string>;
+  answer?: number;
+  isAnswered?: boolean;
+  selectedOption: number;
+  id?: string;
+  groupId: number;
+  createdTime: string;
+  category: string;
+}
 export interface IQuestionsData {
   id: string;
-  questions: Array<{
-    question: string;
-    options: Array<string>;
-    answer: number;
-    selectedOption: number;
-    isAnswered: boolean;
-  }>;
+  questions: Array<IQuestion>;
   thresholdPercent: number;
   introContent: string;
   nftImage: string;
 }
+
 export const questionsData = {
   id: "Dive-Into-Web3",
   questions: [
@@ -48,5 +54,15 @@ export const questionsData = {
   introContent:
     "Welcome to the quiz lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.   Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
 };
-
+export const introData = [
+  {
+    id: "Dive-Into-Web3",
+    content:
+      "Flaq's Level 1 Quiz This quiz comprises of 10 questions and will test your understanding of Level 1: Dive into Web3 . If you score 75% or more at the end of it, you'll be eligible for a completion NFT! All the best! Shoot your best shot. 🚀",
+  },
+  {
+    id: "NFT",
+    content: "NFT ",
+  },
+];
 export default questionsData;

@@ -72,6 +72,7 @@ function SimulationLayout(props: SimulationPageType) {
               simulationData={simulationData}
               setCardData={setCardData}
               cardData={cardData}
+              simulationHeader={props.simulationHeader}
             />
           </DrawerContent>
         </Drawer>
@@ -97,6 +98,7 @@ function SimulationLayout(props: SimulationPageType) {
               simulationData={simulationData}
               setCardData={setCardData}
               cardData={cardData}
+              simulationHeader={props.simulationHeader}
             />
           </Box>
           <Box h="100%">
@@ -122,6 +124,7 @@ interface SidebarProps extends BoxProps {
   simulationData: SimulationBlockType[];
   setCardData: (index: number) => void;
   cardData: CardDataType;
+  simulationHeader: string;
 }
 
 const SidebarContent = ({
@@ -129,8 +132,10 @@ const SidebarContent = ({
   simulationData,
   cardData,
   setCardData,
+  simulationHeader,
   ...rest
 }: SidebarProps) => {
+  console.log(simulationHeader);
   return (
     <>
       <Box
@@ -152,15 +157,15 @@ const SidebarContent = ({
         </Flex>
         <Box>
           <Image src={demoSimulationImg.src} alt="demo" />
-          {/* <Text
+          <Text
             mt="4"
             textDecoration={"underline"}
             fontWeight={700}
             fontSize={"1.2rem"}
             color={"#B5E8CC"}
           >
-            WALLET CREATION
-          </Text> */}
+            {simulationHeader}
+          </Text>
         </Box>
         {simulationData.map((simulation, index) => {
           return (

@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { IQuestion } from "../../components/quiz";
-import questionsData from "../../components/quiz/data";
+
+import questionsData, { IQuestion } from "../../components/quiz/data";
+import getQuizData from "../../src/utils/quizUtils";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "POST") {
@@ -9,9 +10,20 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   const { questionList } = req.body;
   let score = 0;
+  const questionsData = await getQuizData();
+
   questionList.forEach((question: IQuestion, key: number) => {
-    if (questionsData.questions[key].answer === question.selectedOption) {
-      score++;
+    const currentQuestion = questionsData.find(
+      (item) => item.id === question.id
+    );
+
+    if (currentQuestion !== undefined) {
+      if (
+        currentQuestion.answerText ===
+        question.options[question.selectedOption - 1]
+      ) {
+        score++;
+      }
     }
   });
   res.setHeader(
@@ -20,6 +32,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   );
 
   res.status(200).json({
-    score: (score * 100) / questionsData.questions.length,
+    score: (score * 100) / questionList.length,
   });
 };
