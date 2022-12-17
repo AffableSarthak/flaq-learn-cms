@@ -1,38 +1,13 @@
 import { Box, Button, Flex, Input, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import logo from "../../../public/img/logo.svg";
-import useAllQuizStore from "../completionStore";
-import { IQuestion } from "../data";
-type Props = {
-  questionList: Array<IQuestion>;
-};
+type Props = {};
 
-const ClaimCard = ({ questionList }: Props) => {
-  const [formData, setFormData] = React.useState({
-    email: "",
-    name: "",
-    groupId: questionList[0].groupId,
-  });
-  const { allQuiz, markCompleted, addQuiz, isClaimed } = useAllQuizStore();
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+const ClaimCard = (props: Props) => {
+  const [email, setEmail] = React.useState("");
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
-    const data = await fetch(
-      "https://mailer-three.vercel.app/api/submit-quiz",
-      {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      }
-    )
-      .then((response) => {
-        markCompleted(questionList[0].category);
-        return response.json();
-      })
-      .catch((err) => console.log(err));
-    console.log(data);
+    console.log(email);
   };
 
   return (
@@ -51,36 +26,14 @@ const ClaimCard = ({ questionList }: Props) => {
             alignItems={"center"}
           >
             <Input
-              value={formData.email}
-              onChange={(e) =>
-                setFormData((data) => {
-                  return {
-                    ...data,
-                    email: e.target.value,
-                  };
-                })
-              }
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="email"
               required
-              my="3"
+              my="6"
               type="email"
             />
-            <Input
-              value={formData.name}
-              onChange={(e) =>
-                setFormData((data) => {
-                  return {
-                    ...data,
-                    name: e.target.value,
-                  };
-                })
-              }
-              placeholder="name"
-              required
-              my="3"
-              type="text"
-            />
-            <Button mt="3" type="submit" w="full">
+            <Button type="submit" w="full">
               Claim
             </Button>
           </Flex>

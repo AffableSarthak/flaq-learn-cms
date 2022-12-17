@@ -36,16 +36,16 @@ const HomePage = ({ allCategories }: Props) => {
 
   return (
     <Box position={"relative"} bg="#040F03" maxWidth={"100%"}>
-      <Header
-        secondaryLink={{
-          name: "Testrun Web3",
-          link: "/simulation",
-        }}
-        showNavlinks={false}
-        showSearch={true}
-        showMenu={false}
-      />
       <Container pb="16" maxW="90vw">
+        <Header
+          secondaryLink={{
+            name: "Testrun Web3",
+            link: "/simulation",
+          }}
+          showNavlinks={false}
+          showSearch={true}
+          showMenu={false}
+        />
         <Container maxW="1200px">
           <Box mt="12">
             <Box>
@@ -120,6 +120,7 @@ const HomePage = ({ allCategories }: Props) => {
                             fontSize={{ md: "2.5rem", base: "1.2rem" }}
                             fontWeight={700}
                             fontFamily={"Druk Wide Bold"}
+                            textShadow="2px 2px #70ffe9"
                           >
                             {val.category}
                           </Text>
@@ -154,8 +155,7 @@ const HomePage = ({ allCategories }: Props) => {
             </Grid>
           </Box>
         </Container>
-      </Container>
-      <Container px="0" maxW="100vw">
+
         <Footer />
       </Container>
       <Box position={"absolute"} bottom={-1} right={0}>

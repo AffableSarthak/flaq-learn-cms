@@ -1,14 +1,14 @@
-import { Box, Button, Center, Divider, Flex, Text } from "@chakra-ui/react";
-import React from "react";
-import { renderSimulation } from "../../simulations";
-import { CardDataType } from "../../types";
-import RenderBlock from "./RenderBlock";
+import { Box, Button, Center, Divider, Flex, Text } from '@chakra-ui/react'
+import React from 'react'
+import { renderSimulation } from '../../simulations'
+import { CardDataType } from '../../types'
+import RenderBlock from './RenderBlock'
 
 type Props = {
-  cardData: CardDataType;
-  setCardData: (index: number) => void;
-  blockchain: string;
-};
+  cardData: CardDataType
+  setCardData: (index: number) => void
+  blockchain: string
+}
 
 const SimulationCard = ({ cardData, setCardData, blockchain }: Props) => {
   const {
@@ -16,26 +16,29 @@ const SimulationCard = ({ cardData, setCardData, blockchain }: Props) => {
     currentSimulationIndex,
     isBackDisabled,
     isNextDisabled,
-  } = cardData;
-  const { block, title, simKey } = currentSimulation;
+  } = cardData
+  const { block, title, simKey } = currentSimulation
 
   return (
     <>
       <Center>
-        <Box w={{ base: "90vw", md: "60vw", lg: "70vw" }} boxShadow={"sm"}>
+        <Box w={{ base: '90vw', md: '60vw', lg: '70vw' }} boxShadow={'sm'}>
           <Box mb={4}>
             {/* Main Header */}
+            <Center>
+              <Box mb={5}>
+                <Text
+                  fontFamily={'Druk Wide Bold '}
+                  fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
+                  bgGradient="linear(to-l, green.100,green.800)"
+                  bgClip="text"
+                >
+                  {title}
+                </Text>
+              </Box>
+            </Center>
 
-            <Box mb={5}>
-              <Text
-                fontFamily={"Druk Wide Bold "}
-                fontSize={{ base: "2rem", md: "2.2rem", lg: "2.5rem" }}
-                textAlign={"left"}
-                color={"#B5E8CC"}
-              >
-                {title}
-              </Text>
-            </Box>
+            
 
             {/* Render Blocks */}
             <Box>{<RenderBlock block={block} />}</Box>
@@ -45,16 +48,16 @@ const SimulationCard = ({ cardData, setCardData, blockchain }: Props) => {
           </Box>
           <Box>
             {/* Nav */}
-            <Flex bottom={0} mx="auto" justifyContent={"space-between"} py="4">
+            <Flex bottom={0} mx="auto" justifyContent={'space-between'} py="4">
               <Button
-                variant={"primarybtn"}
+                variant={'primarybtn'}
                 disabled={isBackDisabled}
                 onClick={() => setCardData(currentSimulationIndex - 1)}
               >
                 Back
               </Button>
               <Button
-                variant={"primarybtn"}
+                variant={'primarybtn'}
                 disabled={isNextDisabled}
                 onClick={() => setCardData(currentSimulationIndex + 1)}
               >
@@ -65,7 +68,7 @@ const SimulationCard = ({ cardData, setCardData, blockchain }: Props) => {
         </Box>
       </Center>
     </>
-  );
-};
+  )
+}
 
-export default SimulationCard;
+export default SimulationCard

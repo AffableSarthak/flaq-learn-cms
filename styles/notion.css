@@ -1,10 +1,10 @@
 .notion-page {
   width: 90%;
-  background-color: #040f03;
+  background-color: #020f02;
 }
 
 .dark-mode {
-  --bg-color: #040f03;
+  --bg-color: #020f02;
 }
 
 /* overiding the title and h1 tags of notion content */
@@ -97,14 +97,15 @@ details.notion-toggle > summary::marker {
 
 /* Notion Aside Table of content header css */
 .notion-aside-table-of-contents-header {
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 1rem;
   opacity: 1;
   padding: 0.5rem;
   margin: 1rem;
-  font-size: 1.125rem;
-  border-bottom: 2px solid #b5e8cc;
-
-  color: #b5e8cc;
+  border: 1px solid transparent;
+  border-image: linear-gradient(60deg, #a6ebc9, #005704);
+  border-image-slice: 1;
+  border-radius: 10px;
 }
 
 .notion-table-of-contents-active-item {
@@ -174,30 +175,6 @@ details.notion-toggle > summary::marker {
   white-space: nowrap;
   overflow: hidden;
 }
-a.notion-table-of-contents-item-indent-level-0 span {
-  color: #f2ffea;
-  font-family: "Poppins";
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.4rem;
-  text-transform: uppercase;
-  margin-bottom: 0.3rem;
-  margin-top: 0.3rem;
-}
-
-a.notion-table-of-contents-item-indent-level-1 span {
-  color: #c8c7d8;
-  font-family: "Poppins";
-  font-weight: 500;
-  font-size: 0.9rem;
-  line-height: 1.2rem;
-}
-
-.notion-table-of-contents-item-indent-level-1
-  .notion-table-of-contents-item-body {
-  margin-left: 0 !important;
-}
-
 .notion-page-content {
   width: 100%;
 }
@@ -210,15 +187,12 @@ a.notion-table-of-contents-item-indent-level-1 span {
 }
 
 .notion-link {
-  color: #f2ffea;
+  color: green;
   opacity: 1;
   border: none;
-  font-weight: 400;
+  font-weight: 600;
   display: inline-block;
   position: relative;
-  font-family: "Poppins";
-  text-decoration: none;
-  font-size: 18px;
 }
 
 .notion-link::after {
@@ -229,7 +203,7 @@ a.notion-table-of-contents-item-indent-level-1 span {
   height: 1px;
   bottom: 0;
   left: 0;
-  background-color: #f2ffea;
+  background-color: #005704;
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
 }
@@ -394,15 +368,4 @@ a.notion-table-of-contents-item-indent-level-1 span {
   .notion-text {
     font-size: 0.9rem;
   }
-}
-.notion {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #c8c7d8;
-  caret-color: #c8c7d8;
-}
-
-/* Hide notion header icon */
-.notion-page-icon-hero.notion-page-icon-span .notion-page-icon {
-  display: none;
 }

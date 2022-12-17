@@ -47,7 +47,7 @@ function BlogLayout({
               height: "100vh",
               overflow: "auto",
               width: "100%",
-              background: "#040F03 ",
+              background: "#020f02",
             }}
             id="box"
           >
@@ -57,7 +57,7 @@ function BlogLayout({
               onClose={onClose}
             />
             <Box mt="8">{children}</Box>
-            <Container px="0" maxW="100vw">
+            <Container maxW="90vw">
               <Footer />
             </Container>
           </div>

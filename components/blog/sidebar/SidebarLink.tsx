@@ -32,43 +32,27 @@ const SidebarLink = ({
           key={tabkey}
           my="1"
           allowToggle
-          variant={"unstyled"}
         >
-          <AccordionItem
-            borderBottomWidth="0"
-            borderTopWidth="0"
-            my="0"
-            borderRadius={"4px"}
-            py="2"
-            sx={{
-              ":last-of-type": {
-                borderBottomWidth: "0",
-              },
-            }}
-          >
+          <AccordionItem>
             <AccordionButton
-              fontSize={"0.9rem"}
+              fontSize={"xs"}
               textAlign={"center"}
               fontWeight={"600"}
-              backgroundColor="#1A1A1A"
-              border="1px solid #000000"
+              backgroundColor="#020F02"
               py={"2"}
               _hover={{
-                backgroundColor: "#1A1A1A ",
-                outline: "1px solid #040F03",
+                backgroundColor: "#020F02",
+                outline: "1px solid #70FFE9",
               }}
               borderRadius={"sm"}
               backdropFilter="blur(100px)"
               w="full"
-              color={"#F2FFEA"}
-              lineHeight={"1.4rem"}
-              justifyContent={"space-between"}
             >
-              <Text>{menu.category}</Text>
-              <AccordionIcon fontSize={"2rem"} />
+              {menu.category}
+              <AccordionIcon />
             </AccordionButton>
             <AccordionPanel>
-              <Box pb="2" borderLeft={"2px solid #ffffff"}>
+              <Box pb="2">
                 {menu.blogs.map((blog, key) => (
                   <Box
                     key={key}
