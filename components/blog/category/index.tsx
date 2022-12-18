@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Container,
+  Flex,
   Grid,
   GridItem,
   Highlight,
@@ -35,21 +36,19 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
 
   return (
     <Box position={"relative"} bg="#040F03" maxWidth={"100%"}>
-      <Container pb="16" maxW="90vw">
-        <Header
-          showSearch={true}
-          showNavlinks={false}
-          homeLink={"/"}
-          secondaryLink={{
-            name: "Testrun Web3",
-            link: "/simulation",
-          }}
-          showMenu={true}
-        />
-      </Container>
+      <Header
+        showSearch={true}
+        showNavlinks={false}
+        secondaryLink={{
+          name: "Testrun Web3",
+          link: "/simulation",
+        }}
+        showMenu={true}
+      />
+
       <Container maxW="1200px">
         <Box mt="12" mb="3">
-          <Box position={"relative"} w="fit-content">
+          <Box position={"relative"} w="full">
             <Text
               my="3"
               fontFamily={"Druk Wide Bold"}
@@ -69,14 +68,31 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                 {category.join(" ")}
               </Highlight>
             </Text>
-            <Text
-              color="#9999A5"
-              fontSize={{ md: "md", base: "sm" }}
-              fontFamily={"Poppins"}
-              fontWeight={500}
-            >
-              {desc?.desc}
-            </Text>
+            <Flex align={"center"} justifyContent={"space-between"}>
+              <Text
+                color="#9999A5"
+                fontSize={{ md: "md", base: "sm" }}
+                fontFamily={"Poppins"}
+                fontWeight={500}
+              >
+                {desc?.desc}
+              </Text>
+              {category.join("-") === "Dive-Into-Web3" && (
+                <Box>
+                  <Button
+                    w="10rem"
+                    _hover={{
+                      bg: "#70ffe9",
+                      outline: "0.5px solid #ffffff",
+                    }}
+                    color="#000000"
+                    bg="#70ffe9"
+                  >
+                    <Link href={`${category.join("-")}/quiz`}>Quiz Me</Link>
+                  </Button>
+                </Box>
+              )}
+            </Flex>
           </Box>
         </Box>
         <Box my="8">
@@ -106,6 +122,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                           <GridItem
                             borderRadius={"2xl"}
                             bg="#393953"
+                            overflow={"hidden"}
                             w={{ md: "392px", base: "350px" }}
                             h={{ md: "440px", base: "392px" }}
                           >
@@ -201,7 +218,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
           </Box> */}
         </Box>
       </Container>
-      <Container maxW="90vw">
+      <Container px="0" maxW="100vw">
         <Footer />
       </Container>
 

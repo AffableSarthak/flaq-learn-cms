@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import SimulationLayout from '../../../components/simulation/layout/SimulationLayout'
-import { SimulationPageType } from '../../../components/simulation/types'
-import { getSimulationData } from '../../../components/simulation/utils/data'
+import React, { useEffect, useState } from "react";
+import SimulationLayout from "../../../components/simulation/layout/SimulationLayout";
+import { SimulationPageType } from "../../../components/simulation/types";
+import { getSimulationData } from "../../../components/simulation/utils/data";
 
 const CreateWalletSimulationPage = ({
   simulationData,
   simulationHeader,
   blockchain,
 }: SimulationPageType) => {
-  const [domLoaded, setDomLoaded] = useState(false)
+  const [domLoaded, setDomLoaded] = useState(false);
 
   useEffect(() => {
-    setDomLoaded(true)
-  }, [domLoaded])
+    setDomLoaded(true);
+  }, [domLoaded]);
 
   return (
     <>
@@ -26,26 +26,26 @@ const CreateWalletSimulationPage = ({
         <></>
       )}
     </>
-  )
-}
+  );
+};
 
 export async function getServerSideProps(context: any) {
-  const { slug, blockchain } = context.query
-  const simulationData = getSimulationData(slug, blockchain)
+  const { slug, blockchain } = context.query;
+  const simulationData = getSimulationData(slug, blockchain);
 
   if (!simulationData) {
     return {
       notFound: true,
-    }
+    };
   }
 
   return {
     props: {
       simulationData: simulationData,
-      simulationHeader: 'Wallet Creation Simulation',
+      simulationHeader: "Wallet Creation Simulation",
       blockchain,
     },
-  }
+  };
 }
 
-export default CreateWalletSimulationPage
+export default CreateWalletSimulationPage;

@@ -1,5 +1,5 @@
 import React from "react";
-import Quiz, { IQuestion } from "../../components/quiz";
+
 import dynamic from "next/dynamic";
 import { queryDatabase } from "../../src/api/query-database";
 import {
@@ -7,7 +7,9 @@ import {
   getBlogRoutes,
 } from "../../src/utils/parse-properties";
 // import questions from "../../components/quiz/data";
-import { questionsData, IQuestionsData } from "../../components/quiz/data";
+import { IQuestionsData, IQuestion } from "../../components/quiz/data";
+import getQuizData from "../../src/utils/quizUtils";
+
 const DynamicQuizWithNoSSR = dynamic(() => import("../../components/quiz"), {
   ssr: false,
 });
@@ -27,7 +29,6 @@ const QuizPage = (props: Props) => {
 export default QuizPage;
 
 export async function getServerSideProps(context: any) {
-  console.log(context.query);
   const database = await queryDatabase();
   const allCategory = getAllCategories(database!);
   const categoryWithUrl = allCategory.find(
@@ -42,14 +43,20 @@ export async function getServerSideProps(context: any) {
 
   const categoryLink =
     categoryWithUrl?.slug + "?priority=" + categoryWithUrl?.priority;
+  const data = await getQuizData();
+  const questionsData = data.filter(
+    (q) =>
+      q.category.toLowerCase() ===
+      context.query.category.split("-").join(" ").toLowerCase()
+  );
 
   return {
     props: {
       questionsData: {
         ...questionsData,
-        questions: questionsData.questions.map((question: IQuestion) => {
-          delete question.answer;
-          return question;
+        questions: questionsData.map((data: IQuestion) => {
+          delete data.answer;
+          return data;
         }),
       },
       categoryLink,

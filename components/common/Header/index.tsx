@@ -1,5 +1,6 @@
 import {
   Box,
+  Container,
   Flex,
   Hide,
   HStack,
@@ -17,7 +18,6 @@ type HeaderProps = {
   showSearch: boolean;
   showNavlinks: boolean;
   showMenu: boolean;
-  homeLink?: string;
   secondaryLink: {
     name: string;
     link: string;
@@ -61,7 +61,6 @@ const Path = (props: any) => (
 );
 const Header = ({
   showNavlinks,
-  homeLink,
   secondaryLink,
   showMenu,
   showSearch,
@@ -69,163 +68,45 @@ const Header = ({
   const [isMobMenuOpen, setIsMobMenuOpen] = React.useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <>
-      <Box
+    <Box
+      borderBottom={"1px solid #ffffff"}
+      position={"sticky"}
+      top="0"
+      w="100%"
+      mx="auto"
+      bg="#000000"
+      zIndex={1}
+    >
+      <Container
+        maxW={{ md: "90vw", lg: "1300px", base: "100vw" }}
+        w="100%"
         fontFamily={"Nunito Sans"}
-        position={"relative"}
-        top={0}
-        left={0}
-        zIndex={1}
-      ></Box>
-      <Flex py="6" justifyContent={"space-between"}>
-        <Box>
-          <Link passHref href={"https://flaq.club/"}>
-            <a>
-              <HStack gap="">
-                <Image src={logo} width="40px" height="40px" />
-                <Box>
-                  <Text
-                    fontSize={"12"}
-                    color="#ffffff"
-                    fontWeight={"800"}
-                    fontFamily="Poppins"
-                  >
-                    FLAQ
-                  </Text>
-                </Box>
-              </HStack>
-            </a>
-          </Link>
-        </Box>
-        <Box h="100%">
-          <Show above="md">
-            <Flex h="full" alignItems={"center"} justifyContent="center">
-              {homeLink && (
-                <Box h="full" ml="12">
-                  <Link passHref href={homeLink}>
+      >
+        <Flex py="6" justifyContent={"space-between"}>
+          <Box>
+            <Link passHref href={"https://flaq.club/"}>
+              <a>
+                <HStack gap="2">
+                  <Image src={logo} width="40px" height="40px" />
+                  <Box>
                     <Text
-                      cursor={"pointer"}
-                      _hover={{
-                        color: "#1bd423",
-                      }}
-                      fontSize={"md"}
-                      fontFamily={"Poppins"}
+                      fontSize={"20"}
+                      color="#eaefea"
+                      fontWeight={"400"}
+                      fontFamily="Poppins"
                     >
-                      Home
+                      flaq
                     </Text>
-                  </Link>
-                </Box>
-              )}
-
-              {secondaryLink && (
-                <Box h="full" ml="12">
-                  <Link passHref href={secondaryLink.link}>
-                    <Text
-                      cursor={"pointer"}
-                      _hover={{
-                        color: "#1bd423",
-                      }}
-                      fontSize={"md"}
-                      fontFamily={"Poppins"}
-                    >
-                      {secondaryLink.name}
-                    </Text>
-                  </Link>
-                </Box>
-              )}
-
-              {showNavlinks &&
-                navbarLinks.map((navLink, key) => {
-                  return (
-                    <Box h="full" ml="12" key={key}>
-                      <Link passHref href={navLink.link}>
-                        <Text
-                          cursor={"pointer"}
-                          _hover={{
-                            color: "#1bd423",
-                          }}
-                          fontSize={"md"}
-                          fontFamily={"Poppins"}
-                        >
-                          {navLink.name}
-                        </Text>
-                      </Link>
-                    </Box>
-                  );
-                })}
-            </Flex>
-          </Show>
-          <Show below="md">
-            <motion.button
-              onClick={() => setIsMobMenuOpen(!isMobMenuOpen)}
-              animate={isMobMenuOpen ? "open" : "closed"}
-              initial={false}
-              style={{
-                borderRadius: "50%",
-                border: "1px solid #ffffff",
-                padding: "7px",
-              }}
-            >
-              <svg
-                width="23"
-                height="23"
-                style={{ margin: "4px 0 0 2px" }}
-                viewBox="0 0 23 23"
-              >
-                <Path
-                  variants={{
-                    closed: { d: "M 2 2.5 L 20 2.5" },
-                    open: { d: "M 3 16.5 L 17 2.5" },
-                  }}
-                />
-                <Path
-                  d="M 2 9.423 L 20 9.423"
-                  variants={{
-                    closed: { opacity: 1 },
-                    open: { opacity: 0 },
-                  }}
-                  transition={{ duration: 0.1 }}
-                />
-                <Path
-                  variants={{
-                    closed: { d: "M 2 16.346 L 20 16.346" },
-                    open: { d: "M 3 2.5 L 17 16.346" },
-                  }}
-                />
-              </svg>
-            </motion.button>
-          </Show>
-        </Box>
-      </Flex>
-      <Hide above="md">
-        <AnimatePresence>
-          {isMobMenuOpen && (
-            <motion.div
-              key="modal"
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              initial={{ height: 0, opacity: 0 }}
-            >
-              <VStack pb="4" zIndex={"200"} gap={6}>
-                {homeLink && (
-                  <Box textAlign={"center"}>
-                    <Link passHref href={homeLink}>
-                      <Text
-                        cursor={"pointer"}
-                        _hover={{
-                          color: "#1bd423",
-                        }}
-                        fontSize={"md"}
-                        fontFamily={"Poppins"}
-                      >
-                        Home
-                      </Text>
-                    </Link>
                   </Box>
-                )}
-
+                </HStack>
+              </a>
+            </Link>
+          </Box>
+          <Box h="100%">
+            <Show above="md">
+              <Flex h="full" alignItems={"center"} justifyContent="center">
                 {secondaryLink && (
-                  <Box textAlign={"center"}>
+                  <Box h="full" ml="12">
                     <Link passHref href={secondaryLink.link}>
                       <Text
                         cursor={"pointer"}
@@ -244,7 +125,7 @@ const Header = ({
                 {showNavlinks &&
                   navbarLinks.map((navLink, key) => {
                     return (
-                      <Box textAlign={"center"} key={key}>
+                      <Box h="full" ml="12" key={key}>
                         <Link passHref href={navLink.link}>
                           <Text
                             cursor={"pointer"}
@@ -260,12 +141,103 @@ const Header = ({
                       </Box>
                     );
                   })}
-              </VStack>
-            </motion.div>
-          )}{" "}
-        </AnimatePresence>
-      </Hide>
-    </>
+              </Flex>
+            </Show>
+            <Show below="md">
+              <motion.button
+                onClick={() => setIsMobMenuOpen(!isMobMenuOpen)}
+                animate={isMobMenuOpen ? "open" : "closed"}
+                initial={false}
+                style={{
+                  borderRadius: "50%",
+                  border: "1px solid #ffffff",
+                  padding: "7px",
+                }}
+              >
+                <svg
+                  width="23"
+                  height="23"
+                  style={{ margin: "4px 0 0 2px" }}
+                  viewBox="0 0 23 23"
+                >
+                  <Path
+                    variants={{
+                      closed: { d: "M 2 2.5 L 20 2.5" },
+                      open: { d: "M 3 16.5 L 17 2.5" },
+                    }}
+                  />
+                  <Path
+                    d="M 2 9.423 L 20 9.423"
+                    variants={{
+                      closed: { opacity: 1 },
+                      open: { opacity: 0 },
+                    }}
+                    transition={{ duration: 0.1 }}
+                  />
+                  <Path
+                    variants={{
+                      closed: { d: "M 2 16.346 L 20 16.346" },
+                      open: { d: "M 3 2.5 L 17 16.346" },
+                    }}
+                  />
+                </svg>
+              </motion.button>
+            </Show>
+          </Box>
+        </Flex>
+        <Hide above="md">
+          <AnimatePresence>
+            {isMobMenuOpen && (
+              <motion.div
+                key="modal"
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                initial={{ height: 0, opacity: 0 }}
+              >
+                <VStack pb="4" zIndex={"200"} gap={6}>
+                  {secondaryLink && (
+                    <Box textAlign={"center"}>
+                      <Link passHref href={secondaryLink.link}>
+                        <Text
+                          cursor={"pointer"}
+                          _hover={{
+                            color: "#1bd423",
+                          }}
+                          fontSize={"md"}
+                          fontFamily={"Poppins"}
+                        >
+                          {secondaryLink.name}
+                        </Text>
+                      </Link>
+                    </Box>
+                  )}
+
+                  {showNavlinks &&
+                    navbarLinks.map((navLink, key) => {
+                      return (
+                        <Box textAlign={"center"} key={key}>
+                          <Link passHref href={navLink.link}>
+                            <Text
+                              cursor={"pointer"}
+                              _hover={{
+                                color: "#1bd423",
+                              }}
+                              fontSize={"md"}
+                              fontFamily={"Poppins"}
+                            >
+                              {navLink.name}
+                            </Text>
+                          </Link>
+                        </Box>
+                      );
+                    })}
+                </VStack>
+              </motion.div>
+            )}{" "}
+          </AnimatePresence>
+        </Hide>
+      </Container>
+    </Box>
   );
 };
 

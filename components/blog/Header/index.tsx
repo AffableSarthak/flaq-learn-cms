@@ -36,19 +36,20 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
       top="0"
       left="0"
       right="0"
-      bg="#020f02"
+      bg="#040F03"
       minW="100%"
+      borderBottom={"1px solid #9999A5"}
     >
       <Flex
         mx="auto"
-        maxW="90vw"
+        maxW="95vw"
         alignItems={"center"}
         py="4"
         justifyContent={{
           base: "space-between",
         }}
       >
-        <HStack>
+        <HStack gap={{ md: "4", base: 2 }}>
           <HStack onClick={onOpen} cursor="pointer">
             <IconButton
               display={"flex"}
@@ -56,7 +57,7 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
               justifyContent={"center"}
               position="static"
               _hover={{
-                bgColor: "#020f02",
+                bgColor: "#040F03 ",
                 scale: 1.1,
                 transform: "translateY(-2px)",
                 transition: "all 0.2s ease-in-out",
@@ -72,54 +73,49 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
           <Box>
             <Link passHref href={"https://flaq.club/"}>
               <a>
-                <HStack cursor={"pointer"}>
-                  <Image src={logo} width="30px" height="30px" />
-                  <Show above="md">
-                    <Box>
-                      <Text
-                        fontSize={"14"}
-                        color="#ffffff"
-                        fontWeight={"800"}
-                        fontFamily="Poppins"
-                      >
-                        FLAQ
-                      </Text>
-                    </Box>
-                  </Show>
+                <HStack gap="2" cursor={"pointer"}>
+                  <Image alt="logo" src={logo} width="30px" height="30px" />
+
+                  <Box>
+                    <Text
+                      fontSize={"14"}
+                      color="#eaefea"
+                      fontWeight={"400"}
+                      fontFamily="Poppins"
+                    >
+                      flaq
+                    </Text>
+                  </Box>
                 </HStack>
               </a>
             </Link>
           </Box>
         </HStack>
-
-        <Flex
-          gap={{ base: "0", md: "10" }}
-          justifyItems={"center"}
-          alignItems="center"
-        >
-          <Menu>
-            <MenuButton>
+        <Show above="md">
+          <Flex>
+            <Box
+              mx="6"
+              onClick={() => {
+                if (router.back() !== undefined) {
+                  router.back();
+                } else {
+                  router.push("/");
+                }
+              }}
+            >
               <Text
-                fontWeight={"400"}
-                fontSize={"14px"}
-                fontFamily={"Druk Wide Bold"}
-                color="#FFFFFF"
-              >
-                GO TO <ChevronDownIcon />
-              </Text>
-            </MenuButton>
-
-            <MenuList bg={"#020f02"}>
-              <MenuItem
-                bg={"#020f02"}
-                onClick={() => {
-                  if (router.back() !== undefined) {
-                    router.back();
-                  } else {
-                    router.push("/");
-                  }
+                cursor={"pointer"}
+                _hover={{
+                  color: "#1bd423",
                 }}
+                fontSize={"md"}
+                fontFamily={"Poppins"}
               >
+                ed path
+              </Text>
+            </Box>
+            <Box mx="6">
+              <Link passHref href={"/simulation"}>
                 <Text
                   cursor={"pointer"}
                   _hover={{
@@ -128,11 +124,42 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
                   fontSize={"md"}
                   fontFamily={"Poppins"}
                 >
-                  Ed Path
+                  testrun web3
                 </Text>
-              </MenuItem>
-              <MenuItem bg={"#020f02"}>
-                <Link passHref href={"/simulation"}>
+              </Link>
+            </Box>
+          </Flex>
+        </Show>
+
+        <Flex
+          gap={{ base: "0", md: "10" }}
+          justifyItems={"center"}
+          alignItems="center"
+        >
+          <Show below="md">
+            <Menu>
+              <MenuButton>
+                <Text
+                  fontWeight={"400"}
+                  fontSize={"14px"}
+                  fontFamily={"Druk Wide Bold"}
+                  color="#FFFFFF"
+                >
+                  GO TO <ChevronDownIcon />
+                </Text>
+              </MenuButton>
+
+              <MenuList bg={"#040F03 "} color="#9999A5">
+                <MenuItem
+                  bg={"#040F03 "}
+                  onClick={() => {
+                    if (router.back() !== undefined) {
+                      router.back();
+                    } else {
+                      router.push("/");
+                    }
+                  }}
+                >
                   <Text
                     cursor={"pointer"}
                     _hover={{
@@ -141,12 +168,27 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
                     fontSize={"md"}
                     fontFamily={"Poppins"}
                   >
-                    Testrun Web3
+                    Ed Path
                   </Text>
-                </Link>
-              </MenuItem>
-            </MenuList>
-          </Menu>
+                </MenuItem>
+                <MenuItem bg={"#040F03 "}>
+                  <Link passHref href={"/simulation"}>
+                    <Text
+                      cursor={"pointer"}
+                      _hover={{
+                        color: "#1bd423",
+                      }}
+                      fontSize={"md"}
+                      fontFamily={"Poppins"}
+                    >
+                      Testrun Web3
+                    </Text>
+                  </Link>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </Show>
+
           <Box>
             <SearchBar />
           </Box>
