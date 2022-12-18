@@ -12,6 +12,7 @@ interface IQuizAllStore {
   allQuiz: Array<IQuestionSet>;
   addQuiz: (quiz: IQuestionSet) => void;
   markCompleted: (name: string) => void;
+  markClaimed: (name: string) => void;
   isClaimed: (name: string, allQuiz: Array<IQuestionSet>) => boolean;
 }
 
@@ -42,6 +43,14 @@ export const useAllQuizStore = create<IQuizAllStore>()(
             const quiz = data.allQuiz.find((q) => q.name === name);
             if (!quiz) return { allQuiz: data.allQuiz };
             data.allQuiz[data.allQuiz.indexOf(quiz)].completed = true;
+            return { allQuiz: data.allQuiz };
+          });
+        },
+        markClaimed: (name: string) => {
+          set((data) => {
+            const quiz = data.allQuiz.find((q) => q.name === name);
+            if (!quiz) return { allQuiz: data.allQuiz };
+            data.allQuiz[data.allQuiz.indexOf(quiz)].claimed = true;
             return { allQuiz: data.allQuiz };
           });
         },

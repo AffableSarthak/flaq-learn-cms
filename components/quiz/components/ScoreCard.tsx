@@ -72,7 +72,12 @@ const ScoreCard = ({
           <CircularProgressLabel>{score}%</CircularProgressLabel>
         </CircularProgress>
         <Flex direction={"column"} my="5">
-          {score > 75 && !isClaimed(questionList[0].category, allQuiz) ? (
+          {isClaimed(questionList[0].category, allQuiz) && (
+            <Text my="8" textAlign={"center"}>
+              NFT is Already Claimed
+            </Text>
+          )}
+          {score > 75 && !isClaimed(questionList[0].category, allQuiz) && (
             <Button
               my="2"
               onClick={(e) => {
@@ -81,7 +86,8 @@ const ScoreCard = ({
             >
               Claim NFT
             </Button>
-          ) : (
+          )}{" "}
+          {score <= 75 && isClaimed(questionList[0].category, allQuiz) && (
             <Text textAlign={"center"}>
               You need to score above 75% to claim your NFT. You can retake the
               quiz
@@ -96,9 +102,9 @@ const ScoreCard = ({
           >
             Retake Quiz
           </Button>
-          <Button onClick={() => markCompleted(questionList[0].category)}>
+          {/* <Button onClick={() => markCompleted(questionList[0].category)}>
             Test
-          </Button>
+          </Button> */}
         </Flex>
       </Box>
     );

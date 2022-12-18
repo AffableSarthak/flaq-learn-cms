@@ -42,7 +42,6 @@ const HomePage = (props: Props) => {
         showSearch={false}
         showNavlinks={false}
         showMenu={false}
-        homeLink={"/simulation"}
         secondaryLink={{
           name: "Learn",
           link: "/",

@@ -82,7 +82,6 @@ function SimulationLayout(props: SimulationPageType) {
           showSearch={false}
           showNavlinks={false}
           showMenu={false}
-          homeLink={"/simulation"}
           secondaryLink={{
             name: "Learn Web3",
             link: "/",

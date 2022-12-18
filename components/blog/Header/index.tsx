@@ -73,17 +73,17 @@ export const NotionPageHeader = ({ isOpen, onClose, onOpen }: Props) => {
           <Box>
             <Link passHref href={"https://flaq.club/"}>
               <a>
-                <HStack cursor={"pointer"}>
+                <HStack gap="2" cursor={"pointer"}>
                   <Image alt="logo" src={logo} width="30px" height="30px" />
 
                   <Box>
                     <Text
                       fontSize={"14"}
-                      color="#ffffff"
-                      fontWeight={"800"}
+                      color="#eaefea"
+                      fontWeight={"400"}
                       fontFamily="Poppins"
                     >
-                      FLAQ
+                      flaq
                     </Text>
                   </Box>
                 </HStack>

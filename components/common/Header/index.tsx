@@ -18,7 +18,6 @@ type HeaderProps = {
   showSearch: boolean;
   showNavlinks: boolean;
   showMenu: boolean;
-  homeLink?: string;
   secondaryLink: {
     name: string;
     link: string;
@@ -62,7 +61,6 @@ const Path = (props: any) => (
 );
 const Header = ({
   showNavlinks,
-  homeLink,
   secondaryLink,
   showMenu,
   showSearch,
@@ -88,16 +86,16 @@ const Header = ({
           <Box>
             <Link passHref href={"https://flaq.club/"}>
               <a>
-                <HStack gap="">
+                <HStack gap="2">
                   <Image src={logo} width="40px" height="40px" />
                   <Box>
                     <Text
-                      fontSize={"12"}
-                      color="#ffffff"
-                      fontWeight={"800"}
+                      fontSize={"20"}
+                      color="#eaefea"
+                      fontWeight={"400"}
                       fontFamily="Poppins"
                     >
-                      FLAQ
+                      flaq
                     </Text>
                   </Box>
                 </HStack>
@@ -107,23 +105,6 @@ const Header = ({
           <Box h="100%">
             <Show above="md">
               <Flex h="full" alignItems={"center"} justifyContent="center">
-                {homeLink && (
-                  <Box h="full" ml="12">
-                    <Link passHref href={homeLink}>
-                      <Text
-                        cursor={"pointer"}
-                        _hover={{
-                          color: "#1bd423",
-                        }}
-                        fontSize={"md"}
-                        fontFamily={"Poppins"}
-                      >
-                        Home
-                      </Text>
-                    </Link>
-                  </Box>
-                )}
-
                 {secondaryLink && (
                   <Box h="full" ml="12">
                     <Link passHref href={secondaryLink.link}>
@@ -214,23 +195,6 @@ const Header = ({
                 initial={{ height: 0, opacity: 0 }}
               >
                 <VStack pb="4" zIndex={"200"} gap={6}>
-                  {homeLink && (
-                    <Box textAlign={"center"}>
-                      <Link passHref href={homeLink}>
-                        <Text
-                          cursor={"pointer"}
-                          _hover={{
-                            color: "#1bd423",
-                          }}
-                          fontSize={"md"}
-                          fontFamily={"Poppins"}
-                        >
-                          Home
-                        </Text>
-                      </Link>
-                    </Box>
-                  )}
-
                   {secondaryLink && (
                     <Box textAlign={"center"}>
                       <Link passHref href={secondaryLink.link}>

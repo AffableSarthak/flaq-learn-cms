@@ -11,9 +11,10 @@ const ClaimCard = ({ questionList }: Props) => {
   const [formData, setFormData] = React.useState({
     email: "",
     name: "",
-    groupId: questionList[0].groupId,
+    groupId: `${questionList[0].groupId}`,
   });
-  const { allQuiz, markCompleted, addQuiz, isClaimed } = useAllQuizStore();
+  const { allQuiz, markCompleted, addQuiz, isClaimed, markClaimed } =
+    useAllQuizStore();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
@@ -29,6 +30,7 @@ const ClaimCard = ({ questionList }: Props) => {
     )
       .then((response) => {
         markCompleted(questionList[0].category);
+        markClaimed(questionList[0].category);
         return response.json();
       })
       .catch((err) => console.log(err));

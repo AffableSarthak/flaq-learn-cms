@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Container,
+  Flex,
   Grid,
   GridItem,
   Highlight,
@@ -38,7 +39,6 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
       <Header
         showSearch={true}
         showNavlinks={false}
-        homeLink={"/"}
         secondaryLink={{
           name: "Testrun Web3",
           link: "/simulation",
@@ -48,7 +48,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
 
       <Container maxW="1200px">
         <Box mt="12" mb="3">
-          <Box position={"relative"} w="fit-content">
+          <Box position={"relative"} w="full">
             <Text
               my="3"
               fontFamily={"Druk Wide Bold"}
@@ -68,14 +68,31 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                 {category.join(" ")}
               </Highlight>
             </Text>
-            <Text
-              color="#9999A5"
-              fontSize={{ md: "md", base: "sm" }}
-              fontFamily={"Poppins"}
-              fontWeight={500}
-            >
-              {desc?.desc}
-            </Text>
+            <Flex align={"center"} justifyContent={"space-between"}>
+              <Text
+                color="#9999A5"
+                fontSize={{ md: "md", base: "sm" }}
+                fontFamily={"Poppins"}
+                fontWeight={500}
+              >
+                {desc?.desc}
+              </Text>
+              {category.join("-") === "Dive-Into-Web3" && (
+                <Box>
+                  <Button
+                    w="10rem"
+                    _hover={{
+                      bg: "#70ffe9",
+                      outline: "0.5px solid #ffffff",
+                    }}
+                    color="#000000"
+                    bg="#70ffe9"
+                  >
+                    <Link href={`${category.join("-")}/quiz`}>Quiz Me</Link>
+                  </Button>
+                </Box>
+              )}
+            </Flex>
           </Box>
         </Box>
         <Box my="8">

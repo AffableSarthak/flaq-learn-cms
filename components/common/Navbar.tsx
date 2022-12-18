@@ -63,11 +63,11 @@ const Navbar = (props: Props) => {
                 <Box>
                   <Text
                     fontSize={"12"}
-                    color="#ffffff"
-                    fontWeight={"800"}
+                    color="#eaefea"
+                    fontWeight={"400"}
                     fontFamily="Poppins"
                   >
-                    FLAQ
+                    flaq
                   </Text>
                 </Box>
               </HStack>
