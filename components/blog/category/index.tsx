@@ -1,25 +1,20 @@
 import {
   Box,
-  Button,
   Container,
-  Flex,
   Grid,
-  GridItem,
-  Highlight,
   Show,
-  Text,
 } from "@chakra-ui/react";
 import React from "react";
 import Image from "next/image";
-import blogcover from "../../../public/img/blog/blogcover.svg";
 import LooperGroup from "../../../public/img/blog/LooperGroup.svg";
 import { getBlogUrl } from "../../../src/utils/parse-properties";
 import Page404 from "../../fallback/Page404";
 import { category_utils, MenuListProps } from "../utils/blogUtils";
-import Link from "next/link";
 import categoryInfo from "../data/categoryInfo";
 import Footer from "../../common/Footer";
 import Header from "../../common/Header";
+import BlogCard from "./BlogCard";
+import Title from "./Title";
 
 type Props = {
   BlogsByCategory: MenuListProps[];
@@ -45,56 +40,8 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
         }}
         showMenu={true}
       />
-
       <Container maxW="1200px">
-        <Box mt="12" mb="3">
-          <Box position={"relative"} w="full">
-            <Text
-              my="3"
-              fontFamily={"Druk Wide Bold"}
-              fontWeight={"700"}
-              fontSize={{ base: "3xl", md: "6xl" }}
-              as="h1"
-            >
-              <Highlight
-                query={category[category.length - 1]}
-                styles={{
-                  color: "#70FFE9",
-                  my: "3",
-                  fontFamily: "Druk Wide Bold",
-                  fontWeight: "700",
-                }}
-              >
-                {category.join(" ")}
-              </Highlight>
-            </Text>
-            <Flex align={"center"} justifyContent={"space-between"}>
-              <Text
-                color="#9999A5"
-                fontSize={{ md: "md", base: "sm" }}
-                fontFamily={"Poppins"}
-                fontWeight={500}
-              >
-                {desc?.desc}
-              </Text>
-              {category.join("-") === "Dive-Into-Web3" && (
-                <Box>
-                  <Button
-                    w="10rem"
-                    _hover={{
-                      bg: "#70ffe9",
-                      outline: "0.5px solid #ffffff",
-                    }}
-                    color="#000000"
-                    bg="#70ffe9"
-                  >
-                    <Link href={`${category.join("-")}/quiz`}>Quiz Me</Link>
-                  </Button>
-                </Box>
-              )}
-            </Flex>
-          </Box>
-        </Box>
+        <Title category={category} />
         <Box my="8">
           <Grid
             templateColumns={{
@@ -109,97 +56,16 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                 <>
                   {blogData.blogs.map((val, key) => {
                     return (
-                      <Link
-                        href={`/${category
+                      <BlogCard
+                        key={key}
+                        val={val}
+                        priority={BlogsByCategory[0].priority}
+                        index={key}
+                        link={`/${category
                           .join("-")
                           .toLowerCase()
                           .split(" ")
-                          .join("-")}/${getBlogUrl(val.url)}`}
-                        passHref
-                        key={key}
-                      >
-                        <a>
-                          <GridItem
-                            borderRadius={"2xl"}
-                            bg="#393953"
-                            overflow={"hidden"}
-                            w={{ md: "392px", base: "350px" }}
-                            h={{ md: "440px", base: "392px" }}
-                          >
-                            <Box>
-                              <Image
-                                src={
-                                  val.coverImage !== null
-                                    ? val.coverImage
-                                    : blogcover
-                                }
-                                placeholder="blur"
-                                blurDataURL={blogcover}
-                                width="392"
-                                height="220"
-                                alt="blur"
-                              />
-                            </Box>
-                            <Box py="4" px="6">
-                              <Box
-                                display="flex"
-                                flexDirection="column"
-                                justifyContent={"space-between"}
-                                alignItems={"left"}
-                                flexWrap="wrap"
-                                h={{ md: "175px", base: "120px" }}
-                              >
-                                <Box>
-                                  {BlogsByCategory[0].priority !== 1 && (
-                                    <Text
-                                      fontSize={"md"}
-                                      fontWeight={400}
-                                      fontFamily={"Space Mono"}
-                                    >
-                                      {` Ed-piece #${key + 1}`}
-                                    </Text>
-                                  )}
-
-                                  <Text
-                                    fontSize={{ md: "24px", base: "16px" }}
-                                    fontWeight={700}
-                                    fontFamily={"Poppins"}
-                                  >
-                                    {val.title}
-                                  </Text>
-                                </Box>
-                                <Box alignSelf={"auto"}>
-                                  <Text
-                                    fontSize={"md"}
-                                    fontWeight={400}
-                                    fontFamily={"Space Mono"}
-                                  >
-                                    {
-                                      [
-                                        "January",
-                                        "February",
-                                        "March",
-                                        "April",
-                                        "May",
-                                        "June",
-                                        "July",
-                                        "August",
-                                        "September",
-                                        "October",
-                                        "November",
-                                        "December",
-                                      ][new Date(val.published_on).getMonth()]
-                                    }{" "}
-                                    {"  "}
-                                    {new Date(val.published_on).getDate()},{" "}
-                                    {new Date(val.published_on).getFullYear()}
-                                  </Text>
-                                </Box>
-                              </Box>
-                            </Box>
-                          </GridItem>
-                        </a>
-                      </Link>
+                          .join("-")}/${getBlogUrl(val.url)}`} />
                     );
                   })}
                 </>

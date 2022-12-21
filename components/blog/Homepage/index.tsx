@@ -53,7 +53,7 @@ const HomePage = ({ allCategories }: Props) => {
                 my="3"
                 fontFamily={"Druk Wide Bold"}
                 fontWeight={"700"}
-                fontSize={{ base: "3xl", md: "6xl" }}
+                fontSize={{ base: "3xl", md: "5xl" }}
                 as="h1"
               >
                 <Highlight
