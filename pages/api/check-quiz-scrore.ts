@@ -32,6 +32,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   );
 
   res.status(200).json({
-    score: (score * 100) / questionList.length,
+    score: Math.round((score * 100) / questionList.length),
   });
 };

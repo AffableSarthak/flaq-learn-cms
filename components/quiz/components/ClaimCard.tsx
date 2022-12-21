@@ -1,4 +1,12 @@
-import { Box, Button, Flex, Input, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Input,
+  Image,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import React from "react";
 import logo from "../../../public/img/logo.svg";
 import useAllQuizStore from "../completionStore";
@@ -13,6 +21,7 @@ const ClaimCard = ({ questionList }: Props) => {
     name: "",
     groupId: `${questionList[0].groupId}`,
   });
+  const toast = useToast();
   const { allQuiz, markCompleted, addQuiz, isClaimed, markClaimed } =
     useAllQuizStore();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -31,9 +40,25 @@ const ClaimCard = ({ questionList }: Props) => {
       .then((response) => {
         markCompleted(questionList[0].category);
         markClaimed(questionList[0].category);
+        toast({
+          title: "NFT Claimed",
+          description: "Check your email for the NFT",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+        });
         return response.json();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        toast({
+          title: "Error",
+          description: "Try again later",
+          status: "warning",
+          duration: 4000,
+          isClosable: true,
+        });
+        console.log(err);
+      });
     console.log(data);
   };
 
