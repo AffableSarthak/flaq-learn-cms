@@ -143,6 +143,7 @@ const HomePage = ({ allCategories }: Props) => {
                               src={LeftArrowIcon}
                               width="56px"
                               height="56px"
+                              alt=""
                             />
                           </Box>
                         </Box>
@@ -159,7 +160,7 @@ const HomePage = ({ allCategories }: Props) => {
         <Footer />
       </Container>
       <Box position={"absolute"} bottom={-1} right={0}>
-        <Image src={LooperGroup} width="100%" height="100%" />
+        <Image src={LooperGroup} width="100%" height="100%" alt="" />
       </Box>
     </Box>
   );

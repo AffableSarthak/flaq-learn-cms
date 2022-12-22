@@ -113,7 +113,7 @@ const Footer = (props: Props) => {
         minW="100%"
         maxW={"1200px"}
         w="100%"
-        bg="blackAlpha.900"
+        bg="#040F03"
       >
         <form onSubmit={handleSubmit}>
           <Flex
@@ -128,15 +128,15 @@ const Footer = (props: Props) => {
               <Link passHref href={"https://flaq.club/"}>
                 <a>
                   <HStack gap="2" mt="4" mb={{ base: "8", md: "16" }}>
-                    <Image src={logo} width="40px" height="40px" />
+                    <Image src={logo} width="40px" height="40px" alt="Flaq Logo" />
                     <Box>
                       <Text
-                        fontSize={"12"}
-                        color="#ffffff"
-                        fontWeight={"800"}
+                        fontSize={"20"}
+                        color="#eaefea"
+                        fontWeight={"400"}
                         fontFamily="Poppins"
                       >
-                        FLAQ ACADEMY
+                        flaq
                       </Text>
                     </Box>
                   </HStack>

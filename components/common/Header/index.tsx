@@ -87,7 +87,7 @@ const Header = ({
             <Link passHref href={"https://flaq.club/"}>
               <a>
                 <HStack gap="2">
-                  <Image src={logo} width="40px" height="40px" />
+                  <Image src={logo} width="40px" height="40px" alt="Flaq logo" />
                   <Box>
                     <Text
                       fontSize={"20"}

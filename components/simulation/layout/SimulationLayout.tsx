@@ -172,15 +172,17 @@ const SidebarContent = ({
               <Box my="6" onClick={() => setCardData(index)} cursor="pointer">
                 {cardData.currentSimulationIndex === index ? (
                   <HStack gap="2">
-                    <Text
-                      as="span"
-                      height="10px"
-                      width="10px"
-                      backgroundColor="#B5E8CC"
-                      borderRadius="50%"
-                      display="inline-block"
-                      color={"#040F03"}
-                    ></Text>{" "}
+                    <Box>
+                      <Text
+                        as="span"
+                        height="10px"
+                        width="10px"
+                        backgroundColor="#B5E8CC"
+                        borderRadius="50%"
+                        display="inline-block"
+                        color={"#040F03"}
+                      ></Text>{" "}
+                    </Box>
                     <Text
                       fontFamily={"'Poppins'"}
                       fontSize={"1rem"}

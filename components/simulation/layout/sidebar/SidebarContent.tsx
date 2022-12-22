@@ -1,7 +1,7 @@
 import React from 'react'
 import { CloseButton, Flex, Box } from '@chakra-ui/react'
 
-interface Props {}
+interface Props { }
 
 const SidebarContent = () => {
   return (
@@ -17,7 +17,7 @@ const SidebarContent = () => {
           <CloseButton
             color="#000000"
             display={{ base: 'flex', md: 'none' }}
-            // onClick={onClose}
+          // onClick={onClose}
           />
         </Flex>
       </Box>
