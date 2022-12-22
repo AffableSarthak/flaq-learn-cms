@@ -9,10 +9,8 @@ import {
 import React from "react";
 import LeftArrowIcon from "../../../public/img/blog/left arrow.svg";
 import bgpattern from "../../../public/img/blog/bgpattern.svg";
-import LooperGroup from "../../../public/img/blog/LooperGroup.svg";
-
 import Image from "next/image";
-import Link from "next/link";
+import Link from "next/link"
 import categoryInfo from "../data/categoryInfo";
 import Footer from "../../common/Footer";
 import Header from "../../common/Header";
@@ -35,7 +33,7 @@ const HomePage = ({ allCategories }: Props) => {
   };
 
   return (
-    <Box position={"relative"} bg="#040F03" maxWidth={"100%"}>
+    <Box bg="#040F03" maxWidth={"100%"}>
       <Header
         secondaryLink={{
           name: "Testrun Web3",
@@ -159,9 +157,6 @@ const HomePage = ({ allCategories }: Props) => {
       <Container px="0" maxW="100vw">
         <Footer />
       </Container>
-      <Box position={"absolute"} bottom={-1} right={0}>
-        <Image src={LooperGroup} width="100%" height="100%" alt="" />
-      </Box>
     </Box>
   );
 };

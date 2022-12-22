@@ -1,7 +1,6 @@
 import {
   Box,
   BoxProps,
-  Button,
   CloseButton,
   Container,
   Divider,
@@ -12,6 +11,7 @@ import {
   Text,
   Image,
   useDisclosure,
+  Show,
 } from "@chakra-ui/react";
 import React, { useCallback, useEffect } from "react";
 import Footer from "../../common/Footer";
@@ -23,6 +23,7 @@ import {
 } from "../types";
 import SimulationCard from "./main/SimulationCard";
 import demoSimulationImg from "../../../public/img/simulations/demo-simulation-img.svg";
+
 function SimulationLayout(props: SimulationPageType) {
   const { simulationData, blockchain } = props;
   console.log(blockchain);
@@ -54,7 +55,7 @@ function SimulationLayout(props: SimulationPageType) {
   }, [cardData]);
 
   return (
-    <Box bg="#040F03">
+    <Box position={'relative'} maxWidth={"100%"} bg="#040F03">
       <Box fontFamily={"Nunito Sans"} minH="100vh" bg="#040F03 ">
         {/* <Button onClick={() => onOpen()}>Open</Button> */}
         <Drawer
@@ -136,75 +137,74 @@ const SidebarContent = ({
 }: SidebarProps) => {
   console.log(simulationHeader);
   return (
-    <>
-      <Box
-        transition="3s ease"
-        w={{ base: "full", md: 64 }}
-        pos="relative"
-        h="full"
-        bg="#040F03"
-        {...rest}
-        boxShadow="2xl"
-        p={4}
-      >
-        <Flex alignItems="right" mx="8" justifyContent="flex-end">
-          <CloseButton
-            display={{ base: "flex", md: "none" }}
-            onClick={onClose}
-            mb={{ base: "4" }}
-          />
-        </Flex>
-        <Box>
-          <Image src={demoSimulationImg.src} alt="demo" />
-          <Text
-            mt="4"
-            textDecoration={"underline"}
-            fontWeight={700}
-            fontSize={"1.2rem"}
-            color={"#B5E8CC"}
-          >
-            {simulationHeader}
-          </Text>
-        </Box>
-        {simulationData.map((simulation, index) => {
-          return (
-            <>
-              <Box my="6" onClick={() => setCardData(index)} cursor="pointer">
-                {cardData.currentSimulationIndex === index ? (
-                  <HStack gap="2">
-                    <Box>
-                      <Text
-                        as="span"
-                        height="10px"
-                        width="10px"
-                        backgroundColor="#B5E8CC"
-                        borderRadius="50%"
-                        display="inline-block"
-                        color={"#040F03"}
-                      ></Text>{" "}
-                    </Box>
+    <Box
+      transition="3s ease"
+      w={{ base: "full", md: 64 }}
+      pos="relative"
+      h="full"
+      bg="#040F03"
+      {...rest}
+      boxShadow="2xl"
+      p={4}
+    >
+      <Flex alignItems="right" mx="8" justifyContent="flex-end">
+        <CloseButton
+          display={{ base: "flex", md: "none" }}
+          onClick={onClose}
+          mb={{ base: "4" }}
+        />
+      </Flex>
+      <Box>
+        <Image src={demoSimulationImg.src} alt="demo" />
+        <Text
+          mt="4"
+          textDecoration={"underline"}
+          fontWeight={700}
+          fontSize={"1.2rem"}
+          color={"#B5E8CC"}
+        >
+          {simulationHeader}
+        </Text>
+      </Box>
+      {simulationData.map((simulation, index) => {
+        return (
+          <>
+            <Box my="6" onClick={() => setCardData(index)} cursor="pointer">
+              {cardData.currentSimulationIndex === index ? (
+                <HStack gap="2">
+                  <Box>
                     <Text
-                      fontFamily={"'Poppins'"}
-                      fontSize={"1rem"}
-                      fontWeight={600}
-                      textTransform="uppercase"
-                      color="#F2FFEA"
-                    >
-                      {simulation.title}
-                    </Text>
-                  </HStack>
-                ) : (
+                      as="span"
+                      height="10px"
+                      width="10px"
+                      backgroundColor="#B5E8CC"
+                      borderRadius="50%"
+                      display="inline-block"
+                      color={"#040F03"}
+                    ></Text>{" "}
+                  </Box>
                   <Text
                     fontFamily={"'Poppins'"}
                     fontSize={"1rem"}
                     fontWeight={600}
-                    color="#9999A5"
+                    textTransform="uppercase"
+                    color="#F2FFEA"
                   >
                     {simulation.title}
                   </Text>
-                )}
-              </Box>
-              {/* <Box
+                </HStack>
+              ) : (
+                <Text
+                  fontFamily={"'Poppins'"}
+                  fontSize={"1rem"}
+                  fontWeight={600}
+                  color="#9999A5"
+                >
+                  {simulation.title}
+                </Text>
+              )}
+            </Box>
+            {/* <Box
                 maxW={{ base: "full", md: "xs" }}
                 rounded="md"
                 p={4}
@@ -226,11 +226,10 @@ const SidebarContent = ({
                   <Text>{simulation.title}</Text>
                 </Flex>
               </Box> */}
-            </>
-          );
-        })}
-      </Box>
-    </>
+          </>
+        );
+      })}
+    </Box>
   );
 };
 

@@ -82,7 +82,7 @@ const Header = ({
         w="100%"
         fontFamily={"Nunito Sans"}
       >
-        <Flex py="6" justifyContent={"space-between"}>
+        <Flex py="4" justifyContent={"space-between"} alignItems='center'>
           <Box>
             <Link passHref href={"https://flaq.club/"}>
               <a>
