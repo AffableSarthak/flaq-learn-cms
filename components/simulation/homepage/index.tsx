@@ -5,6 +5,7 @@ import {
   GridItem,
   Highlight,
   HStack,
+  Show,
   Tab,
   TabList,
   TabPanel,

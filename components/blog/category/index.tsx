@@ -6,7 +6,6 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import Image from "next/image";
-import LooperGroup from "../../../public/img/blog/LooperGroup.svg";
 import { getBlogUrl } from "../../../src/utils/parse-properties";
 import Page404 from "../../fallback/Page404";
 import { category_utils, MenuListProps } from "../utils/blogUtils";
@@ -30,7 +29,7 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
   );
 
   return (
-    <Box position={"relative"} bg="#040F03" maxWidth={"100%"}>
+    <Box bg="#040F03" maxWidth={"100%"}>
       <Header
         showSearch={true}
         showNavlinks={false}
@@ -87,15 +86,6 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
       <Container px="0" maxW="100vw">
         <Footer />
       </Container>
-
-      <Box position={"absolute"} bottom={-1} right={0}>
-        <Show above="md">
-          <Image src={LooperGroup} alt="lotus" width="171" height="221" />
-        </Show>
-        <Show below="md">
-          <Image src={LooperGroup} width="100" alt="lotus" height="130" />
-        </Show>
-      </Box>
     </Box>
   );
 };

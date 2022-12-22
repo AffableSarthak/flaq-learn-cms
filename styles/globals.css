@@ -38,7 +38,7 @@ a {
 *::-webkit-scrollbar-thumb {
   background-color: #a6ebc9;
   outline: 1px solid #a6ebc9;
-  borderradius: 1px;
+  border-radius: 1px;
 }
 
 /* custom scroolbar color for Firefox only  */
