@@ -42,7 +42,7 @@ function ShowcasePublicKey() {
   const [selectedList, setSelectedList] = React.useState<Array<string>>([])
 
   useEffect(() => {
-    ;(() => {
+    ; (() => {
       const jumbledVlaues = jumble()
       const tempAllOtpions: AllOptions[] = []
       jumbledVlaues.split(' ').forEach((word: any, index: any) => {
