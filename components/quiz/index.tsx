@@ -1,11 +1,9 @@
-import { ArrowBackIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
   Container,
   Flex,
   Highlight,
-  Icon,
   IconButton,
   Progress,
   Text,
@@ -23,6 +21,7 @@ import IntroductionCard from "./components/IntroductionCard";
 import { category_utils } from "../blog/utils/blogUtils";
 import categoryInfo from "../blog/data/categoryInfo";
 import { HiOutlineArrowNarrowLeft, HiOutlineArrowNarrowRight } from 'react-icons/hi'
+import ToolTip from "../common/ToolTip";
 
 export interface Props {
   categoryLink: string;
@@ -172,6 +171,7 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
           bg="#1A1A1A"
           rounded={'xl'}
           mt={6}
+          minH='90vh'
         >
           {questionList.length === currentQuestion ? (
             <ScoreCard
@@ -265,10 +265,12 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
                         })}
                       </VStack>
                     </Box>
-                    <Link passHref href={questionsData[currentQuestion].needHelp}>
-                      <Text color={'gray.500'} textDecoration={'underline'} cursor={'pointer'}>
-                        Need help?
-                      </Text>
+                    <Link passHref href={(questionsData as any)[currentQuestion].needHelp}>
+                      <ToolTip text='Read the Blog to find a solution to your question' isDark={true}>
+                        <Text color={'gray.500'} textDecoration={'underline'} cursor={'pointer'} w='fit-content'>
+                          Need help?
+                        </Text>
+                      </ToolTip>
                     </Link>
                   </Box>
                 )}
