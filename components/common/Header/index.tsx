@@ -102,7 +102,7 @@ const Header = ({
               </a>
             </Link>
           </Box>
-          <Box h="100%">
+          <Box h="100%" bg='cyan'>
             <Show above="md">
               <Flex h="full" alignItems={"center"} justifyContent="center">
                 {secondaryLink && (
