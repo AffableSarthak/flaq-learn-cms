@@ -276,7 +276,7 @@ const Footer = (props: Props) => {
                   w="100%"
                   borderRadius={"70px"}
                   bg="#70ffe9"
-                  color="#ffffff"
+                  color="black"
                   type="submit"
                 >
                   Subscribe

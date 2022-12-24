@@ -42,7 +42,6 @@ export const useQuizStore = create<IQuizStore>()(
               };
             }
           );
-
           set({ currentQuestion: -1, questionList: updatedQuestions });
         },
       }),
