@@ -20,6 +20,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { RiLinkedinFill, RiTelegramLine } from "react-icons/ri";
 import { FiTwitter } from "react-icons/fi";
 import { FaDiscord } from "react-icons/fa";
+import { AiOutlineInstagram } from 'react-icons/ai'
 import LooperGroup from "../../../public/img/blog/LooperGroup.svg";
 import Link from "next/link";
 
@@ -30,20 +31,20 @@ const links = [
     link: "https://www.flaq.club/",
   },
   {
-    name: "FAQs",
-    link: "https://www.flaq.club/faqs",
-  },
-  {
     name: "News",
     link: "https://www.flaq.club/news",
   },
   {
-    name: "Privacy Policy",
-    link: "https://www.flaq.club/privacy-policy",
-  },
-  {
     name: "About Us",
     link: "https://www.flaq.club/who-are-we",
+  },
+  {
+    name: "FAQs",
+    link: "https://www.flaq.club/faqs",
+  },
+  {
+    name: "Privacy Policy",
+    link: "https://www.flaq.club/privacy-policy",
   },
 ];
 
@@ -71,6 +72,12 @@ const socialLink = [
     link: "https://t.me/+pUwD3bO2KAA0NTI1",
     icon: <RiTelegramLine size="18px" />,
     color: "#2DA4DD",
+  },
+  {
+    name: "Instagram",
+    link: "https://instagram.com/flaq_club",
+    icon: <AiOutlineInstagram size="18px" />,
+    color: "#8a3ab9",
   },
 ];
 const Footer = (props: Props) => {
@@ -268,7 +275,7 @@ const Footer = (props: Props) => {
                   }}
                   w="100%"
                   borderRadius={"70px"}
-                  bg="#1bd423"
+                  bg="#70ffe9"
                   color="#ffffff"
                   type="submit"
                 >
@@ -285,6 +292,7 @@ const Footer = (props: Props) => {
             mx="auto"
             justifyContent={"space-between"}
             w="100%"
+            flexWrap={'wrap'}
           >
             {links.map((link, key) => {
               return (
@@ -320,7 +328,7 @@ const Footer = (props: Props) => {
           }}
           justifyContent={"space-between"}
         >
-          <HStack gap="4">
+          <HStack gap="4" flexWrap={'wrap'}>
             {socialLink.map((socialLink, key) => {
               return (
                 <Link key={key} passHref href={socialLink.link}>

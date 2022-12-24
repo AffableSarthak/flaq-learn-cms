@@ -141,7 +141,7 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
         </Text>
       </Box>
       <Box
-        w={["full", "425px"]}
+        w={["full", "625px"]}
         px={4}
       >
         {/* <Box my="4">
@@ -171,7 +171,7 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
           bg="#1A1A1A"
           rounded={'xl'}
           mt={6}
-          minH='90vh'
+          minH='80vh'
         >
           {questionList.length === currentQuestion ? (
             <ScoreCard
