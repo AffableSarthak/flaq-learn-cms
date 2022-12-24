@@ -50,7 +50,7 @@ const Title = ({ category }: Props) => {
                     >
                         {desc?.desc}
                     </Text>
-                    {/* {category.join("-") === "Dive-Into-Web3" && (
+                    {category.join("-") === "Dive-Into-Web3" && (
                         <Box>
                             <Button
                                 w="10rem"
@@ -64,7 +64,7 @@ const Title = ({ category }: Props) => {
                                 <Link href={`${category.join("-")}/quiz`}>Quiz Me</Link>
                             </Button>
                         </Box>
-                    )} */}
+                    )}
                 </Flex>
             </Box>
         </Box>

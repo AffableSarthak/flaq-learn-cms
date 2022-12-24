@@ -115,7 +115,6 @@ const Footer = (props: Props) => {
         maxW={"1200px"}
         w="100%"
         bg="#040F03"
-        position={'relative'}
       >
         <form onSubmit={handleSubmit}>
           <Flex
@@ -239,8 +238,8 @@ const Footer = (props: Props) => {
                         }}
                         w="160px"
                         borderRadius={"70px"}
-                        bg="#1bd423"
-                        color="#ffffff"
+                        bg="#70ffe9"
+                        color="black"
                         type="submit"
                         fontSize={"12px"}
                         fontWeight={700}
@@ -350,14 +349,14 @@ const Footer = (props: Props) => {
             </Text>
           </Box>
         </Flex>
-        <Box position={"absolute"} bottom={-1} right={0}>
+        {/* <Box position={"absolute"} bottom={-1} right={0}>
           <Show above="md">
             <Image src={LooperGroup} alt="lotus" width="171" height="221" />
           </Show>
           <Show below="md">
             <Image src={LooperGroup} width="100" alt="lotus" height="130" />
           </Show>
-        </Box>
+        </Box> */}
       </Container>
     </>
   );

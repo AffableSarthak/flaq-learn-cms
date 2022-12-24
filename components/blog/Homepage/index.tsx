@@ -43,116 +43,114 @@ const HomePage = ({ allCategories }: Props) => {
         showSearch={true}
         showMenu={false}
       />
-      <Container pb="16" maxW="90vw">
-        <Container maxW="1200px">
-          <Box mt="12">
-            <Box>
-              <Text
-                my="3"
-                fontFamily={"Druk Wide Bold"}
-                fontWeight={"700"}
-                fontSize={{ base: "3xl", md: "5xl" }}
-                as="h1"
+      <Container maxW="1200px">
+        <Box mt="12">
+          <Box>
+            <Text
+              my="3"
+              fontFamily={"Druk Wide Bold"}
+              fontWeight={"700"}
+              fontSize={{ base: "3xl", md: "5xl" }}
+              as="h1"
+            >
+              <Highlight
+                query={"Learn web3"}
+                styles={{
+                  color: "#70FFE9",
+                  my: "3",
+                  fontFamily: "Druk Wide Bold",
+                  fontWeight: "700",
+                }}
               >
-                <Highlight
-                  query={"Learn web3"}
-                  styles={{
-                    color: "#70FFE9",
-                    my: "3",
-                    fontFamily: "Druk Wide Bold",
-                    fontWeight: "700",
+                Learn web3 with Flaq
+              </Highlight>
+            </Text>
+            <Text
+              color="#9999A5"
+              fontSize={"md"}
+              fontFamily={"Poppins"}
+              fontWeight={500}
+            >
+              Learn ALL things web3 - cryptocurrencies, wallets, tips in web3,
+              NFTs, DeFi, DAOs and so much more! We will help you master web3,
+              step by step.
+            </Text>
+          </Box>
+        </Box>
+        <Box my="8">
+          <Grid
+            templateColumns={{
+              xl: "repeat(2, 1fr)",
+              base: "repeat(1, 1fr)",
+            }}
+            justifyItems="center"
+            gap={5}
+          >
+            {allCategories.map((val, key) => {
+              return (
+                <Link
+                  passHref
+                  key={key}
+                  href={{
+                    pathname: `/${val.slug}`,
+                    query: { priority: `${val.priority}` },
                   }}
                 >
-                  Learn web3 with Flaq
-                </Highlight>
-              </Text>
-              <Text
-                color="#9999A5"
-                fontSize={"md"}
-                fontFamily={"Poppins"}
-                fontWeight={500}
-              >
-                Learn ALL things web3 - cryptocurrencies, wallets, tips in web3,
-                NFTs, DeFi, DAOs and so much more! We will help you master web3,
-                step by step.
-              </Text>
-            </Box>
-          </Box>
-          <Box my="8">
-            <Grid
-              templateColumns={{
-                xl: "repeat(2, 1fr)",
-                base: "repeat(1, 1fr)",
-              }}
-              justifyItems="center"
-              gap={5}
-            >
-              {allCategories.map((val, key) => {
-                return (
-                  <Link
-                    passHref
-                    key={key}
-                    href={{
-                      pathname: `/${val.slug}`,
-                      query: { priority: `${val.priority}` },
-                    }}
-                  >
-                    <a>
-                      <GridItem
-                        py="4"
-                        px="6"
-                        cursor={"pointer"}
-                        border={"0.5px solid #70ffe9"}
-                        borderRadius={"20px"}
-                        bg="#1A1A1A"
-                        w={{ md: "525px", base: "325px" }}
-                        h={{ md: "250px", base: "150px" }}
-                        display="flex"
-                        flexDirection="column"
-                        justifyContent={"space-evenly"}
-                        position="relative"
-                        backgroundImage={`url(${bgpattern.src})`}
-                      >
-                        <Box>
+                  <a>
+                    <GridItem
+                      py="4"
+                      px="6"
+                      cursor={"pointer"}
+                      border={"0.5px solid #70ffe9"}
+                      borderRadius={"20px"}
+                      bg="#1A1A1A"
+                      w={{ md: "525px", base: "325px" }}
+                      h={{ md: "250px", base: "unset" }}
+                      display="flex"
+                      flexDirection="column"
+                      justifyContent={"space-evenly"}
+                      position="relative"
+                      backgroundImage={`url(${bgpattern.src})`}
+                    >
+                      <Box>
+                        <Text
+                          fontSize={{ md: "2.5rem", base: "1.2rem" }}
+                          fontWeight={700}
+                          fontFamily={"Druk Wide Bold"}
+                        >
+                          {val.category}
+                        </Text>
+                        <Text
+                          fontSize={{ md: "16px", base: "12px" }}
+                          textShadow="1px 1px #005704"
+                        >
+                          {categoryUtil(val.category)}
+                        </Text>
+                      </Box>
+                      <Box alignSelf={"auto"}>
+                        <Box display={"flex"} alignItems="center" w="100%">
                           <Text
-                            fontSize={{ md: "2.5rem", base: "1.2rem" }}
+                            fontSize={{ md: "24px", base: "16px" }}
                             fontWeight={700}
-                            fontFamily={"Druk Wide Bold"}
+                            fontFamily={"Poppins"}
                           >
-                            {val.category}
+                            Start Learning
                           </Text>
-                          <Text
-                            fontSize={{ md: "16px", base: "12px" }}
-                            textShadow="1px 1px #005704"
-                          >
-                            {categoryUtil(val.category)}
-                          </Text>
+                          <Image
+                            src={LeftArrowIcon}
+                            width="56px"
+                            height="56px"
+                            alt=""
+                          />
                         </Box>
-                        <Box alignSelf={"auto"}>
-                          <Box display={"flex"} alignItems="center" w="100%">
-                            <Text
-                              fontSize={{ md: "24px", base: "16px" }}
-                              fontWeight={700}
-                              fontFamily={"Poppins"}
-                            >
-                              Start Learning
-                            </Text>
-                            <Image
-                              src={LeftArrowIcon}
-                              width="56px"
-                              height="56px"
-                              alt=""
-                            />
-                          </Box>
-                        </Box>
-                      </GridItem>
-                    </a>
-                  </Link>
-                );
-              })}
-            </Grid>
-          </Box>
-        </Container>
+                      </Box>
+                    </GridItem>
+                  </a>
+                </Link>
+              );
+            })}
+          </Grid>
+        </Box>
       </Container>
       <Container px="0" maxW="100vw">
         <Footer />
