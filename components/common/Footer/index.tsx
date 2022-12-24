@@ -275,7 +275,7 @@ const Footer = (props: Props) => {
                   }}
                   w="100%"
                   borderRadius={"70px"}
-                  bg="#1bd423"
+                  bg="#70ffe9"
                   color="#ffffff"
                   type="submit"
                 >
@@ -292,6 +292,7 @@ const Footer = (props: Props) => {
             mx="auto"
             justifyContent={"space-between"}
             w="100%"
+            flexWrap={'wrap'}
           >
             {links.map((link, key) => {
               return (
@@ -327,7 +328,7 @@ const Footer = (props: Props) => {
           }}
           justifyContent={"space-between"}
         >
-          <HStack gap="4">
+          <HStack gap="4" flexWrap={'wrap'}>
             {socialLink.map((socialLink, key) => {
               return (
                 <Link key={key} passHref href={socialLink.link}>

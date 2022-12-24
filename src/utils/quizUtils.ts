@@ -26,7 +26,7 @@ const formatQuizData = (data: Array<IQuizData>) => {
   try {
     const quizData = data
       .filter((item) => Object.keys(item.fields).length !== 0)
-      .map((item) => {
+      .map((item, index) => {
         return {
           id: item.id,
           question: item.fields.Question,
