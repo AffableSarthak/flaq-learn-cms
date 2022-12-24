@@ -104,6 +104,7 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
       flexDirection={"column"}
       maxWidth={"100vw"}
       p="0"
+      bg='black'
     >
       <Box w="100%">
         <Header
@@ -166,7 +167,8 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
           h="100%"
           borderRadius={"0.375rem"}
           boxShadow={'2px 2px 0px #70FFE9'}
-          p="8"
+          py={8}
+          px={[12, 24]}
           color="#f2f2f2"
           bg="#1A1A1A"
           rounded={'xl'}
@@ -226,7 +228,6 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
                       fontWeight={700}
                       fontSize={""}
                       fontFamily={"Druk Wide Bold"}
-                      textTransform={"uppercase"}
                       color="#ffffff"
                     >
                       {questionList[currentQuestion].question}

@@ -62,14 +62,14 @@ const ScoreCard = ({
         alignItems={"center"}
         p="2"
       >
-        <Text fontWeight={'700'} fontFamily={'Druk Wide Bold'} fontSize={'3xl'}>You Scored</Text>
+        <Text fontWeight={'700'} fontFamily={'Druk Wide Bold'} fontSize={['xl', '3xl']} mb={4}>You Scored</Text>
         <CircularProgress
           value={score}
-          size="150px"
+          size="200px"
           color="#28CDB4"
           thickness="2px"
         >
-          <CircularProgressLabel bg='white' color='black' p={7} w={'fit-content'} fontSize='xl' rounded={'full'} boxShadow={'2px 3px 14px rgba(112, 255, 233, 0.5)'} fontWeight='600'>{score.toFixed(0)}%</CircularProgressLabel>
+          <CircularProgressLabel bg='white' color='black' p={10} w={'fit-content'} fontSize='2xl' rounded={'full'} boxShadow={'2px 3px 14px rgba(112, 255, 233, 0.5)'} fontWeight='600'>{score.toFixed(0)}%</CircularProgressLabel>
         </CircularProgress>
         <Flex direction={"column"} my="2">
           {isClaimed(questionList[0].category, allQuiz) && (
