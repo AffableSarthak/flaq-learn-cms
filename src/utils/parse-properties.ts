@@ -8,7 +8,8 @@ export type BlogPages = {
   url: string;
   published_on: string;
   coverImage: string;
-  socialImage: string;
+
+  socialImages: string;
 };
 
 const getPageId = (url: string): string => {

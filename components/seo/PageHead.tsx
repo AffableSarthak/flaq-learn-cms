@@ -20,9 +20,9 @@ const PageHead = (props: Props) => {
     (page) => page.title === title
   )?.coverImage;
 
-  const socialImage = props.blogData.find(
+  const socialImages = props.blogData.find(
     (page) => page.title === title
-  )?.socialImage;
+  )?.socialImages;
 
   const imageUrl = getPageImageUrls(props.recordMap, {
     mapImageUrl(url, block) {
@@ -60,11 +60,11 @@ const PageHead = (props: Props) => {
           <meta property="og:image" content={imageUrl[0]} />
         </>
       )}
-      {coverImage && (
+      {socialImage && (
         <>
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:image" content={socialImage} />
-          <meta property="og:image" content={socialImage} />
+          <meta name="twitter:image" content={socialImages} />
+          <meta property="og:image" content={socialImages} />
         </>
       )}
     </Head>
