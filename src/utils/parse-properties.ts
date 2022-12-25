@@ -37,7 +37,7 @@ export const parseProperties = (
       new Date().toISOString().slice(0, 10);
 
     const coverImage =
-      row.properties["Cover Image"]?.rich_text[0]?.plain_text || null;
+      row.properties["Social Image"]?.rich_text[0]?.plain_text || null;
     return { title, pageId, icon, category, url, published_on, coverImage };
   });
 };
