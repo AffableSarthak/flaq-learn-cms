@@ -40,7 +40,18 @@ export const parseProperties = (
 
     const coverImage =
       row.properties["Cover Image"]?.rich_text[0]?.plain_text || null;
-    return { title, pageId, icon, category, url, published_on, coverImage };
+    const socialImages =
+      row.properties["Social Image"]?.rich_text[0]?.plain_text || null;
+    return {
+      title,
+      pageId,
+      icon,
+      category,
+      url,
+      published_on,
+      coverImage,
+      socialImages,
+    };
   });
 };
 

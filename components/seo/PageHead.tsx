@@ -60,7 +60,7 @@ const PageHead = (props: Props) => {
           <meta property="og:image" content={imageUrl[0]} />
         </>
       )}
-      {socialImage && (
+      {socialImages && (
         <>
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:image" content={socialImages} />
