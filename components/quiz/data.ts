@@ -8,6 +8,7 @@ export interface IQuestion {
   groupId: number;
   createdTime: string;
   category: string;
+  needHelp: string;
 }
 export interface IQuestionsData {
   id: string;

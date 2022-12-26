@@ -20,6 +20,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { RiLinkedinFill, RiTelegramLine } from "react-icons/ri";
 import { FiTwitter } from "react-icons/fi";
 import { FaDiscord } from "react-icons/fa";
+import { AiOutlineInstagram } from 'react-icons/ai'
 import LooperGroup from "../../../public/img/blog/LooperGroup.svg";
 import Link from "next/link";
 
@@ -30,20 +31,20 @@ const links = [
     link: "https://www.flaq.club/",
   },
   {
-    name: "FAQs",
-    link: "https://www.flaq.club/faqs",
-  },
-  {
     name: "News",
     link: "https://www.flaq.club/news",
   },
   {
-    name: "Privacy Policy",
-    link: "https://www.flaq.club/privacy-policy",
-  },
-  {
     name: "About Us",
     link: "https://www.flaq.club/who-are-we",
+  },
+  {
+    name: "FAQs",
+    link: "https://www.flaq.club/faqs",
+  },
+  {
+    name: "Privacy Policy",
+    link: "https://www.flaq.club/privacy-policy",
   },
 ];
 
@@ -71,6 +72,12 @@ const socialLink = [
     link: "https://t.me/+pUwD3bO2KAA0NTI1",
     icon: <RiTelegramLine size="18px" />,
     color: "#2DA4DD",
+  },
+  {
+    name: "Instagram",
+    link: "https://instagram.com/flaq_club",
+    icon: <AiOutlineInstagram size="18px" />,
+    color: "#8a3ab9",
   },
 ];
 const Footer = (props: Props) => {
@@ -115,7 +122,6 @@ const Footer = (props: Props) => {
         maxW={"1200px"}
         w="100%"
         bg="#040F03"
-        position={'relative'}
       >
         <form onSubmit={handleSubmit}>
           <Flex
@@ -239,8 +245,8 @@ const Footer = (props: Props) => {
                         }}
                         w="160px"
                         borderRadius={"70px"}
-                        bg="#1bd423"
-                        color="#ffffff"
+                        bg="#70ffe9"
+                        color="black"
                         type="submit"
                         fontSize={"12px"}
                         fontWeight={700}
@@ -269,8 +275,8 @@ const Footer = (props: Props) => {
                   }}
                   w="100%"
                   borderRadius={"70px"}
-                  bg="#1bd423"
-                  color="#ffffff"
+                  bg="#70ffe9"
+                  color="black"
                   type="submit"
                 >
                   Subscribe
@@ -286,6 +292,7 @@ const Footer = (props: Props) => {
             mx="auto"
             justifyContent={"space-between"}
             w="100%"
+            flexWrap={'wrap'}
           >
             {links.map((link, key) => {
               return (
@@ -321,7 +328,7 @@ const Footer = (props: Props) => {
           }}
           justifyContent={"space-between"}
         >
-          <HStack gap="4">
+          <HStack gap="4" flexWrap={'wrap'}>
             {socialLink.map((socialLink, key) => {
               return (
                 <Link key={key} passHref href={socialLink.link}>
@@ -350,14 +357,14 @@ const Footer = (props: Props) => {
             </Text>
           </Box>
         </Flex>
-        <Box position={"absolute"} bottom={-1} right={0}>
+        {/* <Box position={"absolute"} bottom={-1} right={0}>
           <Show above="md">
             <Image src={LooperGroup} alt="lotus" width="171" height="221" />
           </Show>
           <Show below="md">
             <Image src={LooperGroup} width="100" alt="lotus" height="130" />
           </Show>
-        </Box>
+        </Box> */}
       </Container>
     </>
   );

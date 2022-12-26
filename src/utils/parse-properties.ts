@@ -8,6 +8,8 @@ export type BlogPages = {
   url: string;
   published_on: string;
   coverImage: string;
+
+  socialImages: string;
 };
 
 const getPageId = (url: string): string => {
@@ -38,7 +40,8 @@ export const parseProperties = (
 
     const coverImage =
       row.properties["Cover Image"]?.rich_text[0]?.plain_text || null;
-
+    const socialImages =
+      row.properties["Social Image"]?.rich_text[0]?.plain_text || null;
     return {
       title,
       pageId,
@@ -47,6 +50,7 @@ export const parseProperties = (
       url,
       published_on,
       coverImage,
+      socialImages,
     };
   });
 };

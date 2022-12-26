@@ -24,9 +24,6 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
     return <Page404 />;
   }
   const category = category_utils(BlogsByCategory[0].category).split(" ");
-  const desc = categoryInfo.find(
-    (a) => a.name.toLowerCase() === category.join(" ").toLowerCase()
-  );
 
   return (
     <Box bg="#040F03" maxWidth={"100%"}>

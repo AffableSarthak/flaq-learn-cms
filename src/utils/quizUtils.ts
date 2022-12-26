@@ -19,13 +19,14 @@ interface IQuizData {
     "Option 3": string;
     "Option 1": string;
     "Group Id": number;
+    Link: string;
   };
 }
 const formatQuizData = (data: Array<IQuizData>) => {
   try {
     const quizData = data
       .filter((item) => Object.keys(item.fields).length !== 0)
-      .map((item) => {
+      .map((item, index) => {
         return {
           id: item.id,
           question: item.fields.Question,
@@ -47,6 +48,7 @@ const formatQuizData = (data: Array<IQuizData>) => {
           category: item.fields.Category,
           groupId: item.fields["Group Id"],
           createdTime: item.createdTime,
+          needHelp: item.fields.Link
         };
       });
     return quizData;
