@@ -26,11 +26,9 @@ const checkScore = async (questionList: Array<IQuestion>) => {
 };
 const ScoreCard = ({
   questionList,
-  categoryLink,
   retakeQuiz,
 }: {
   questionList: Array<IQuestion>;
-  categoryLink: string;
   retakeQuiz: (questions: Array<IQuestion>) => void;
 }) => {
   const [score, setScore] = useState(0);
@@ -39,12 +37,10 @@ const ScoreCard = ({
 
   useEffect(() => {
     addQuiz({
-      questionArray: questionList,
       name: questionList[0].category,
       completed: false,
       claimed: false,
     });
-
     if (score === 0) {
       checkScore(questionList).then((score) => setScore(score));
     }

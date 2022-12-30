@@ -26,7 +26,6 @@ import demoSimulationImg from "../../../public/img/simulations/demo-simulation-i
 
 function SimulationLayout(props: SimulationPageType) {
   const { simulationData, blockchain } = props;
-  console.log(blockchain);
   // State for the current simulation.
   const [cardData, setCard] = React.useState<CardDataType>({
     currentSimulation: simulationData[0],
@@ -135,7 +134,6 @@ const SidebarContent = ({
   simulationHeader,
   ...rest
 }: SidebarProps) => {
-  console.log(simulationHeader);
   return (
     <Box
       transition="3s ease"

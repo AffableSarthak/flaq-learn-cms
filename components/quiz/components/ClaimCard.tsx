@@ -26,7 +26,6 @@ const ClaimCard = ({ questionList }: Props) => {
     useAllQuizStore();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
     const data = await fetch(
       "https://mailer-three.vercel.app/api/submit-quiz",
       {
@@ -59,7 +58,6 @@ const ClaimCard = ({ questionList }: Props) => {
         });
         console.log(err);
       });
-    console.log(data);
   };
 
   return (

@@ -66,7 +66,6 @@ const getQuizData = async () => {
     return [];
   } else {
     const data = await response.json();
-
     return formatQuizData(data.records);
   }
 };

@@ -4,10 +4,10 @@ import { IQuestion } from "./data";
 
 interface IQuestionSet {
   name: string;
-  questionArray: Array<IQuestion>;
   completed: boolean;
   claimed: boolean;
 }
+
 interface IQuizAllStore {
   allQuiz: Array<IQuestionSet>;
   addQuiz: (quiz: IQuestionSet) => void;

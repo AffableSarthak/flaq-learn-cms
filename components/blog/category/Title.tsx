@@ -43,23 +43,23 @@ const Title = ({ category }: Props) => {
           >
             {desc?.desc}
           </Text>
-          {/* {category.join("-") === "Dive-Into-Web3" && (
-                        <Box>
-                            <Link passHref href={`${category.join("-")}/quiz`}>
-                                <Button
-                                    w="10rem"
-                                    _hover={{
-                                        bg: "#70ffe9",
-                                        outline: "0.5px solid #ffffff",
-                                    }}
-                                    color="#000000"
-                                    bg="#70ffe9"
-                                >
-                                    Quiz Me
-                                </Button>
-                            </Link>
-                        </Box>
-                    )} */}
+          {category.join("-") === "Dive-Into-Web3" && (
+            <Box>
+              <Link passHref href={`${category.join("-")}/quiz`}>
+                <Button
+                  w="10rem"
+                  _hover={{
+                    bg: "#70ffe9",
+                    outline: "0.5px solid #ffffff",
+                  }}
+                  color="#000000"
+                  bg="#70ffe9"
+                >
+                  Quiz Me
+                </Button>
+              </Link>
+            </Box>
+          )}
         </Flex>
       </Box>
     </Box>
