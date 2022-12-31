@@ -7,7 +7,7 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import useAllQuizStore from "../completionStore";
+import useQuizStore from "../store";
 import { IQuestion } from "../data";
 import ClaimCard from "./ClaimCard";
 
@@ -31,18 +31,26 @@ const ScoreCard = ({
   questionList: Array<IQuestion>;
   retakeQuiz: (questions: Array<IQuestion>) => void;
 }) => {
-  const [score, setScore] = useState(0);
+  const [currentScore, setCurrentScore] = useState<number>(0);
   const [showNFT, setShowNFT] = useState(0);
-  const { allQuiz, markCompleted, addQuiz, isClaimed } = useAllQuizStore();
+  const { allQuiz, markCompleted, addQuiz, isClaimed, setScore } = useQuizStore();
+
+  function getCurrentScore(category: string) {
+    const quiz = allQuiz.find((q) => q.category === category);
+    if (!quiz) return 0;
+    setCurrentScore(quiz.score);
+  }
 
   useEffect(() => {
+    getCurrentScore(questionList[0].category);
     addQuiz({
-      name: questionList[0].category,
+      category: questionList[0].category,
       completed: false,
       claimed: false,
+      score: currentScore,
     });
-    if (score === 0) {
-      checkScore(questionList).then((score) => setScore(score));
+    if (currentScore === 0) {
+      checkScore(questionList).then((score) => setScore(questionList[0].category, score));
     }
   }, []);
 
@@ -60,12 +68,12 @@ const ScoreCard = ({
       >
         <Text fontWeight={'700'} fontFamily={'Druk Wide Bold'} fontSize={['xl', '3xl']} mb={4}>You Scored</Text>
         <CircularProgress
-          value={score}
+          value={currentScore}
           size="200px"
           color="#28CDB4"
           thickness="2px"
         >
-          <CircularProgressLabel bg='white' color='black' p={10} w={'fit-content'} fontSize='2xl' rounded={'full'} boxShadow={'2px 3px 14px rgba(112, 255, 233, 0.5)'} fontWeight='600'>{score.toFixed(0)}%</CircularProgressLabel>
+          <CircularProgressLabel bg='white' color='black' p={10} w={'fit-content'} fontSize='2xl' rounded={'full'} boxShadow={'2px 3px 14px rgba(112, 255, 233, 0.5)'} fontWeight='600'>{currentScore.toFixed(0)}%</CircularProgressLabel>
         </CircularProgress>
         <Flex direction={"column"} my="2">
           {isClaimed(questionList[0].category, allQuiz) && (
@@ -73,7 +81,7 @@ const ScoreCard = ({
               NFT is Already Claimed
             </Text>
           )}
-          {score > 75 && !isClaimed(questionList[0].category, allQuiz) && (
+          {currentScore > 75 && !isClaimed(questionList[0].category, allQuiz) && (
             <Button
               my="2"
               onClick={(e) => {
@@ -83,7 +91,7 @@ const ScoreCard = ({
               Claim NFT
             </Button>
           )}{" "}
-          {score <= 75 && isClaimed(questionList[0].category, allQuiz) && (
+          {currentScore <= 75 && isClaimed(questionList[0].category, allQuiz) && (
             <Text textAlign={"center"} mb={10}>
               You need to score above 75% to claim your NFT. You can retake the
               quiz

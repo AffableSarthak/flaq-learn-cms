@@ -21,6 +21,7 @@ import { category_utils } from "../blog/utils/blogUtils";
 import categoryInfo from "../blog/data/categoryInfo";
 import { HiOutlineArrowNarrowLeft, HiOutlineArrowNarrowRight } from 'react-icons/hi'
 import ToolTip from "../common/ToolTip";
+import useQuizStore from "./store";
 
 export interface Props {
     categoryLink: string;

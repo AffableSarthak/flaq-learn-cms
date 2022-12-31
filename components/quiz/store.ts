@@ -1,49 +1,66 @@
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { IQuestion } from "./data";
-
-export interface Props {
-  questions: Array<IQuestion>;
+interface IQuestionSet {
+  category: string;
+  completed: boolean;
+  claimed: boolean;
+  score: number
+}
+interface IQuizAllStore {
+  allQuiz: Array<IQuestionSet>;
+  addQuiz: (quiz: IQuestionSet) => void;
+  markCompleted: (category: string) => void;
+  markClaimed: (category: string) => void;
+  isClaimed: (category: string, allQuiz: Array<IQuestionSet>) => boolean;
+  setScore: (category: string, score: number) => void;
 }
 
-interface IQuizStore {
-  questionList: Array<IQuestion>;
-  currentQuestion: number;
-  progress: number;
-  setQuestionList: (
-    questions: Array<IQuestion>,
-    currentQuestion: number
-  ) => void;
-  setCurrentQuestion: (question: number) => void;
-  retakeQuiz: (questionList: Array<IQuestion>) => void;
-}
-
-export const useQuizStore = create<IQuizStore>()(
+export const useQuizStore = create<IQuizAllStore>()(
   devtools(
     persist(
       (set) => ({
-        questionList: [],
-        currentQuestion: -1,
-        progress: 0,
-        setCurrentQuestion: (currentQuestion: number) =>
-          set({ currentQuestion }),
-        setQuestionList: (questionList, currentQuestion) =>
-          set({
-            questionList,
-            progress: (currentQuestion * 100) / questionList.length,
-          }),
-        retakeQuiz: (questionList: Array<IQuestion>) => {
-          const updatedQuestions: Array<IQuestion> = questionList.map(
-            (question) => {
-              return {
-                ...question,
-                isAnswered: false,
-                selectedOption: -1,
-              };
+        allQuiz: [],
+        addQuiz: (quiz: IQuestionSet) => {
+          set((data) => {
+            const isExist = data.allQuiz.find((q) => q.category === quiz.category);
+            if (isExist) {
+              return { allQuiz: [...data.allQuiz] };
+            } else {
+              return { allQuiz: [...data.allQuiz, quiz] };
             }
-          );
-          set({ currentQuestion: -1, questionList: updatedQuestions });
+          });
         },
+        isClaimed: (category: string, allQuiz: Array<IQuestionSet>) => {
+          const quiz = allQuiz.find((q) => q.category === category);
+          if (!quiz) return false;
+          return quiz.claimed;
+        },
+
+        // find by id and mark completed
+        markCompleted: (category: string) => {
+          set((data) => {
+            const quiz = data.allQuiz.find((q) => q.category === category);
+            if (!quiz) return { allQuiz: data.allQuiz };
+            data.allQuiz[data.allQuiz.indexOf(quiz)].completed = true;
+            return { allQuiz: data.allQuiz };
+          });
+        },
+        markClaimed: (category: string) => {
+          set((data) => {
+            const quiz = data.allQuiz.find((q) => q.category === category);
+            if (!quiz) return { allQuiz: data.allQuiz };
+            data.allQuiz[data.allQuiz.indexOf(quiz)].claimed = true;
+            return { allQuiz: data.allQuiz };
+          });
+        },
+        setScore: (category: string, score: number) => {
+          set((data) => {
+            const quiz = data.allQuiz.find((q) => q.category === category);
+            if (!quiz) return { allQuiz: data.allQuiz };
+            data.allQuiz[data.allQuiz.indexOf(quiz)].score = score;
+            return { allQuiz: data.allQuiz };
+          })
+        }
       }),
       {
         name: "quiz-store",

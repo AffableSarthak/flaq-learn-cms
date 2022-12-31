@@ -8,8 +8,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import React from "react";
-import logo from "../../../public/img/logo.svg";
-import useAllQuizStore from "../completionStore";
+import useQuizStore from "../store";
 import { IQuestion } from "../data";
 type Props = {
   questionList: Array<IQuestion>;
@@ -23,7 +22,7 @@ const ClaimCard = ({ questionList }: Props) => {
   });
   const toast = useToast();
   const { allQuiz, markCompleted, addQuiz, isClaimed, markClaimed } =
-    useAllQuizStore();
+    useQuizStore();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = await fetch(
