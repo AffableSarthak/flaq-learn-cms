@@ -3,18 +3,19 @@ import { devtools, persist } from "zustand/middleware";
 import * as web3 from "@solana/web3.js";
 import * as bip39 from "bip39";
 
-enum WalltetErrors {
+export enum WalltetErrors {
   SolanaInternalError = "There seems to be an internal error with Solana, please try again later.",
 }
 
 interface CreateWalletState {
   seedPhrase: string;
+  publickey: string;
+  setPublicKey: (publickey: string) => void;
   balance: number;
   isLoading: boolean;
-  error?: WalltetErrors;
+  error?: WalltetErrors | undefined;
   fakeBalance: number;
   showPublicKey: boolean;
-  setSeedPhrase: (seedPhrase: string) => void;
   setBalance: () => void;
   airdropTokenIntoWallet: () => void;
   setLoader: (isLoading: boolean) => void;
@@ -22,16 +23,12 @@ interface CreateWalletState {
   setFakeBalance: () => void;
   resetState: () => void;
   setShowPublicKey: (isSeedPhraseCorrect: boolean) => void;
+  generateSeedPhrase: () => void;
+  getUserPublicKey: (mnemonic: string) => web3.PublicKey;
+  getUserPublicKeyString: (mnemonic: string) => string;
 }
 
-// utils
-export const getUserPublicKey = (mnemonic: string) => {
-  const seed = bip39.mnemonicToSeedSync(mnemonic, "");
-  const keypair = web3.Keypair.fromSeed(seed.slice(0, 32));
-  return keypair.publicKey;
-};
-
-export const useCreateWalletStore = create<CreateWalletState>()(
+export const useCreateSolWalletStore = create<CreateWalletState>()(
   devtools(
     persist(
       (set, get) => ({
@@ -41,28 +38,45 @@ export const useCreateWalletStore = create<CreateWalletState>()(
         isLoading: false,
         fakeBalance: 0,
         showPublicKey: false,
+        publickey: "",
+        setPublicKey: (publickey: string) => set({ publickey }),
         setLoader: (isLoading: boolean) => set({ isLoading }),
         setError: (error?: WalltetErrors) => set({ error }),
         setFakeBalance: () => {
           set({ fakeBalance: get().fakeBalance + 1 });
           // get().setError();
         },
-        setSeedPhrase: (deets) => {
-          set(() => ({ seedPhrase: deets }));
+        generateSeedPhrase: () => {
+          const mnemonic = bip39.generateMnemonic();
+          set(() => ({ seedPhrase: mnemonic }));
+          const publicKey = get().getUserPublicKeyString(mnemonic);
+          set(() => ({ publickey: publicKey }));
           get().resetState();
         },
         setBalance: async () => {
           let connection = new web3.Connection(web3.clusterApiUrl("testnet"));
           const mnemonic = get().seedPhrase;
-          let balance = await connection.getBalance(getUserPublicKey(mnemonic));
+          let balance = await connection.getBalance(
+            get().getUserPublicKey(mnemonic)
+          );
           console.log({ balance });
           set({ balance: balance });
+        },
+        getUserPublicKeyString: (mnemonic: string) => {
+          const seed = bip39.mnemonicToSeedSync(mnemonic, "");
+          const keypair = web3.Keypair.fromSeed(seed.slice(0, 32));
+          return keypair.publicKey.toString();
+        },
+        getUserPublicKey: (mnemonic: string) => {
+          const seed = bip39.mnemonicToSeedSync(mnemonic, "");
+          const keypair = web3.Keypair.fromSeed(seed.slice(0, 32));
+          return keypair.publicKey;
         },
         airdropTokenIntoWallet: async () => {
           get().setLoader(true);
           let connection = new web3.Connection(web3.clusterApiUrl("devnet"));
           const mnemonic = get().seedPhrase;
-          const publicKey = getUserPublicKey(mnemonic);
+          const publicKey = get().getUserPublicKey(mnemonic);
           try {
             const tx = await connection.requestAirdrop(
               publicKey,
@@ -98,7 +112,7 @@ export const useCreateWalletStore = create<CreateWalletState>()(
         },
       }),
       {
-        name: "user-wallet-storage",
+        name: "user-sol-wallet-storage",
       }
     )
   )

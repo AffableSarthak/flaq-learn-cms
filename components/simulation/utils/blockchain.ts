@@ -113,10 +113,10 @@ export const getBlockchainData = () => {
       simulations: [
         {
           name: "Create Wallet",
-          link: "algorand/create-wallet",
+          link: "ethereum/create-wallet",
           icon: walletIcon,
           badgeText: "Basic",
-          isActive: false,
+          isActive: true,
         },
         {
           name: "Transfer Cryptocurrencies",
