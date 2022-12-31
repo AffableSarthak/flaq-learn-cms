@@ -31,7 +31,6 @@ const ScoreCard = ({
   questionList: Array<IQuestion>;
   retakeQuiz: (questions: Array<IQuestion>) => void;
 }) => {
-  // const [currentScore, setCurrentScore] = useState<number>(0);
   const [showNFT, setShowNFT] = useState(0);
   const { allQuiz, markCompleted, addQuiz, isClaimed, setScore, getCurrentScore } = useQuizStore();
   const currentScore = getCurrentScore(questionList[0].category, allQuiz)

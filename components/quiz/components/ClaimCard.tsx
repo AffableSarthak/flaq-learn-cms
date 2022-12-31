@@ -55,7 +55,6 @@ const ClaimCard = ({ questionList }: Props) => {
           duration: 4000,
           isClosable: true,
         });
-        console.log(err);
       });
   };
 
