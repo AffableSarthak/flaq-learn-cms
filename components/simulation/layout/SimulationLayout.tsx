@@ -11,7 +11,6 @@ import {
   Text,
   Image,
   useDisclosure,
-  Show,
 } from "@chakra-ui/react";
 import React, { useCallback, useEffect } from "react";
 import Footer from "../../common/Footer";
@@ -26,7 +25,7 @@ import demoSimulationImg from "../../../public/img/simulations/demo-simulation-i
 
 function SimulationLayout(props: SimulationPageType) {
   const { simulationData, blockchain } = props;
-  console.log(blockchain);
+
   // State for the current simulation.
   const [cardData, setCard] = React.useState<CardDataType>({
     currentSimulation: simulationData[0],
@@ -55,7 +54,7 @@ function SimulationLayout(props: SimulationPageType) {
   }, [cardData]);
 
   return (
-    <Box position={'relative'} maxWidth={"100%"} bg="#040F03">
+    <Box position={"relative"} maxWidth={"100%"} bg="#040F03">
       <Box fontFamily={"Nunito Sans"} minH="100vh" bg="#040F03 ">
         {/* <Button onClick={() => onOpen()}>Open</Button> */}
         <Drawer
@@ -135,7 +134,6 @@ const SidebarContent = ({
   simulationHeader,
   ...rest
 }: SidebarProps) => {
-  console.log(simulationHeader);
   return (
     <Box
       transition="3s ease"
@@ -169,7 +167,12 @@ const SidebarContent = ({
       {simulationData.map((simulation, index) => {
         return (
           <>
-            <Box my="6" onClick={() => setCardData(index)} cursor="pointer">
+            <Box
+              my="6"
+              onClick={() => setCardData(index)}
+              cursor="pointer"
+              key={index}
+            >
               {cardData.currentSimulationIndex === index ? (
                 <HStack gap="2">
                   <Box>

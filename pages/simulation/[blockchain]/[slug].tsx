@@ -1,6 +1,10 @@
+import { GetServerSidePropsContext } from "next";
 import React, { useEffect, useState } from "react";
 import SimulationLayout from "../../../components/simulation/layout/SimulationLayout";
-import { SimulationPageType } from "../../../components/simulation/types";
+import {
+  Blockchains,
+  SimulationPageType,
+} from "../../../components/simulation/types";
 import { getSimulationData } from "../../../components/simulation/utils/data";
 
 const CreateWalletSimulationPage = ({
@@ -29,7 +33,11 @@ const CreateWalletSimulationPage = ({
   );
 };
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(
+  context: GetServerSidePropsContext & {
+    query: { slug: string; blockchain: Blockchains };
+  }
+) {
   const { slug, blockchain } = context.query;
   const simulationData = getSimulationData(slug, blockchain);
 

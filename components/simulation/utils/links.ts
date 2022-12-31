@@ -25,6 +25,11 @@ const links: Links = {
   "MyAlgop wallet": "https://wallet.myalgo.com/new-account",
   "Pera wallet": "https://perawallet.app/",
   "Trust wallet": "https://trustwallet.com/algorand-wallet/",
+  "wallets on the Ethereum chain":
+    "https://ethereum.org/en/wallets/find-wallet/",
+  "MetaMask wallet here": "https://metamask.io/download/",
+  "Frontier wallet here": "https://www.frontier.xyz/download",
+  "Argent wallet here": "https://www.argent.xyz/",
 };
 
 export default links;

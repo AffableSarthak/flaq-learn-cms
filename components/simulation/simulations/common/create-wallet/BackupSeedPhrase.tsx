@@ -1,29 +1,31 @@
-import { Box, Button, Center, Flex, Text, useToast } from '@chakra-ui/react'
-import React from 'react'
-import { useCreateWalletStore } from '../../../store/solana/create-wallet'
+import { Box, Button, Center, Flex, Text, useToast } from "@chakra-ui/react";
+import React from "react";
 
-function BackupSeedPhrase() {
-  const seedPhrase = useCreateWalletStore((state) => state.seedPhrase)
+interface BackupSeedPhraseProps {
+  seedPhrase: string;
+}
 
-  const toast = useToast()
+function BackupSeedPhrase(props: BackupSeedPhraseProps) {
+  const { seedPhrase } = props;
+  const toast = useToast();
   return (
     <Box>
       {seedPhrase.length !== 0 ? (
         <Flex
-          flexDirection={'column'}
+          flexDirection={"column"}
           justifyContent="center"
-          alignItems={'center'}
+          alignItems={"center"}
           gap={{ base: 2, md: 4 }}
-          margin={'auto'}
+          margin={"auto"}
         >
           <Box
             my="4"
             style={{
-              borderImage: 'linear-gradient(60deg, #a6ebc9, #005704)',
+              borderImage: "linear-gradient(60deg, #a6ebc9, #005704)",
               borderImageSlice: 1,
             }}
             border="1px solid transparent"
-            maxW={'350px'}
+            maxW={"350px"}
             textAlign="center"
             fontSize="xl"
             px="8"
@@ -34,18 +36,18 @@ function BackupSeedPhrase() {
           <Box>
             <Button
               onClick={() => {
-                navigator.clipboard.writeText(seedPhrase)
+                navigator.clipboard.writeText(seedPhrase);
                 toast({
                   title: `Copied to clipboard`,
-                  status: 'success',
+                  status: "success",
                   isClosable: true,
                   description:
-                    'You can now paste it in a secure location or write it down because you’ll need to back it up to verify it and create your wallet!',
+                    "You can now paste it in a secure location or write it down because you’ll need to back it up to verify it and create your wallet!",
                   duration: 10000,
-                  position: 'top-right',
-                })
+                  position: "top-right",
+                });
               }}
-              variant={'primarybtn'}
+              variant={"primarybtn"}
             >
               Back Up Seed Phrase
             </Button>
@@ -59,7 +61,7 @@ function BackupSeedPhrase() {
         </Center>
       )}
     </Box>
-  )
+  );
 }
 
-export default BackupSeedPhrase
+export default BackupSeedPhrase;
