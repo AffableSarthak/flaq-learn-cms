@@ -85,7 +85,7 @@ const ScoreCard = ({
               Claim NFT
             </Button>
           )}{" "}
-          {currentScore <= 75 && isClaimed(questionList[0].category, allQuiz) && (
+          {currentScore <= 75 && (
             <Text textAlign={"center"} mb={10}>
               You need to score above 75% to claim your NFT. You can retake the
               quiz
