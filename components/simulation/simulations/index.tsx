@@ -27,17 +27,25 @@ const RenderSimulation = (props: SimulationProps) => {
 
   switch (blockchain) {
     case Blockchains.Solana:
-      return renderSolanaSimulation(simKey as SolanaSimulationKeys);
+      return <RenderSolanaSimulation simKey={simKey as SolanaSimulationKeys} />;
 
     case Blockchains.Algorand:
-      return renderAlgorandSimulation(simKey as AlgorandSimulationKeys);
+      return (
+        <RenderAlgorandSimulation simKey={simKey as AlgorandSimulationKeys} />
+      );
 
     case Blockchains.Ethereum:
-      return renderEthereumSimulation(simKey as EthereumSimulationKeys);
+      return (
+        <RenderEthereumSimulation simKey={simKey as EthereumSimulationKeys} />
+      );
   }
 };
 
-const renderSolanaSimulation = (simkey: SolanaSimulationKeys) => {
+const RenderSolanaSimulation = ({
+  simKey,
+}: {
+  simKey: SolanaSimulationKeys;
+}) => {
   const { seedPhrase, generateKey, publicKey } = useCreateSolWalletStore(
     (state) => ({
       seedPhrase: state.seedPhrase,
@@ -47,7 +55,7 @@ const renderSolanaSimulation = (simkey: SolanaSimulationKeys) => {
     shallow
   );
 
-  switch (simkey) {
+  switch (simKey) {
     case SolanaSimulationKeys.GenKeyPair:
       return <GenKeyPair seedPhrase={seedPhrase} generateKey={generateKey} />;
     case SolanaSimulationKeys.BackupSeedPhrase:
@@ -63,7 +71,11 @@ const renderSolanaSimulation = (simkey: SolanaSimulationKeys) => {
   }
 };
 
-const renderAlgorandSimulation = (simkey: AlgorandSimulationKeys) => {
+const RenderAlgorandSimulation = ({
+  simKey,
+}: {
+  simKey: AlgorandSimulationKeys;
+}) => {
   const { seedPhrase, publicKey, createWallet, isLoading } =
     useCreateAlgoWalletStore(
       (state) => ({
@@ -75,7 +87,7 @@ const renderAlgorandSimulation = (simkey: AlgorandSimulationKeys) => {
       shallow
     );
 
-  switch (simkey) {
+  switch (simKey) {
     case AlgorandSimulationKeys.GenAccount:
       return <GenKeyPair seedPhrase={seedPhrase} generateKey={createWallet} />;
     case AlgorandSimulationKeys.BackupSeedPhrase:
@@ -89,7 +101,11 @@ const renderAlgorandSimulation = (simkey: AlgorandSimulationKeys) => {
   }
 };
 
-const renderEthereumSimulation = (simkey: EthereumSimulationKeys) => {
+const RenderEthereumSimulation = ({
+  simKey,
+}: {
+  simKey: EthereumSimulationKeys;
+}) => {
   const { seedPhrase, generateKey, publicKey } = useCreateEthWalletStore(
     (state) => ({
       seedPhrase: state.seedPhrase,
@@ -99,7 +115,7 @@ const renderEthereumSimulation = (simkey: EthereumSimulationKeys) => {
     shallow
   );
 
-  switch (simkey) {
+  switch (simKey) {
     case EthereumSimulationKeys.GenKeyPair: {
       return <GenKeyPair seedPhrase={seedPhrase} generateKey={generateKey} />;
     }
