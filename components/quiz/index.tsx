@@ -35,6 +35,9 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
     const [currentQuestion, setCurrentQuestion] = useState<number>(-1);
     const [questionList, setQuestionList] = useState(questionsData.questions);
 
+    const { allQuiz, markCompleted, addQuiz, isClaimed, setScore, getCurrentScore } = useQuizStore();
+    const currentScore = getCurrentScore(questionList[0].category, allQuiz)
+
     const getUnAnswerdQuestions = () => {
         return questionList.findIndex((question) => question.selectedOption === -1);
     };
@@ -95,6 +98,7 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
         );
         setQuestionList(updatedQuestions);
         setCurrentQuestion(-1);
+        setScore(questionList[0].category, 0);
     }
 
     return (
@@ -159,7 +163,7 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
                     mt={6}
                     minH='80vh'
                 >
-                    {questionList.length === currentQuestion ? (
+                    {questionList.length === currentQuestion || currentScore > 0 ? (
                         <ScoreCard
                             questionList={questionList}
                             retakeQuiz={retakeQuiz}

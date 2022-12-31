@@ -12,6 +12,7 @@ interface IQuizAllStore {
   markCompleted: (category: string) => void;
   markClaimed: (category: string) => void;
   isClaimed: (category: string, allQuiz: Array<IQuestionSet>) => boolean;
+  getCurrentScore: (category: string, allQuiz: Array<IQuestionSet>) => number;
   setScore: (category: string, score: number) => void;
 }
 
@@ -34,6 +35,11 @@ export const useQuizStore = create<IQuizAllStore>()(
           const quiz = allQuiz.find((q) => q.category === category);
           if (!quiz) return false;
           return quiz.claimed;
+        },
+        getCurrentScore: (category: string, allQuiz: Array<IQuestionSet>) => {
+          const quiz = allQuiz.find((q) => q.category === category);
+          if (!quiz) return 0;
+          return quiz.score;
         },
 
         // find by id and mark completed

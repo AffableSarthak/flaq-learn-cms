@@ -31,18 +31,12 @@ const ScoreCard = ({
   questionList: Array<IQuestion>;
   retakeQuiz: (questions: Array<IQuestion>) => void;
 }) => {
-  const [currentScore, setCurrentScore] = useState<number>(0);
+  // const [currentScore, setCurrentScore] = useState<number>(0);
   const [showNFT, setShowNFT] = useState(0);
-  const { allQuiz, markCompleted, addQuiz, isClaimed, setScore } = useQuizStore();
-
-  function getCurrentScore(category: string) {
-    const quiz = allQuiz.find((q) => q.category === category);
-    if (!quiz) return 0;
-    setCurrentScore(quiz.score);
-  }
+  const { allQuiz, markCompleted, addQuiz, isClaimed, setScore, getCurrentScore } = useQuizStore();
+  const currentScore = getCurrentScore(questionList[0].category, allQuiz)
 
   useEffect(() => {
-    getCurrentScore(questionList[0].category);
     addQuiz({
       category: questionList[0].category,
       completed: false,
