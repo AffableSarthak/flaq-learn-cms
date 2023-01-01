@@ -1,13 +1,13 @@
-import { Box, Button, Center, Divider, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Flex, Text } from "@chakra-ui/react";
 import React from "react";
-import { renderSimulation } from "../../simulations";
-import { CardDataType } from "../../types";
+import RenderSimulation from "../../simulations";
+import { Blockchains, CardDataType } from "../../types";
 import RenderBlock from "./RenderBlock";
 
 type Props = {
   cardData: CardDataType;
   setCardData: (index: number) => void;
-  blockchain: string;
+  blockchain: Blockchains;
 };
 
 const SimulationCard = ({ cardData, setCardData, blockchain }: Props) => {
@@ -41,7 +41,14 @@ const SimulationCard = ({ cardData, setCardData, blockchain }: Props) => {
             <Box>{<RenderBlock block={block} />}</Box>
 
             {/* Simulation */}
-            <> {simKey ? renderSimulation(simKey, blockchain) : <></>}</>
+            <>
+              {" "}
+              {simKey ? (
+                <RenderSimulation simKey={simKey} blockchain={blockchain} />
+              ) : (
+                <></>
+              )}
+            </>
           </Box>
           <Box>
             {/* Nav */}

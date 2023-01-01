@@ -1,18 +1,18 @@
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
+import * as algosdk from "algosdk";
 
 interface CreateWalletState {
   isLoading: boolean;
   seedPhrase: string;
   publicKey: string;
   showPublicKey: boolean;
-  setSeedPhrase: (seedPhrase: string) => void;
-  setPublicKey: (publicKey: string) => void;
+  createWallet: () => void;
   setLoader: (isLoading: boolean) => void;
   setShowPublicKey: (isSeedPhraseCorrect: boolean) => void;
 }
 
-export const useCreateWalletStore = create<CreateWalletState>()(
+export const useCreateAlgoWalletStore = create<CreateWalletState>()(
   devtools(
     persist(
       (set, get) => ({
@@ -21,11 +21,19 @@ export const useCreateWalletStore = create<CreateWalletState>()(
         publicKey: "",
         showPublicKey: false,
         setLoader: (isLoading: boolean) => set({ isLoading }),
-        setSeedPhrase: (deets) => {
-          set(() => ({ seedPhrase: deets }));
-        },
-        setPublicKey: (deets) => {
-          set(() => ({ publicKey: deets }));
+        createWallet: () => {
+          try {
+            get().setLoader(true);
+            const myaccount = algosdk.generateAccount();
+            const publicKey = myaccount.addr;
+            const account_mnemonic = algosdk.secretKeyToMnemonic(myaccount.sk);
+            set({ publicKey: publicKey });
+            set({ seedPhrase: account_mnemonic });
+          } catch (err) {
+            console.log("err", err);
+          } finally {
+            get().setLoader(false);
+          }
         },
         setShowPublicKey: (isSeedPhraseCorrect: boolean) => {
           set({ showPublicKey: isSeedPhraseCorrect });

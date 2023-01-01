@@ -58,7 +58,9 @@ function RenderBlock({ block }: { block: BlockType[] }) {
         <Flex flexDirection={"column"} gap={2} key={index}>
           <Box>{blockTitle ? renderBlockTitle(blockTitle) : <></>}</Box>
           <Box>{paraBlock ? <RenderParaBlock block={paraBlock} /> : <></>}</Box>
-          <Box>{listBlock ? <RenderListBlock block={listBlock} /> : <></>}</Box>
+          <Box key={index}>
+            {listBlock ? <RenderListBlock block={listBlock} /> : <></>}
+          </Box>
           <Box>
             {accordianBlock ? (
               <RenderAccordianBlock block={accordianBlock} />

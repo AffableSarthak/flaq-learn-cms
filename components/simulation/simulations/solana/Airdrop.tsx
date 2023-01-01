@@ -1,8 +1,4 @@
-import React from 'react'
-import {
-  getUserPublicKey,
-  useCreateWalletStore,
-} from '../../../store/solana/create-wallet'
+import React from "react";
 
 import {
   Box,
@@ -13,8 +9,9 @@ import {
   Hide,
   Text,
   useToast,
-} from '@chakra-ui/react'
-import shallow from 'zustand/shallow'
+} from "@chakra-ui/react";
+import shallow from "zustand/shallow";
+import { useCreateSolWalletStore } from "../../store/solana/createSolWalletStore";
 
 function Airdrop() {
   const {
@@ -25,7 +22,8 @@ function Airdrop() {
     isLoading,
     fakeAirdrop,
     fakeBalance,
-  } = useCreateWalletStore(
+    publicKey,
+  } = useCreateSolWalletStore(
     (state) => ({
       seedPhrase: state.seedPhrase,
       airdropTokenIntoWallet: state.airdropTokenIntoWallet,
@@ -34,15 +32,16 @@ function Airdrop() {
       isLoading: state.isLoading,
       fakeAirdrop: state.setFakeBalance,
       fakeBalance: state.fakeBalance,
+      publicKey: state.publickey,
     }),
-    shallow,
-  )
+    shallow
+  );
 
-  const toast = useToast()
+  const toast = useToast();
 
   const isUserDataAvailable = () => {
-    return seedPhrase.length !== 0
-  }
+    return seedPhrase.length !== 0;
+  };
 
   return (
     <Box>
@@ -50,17 +49,17 @@ function Airdrop() {
         <>
           <Center my="8">
             <Button
-              variant={'primarybtn'}
+              variant={"primarybtn"}
               onClick={async () => {
-                await airdropTokenIntoWallet()
+                await airdropTokenIntoWallet();
                 toast({
-                  title: 'Success',
-                  description: 'Airdrop successful',
-                  status: 'success',
+                  title: "Success",
+                  description: "Airdrop successful",
+                  status: "success",
                   duration: 4000,
                   isClosable: true,
-                  position: 'top-right',
-                })
+                  position: "top-right",
+                });
               }}
               isLoading={isLoading}
               loadingText="Bling Bling on your way!"
@@ -78,28 +77,28 @@ function Airdrop() {
           </Center>
 
           <Flex
-            borderWidth={'0.5px'}
+            borderWidth={"0.5px"}
             borderColor="whiteAlpha.200"
             borderRadius="2xl"
             p={2}
             mt={4}
-            flexDirection={{ base: 'column', md: 'column', lg: 'row' }}
+            flexDirection={{ base: "column", md: "column", lg: "row" }}
             gap={{ md: 4 }}
           >
             <Flex
-              flexDirection={'column'}
+              flexDirection={"column"}
               justifyContent="center"
-              alignItems={'center'}
+              alignItems={"center"}
               gap={{ base: 2, md: 4 }}
-              margin={'auto'}
+              margin={"auto"}
             >
               <Box>
-                <Text fontFamily={'Druk Wide Bold '}>Your Public key</Text>
+                <Text fontFamily={"Druk Wide Bold "}>Your Public key</Text>
               </Box>
 
-              <Box maxW={{ base: '30ex', md: 'none' }}>
-                <Text as="samp" px="2" textAlign={'center'} color="#a6ebc9">
-                  {getUserPublicKey(seedPhrase).toString()}
+              <Box maxW={{ base: "30ex", md: "none" }}>
+                <Text as="samp" px="2" textAlign={"center"} color="#a6ebc9">
+                  {publicKey}
                 </Text>
               </Box>
               {/* <Box>
@@ -118,19 +117,19 @@ function Airdrop() {
               <Divider orientation="vertical" height="23ex" m="4" />
             </Hide>
             <Hide above="md">
-              <Divider orientation="horizontal" width={'90%'} m="4" />
+              <Divider orientation="horizontal" width={"90%"} m="4" />
             </Hide>
             <Flex
-              flexDirection={'column'}
+              flexDirection={"column"}
               justifyContent="center"
-              alignItems={'center'}
+              alignItems={"center"}
               gap={{ base: 2, md: 4 }}
-              margin={'auto'}
+              margin={"auto"}
             >
               <Box>
-                <Text fontFamily={'Druk Wide Bold '}>Your Balance</Text>
+                <Text fontFamily={"Druk Wide Bold "}>Your Balance</Text>
               </Box>
-              <Box maxW={{ base: '70vw' }}>
+              <Box maxW={{ base: "70vw" }}>
                 <Text as="samp" px="2">
                   {fakeBalance} SOL
                 </Text>
@@ -140,13 +139,13 @@ function Airdrop() {
         </>
       ) : (
         <Box>
-          <Text color="#a6ebc9" textAlign={'center'}>
+          <Text color="#a6ebc9" textAlign={"center"}>
             Create a wallet to get your secret recovery phrase in previous step
           </Text>
         </Box>
       )}
     </Box>
-  )
+  );
 }
 
-export default Airdrop
+export default Airdrop;

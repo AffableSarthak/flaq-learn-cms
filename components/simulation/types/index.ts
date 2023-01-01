@@ -1,3 +1,9 @@
+export enum EthereumSimulationKeys {
+  GenKeyPair = "genKeyPair",
+  BackupSeedPhrase = "backupSeedPhrase",
+  ShowcasePublicKey = "showcasePublicKey",
+}
+
 export enum SolanaSimulationKeys {
   GenKeyPair = "genKeyPair",
   BackupSeedPhrase = "backupSeedPhrase",
@@ -14,6 +20,7 @@ export enum AlgorandSimulationKeys {
 export enum Blockchains {
   Solana = "solana",
   Algorand = "algorand",
+  Ethereum = "ethereum",
 }
 
 export interface CardDataType {
@@ -34,7 +41,10 @@ export interface ListType {
   head: string;
   body: BodyType[];
   image?: string;
-  simKey?: SolanaSimulationKeys | AlgorandSimulationKeys;
+  simKey?:
+    | SolanaSimulationKeys
+    | AlgorandSimulationKeys
+    | EthereumSimulationKeys;
 }
 
 export interface SimulationType {
@@ -47,13 +57,16 @@ export interface SimulationType {
 export interface SimulationPageType {
   simulationData: SimulationBlockType[];
   simulationHeader: string;
-  blockchain: string;
+  blockchain: Blockchains;
 }
 
 export interface SimulationBlockType {
   title: string; // main header
   block: BlockType[];
-  simKey?: SolanaSimulationKeys | AlgorandSimulationKeys;
+  simKey?:
+    | SolanaSimulationKeys
+    | AlgorandSimulationKeys
+    | EthereumSimulationKeys;
 }
 
 export interface BlockType {
