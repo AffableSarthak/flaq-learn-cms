@@ -9,7 +9,6 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import Link from "next/link";
 import React, { useState } from "react";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
@@ -17,8 +16,6 @@ import { introData, IQuestion, IQuestionsData } from "./data";
 import { useRouter } from "next/router";
 import ScoreCard from "./components/ScoreCard";
 import IntroductionCard from "./components/IntroductionCard";
-import { category_utils } from "../blog/utils/blogUtils";
-import categoryInfo from "../blog/data/categoryInfo";
 import {
   HiOutlineArrowNarrowLeft,
   HiOutlineArrowNarrowRight,
@@ -38,14 +35,7 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(-1);
   const [questionList, setQuestionList] = useState(questionsData.questions);
 
-  const {
-    allQuiz,
-    markCompleted,
-    addQuiz,
-    isClaimed,
-    setScore,
-    getCurrentScore,
-  } = useQuizStore();
+  const { allQuiz, setScore, getCurrentScore } = useQuizStore();
   const currentScore = getCurrentScore(questionList[0].category, allQuiz);
 
   const getUnAnswerdQuestions = () => {
@@ -90,12 +80,6 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
     currentQuestion > -1 && setCurrentQuestion(currentQuestion - 1);
   };
 
-  const categoryTitle = category_utils(questionList[0]?.category).split(" ");
-
-  const desc = categoryInfo.find(
-    (a) => a.name.toLowerCase() === categoryTitle.join(" ").toLowerCase()
-  );
-
   function retakeQuiz(questionList: Array<IQuestion>) {
     const updatedQuestions: Array<IQuestion> = questionList.map((question) => {
       return {
@@ -139,7 +123,7 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
           as="h1"
         >
           <Highlight
-            query={categoryTitle[categoryTitle.length - 1]}
+            query={"Quiz"}
             styles={{
               color: "#70FFE9",
               my: "3",
@@ -147,11 +131,11 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
               fontWeight: "700",
             }}
           >
-            {categoryTitle.join(" ")}
+            {`Flaq's Level ${questionList[0].groupId} Quiz`}
           </Highlight>
         </Text>
         <Text color="gray" fontFamily={"Poppins"}>
-          {desc?.desc}
+          {`Quiz yourself on all you learnt in the level: ${questionList[0].category}`}
         </Text>
       </Box>
       <Box w={["full", "625px"]} px={4}>
@@ -183,6 +167,11 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
                     aria-label={""}
                     size="sm"
                   />
+                  {currentQuestion != -1 && (
+                    <Text color="#ffffff">
+                      {currentQuestion + 1} / {questionList.length}
+                    </Text>
+                  )}
                   <IconButton
                     onClick={(e) => {
                       handleNextQuestion();
@@ -279,24 +268,25 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
                         )}
                       </VStack>
                     </Box>
-                    <Link
-                      passHref
-                      href={(questionsData as any)[currentQuestion].needHelp}
+
+                    <ToolTip
+                      text="Read the Blog to find a solution to your question"
+                      isDark={true}
                     >
-                      <ToolTip
-                        text="Read the Blog to find a solution to your question"
-                        isDark={true}
+                      <Text
+                        color={"gray.500"}
+                        textDecoration={"underline"}
+                        cursor={"pointer"}
+                        w="fit-content"
                       >
-                        <Text
-                          color={"gray.500"}
-                          textDecoration={"underline"}
-                          cursor={"pointer"}
-                          w="fit-content"
+                        <a
+                          href={questionList[currentQuestion].needHelp}
+                          target="_blank"
                         >
                           Need help?
-                        </Text>
-                      </ToolTip>
-                    </Link>
+                        </a>
+                      </Text>
+                    </ToolTip>
                   </Box>
                 )}
               </Flex>

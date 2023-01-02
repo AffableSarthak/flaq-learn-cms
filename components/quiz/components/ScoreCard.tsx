@@ -32,8 +32,15 @@ const ScoreCard = ({
   retakeQuiz: (questions: Array<IQuestion>) => void;
 }) => {
   const [showNFT, setShowNFT] = useState(0);
-  const { allQuiz, markCompleted, addQuiz, isClaimed, setScore, getCurrentScore } = useQuizStore();
-  const currentScore = getCurrentScore(questionList[0].category, allQuiz)
+  const {
+    allQuiz,
+    markCompleted,
+    addQuiz,
+    isClaimed,
+    setScore,
+    getCurrentScore,
+  } = useQuizStore();
+  const currentScore = getCurrentScore(questionList[0].category, allQuiz);
 
   useEffect(() => {
     addQuiz({
@@ -43,7 +50,9 @@ const ScoreCard = ({
       score: currentScore,
     });
     if (currentScore === 0) {
-      checkScore(questionList).then((score) => setScore(questionList[0].category, score));
+      checkScore(questionList).then((score) =>
+        setScore(questionList[0].category, score)
+      );
     }
   }, []);
 
@@ -59,14 +68,32 @@ const ScoreCard = ({
         alignItems={"center"}
         p="2"
       >
-        <Text fontWeight={'700'} fontFamily={'Druk Wide Bold'} fontSize={['xl', '3xl']} mb={4}>You Scored</Text>
+        <Text
+          fontWeight={"700"}
+          fontFamily={"Druk Wide Bold"}
+          fontSize={["xl", "3xl"]}
+          mb={4}
+        >
+          You Scored
+        </Text>
         <CircularProgress
           value={currentScore}
           size="200px"
           color="#28CDB4"
           thickness="2px"
         >
-          <CircularProgressLabel bg='white' color='black' p={10} w={'fit-content'} fontSize='2xl' rounded={'full'} boxShadow={'2px 3px 14px rgba(112, 255, 233, 0.5)'} fontWeight='600'>{currentScore.toFixed(0)}%</CircularProgressLabel>
+          <CircularProgressLabel
+            bg="white"
+            color="black"
+            p={10}
+            w={"fit-content"}
+            fontSize="2xl"
+            rounded={"full"}
+            boxShadow={"2px 3px 14px rgba(112, 255, 233, 0.5)"}
+            fontWeight="600"
+          >
+            {currentScore.toFixed(0)}%
+          </CircularProgressLabel>
         </CircularProgress>
         <Flex direction={"column"} my="2">
           {isClaimed(questionList[0].category, allQuiz) && (
@@ -74,20 +101,27 @@ const ScoreCard = ({
               NFT is Already Claimed
             </Text>
           )}
-          {currentScore > 75 && !isClaimed(questionList[0].category, allQuiz) && (
-            <Button
-              my="2"
-              onClick={(e) => {
-                setShowNFT(1);
-              }}
-            >
-              Claim NFT
-            </Button>
-          )}{" "}
+          {currentScore > 75 &&
+            !isClaimed(questionList[0].category, allQuiz) && (
+              <Button
+                my="2"
+                onClick={(e) => {
+                  setShowNFT(1);
+                }}
+              >
+                Claim NFT
+              </Button>
+            )}{" "}
           {currentScore <= 75 && (
             <Text textAlign={"center"} mb={10}>
-              You need to score above 75% to claim your NFT. You can retake the
-              quiz
+              "You can retake the quiz and try again!" <br />
+              Tip - Read all of the articles under{" "}
+              <a href="https://learn.flaq.club/" target="_blank">
+                <Text as="samp" color={"#6fffe9"} className="notion-link">
+                  {questionList[0].category}
+                </Text>
+              </a>{" "}
+              to ace the quiz.
             </Text>
           )}
           <Button
@@ -96,17 +130,14 @@ const ScoreCard = ({
               retakeQuiz(questionList);
             }}
             my="2"
-            colorScheme={'white'}
-            bg='white'
-            color={'black'}
-            border={'1px'}
-            borderColor={'#70FFE9'}
+            colorScheme={"white"}
+            bg="white"
+            color={"black"}
+            border={"1px"}
+            borderColor={"#70FFE9"}
           >
             Retake Quiz
           </Button>
-          {/* <Button onClick={() => markCompleted(questionList[0].category)}>
-            Test
-          </Button> */}
         </Flex>
       </Box>
     );
