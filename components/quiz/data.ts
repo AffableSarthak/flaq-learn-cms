@@ -11,6 +11,9 @@ export interface IQuestion {
   needHelp: string;
 }
 export interface IQuestionsData {
+  length: number;
+  findIndex(arg0: (question: any) => boolean): unknown;
+  filter(arg0: (question: any) => boolean): unknown;
   id: string;
   questions: Array<IQuestion>;
   thresholdPercent: number;

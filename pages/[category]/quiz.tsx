@@ -10,7 +10,7 @@ import {
 import { IQuestionsData, IQuestion } from "../../components/quiz/data";
 import getQuizData from "../../src/utils/quizUtils";
 
-const DynamicQuizWithNoSSR = dynamic(() => import("../../components/quiz"), {
+const DynamicQuizWithNoSSR = dynamic(() => import("../../components/quiz/index"), {
   ssr: false,
 });
 interface Props {
@@ -55,7 +55,7 @@ export async function getServerSideProps(context: any) {
       questionsData: {
         ...questionsData,
         questions: questionsData.map((data: IQuestion) => {
-          delete data.answer;
+          // delete data.answer;
           return data;
         }),
       },

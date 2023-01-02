@@ -8,8 +8,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import React from "react";
-import logo from "../../../public/img/logo.svg";
-import useAllQuizStore from "../completionStore";
+import useQuizStore from "../store";
 import { IQuestion } from "../data";
 type Props = {
   questionList: Array<IQuestion>;
@@ -23,10 +22,9 @@ const ClaimCard = ({ questionList }: Props) => {
   });
   const toast = useToast();
   const { allQuiz, markCompleted, addQuiz, isClaimed, markClaimed } =
-    useAllQuizStore();
+    useQuizStore();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
     const data = await fetch(
       "https://mailer-three.vercel.app/api/submit-quiz",
       {
@@ -57,9 +55,7 @@ const ClaimCard = ({ questionList }: Props) => {
           duration: 4000,
           isClosable: true,
         });
-        console.log(err);
       });
-    console.log(data);
   };
 
   return (
