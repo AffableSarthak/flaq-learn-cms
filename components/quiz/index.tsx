@@ -282,6 +282,7 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
                         <a
                           href={questionList[currentQuestion].needHelp}
                           target="_blank"
+                          rel="noreferrer"
                         >
                           Need help?
                         </a>

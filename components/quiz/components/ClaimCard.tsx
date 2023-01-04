@@ -131,11 +131,15 @@ const ClaimCard = ({ questionList }: Props) => {
             </Text>
 
             <Text textAlign={"center"} mb={10}>
-              <a href="https://learn.flaq.club/" target="_blank">
+              <a
+                href="https://learn.flaq.club/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Text as="samp" color={"#6fffe9"} className="notion-link">
                   Let's learn the next level now!
                 </Text>
-              </a>{" "}
+              </a>
             </Text>
           </Box>
         </Center>

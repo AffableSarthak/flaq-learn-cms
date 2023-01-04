@@ -114,9 +114,13 @@ const ScoreCard = ({
             )}{" "}
           {currentScore <= 75 && (
             <Text textAlign={"center"} mb={10}>
-              "You can retake the quiz and try again!" <br />
+              You can retake the quiz and try again! <br />
               Tip - Read all of the articles under{" "}
-              <a href="https://learn.flaq.club/" target="_blank">
+              <a
+                href="https://learn.flaq.club/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Text as="samp" color={"#6fffe9"} className="notion-link">
                   {questionList[0].category}
                 </Text>
