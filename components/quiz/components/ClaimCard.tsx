@@ -133,7 +133,7 @@ const ClaimCard = ({ questionList }: Props) => {
             <Text textAlign={"center"} mb={10}>
               <a href="https://learn.flaq.club/" target="_blank">
                 <Text as="samp" color={"#6fffe9"} className="notion-link">
-                  Go back to Learn!
+                  Let's learn the next level now!
                 </Text>
               </a>{" "}
             </Text>
