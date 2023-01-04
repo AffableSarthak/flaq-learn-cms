@@ -7,7 +7,7 @@ import {
   useToast,
   Center,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import useQuizStore from "../store";
 import { IQuestion } from "../data";
 type Props = {
@@ -21,10 +21,12 @@ const ClaimCard = ({ questionList }: Props) => {
     groupId: `${questionList[0].groupId}`,
   });
   const toast = useToast();
+  const [isLoading, setIsLoading] = useState(false);
   const { allQuiz, markCompleted, addQuiz, isClaimed, markClaimed } =
     useQuizStore();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setIsLoading(true);
     e.preventDefault();
     const data = await fetch(
       "https://mailer-three.vercel.app/api/submit-quiz",
@@ -56,7 +58,15 @@ const ClaimCard = ({ questionList }: Props) => {
           duration: 4000,
           isClosable: true,
         });
+      })
+      .finally(() => {
+        setFormData({
+          email: "",
+          name: "",
+          groupId: `${questionList[0].groupId}`,
+        });
       });
+    setIsLoading(false);
   };
 
   return (
@@ -105,7 +115,13 @@ const ClaimCard = ({ questionList }: Props) => {
                 my="3"
                 type="text"
               />
-              <Button mt="3" type="submit" w="full">
+              <Button
+                mt="3"
+                type="submit"
+                w="full"
+                isLoading={isLoading}
+                loadingText="Generating NFT! 🤖"
+              >
                 Claim
               </Button>
             </Flex>

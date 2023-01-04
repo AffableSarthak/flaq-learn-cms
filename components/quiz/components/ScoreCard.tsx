@@ -83,13 +83,8 @@ const ScoreCard = ({
           thickness="2px"
         >
           <CircularProgressLabel
-            bg="white"
-            color="black"
-            p={10}
             w={"fit-content"}
             fontSize="2xl"
-            rounded={"full"}
-            boxShadow={"2px 3px 14px rgba(112, 255, 233, 0.5)"}
             fontWeight="600"
           >
             {currentScore.toFixed(0)}%
@@ -98,7 +93,7 @@ const ScoreCard = ({
         <Flex direction={"column"} my="2">
           {isClaimed(questionList[0].category, allQuiz) && (
             <Text my="8" textAlign={"center"}>
-              NFT is Already Claimed
+              NFT Already Claimed
             </Text>
           )}
           {currentScore > 75 &&
