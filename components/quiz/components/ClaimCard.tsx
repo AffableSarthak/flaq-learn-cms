@@ -137,7 +137,7 @@ const ClaimCard = ({ questionList }: Props) => {
                 rel="noreferrer"
               >
                 <Text as="samp" color={"#6fffe9"} className="notion-link">
-                  Let's learn the next level now!
+                  {`Let's learn the next level now!`}
                 </Text>
               </a>
             </Text>
