@@ -1,5 +1,5 @@
 import React from 'react'
-import Transaction from '../components/common/transaction'
+import Transaction from '../components/simulation/simulations/common/transaction'
 
 export default function TransactionPage() {
     return (

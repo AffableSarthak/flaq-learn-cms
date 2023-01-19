@@ -16,9 +16,9 @@ import { useCreateAlgoWalletStore } from "../store/algorand/createAlgoWalletStor
 
 export interface SimulationProps {
   simKey:
-    | SolanaSimulationKeys
-    | AlgorandSimulationKeys
-    | EthereumSimulationKeys;
+  | SolanaSimulationKeys
+  | AlgorandSimulationKeys
+  | EthereumSimulationKeys;
   blockchain: Blockchains;
 }
 

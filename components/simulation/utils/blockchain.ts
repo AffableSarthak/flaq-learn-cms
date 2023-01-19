@@ -24,10 +24,10 @@ export const getBlockchainData = () => {
         },
         {
           name: "Transfer Cryptocurrencies",
-          link: "solana/create-wallet",
+          link: "solana/transfer-crypto",
           icon: swapIcon,
           badgeText: "Basic",
-          isActive: false,
+          isActive: true,
         },
         {
           name: "Mint an NFT",

@@ -14,7 +14,7 @@ export default function Dashboard() {
                         <Box w={1} h={1} bg='#858585' mx={2}></Box>
                         <Text fontWeight='semibold' fontFamily={'Poppins'} color='black'>A1ToX...38ksAz</Text>
                     </HStack>
-                    <Box>
+                    <Box cursor={'pointer'}>
                         <IoCloseOutline fontSize={'24px'} color='black' />
                     </Box>
                 </HStack>
