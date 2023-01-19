@@ -25,7 +25,6 @@ import demoSimulationImg from "../../../public/img/simulations/demo-simulation-i
 
 function SimulationLayout(props: SimulationPageType) {
   const { simulationData, blockchain } = props;
-
   // State for the current simulation.
   const [cardData, setCard] = React.useState<CardDataType>({
     currentSimulation: simulationData[0],

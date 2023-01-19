@@ -62,7 +62,7 @@ export const introData = [
   {
     id: "Dive-Into-Web3",
     content:
-      "Flaq's Level 1 Quiz This quiz comprises of 10 questions and will test your understanding of Level 1: Dive into Web3 . If you score 75% or more at the end of it, you'll be eligible for a completion NFT! All the best! Shoot your best shot. 🚀",
+      "This quiz comprises of 10 questions and will test your understanding of Level 1: Dive into Web3. If you score 75% or more at the end of it, you'll be eligible for a completion NFT! All the best! Shoot your best shot. 🚀",
   },
   {
     id: "NFT",

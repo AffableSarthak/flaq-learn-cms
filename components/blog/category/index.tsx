@@ -1,15 +1,8 @@
-import {
-  Box,
-  Container,
-  Grid,
-  Show,
-} from "@chakra-ui/react";
+import { Box, Container, Grid } from "@chakra-ui/react";
 import React from "react";
-import Image from "next/image";
 import { getBlogUrl } from "../../../src/utils/parse-properties";
 import Page404 from "../../fallback/Page404";
 import { category_utils, MenuListProps } from "../utils/blogUtils";
-import categoryInfo from "../data/categoryInfo";
 import Footer from "../../common/Footer";
 import Header from "../../common/Header";
 import BlogCard from "./BlogCard";
@@ -61,23 +54,14 @@ const CategoryPage = ({ BlogsByCategory }: Props) => {
                           .join("-")
                           .toLowerCase()
                           .split(" ")
-                          .join("-")}/${getBlogUrl(val.url)}`} />
+                          .join("-")}/${getBlogUrl(val.url)}`}
+                      />
                     );
                   })}
                 </>
               );
             })}
           </Grid>
-          {/* <Box
-            py="16"
-            display={"flex"}
-            flexDirection="row"
-            justifyContent={"flex-end"}
-          >
-            <Button bg="#1bd423">
-              <Link href={`${category.join("-")}/quiz`}>Take Quiz</Link>
-            </Button>
-          </Box> */}
         </Box>
       </Container>
       <Container px="0" maxW="100vw">
