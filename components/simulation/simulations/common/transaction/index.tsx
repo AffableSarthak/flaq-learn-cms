@@ -1,16 +1,38 @@
-import { Center, Stack } from '@chakra-ui/react'
 import Dashboard from './Dashboard'
-import Preview from './Preview'
-import TransactionForm from './TransactionForm'
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalBody,
+    Button,
+    useDisclosure,
+    Stack,
+    Center
+} from '@chakra-ui/react'
 
 export default function Transaction() {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
     return (
-        <Center h='100vh'>
-            <Stack w='375px' h='640px' bg='#0C0C0C'>
-                <Dashboard />
-                {/* <TransactionForm /> */}
-                {/* <Preview /> */}
-            </Stack >
+        <Center>
+            <Button variant={"primarybtn"} onClick={onOpen}>
+                Send SOL
+            </Button>
+            <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent p={0} w='fit-content' m={0}
+                    position={["fixed", "unset"]}
+                    bottom="0px"
+                    mb="0">
+                    <ModalBody p={0}>
+                        <Stack w='375px' h='640px' bg='#0C0C0C'>
+                            <Dashboard onClose={onClose} />
+                            {/* <TransactionForm /> */}
+                            {/* <Preview /> */}
+                        </Stack >
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
         </Center>
     )
 }

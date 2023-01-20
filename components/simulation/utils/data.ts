@@ -302,108 +302,54 @@ const getSolanaData = (
                 {
                   textItems: [
                     {
-                      text: "Gm. Please read ‘[[Wallet: Your Crypto Storage]]’ to gain a fundamental understanding of wallets.",
-                      linkItems: ["Wallet: Your Crypto Storage"],
+                      text: "Hi! Please read [[Cryptocurrencies - Your A to Z Guide]] and [[Tokens: The Basics Covered for You]] to gain a fundamental understanding of cryptocurrencies, and tokens.",
+                      linkItems: ["Cryptocurrencies - Your A to Z Guide", "Tokens: The Basics Covered for You"],
                     },
                   ],
                   paraTitle:
-                    "Prerequisites before you proceed with the wallet simulation",
+                    "Prerequisites before learning how to transfer crypto",
                 },
                 {
                   textItems: [
                     {
-                      text: "For doing almost anything in web3 - receiving payments in crypto, sending payments in crypto, swapping tokens, minting NFTs, you need a wallet. While you can have a [[cold wallet]], or a [[hot wallet]], we’ll simulate a hot wallet for you. Once you learn how to create a wallet and get used to the interface as well as the terminologies, it will be a cakewalk for you when you try to create an actual wallet on the Solana chain! 🍰 Take your first step into web3, with Flaq. 🚀",
-                      linkItems: ["cold wallet", "hot wallet"],
+                      text: "[[Gm]] gm! Now that you’ve learnt how to [[create your wallet]] on the Solana chain, it’s time to take the next step w Flaq - let’s see how transferring crypto works. How can you send crypto to your friend/employer/employee/relative/xyz? It’s simple. We’ll take you through a three-step interactive simulation that replicates the UI of transferring crypto on Solana, and you’ll master it! 🚀 Teeny tiny revision for you - everyone receives a public address after creating a wallet, just like you did - and that’s everyone’s digital identity! So, to try transferring crypto in a simulation, on the testnet network(where you won’t lose any real money), you will be entering the intended receiver’s public address and if your balance permits the transaction, it’ll happen like magic! 🪄",
+                      linkItems: ["Gm", "create your wallet"],
                     },
                   ],
-                  paraTitle: "Creating a wallet is the 1st step to web3",
+                  paraTitle: "Let’s see how transferring crypto works now!",
                 },
               ],
             },
           ],
         },
-        // 2. Create Wallet
+        // 2. Send some SOL
         {
-          title: "Create your first wallet ever!",
+          title: "Send some SOL",
           block: [
             {
-              blockTitle: "What are the elements of creating a wallet?",
-              listBlock: [
+              paraBlock: [
                 {
-                  listTitle: "A wallet has 3 primary unavoidable elements",
                   textItems: [
                     {
-                      text: "[[seed phrase]] - A unique series of 12-24 words created by your wallet that lets you access the crypto linked to that wallet. When is this revealed? The creation and verification of a seed phrase is the road to creating your wallet. (don’t share this with anyone, save it somewhere secure! 🔐)",
-                      linkItems: ["seed phrase"],
-                    },
-                    {
-                      text: "[[public key]] - a [[cryptographic]] code that enables users to accept crypto into their accounts. Ex - 0x41B...BA34 (a string of numbers and letters 🧵). When is this revealed? After you create your wallet, you can use this public key as your identity! (you can share this! 🔓)",
-                      linkItems: ["public key", "cryptographic"],
-                    },
-                    {
-                      text: "[[private key]] - your private key acts as a password that will unlock the transaction. When is this revealed? This is accessible after your wallet is created. (don’t share this with anyone! 🔐)",
-                      linkItems: ["private key"],
+                      text: "But I barely have any SOL? Dw, we got u! Let’s start by giving you a fixed balance of 20 SOL! Now, you can test out how to transfer crypto by ‘sending’ your crypto to a sample receiver public address that we will give you.",
+                      linkItems: [],
                     },
                   ],
                 },
               ],
             },
           ],
-          simKey: SolanaSimulationKeys.GenKeyPair,
         },
-        // 3. Backup Seed Phrase
+        // 3. Enter the amount
         {
-          title: "Backup Seed Phrase, protect funds",
+          title: "Enter the amount",
           block: [
             {
               paraBlock: [
                 {
-                  paraTitle: "Why backing up your seed phrase is necessary? ",
                   textItems: [
                     {
-                      text: "You lose your seed phrase, you lose your crypto. Let’s say you created a seed phrase, and trusting your ability to remember things, you do not make a note of it. A few days later, god forbid, you forget your seed phrase. What then? 😔",
-                      linkItems: [],
-                    },
-                    {
-                      text: "You have a) lost access to your funds because you can no longer access your wallet, and b) given someone else the golden opportunity to lay their hands on your crypto. If someone else has access to your seed phrase then they can steal all your funds.",
-                      linkItems: [],
-                    },
-                    {
-                      text: "So, ALWAYS (and we mean, always) back up your seed phrase. It is quite literally the key to regaining access to your money. 🔑",
-                      linkItems: [],
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              listBlock: [
-                {
-                  listTitle:
-                    " I’m convinced. But how do I back up my seed phrase? ",
-                  textItems: [
-                    {
-                      text: "Write it down on a piece of paper and secure it. ",
-                      linkItems: [],
-                    },
-                    {
-                      text: "While we don’t recommend saving it online, if you’re confident, you can save it in a secure location on your laptop/phone as well. ",
-                      linkItems: [],
-                    },
-                    {
-                      text: "Some people go the extra mile and save it in their bank lockers. ",
-                      linkItems: [],
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              paraBlock: [
-                {
-                  textItems: [
-                    {
-                      text: "The essence then is that we could have an endless list of ideas on how you can best save your seed phrase. But it’s entirely up to you to be creative and find the safest option that works for you! 🎈 ",
+                      text: "Now that you’ve clicked on ‘send’, you need to decide how much crypto you want to send. Choose any amount you want to try with - 2 SOL, 15 SOL - anything (remember - it’s not real money! This is a just a simulation). If you wanna tr ansfer all the crypto, then just click on ‘max’ and the system will enter in your total balance, itself! Just to cover all the bases - make sure you’ve entered the right amount you want to transfer, and make sure you’ve entered the right address - click on ‘preview’ to preview your transaction before confirming it! ⬇️",
                       linkItems: [],
                     },
                   ],
@@ -411,47 +357,17 @@ const getSolanaData = (
               ],
             },
           ],
-          simKey: SolanaSimulationKeys.BackupSeedPhrase,
         },
         // 4. Verify Public Key
         {
-          title: "Final step: Verify your seed phrase ",
-          block: [
-            {
-              listBlock: [
-                {
-                  listTitle: "Why verify my seed phrase?",
-                  textItems: [
-                    {
-                      text: "we know you’ve backed it up and it is stored somewhere safe. Wallets usually take the first step of your fund protection this way by facilitating the backing up of the seed phrase.",
-                      linkItems: [],
-                    },
-                    {
-                      text: " Also, you can confirm that you’ve backed up the right seed phrase. Trust us, those 12-24 unique words in a series are so unrelated to each other, that it can get confusing while backing them up! 😖 So, verify your seed phrase and complete the final step toward wallet creation! 🥳",
-                      linkItems: [],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-          simKey: SolanaSimulationKeys.ShowcasePublicKey,
-        },
-        // 5. Airdrop
-        {
-          title: "Test run your Wallet",
+          title: "Confirm your transaction went thru!",
           block: [
             {
               paraBlock: [
                 {
-                  paraTitle: "Airdrop some SOL to your wallet!",
                   textItems: [
                     {
-                      text: "Try to test-run your wallet and see if it works! Airdrop some SOL into your wallet. Note that this entire simulation is on the testnet network, not the mainnet network. This means that on the testnet network, no currency or transaction has any value. It is purely for testing purposes. It is when you transact on the mainnet that there is actual financial value to your transactions. So, test it out on our simulations based on testnet networks and you’ll know if your wallet works! ⬇️",
-                      linkItems: [],
-                    },
-                    {
-                      text: "If the airdrop is successful, i.e., if your balance moves from ‘0’ to ‘1 SOL’, then your wallet has successfully been created on the testnet network of the Solana chain. Congratulations! You can now either repeat the process to practice it on the Solana chain itself, choose a different chain to practice this on and get familiar with different interfaces, or go ahead and create your wallet on Solana!",
+                      text: "You sent the crypto! Are you sure it went thru successfully? Check your wallet balance to see if the amount you sent has been reduced, and also check your transaction history to ensure it went to the right public address! Once you’ve done that, congratulations! You just completed your first crypto transfer. 🥳",
                       linkItems: [],
                     },
                   ],
@@ -459,100 +375,7 @@ const getSolanaData = (
               ],
             },
           ],
-          simKey: SolanaSimulationKeys.Airdrop,
-        },
-        // 6. Conclusion
-        {
-          title: "Conclusion- Where can I make my wallet?",
-          block: [
-            {
-              blockTitle:
-                "If you feel ready to make a wallet now, then you can choose from these 3 options -",
-              paraBlock: [
-                {
-                  textItems: [
-                    {
-                      text: "Phantom, Glow, and Solflare. These are the most sought after wallets on the Solana chain. ",
-                      linkItems: [],
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              accordianBlock: [
-                {
-                  accordianTitle: "Phantom Wallet",
-                  accordianPanel: [
-                    {
-                      paraBlock: [
-                        {
-                          textItems: [
-                            {
-                              text: "Phantom is a non-custodial wallet that provides [[Ledger]] support, and biometric authentication and ensures privacy. You can create your [[Phantom wallet]]. This is what your wallet would like on Phantom as soon as you create it - ",
-                              linkItems: ["Ledger", "Phantom wallet"],
-                            },
-                          ],
-                          image: {
-                            src: "/wallets/Phantom.jpeg",
-                            alt: "Phantom wallet",
-                            width: "200",
-                            height: "400",
-                          },
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  accordianTitle: "Glow Wallet",
-                  accordianPanel: [
-                    {
-                      paraBlock: [
-                        {
-                          textItems: [
-                            {
-                              text: "The Glow wallet lets you swap tokens with zero fees, allows exploration of NFTs, has all activity on one platform, and if you burn spam tokens on Glow, you earn SOL. You can create your [[Glow wallet]]. This is what your wallet would like on Glow as soon as you create it - ",
-                              linkItems: ["Glow wallet"],
-                            },
-                          ],
-                          image: {
-                            src: "/wallets/Gloiw.jpeg",
-                            alt: "Glow wallet",
-                            width: "200",
-                            height: "400",
-                          },
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  accordianTitle: "Solflare wallet",
-                  accordianPanel: [
-                    {
-                      paraBlock: [
-                        {
-                          textItems: [
-                            {
-                              text: "The Solflare wallet offers transaction simulations, hardware wallet support, and anti-phishing features, and it was the first Solana wallet ever. You can create your [[Solflare wallet]]. This is what your wallet would like on Solflare as soon as you create it - ",
-                              linkItems: ["Solflare wallet"],
-                            },
-                          ],
-                          image: {
-                            src: "/wallets/Solflare.jpeg",
-                            alt: "Solflare wallet",
-                            width: "200",
-                            height: "400",
-                          },
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
+          simKey: SolanaSimulationKeys.TransferCypto,
         },
       ];
     default:

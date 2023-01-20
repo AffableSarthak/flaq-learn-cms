@@ -30,6 +30,10 @@ const links: Links = {
   "MetaMask wallet here": "https://metamask.io/download/",
   "Frontier wallet here": "https://www.frontier.xyz/download",
   "Argent wallet here": "https://www.argent.xyz/",
+  "Cryptocurrencies - Your A to Z Guide": "https://learn.flaq.club/dive-into-web3/cryptocurrencies-the-a-to-z-guide",
+  "Tokens: The Basics Covered for You": "https://learn.flaq.club/dive-into-web3/tokens-the-basics-covered-for-you",
+  "Gm": "https://learn.flaq.club/gm!-welcome-to-flaq-%F0%9F%A4%9D/web3-slang#f0f50430d5b946e4b34a79d159253a49",
+  "create your wallet": "https://learn.flaq.club/gm!-welcome-to-flaq-%F0%9F%A4%9D/web3-slang#f0f50430d5b946e4b34a79d159253a49"
 };
 
 export default links;

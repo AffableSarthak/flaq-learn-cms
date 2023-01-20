@@ -4,7 +4,7 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { HiUpload } from 'react-icons/hi';
 import TokenCard from './TokenCard';
 
-export default function Dashboard() {
+export default function Dashboard({ onClose }: { onClose: () => void }) {
     return (
         <>
             <Stack alignItems={'center'} w='full' background='linear-gradient(229.14deg, #94F533 -2.89%, #2AD0CA 84.74%)' boxShadow='0px 4px 24px rgba(172, 234, 254, 0.4)' pb={5} roundedBottom='2xl'>
@@ -14,7 +14,7 @@ export default function Dashboard() {
                         <Box w={1} h={1} bg='#858585' mx={2}></Box>
                         <Text fontWeight='semibold' fontFamily={'Poppins'} color='black'>A1ToX...38ksAz</Text>
                     </HStack>
-                    <Box cursor={'pointer'}>
+                    <Box cursor={'pointer'} onClick={onClose}>
                         <IoCloseOutline fontSize={'24px'} color='black' />
                     </Box>
                 </HStack>
@@ -34,7 +34,7 @@ export default function Dashboard() {
                 </Stack>
             </Stack >
             <Box px={4} py={6}>
-                <Text fontWeight={'semibold'} mb={3}>Tokens</Text>
+                <Text fontWeight={'semibold'} mb={3}>Transactions</Text>
                 <TokenCard />
             </Box>
         </>

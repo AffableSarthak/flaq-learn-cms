@@ -9,6 +9,7 @@ export enum SolanaSimulationKeys {
   BackupSeedPhrase = "backupSeedPhrase",
   ShowcasePublicKey = "showcasePublicKey",
   Airdrop = "airprop",
+  TransferCypto = "transfercrypto"
 }
 
 export enum AlgorandSimulationKeys {
@@ -42,9 +43,9 @@ export interface ListType {
   body: BodyType[];
   image?: string;
   simKey?:
-    | SolanaSimulationKeys
-    | AlgorandSimulationKeys
-    | EthereumSimulationKeys;
+  | SolanaSimulationKeys
+  | AlgorandSimulationKeys
+  | EthereumSimulationKeys;
 }
 
 export interface SimulationType {
@@ -64,9 +65,9 @@ export interface SimulationBlockType {
   title: string; // main header
   block: BlockType[];
   simKey?:
-    | SolanaSimulationKeys
-    | AlgorandSimulationKeys
-    | EthereumSimulationKeys;
+  | SolanaSimulationKeys
+  | AlgorandSimulationKeys
+  | EthereumSimulationKeys;
 }
 
 export interface BlockType {

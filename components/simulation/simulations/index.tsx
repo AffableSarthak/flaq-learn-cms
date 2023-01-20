@@ -13,6 +13,7 @@ import { useCreateSolWalletStore } from "../store/solana/createSolWalletStore";
 import shallow from "zustand/shallow";
 import { useCreateEthWalletStore } from "../store/ethereum/createEthWalletStore";
 import { useCreateAlgoWalletStore } from "../store/algorand/createAlgoWalletStore";
+import Transaction from "./common/transaction";
 
 export interface SimulationProps {
   simKey:
@@ -61,11 +62,11 @@ const RenderSolanaSimulation = ({
     case SolanaSimulationKeys.BackupSeedPhrase:
       return <BackupSeedPhrase seedPhrase={seedPhrase} />;
     case SolanaSimulationKeys.ShowcasePublicKey:
-      return (
-        <ShowcasePublicKey publicKey={publicKey} seedPhrase={seedPhrase} />
-      );
+      return <ShowcasePublicKey publicKey={publicKey} seedPhrase={seedPhrase} />
     case SolanaSimulationKeys.Airdrop:
       return <Airdrop />;
+    case SolanaSimulationKeys.TransferCypto:
+      return <Transaction />;
     default:
       return <></>;
   }
