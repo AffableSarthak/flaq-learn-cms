@@ -2,11 +2,11 @@ import { Box, HStack, Stack, Text, Input, FormControl, FormLabel, Button, InputG
 import React from 'react'
 import { MdKeyboardBackspace } from 'react-icons/md'
 
-export default function TransactionForm() {
+export default function TransactionForm({ handleScreen }: { handleScreen: (screenNumber: number) => void }) {
     return (
         <>
             <HStack w='full' px={6} pb={6} pt={14} alignItems='center' borderBottom={'1px'} borderColor='gray.800'>
-                <Box mr={2} cursor='pointer'>
+                <Box mr={2} cursor='pointer' onClick={() => handleScreen(0)}>
                     <MdKeyboardBackspace fontSize={'24px'} />
                 </Box>
                 <HStack alignItems={'center'}>
@@ -27,7 +27,7 @@ export default function TransactionForm() {
                 </FormControl>
             </Stack>
             <Stack px={4} pb={14} h='full' justifyContent='flex-end'>
-                <Button w='full' py={4} bg='#97FCE9' color='black' _hover={{ bg: '#97FCE9' }}>
+                <Button w='full' py={4} bg='#97FCE9' color='black' _hover={{ bg: '#97FCE9' }} onClick={() => handleScreen(2)}>
                     Preview
                 </Button>
             </Stack>

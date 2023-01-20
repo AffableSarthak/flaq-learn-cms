@@ -4,7 +4,7 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { HiUpload } from 'react-icons/hi';
 import TokenCard from './TokenCard';
 
-export default function Dashboard({ onClose }: { onClose: () => void }) {
+export default function Dashboard({ onClose, handleScreen }: { onClose: () => void, handleScreen: (screenNumber: number) => void }) {
     return (
         <>
             <Stack alignItems={'center'} w='full' background='linear-gradient(229.14deg, #94F533 -2.89%, #2AD0CA 84.74%)' boxShadow='0px 4px 24px rgba(172, 234, 254, 0.4)' pb={5} roundedBottom='2xl'>
@@ -28,7 +28,7 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
                         </Box>
                     </Stack>
                 </Stack>
-                <Stack alignItems={'center'} py={5} px={10} bg='gray.800' border={'2px'} borderColor='black' rounded={'lg'}>
+                <Stack cursor={'pointer'} alignItems={'center'} py={5} px={10} bg='gray.800' border={'2px'} borderColor='black' rounded={'lg'} onClick={() => handleScreen(1)}>
                     <HiUpload fontSize={'24px'} />
                     <Text fontWeight={'medium'} fontSize='xs' mt={2}>SEND</Text>
                 </Stack>
