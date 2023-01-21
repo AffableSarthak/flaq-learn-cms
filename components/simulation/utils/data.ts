@@ -358,7 +358,25 @@ const getSolanaData = (
             },
           ],
         },
-        // 4. Verify Public Key
+        // 4. Make sure all’s good!
+        {
+          title: "Make sure all’s good!",
+          block: [
+            {
+              paraBlock: [
+                {
+                  textItems: [
+                    {
+                      text: "One last step to go! The gas fees. What’s that? The usually minimal transactional fees that you have to pay to the blockchain network, for engaging in this transaction on it! The gas fees usually depend on the value of the crypto of that blockchain as well, and people actually take gas fees as an important factor into consideration while determining which blockchain to transact on! After a minimal gas fee is reduced from the amount you entered in, you can now click on ‘send’ and finally transfer the crypto! 🥳",
+                      linkItems: [],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        // 5. Confirm your transaction went thru!
         {
           title: "Confirm your transaction went thru!",
           block: [
