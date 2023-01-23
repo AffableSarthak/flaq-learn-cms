@@ -12,9 +12,6 @@ const GenKeyPair = (props: GenKeyPairProps) => {
   const isUserDataAvailable = () => {
     return seedPhrase.length !== 0;
   };
-
-  console.log(seedPhrase, "seedPhrase");
-
   return (
     <Box>
       <Center my="8">

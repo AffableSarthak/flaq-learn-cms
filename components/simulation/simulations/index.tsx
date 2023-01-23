@@ -17,9 +17,9 @@ import Transaction from "./common/transaction";
 
 export interface SimulationProps {
   simKey:
-  | SolanaSimulationKeys
-  | AlgorandSimulationKeys
-  | EthereumSimulationKeys;
+    | SolanaSimulationKeys
+    | AlgorandSimulationKeys
+    | EthereumSimulationKeys;
   blockchain: Blockchains;
 }
 
@@ -62,11 +62,13 @@ const RenderSolanaSimulation = ({
     case SolanaSimulationKeys.BackupSeedPhrase:
       return <BackupSeedPhrase seedPhrase={seedPhrase} />;
     case SolanaSimulationKeys.ShowcasePublicKey:
-      return <ShowcasePublicKey publicKey={publicKey} seedPhrase={seedPhrase} />
+      return (
+        <ShowcasePublicKey publicKey={publicKey} seedPhrase={seedPhrase} />
+      );
     case SolanaSimulationKeys.Airdrop:
       return <Airdrop />;
     case SolanaSimulationKeys.TransferCypto:
-      return <Transaction />;
+      return <Transaction network={"SOL"} />;
     default:
       return <></>;
   }
@@ -77,16 +79,20 @@ const RenderAlgorandSimulation = ({
 }: {
   simKey: AlgorandSimulationKeys;
 }) => {
-  const { seedPhrase, publicKey, createWallet, isLoading } =
-    useCreateAlgoWalletStore(
-      (state) => ({
-        seedPhrase: state.seedPhrase,
-        publicKey: state.publicKey,
-        createWallet: state.createWallet,
-        isLoading: state.isLoading,
-      }),
-      shallow
-    );
+  const {
+    seedPhrase,
+    publicKey,
+    createWallet,
+    isLoading,
+  } = useCreateAlgoWalletStore(
+    (state) => ({
+      seedPhrase: state.seedPhrase,
+      publicKey: state.publicKey,
+      createWallet: state.createWallet,
+      isLoading: state.isLoading,
+    }),
+    shallow
+  );
 
   switch (simKey) {
     case AlgorandSimulationKeys.GenAccount:

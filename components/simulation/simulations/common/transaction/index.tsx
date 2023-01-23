@@ -9,21 +9,36 @@ import {
   Stack,
   Center,
 } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import TransactionForm from "./TransactionForm";
 import Preview from "./Preview";
 import { useTransactionStore } from "../../../store/solana/transactionStore";
 
-export default function Transaction() {
+export default function Transaction({ network }: { network: string }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { currentScreen } = useTransactionStore();
+  const {
+    currentScreen,
+    resetTransaction,
+    handleNetworkType,
+    networkType,
+  } = useTransactionStore();
+
+  useEffect(() => {
+    handleNetworkType(network);
+  }, []);
 
   return (
     <Center>
       <Button variant={"primarybtn"} onClick={onOpen}>
-        Send SOL
+        Send {networkType}
       </Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal
+        isOpen={isOpen}
+        onClose={() => {
+          resetTransaction();
+          onClose();
+        }}
+      >
         <ModalOverlay />
         <ModalContent
           p={0}

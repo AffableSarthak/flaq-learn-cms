@@ -7,14 +7,34 @@ import {
   FormControl,
   FormLabel,
   Button,
-  InputGroup,
-  InputRightElement,
+  Flex,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { useTransactionStore } from "../../../store/solana/transactionStore";
 
 export default function TransactionForm() {
-  const { handleScreen } = useTransactionStore();
+  const {
+    handleScreen,
+    handleUserAddress,
+    handleAmount,
+    userAddress,
+    amount,
+    balance,
+  } = useTransactionStore();
+
+  const [validateAddress, setValidateAddress] = useState<boolean>(false);
+  const [validateAmount, setValidateAmount] = useState<boolean>(false);
+
+  const validateWalletAddress = () => {
+    var Regxp = /^([a-zA-Z0-9_-]){32,44}$/;
+    if (Regxp.test(userAddress) == true && userAddress.length > 0) {
+      setValidateAddress(true);
+    } else {
+      setValidateAddress(false);
+    }
+  };
+
   return (
     <>
       <HStack
@@ -45,8 +65,23 @@ export default function TransactionForm() {
             >
               Recipient address
             </FormLabel>
-            <Input type="text" mt={4} />
+            <Input
+              type="text"
+              mt={4}
+              value={userAddress}
+              onChange={(e) => {
+                handleUserAddress(e.target.value.trim());
+                validateWalletAddress();
+              }}
+            />
           </Box>
+          {!validateAddress && userAddress.length > 0 ? (
+            <Text fontSize={"xs"} mt={2} color="red.300">
+              Please enter valid address
+            </Text>
+          ) : (
+            <></>
+          )}
           <Box mt={6}>
             <FormLabel
               fontWeight={"semibold"}
@@ -55,8 +90,45 @@ export default function TransactionForm() {
             >
               Enter Amount
             </FormLabel>
-            <Input type="text" mt={4} />
+            <Flex
+              alignItems={"center"}
+              border="1px"
+              borderColor={"gray.800"}
+              rounded={"lg"}
+              p={1}
+            >
+              <Input
+                type="number"
+                min={0}
+                max={20}
+                border={0}
+                outline="none"
+                focusBorderColor={"#0C0C0C"}
+                value={amount}
+                onChange={(e) => {
+                  handleAmount(parseFloat(e.target.value));
+                  if (parseInt(e.target.value) <= balance) {
+                    setValidateAmount(true);
+                  } else {
+                    setValidateAmount(false);
+                  }
+                }}
+              />
+              <HStack alignItems={"center"} mr={4}>
+                <Text>SOL</Text>
+                <Button size="xs" onClick={() => handleAmount(balance)}>
+                  Max
+                </Button>
+              </HStack>
+            </Flex>
           </Box>
+          {!validateAmount && amount > 0 ? (
+            <Text fontSize={"xs"} mt={2} color="red.300">
+              Insufficient balance
+            </Text>
+          ) : (
+            <></>
+          )}
           <Text
             fontWeight={"medium"}
             color="gray.600"
@@ -74,7 +146,10 @@ export default function TransactionForm() {
           bg="#97FCE9"
           color="black"
           _hover={{ bg: "#97FCE9" }}
-          onClick={() => handleScreen(2)}
+          disabled={!validateAddress && !validateAmount}
+          onClick={() => {
+            handleScreen(2);
+          }}
         >
           Preview
         </Button>

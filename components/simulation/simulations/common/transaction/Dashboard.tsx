@@ -1,12 +1,17 @@
 import React from "react";
-import { Box, HStack, Stack, Text } from "@chakra-ui/react";
+import { Box, Center, HStack, Stack, Text } from "@chakra-ui/react";
 import { IoCloseOutline } from "react-icons/io5";
 import { HiUpload } from "react-icons/hi";
-import TokenCard from "./TokenCard";
 import { useTransactionStore } from "../../../store/solana/transactionStore";
+import TransactionCard from "./TransactionCard";
 
 export default function Dashboard({ onClose }: { onClose: () => void }) {
-  const { handleScreen } = useTransactionStore();
+  const {
+    handleScreen,
+    balance,
+    networkType,
+    transaction,
+  } = useTransactionStore();
   return (
     <>
       <Stack
@@ -42,14 +47,14 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
         </HStack>
         <Stack px={[16, 24]} py={9}>
           <Stack alignItems={"center"} color="black">
-            <Text fontWeight={"medium"}>BALANCE IN SOL</Text>
+            <Text fontWeight={"medium"}>BALANCE IN {networkType}</Text>
             <Text
               fontWeight={"medium"}
               mt={2}
               fontSize={"36px"}
               lineHeight={"42px"}
             >
-              0.004 SOL
+              {balance} {networkType}
             </Text>
             <Box mt={2} px={2} py={1} bg="white" rounded={"lg"}>
               ☝️
@@ -79,11 +84,21 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
           </Text>
         </Stack>
       </Stack>
-      <Box px={4} py={6}>
-        <Text fontWeight={"semibold"} mb={3}>
-          Transactions
-        </Text>
-        <TokenCard />
+      <Text px={4} pt={6} fontWeight={"semibold"} mb={3}>
+        Transactions
+      </Text>
+      <Box px={4} overflowY="auto">
+        {transaction.length > 0 ? (
+          transaction.map((item, index) => (
+            <TransactionCard key={index} transactionAmount={item} />
+          ))
+        ) : (
+          <Center h="full">
+            <Text color="gray.600" fontWeight={"semibold"}>
+              You have no transaction
+            </Text>
+          </Center>
+        )}
       </Box>
     </>
   );

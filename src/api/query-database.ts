@@ -29,7 +29,7 @@ export const getRecordDataForPage = async (pageId: string) => {
   }
 };
 
-export const getBlogsByCategory = async (category:string) => {
+export const getBlogsByCategory = async (category: string) => {
   // Flaq Academy 1
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID ?? "",

@@ -8,12 +8,26 @@ import {
   FormLabel,
   Button,
   Avatar,
+  useToast,
 } from "@chakra-ui/react";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { useTransactionStore } from "../../../store/solana/transactionStore";
 
 export default function Preview() {
-  const { handleScreen } = useTransactionStore();
+  const {
+    userAddress,
+    handleScreen,
+    handleBalance,
+    handleTransaction,
+    amount,
+    logo,
+    networkType,
+    balance,
+    transaction,
+  } = useTransactionStore();
+  const toast = useToast();
+  const totalAmount = amount + (amount * 2) / 100;
+
   return (
     <>
       <HStack
@@ -36,11 +50,7 @@ export default function Preview() {
       </HStack>
       <Stack py={6} px={7}>
         <HStack alignItems={"center"}>
-          <Avatar
-            size={"lg"}
-            src="https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png"
-            name="Solana"
-          />
+          <Avatar size={"lg"} src={logo} name={networkType} />
           <Box ml={4}>
             <Text
               fontWeight={"medium"}
@@ -51,7 +61,7 @@ export default function Preview() {
               value
             </Text>
             <Text fontWeight={"semibold"} fontFamily="Poppins">
-              Sending 16.3 SOL
+              Sending {totalAmount} {networkType}
             </Text>
           </Box>
         </HStack>
@@ -74,7 +84,7 @@ export default function Preview() {
             >
               To
             </FormLabel>
-            <Input type="text" mt={4} disabled />
+            <Input type="text" mt={4} disabled value={userAddress} />
           </Box>
           <Box mt={4}>
             <FormLabel
@@ -84,7 +94,7 @@ export default function Preview() {
             >
               Gas Fee
             </FormLabel>
-            <Input type="text" mt={4} disabled />
+            <Input type="text" mt={4} disabled value={(amount * 2) / 100} />
           </Box>
         </FormControl>
       </Stack>
@@ -95,6 +105,17 @@ export default function Preview() {
           bg="#97FCE9"
           color="black"
           _hover={{ bg: "#97FCE9" }}
+          onClick={() => {
+            handleBalance(parseFloat(totalAmount.toFixed(2)), balance);
+            handleTransaction(totalAmount, transaction);
+            handleScreen(0);
+            toast({
+              title: "Transaction successfull",
+              status: "success",
+              duration: 9000,
+              isClosable: true,
+            });
+          }}
         >
           Send
         </Button>

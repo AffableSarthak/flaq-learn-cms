@@ -1,7 +1,13 @@
 import { Avatar, Box, HStack, Stack, Text } from "@chakra-ui/react";
 import React from "react";
+import { useTransactionStore } from "../../../store/solana/transactionStore";
 
-export default function TokenCard() {
+export default function TransactionCard({
+  transactionAmount,
+}: {
+  transactionAmount: number;
+}) {
+  const { networkType, logo } = useTransactionStore();
   return (
     <HStack
       p={4}
@@ -9,19 +15,17 @@ export default function TokenCard() {
       border={"1px"}
       borderColor="#151515"
       bg="#101010"
+      mb={2}
       justifyContent={"space-between"}
     >
       <HStack alignItems={"center"}>
-        <Avatar
-          src="https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png"
-          name="Solana"
-        />
+        <Avatar src={logo} name={networkType} />
         <Box>
           <Text fontWeight={"medium"} fontFamily="Poppins">
-            Solana
+            {networkType == "SOL" ? "Solana" : null}
           </Text>
           <Text color="#9999A5" fontFamily="Poppins">
-            56.67 SOL
+            {transactionAmount} {networkType}
           </Text>
         </Box>
       </HStack>
