@@ -24,9 +24,13 @@ export default function Preview() {
     networkType,
     balance,
     transaction,
+    handleAmount,
+    handleUserAddress,
   } = useTransactionStore();
+
   const toast = useToast();
-  const totalAmount = amount + (amount * 2) / 100;
+  const gasFee = (amount * 0.009) / 100;
+  const totalAmount = amount + gasFee;
 
   return (
     <>
@@ -74,7 +78,12 @@ export default function Preview() {
             >
               From
             </FormLabel>
-            <Input type="text" mt={4} disabled />
+            <Input
+              type="text"
+              mt={4}
+              disabled
+              value={"A1ToXDqnRv6uwbUEQwuzfhemqSrmLmAGg7JV8338ksAz"}
+            />
           </Box>
           <Box mt={4}>
             <FormLabel
@@ -86,7 +95,7 @@ export default function Preview() {
             </FormLabel>
             <Input type="text" mt={4} disabled value={userAddress} />
           </Box>
-          <Box mt={4}>
+          {/* <Box mt={4}>
             <FormLabel
               fontWeight={"semibold"}
               color="#B5E8CC"
@@ -94,8 +103,14 @@ export default function Preview() {
             >
               Gas Fee
             </FormLabel>
-            <Input type="text" mt={4} disabled value={(amount * 2) / 100} />
-          </Box>
+            <Input
+              type="text"
+              mt={4}
+              disabled
+              value={gasFee}
+              isInvalid={totalAmount > balance}
+            />
+          </Box> */}
         </FormControl>
       </Stack>
       <Stack px={4} pb={14} h="full" justifyContent="flex-end">
@@ -105,9 +120,12 @@ export default function Preview() {
           bg="#97FCE9"
           color="black"
           _hover={{ bg: "#97FCE9" }}
+          disabled={totalAmount > balance}
           onClick={() => {
             handleBalance(parseFloat(totalAmount.toFixed(2)), balance);
             handleTransaction(totalAmount, transaction);
+            handleAmount(0);
+            handleUserAddress("");
             handleScreen(0);
             toast({
               title: "Transaction successfull",

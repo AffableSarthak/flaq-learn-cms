@@ -8,7 +8,7 @@ import {
 
 enum SolanaDataType {
   CreateWallet = "create-wallet",
-  TransferCypto = "transfer-crypto"
+  TransferCypto = "transfer-crypto",
 }
 
 enum AlgoranDataType {
@@ -303,7 +303,10 @@ const getSolanaData = (
                   textItems: [
                     {
                       text: "Hi! Please read [[Cryptocurrencies - Your A to Z Guide]] and [[Tokens: The Basics Covered for You]] to gain a fundamental understanding of cryptocurrencies, and tokens.",
-                      linkItems: ["Cryptocurrencies - Your A to Z Guide", "Tokens: The Basics Covered for You"],
+                      linkItems: [
+                        "Cryptocurrencies - Your A to Z Guide",
+                        "Tokens: The Basics Covered for You",
+                      ],
                     },
                   ],
                   paraTitle:
@@ -322,9 +325,9 @@ const getSolanaData = (
             },
           ],
         },
-        // 2. Send some SOL
+        // 2. Transfer some SOL.
         {
-          title: "Send some SOL",
+          title: "Let's transfer some SOL",
           block: [
             {
               paraBlock: [
@@ -335,33 +338,23 @@ const getSolanaData = (
                       linkItems: [],
                     },
                   ],
+                  paraTitle: "step 1: ‘Send’ some SOL",
                 },
               ],
             },
-          ],
-        },
-        // 3. Enter the amount
-        {
-          title: "Enter the amount",
-          block: [
             {
               paraBlock: [
                 {
                   textItems: [
                     {
-                      text: "Now that you’ve clicked on ‘send’, you need to decide how much crypto you want to send. Choose any amount you want to try with - 2 SOL, 15 SOL - anything (remember - it’s not real money! This is a just a simulation). If you wanna tr ansfer all the crypto, then just click on ‘max’ and the system will enter in your total balance, itself! Just to cover all the bases - make sure you’ve entered the right amount you want to transfer, and make sure you’ve entered the right address - click on ‘preview’ to preview your transaction before confirming it! ⬇️",
+                      text: "Now that you’ve clicked on ‘send’, you need to decide how much crypto you want to send. Choose any amount you want to try with - 2 SOL, 15 SOL - anything (remember - it’s not real money! This is a just a simulation). If you wanna tr ansfer all the crypto, then just click on ‘max’ and the system will enter in your total balance, itself! Just to cover all the bases - make sure you’ve entered the right amount you want to transfer, and make sure you’ve entered the right address - click on ‘preview’ to preview your transaction before confirming it!",
                       linkItems: [],
                     },
                   ],
+                  paraTitle: "step 2: Enter the Amount",
                 },
               ],
             },
-          ],
-        },
-        // 4. Make sure all’s good!
-        {
-          title: "Make sure all’s good!",
-          block: [
             {
               paraBlock: [
                 {
@@ -371,15 +364,10 @@ const getSolanaData = (
                       linkItems: [],
                     },
                   ],
+                  paraTitle: "step 3: Make sure all's good!",
                 },
               ],
             },
-          ],
-        },
-        // 5. Confirm your transaction went thru!
-        {
-          title: "Confirm your transaction went thru!",
-          block: [
             {
               paraBlock: [
                 {
@@ -389,6 +377,7 @@ const getSolanaData = (
                       linkItems: [],
                     },
                   ],
+                  paraTitle: "step 4: Confirm your transaction went thru!",
                 },
               ],
             },

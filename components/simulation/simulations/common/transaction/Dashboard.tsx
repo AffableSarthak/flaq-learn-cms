@@ -6,12 +6,8 @@ import { useTransactionStore } from "../../../store/solana/transactionStore";
 import TransactionCard from "./TransactionCard";
 
 export default function Dashboard({ onClose }: { onClose: () => void }) {
-  const {
-    handleScreen,
-    balance,
-    networkType,
-    transaction,
-  } = useTransactionStore();
+  const { handleScreen, balance, networkType, transaction, resetTransaction } =
+    useTransactionStore();
   return (
     <>
       <Stack
@@ -20,8 +16,7 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
         background="linear-gradient(229.14deg, #94F533 -2.89%, #2AD0CA 84.74%)"
         boxShadow="0px 4px 24px rgba(172, 234, 254, 0.4)"
         pb={5}
-        roundedBottom={[0, "2xl"]}
-        roundedTop={["2xl", 0]}
+        borderRadius="2xl"
       >
         <HStack
           w="full"
@@ -41,7 +36,13 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
               A1ToX...38ksAz
             </Text>
           </HStack>
-          <Box cursor={"pointer"} onClick={onClose}>
+          <Box
+            cursor={"pointer"}
+            onClick={() => {
+              onClose();
+              resetTransaction();
+            }}
+          >
             <IoCloseOutline fontSize={"24px"} color="black" />
           </Box>
         </HStack>
@@ -54,9 +55,9 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
               fontSize={"36px"}
               lineHeight={"42px"}
             >
-              {balance} {networkType}
+              {balance.toFixed(2)} {networkType}
             </Text>
-            <Box mt={2} px={2} py={1} bg="white" rounded={"lg"}>
+            {/* <Box mt={2} px={2} py={1} bg="white" rounded={"lg"}>
               ☝️
               <Text fontWeight={"medium"} color="black" as="span" ml={0.5}>
                 $242.54
@@ -64,7 +65,7 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
               <Text fontWeight={"medium"} color="black" as="span" ml={1}>
                 (2.93%)
               </Text>
-            </Box>
+            </Box> */}
           </Stack>
         </Stack>
         <Stack
@@ -93,9 +94,9 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
             <TransactionCard key={index} transactionAmount={item} />
           ))
         ) : (
-          <Center h="full">
+          <Center h="full" p="4">
             <Text color="gray.600" fontWeight={"semibold"}>
-              You have no transaction
+              No transaction history
             </Text>
           </Center>
         )}

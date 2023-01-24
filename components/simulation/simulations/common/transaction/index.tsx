@@ -16,12 +16,8 @@ import { useTransactionStore } from "../../../store/solana/transactionStore";
 
 export default function Transaction({ network }: { network: string }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const {
-    currentScreen,
-    resetTransaction,
-    handleNetworkType,
-    networkType,
-  } = useTransactionStore();
+  const { currentScreen, resetTransaction, handleNetworkType, networkType } =
+    useTransactionStore();
 
   useEffect(() => {
     handleNetworkType(network);
@@ -30,7 +26,7 @@ export default function Transaction({ network }: { network: string }) {
   return (
     <Center>
       <Button variant={"primarybtn"} onClick={onOpen}>
-        Send {networkType}
+        Let's transfer your first {networkType}! 🪙
       </Button>
       <Modal
         isOpen={isOpen}
@@ -38,21 +34,23 @@ export default function Transaction({ network }: { network: string }) {
           resetTransaction();
           onClose();
         }}
+        isCentered
       >
-        <ModalOverlay />
+        <ModalOverlay backdropBlur={"2xl"} />
         <ModalContent
           p={0}
           w="fit-content"
           m={0}
           position={["fixed", "unset"]}
           bottom="0px"
+          borderRadius={"2xl"}
         >
-          <ModalBody p={0}>
+          <ModalBody p={0} borderRadius="2xl">
             <Stack
               w={["100vw", "375px"]}
               h={"640px"}
               bg={["#1A1A1A", "#0C0C0C"]}
-              roundedTop={["2xl", 0]}
+              borderRadius={"2xl"}
             >
               {currentScreen == 0 ? (
                 <Dashboard onClose={onClose} />

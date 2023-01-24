@@ -24,15 +24,18 @@ export default function TransactionCard({
           <Text fontWeight={"medium"} fontFamily="Poppins">
             {networkType == "SOL" ? "Solana" : null}
           </Text>
-          <Text color="#9999A5" fontFamily="Poppins">
-            {transactionAmount} {networkType}
-          </Text>
+          {/* <Text color="#9999A5" fontFamily="Poppins">
+            {transactionAmount.toFixed(4)} {networkType}
+          </Text> */}
         </Box>
       </HStack>
       <Stack alignItems={"end"}>
-        <Text fontFamily="Poppins">$34.03</Text>
+        {/* <Text fontFamily="Poppins">$34.03</Text>
         <Text fontSize={"xs"} color="#70DC94" fontFamily="Poppins">
           +4.02%
+        </Text> */}
+        <Text color="#9999A5" fontFamily="Poppins">
+          {transactionAmount.toFixed(4)} {networkType}
         </Text>
       </Stack>
     </HStack>
