@@ -26,7 +26,7 @@ export default function Transaction({ network }: { network: string }) {
   return (
     <Center>
       <Button variant={"primarybtn"} onClick={onOpen}>
-        Let's transfer your first {networkType}! 🪙
+        {`Let's transfer your first ${networkType}! 🪙`}
       </Button>
       <Modal
         isOpen={isOpen}
