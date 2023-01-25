@@ -39,9 +39,9 @@ export async function getServerSideProps(
   }
 ) {
   const { slug, blockchain } = context.query;
-  const simulationData = getSimulationData(slug, blockchain);
+  const data = getSimulationData(slug, blockchain);
 
-  if (!simulationData) {
+  if (!data?.simulationData) {
     return {
       notFound: true,
     };
@@ -49,8 +49,8 @@ export async function getServerSideProps(
 
   return {
     props: {
-      simulationData: simulationData,
-      simulationHeader: "Wallet Creation Simulation",
+      simulationData: data.simulationData,
+      simulationHeader: data.simulationHeader,
       blockchain,
     },
   };

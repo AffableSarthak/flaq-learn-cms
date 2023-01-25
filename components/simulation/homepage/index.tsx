@@ -111,7 +111,7 @@ const HomePage = (props: Props) => {
                   web3! This means that you’ll be learning how to create a
                   wallet, backup a seed phrase, swap tokens, and so much more,
                   on the widely used chains in the web3 space - Solana,
-                  Algorand, Ethereum, and NEAR. Best part? You can try these
+                  Algorand, Ethereum, and Filecoin. Best part? You can try these
                   simulations on any number of chains of your choice! The more
                   you practice, the better you get when you’re out there in the
                   real world. 🏃🏼‍♀️ 🚀

@@ -19,6 +19,10 @@ const categoryInfo = [
     name: "NFTs: The basics sorted",
     desc: "Learn all you need to know about NFTs - the new revolution!",
   },
+  {
+    name: "All about DAOs",
+    desc: "Master DAOs - the all new companies that will run the world soon!",
+  },
 ];
 
 export default categoryInfo;

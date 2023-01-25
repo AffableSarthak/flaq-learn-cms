@@ -8,13 +8,20 @@ import {
   useDisclosure,
   Stack,
   Center,
+  Box,
+  Text,
+  Code,
+  useToast,
+  Flex,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import TransactionForm from "./TransactionForm";
 import Preview from "./Preview";
 import { useTransactionStore } from "../../../store/solana/transactionStore";
+import { CopyIcon } from "@chakra-ui/icons";
 
 export default function Transaction({ network }: { network: string }) {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { currentScreen, resetTransaction, handleNetworkType, networkType } =
     useTransactionStore();
@@ -24,10 +31,51 @@ export default function Transaction({ network }: { network: string }) {
   }, []);
 
   return (
-    <Center>
-      <Button variant={"primarybtn"} onClick={onOpen}>
-        {`Let's transfer your first ${networkType}! 🪙`}
-      </Button>
+    <>
+      <Flex direction="column" gap={"4"}>
+        <Box>
+          <Center>
+            <Text
+              fontSize={{ base: "md", md: "lg", lg: "xl" }}
+              fontWeight={"400"}
+              color="#F2FFEA"
+              mb="2"
+            >
+              {`Sample receiver public address`}
+            </Text>
+          </Center>
+          <Center>
+            <Code
+              fontSize={{ base: "md", md: "lg", lg: "xl" }}
+              fontWeight={"400"}
+              maxW={{ base: "80%", lg: "100%" }}
+              colorScheme="green"
+              _hover={{ cursor: "pointer" }}
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  "DqnRv6uwbUEQwuzfhemqSrmLmAGg7JV83Eb5QbMLNw1J"
+                );
+                toast({
+                  title: `Copied to clipboard`,
+                  status: "success",
+                  isClosable: true,
+                  position: "top-right",
+                });
+              }}
+            >
+              DqnRv6uwbUEQwuzfhemqSrmLmAGg7JV83Eb5QbMLNw1J <CopyIcon />
+            </Code>
+          </Center>
+        </Box>
+        <Center>
+          <Box>
+            <Button variant={"primarybtn"} onClick={onOpen}>
+              {`Let's transfer your first ${networkType}! 🪙`}
+            </Button>
+          </Box>
+        </Center>
+      </Flex>
+
       <Modal
         isOpen={isOpen}
         onClose={() => {
@@ -45,7 +93,7 @@ export default function Transaction({ network }: { network: string }) {
           bottom="0px"
           borderRadius={"2xl"}
         >
-          <ModalBody p={0} borderRadius="2xl">
+          <ModalBody p={0} borderWidth="1px" borderRadius="2xl">
             <Stack
               w={["100vw", "375px"]}
               h={"640px"}
@@ -63,6 +111,6 @@ export default function Transaction({ network }: { network: string }) {
           </ModalBody>
         </ModalContent>
       </Modal>
-    </Center>
+    </>
   );
 }

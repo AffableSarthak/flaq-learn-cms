@@ -26,11 +26,17 @@ export default function Preview() {
     transaction,
     handleAmount,
     handleUserAddress,
+    isLoading,
+    setIsLoading,
   } = useTransactionStore();
 
   const toast = useToast();
   const gasFee = (amount * 0.009) / 100;
   const totalAmount = amount + gasFee;
+
+  async function stall(stallTime = 3000) {
+    await new Promise((resolve) => setTimeout(resolve, stallTime));
+  }
 
   return (
     <>
@@ -62,10 +68,10 @@ export default function Preview() {
               fontSize={"14px"}
               color="#B5E8CC"
             >
-              value
+              Sending {networkType}
             </Text>
             <Text fontWeight={"semibold"} fontFamily="Poppins">
-              Sending {totalAmount} {networkType}
+              {amount}
             </Text>
           </Box>
         </HStack>
@@ -120,17 +126,22 @@ export default function Preview() {
           bg="#97FCE9"
           color="black"
           _hover={{ bg: "#97FCE9" }}
-          disabled={totalAmount > balance}
-          onClick={() => {
+          isLoading={isLoading}
+          loadingText="Confirming your transaction..."
+          disabled={totalAmount > balance || isLoading}
+          onClick={async () => {
+            setIsLoading();
+            await stall(5000);
+            setIsLoading();
             handleBalance(parseFloat(totalAmount.toFixed(2)), balance);
             handleTransaction(totalAmount, transaction);
             handleAmount(0);
             handleUserAddress("");
             handleScreen(0);
             toast({
-              title: "Transaction successfull",
+              title: "Transaction successful",
               status: "success",
-              duration: 9000,
+              duration: 3000,
               isClosable: true,
             });
           }}

@@ -26,6 +26,7 @@ export default function TransactionForm() {
 
   const [validateAddress, setValidateAddress] = useState<boolean>(false);
   const [validateAmount, setValidateAmount] = useState<boolean>(false);
+
   const gasFee = (amount * 0.009) / 100;
   const totalAmount = amount + gasFee;
 
@@ -69,7 +70,6 @@ export default function TransactionForm() {
         alignItems="center"
         borderBottom={"1px"}
         borderColor="gray.800"
-        // borderRadius={"2xl"}
       >
         <Box mr={2} cursor="pointer" onClick={() => handleScreen(0)}>
           <MdKeyboardBackspace fontSize={"24px"} />
@@ -135,7 +135,12 @@ export default function TransactionForm() {
               />
               <HStack alignItems={"center"} mr={4}>
                 <Text>SOL</Text>
-                <Button size="xs" onClick={() => handleAmount(balance)}>
+                <Button
+                  size="xs"
+                  onClick={() =>
+                    handleAmount(balance - (balance * 0.009) / 100)
+                  }
+                >
                   Max
                 </Button>
               </HStack>
@@ -166,7 +171,12 @@ export default function TransactionForm() {
               >
                 Gas Fee
               </FormLabel>
-              <Input type="text" mt={2} disabled value={gasFee} />
+              <Input
+                type="text"
+                mt={2}
+                disabled
+                value={isNaN(gasFee) ? "" : gasFee}
+              />
             </Box>
 
             <Box mt={4}>
@@ -181,13 +191,13 @@ export default function TransactionForm() {
                 type="text"
                 mt={2}
                 disabled
-                value={totalAmount}
+                value={isNaN(totalAmount) ? "" : totalAmount}
                 // isInvalid={totalAmount > balance}
               />
               {totalAmount > balance ? (
                 <FormHelperText>
                   <Text fontSize={"xs"} mt={2} color="red.300">
-                    Insufficient balance
+                    Insufficient funds for gas
                   </Text>
                 </FormHelperText>
               ) : (
