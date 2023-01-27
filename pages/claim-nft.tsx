@@ -35,7 +35,7 @@ export default function claimNft() {
             backdropBlur: "10px",
           }}
         >
-          <Heading fontFamily={"Poppins"} fontSize={["32px", "40px", "60px"]}>
+          <Heading fontFamily={"Poppins"} fontSize={["32px", "30px", "60px"]}>
             Congratulations!
           </Heading>
           <Heading
@@ -108,7 +108,7 @@ export default function claimNft() {
           src="/img/claimNft/Blob1.png"
           position={"absolute"}
           top={"400px"}
-          right={[0, "10px", "190px"]}
+          right={[0, "10px", 0, 0]}
           w="290px"
           display={["none", "none", "block"]}
         />
