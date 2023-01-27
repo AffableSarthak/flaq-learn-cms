@@ -3,6 +3,7 @@ import {
   AlgorandSimulationKeys,
   Blockchains,
   EthereumSimulationKeys,
+  FilecoinSimulationKeys,
   SolanaSimulationKeys,
 } from "../types";
 import Airdrop from "./solana/Airdrop";
@@ -14,12 +15,14 @@ import shallow from "zustand/shallow";
 import { useCreateEthWalletStore } from "../store/ethereum/createEthWalletStore";
 import { useCreateAlgoWalletStore } from "../store/algorand/createAlgoWalletStore";
 import Transaction from "./common/transaction";
+import { useCreateFilWalletStore } from "../store/filecoin/createFilWalletStore";
 
 export interface SimulationProps {
   simKey:
     | SolanaSimulationKeys
     | AlgorandSimulationKeys
-    | EthereumSimulationKeys;
+    | EthereumSimulationKeys
+    | FilecoinSimulationKeys;
   blockchain: Blockchains;
 }
 
@@ -39,6 +42,14 @@ const RenderSimulation = (props: SimulationProps) => {
       return (
         <RenderEthereumSimulation simKey={simKey as EthereumSimulationKeys} />
       );
+
+    case Blockchains.Filecoin:
+      return (
+        <RenderFilecoinSimulation simKey={simKey as FilecoinSimulationKeys} />
+      );
+
+    default:
+      return <></>;
   }
 };
 
@@ -79,20 +90,16 @@ const RenderAlgorandSimulation = ({
 }: {
   simKey: AlgorandSimulationKeys;
 }) => {
-  const {
-    seedPhrase,
-    publicKey,
-    createWallet,
-    isLoading,
-  } = useCreateAlgoWalletStore(
-    (state) => ({
-      seedPhrase: state.seedPhrase,
-      publicKey: state.publicKey,
-      createWallet: state.createWallet,
-      isLoading: state.isLoading,
-    }),
-    shallow
-  );
+  const { seedPhrase, publicKey, createWallet, isLoading } =
+    useCreateAlgoWalletStore(
+      (state) => ({
+        seedPhrase: state.seedPhrase,
+        publicKey: state.publicKey,
+        createWallet: state.createWallet,
+        isLoading: state.isLoading,
+      }),
+      shallow
+    );
 
   switch (simKey) {
     case AlgorandSimulationKeys.GenAccount:
@@ -130,6 +137,45 @@ const RenderEthereumSimulation = ({
       return <BackupSeedPhrase seedPhrase={seedPhrase} />;
     }
     case EthereumSimulationKeys.ShowcasePublicKey: {
+      return (
+        <ShowcasePublicKey publicKey={publicKey} seedPhrase={seedPhrase} />
+      );
+    }
+    default:
+      return <></>;
+  }
+};
+
+const RenderFilecoinSimulation = ({
+  simKey,
+}: {
+  simKey: FilecoinSimulationKeys;
+}) => {
+  const { seedPhrase, generateKey, publicKey, f4Address } =
+    useCreateFilWalletStore(
+      (state) => ({
+        seedPhrase: state.seedPhrase,
+        generateKey: state.generateSeedPhrase,
+        publicKey: state.publickey,
+        f4Address: state.f4Adrress,
+      }),
+      shallow
+    );
+
+  switch (simKey) {
+    case FilecoinSimulationKeys.GenKeyPair: {
+      return (
+        <GenKeyPair
+          seedPhrase={seedPhrase}
+          generateKey={generateKey}
+          f4Address={f4Address}
+        />
+      );
+    }
+    case FilecoinSimulationKeys.BackupSeedPhrase: {
+      return <BackupSeedPhrase seedPhrase={seedPhrase} />;
+    }
+    case FilecoinSimulationKeys.ShowcasePublicKey: {
       return (
         <ShowcasePublicKey publicKey={publicKey} seedPhrase={seedPhrase} />
       );

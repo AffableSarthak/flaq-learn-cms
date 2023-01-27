@@ -161,10 +161,10 @@ export const getBlockchainData = () => {
       simulations: [
         {
           name: "Create Fil Wallet",
-          link: "algorand/create-wallet",
+          link: "filecoin/create-wallet",
           icon: walletIcon,
           badgeText: "Basic",
-          isActive: false,
+          isActive: true,
         },
         {
           name: "Transfer Fil to addresses",

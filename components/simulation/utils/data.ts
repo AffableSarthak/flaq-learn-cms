@@ -19,6 +19,10 @@ enum EthereumDataType {
   CreateWallet = "create-wallet",
 }
 
+enum FilecoinDataType {
+  CreateWallet = "create-wallet",
+}
+
 interface SimType {
   simulationData: SimulationBlockType[];
   simulationHeader: string;
@@ -903,6 +907,258 @@ const getEthereumData = (simulationType: string): SimType | undefined => {
   }
 };
 
+/**
+ *
+ * @returns {SimType} - Array of Create wallet simulation data
+ */
+const getFilecoinData = (simulationType: string): SimType | undefined => {
+  switch (simulationType) {
+    case FilecoinDataType.CreateWallet:
+      return {
+        simulationData: [
+          // 1. Introduction
+          {
+            title: "Introduction",
+            block: [
+              {
+                paraBlock: [
+                  {
+                    textItems: [
+                      {
+                        text: "Gm. Please read ‘[[Wallet: Your Crypto Storage]]’ to gain a fundamental understanding of wallets.",
+                        linkItems: ["Wallet: Your Crypto Storage"],
+                      },
+                    ],
+                    paraTitle:
+                      "Prerequisites before you proceed with the wallet simulation",
+                  },
+                  {
+                    textItems: [
+                      {
+                        text: "For doing almost anything in web3 - receiving payments in crypto, sending payments in crypto, swapping tokens, minting NFTs, you need a wallet. While you can have a [[cold wallet]], or a [[hot wallet]], we’ll simulate a hot wallet for you. Once you learn how to create a wallet and get used to the interface as well as the terminologies, it will be a cakewalk for you when you try to create an actual wallet on the Filecoin chain! 🍰 Take your first step into web3, with Flaq. 🚀",
+                        linkItems: ["cold wallet", "hot wallet"],
+                      },
+                    ],
+                    paraTitle: "Creating a wallet is the 1st step to web3",
+                  },
+                ],
+              },
+            ],
+          },
+          // 2. Create Wallet
+          {
+            title: "Create your first wallet ever!",
+            block: [
+              {
+                blockTitle: "What are the elements of creating a wallet?",
+                listBlock: [
+                  {
+                    listTitle: "A wallet has 3 primary unavoidable elements",
+                    textItems: [
+                      {
+                        text: "[[seed phrase]] - A unique series of 12-24 words created by your wallet that lets you access the crypto linked to that wallet. When is this revealed? The creation and verification of a seed phrase is the road to creating your wallet. (don’t share this with anyone, save it somewhere secure! 🔐)",
+                        linkItems: ["seed phrase"],
+                      },
+                      {
+                        text: "[[public key]] - a [[cryptographic]] code that enables users to accept crypto into their accounts. Ex - 0x41B...BA34 (a string of numbers and letters 🧵). When is this revealed? After you create your wallet, you can use this public key as your identity! (you can share this! 🔓)",
+                        linkItems: ["public key", "cryptographic"],
+                      },
+                      {
+                        text: "[[private key]] - your private key acts as a password that will unlock the transaction. When is this revealed? This is accessible after your wallet is created. (don’t share this with anyone! 🔐)",
+                        linkItems: ["private key"],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+            simKey: EthereumSimulationKeys.GenKeyPair,
+          },
+          // 3. Backup Seed Phrase
+          {
+            title: "Backup Seed Phrase, protect funds",
+            block: [
+              {
+                paraBlock: [
+                  {
+                    paraTitle: "Why backing up your seed phrase is necessary? ",
+                    textItems: [
+                      {
+                        text: "You lose your seed phrase, you lose your crypto. Let’s say you created a seed phrase, and trusting your ability to remember things, you do not make a note of it. A few days later, god forbid, you forget your seed phrase. What then? 😔",
+                        linkItems: [],
+                      },
+                      {
+                        text: "You have a) lost access to your funds because you can no longer access your wallet, and b) given someone else the golden opportunity to lay their hands on your crypto. If someone else has access to your seed phrase then they can steal all your funds.",
+                        linkItems: [],
+                      },
+                      {
+                        text: "So, ALWAYS (and we mean, always) back up your seed phrase. It is quite literally the key to regaining access to your money. 🔑",
+                        linkItems: [],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                listBlock: [
+                  {
+                    listTitle:
+                      " I’m convinced. But how do I back up my seed phrase? ",
+                    textItems: [
+                      {
+                        text: "Write it down on a piece of paper and secure it. ",
+                        linkItems: [],
+                      },
+                      {
+                        text: "While we don’t recommend saving it online, if you’re confident, you can save it in a secure location on your laptop/phone as well. ",
+                        linkItems: [],
+                      },
+                      {
+                        text: "Some people go the extra mile and save it in their bank lockers. ",
+                        linkItems: [],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                paraBlock: [
+                  {
+                    textItems: [
+                      {
+                        text: "The essence then is that we could have an endless list of ideas on how you can best save your seed phrase. But it’s entirely up to you to be creative and find the safest option that works for you! 🎈 ",
+                        linkItems: [],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+            simKey: EthereumSimulationKeys.BackupSeedPhrase,
+          },
+          // 4. Verify Public Key
+          {
+            title: "Final step: Verify your seed phrase ",
+            block: [
+              {
+                listBlock: [
+                  {
+                    listTitle: "Why verify my seed phrase?",
+                    textItems: [
+                      {
+                        text: "we know you’ve backed it up and it is stored somewhere safe. Wallets usually take the first step of your fund protection this way by facilitating the backing up of the seed phrase.",
+                        linkItems: [],
+                      },
+                      {
+                        text: " Also, you can confirm that you’ve backed up the right seed phrase. Trust us, those 12-24 unique words in a series are so unrelated to each other, that it can get confusing while backing them up! 😖 So, verify your seed phrase and complete the final step toward wallet creation! 🥳",
+                        linkItems: [],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+            simKey: EthereumSimulationKeys.ShowcasePublicKey,
+          },
+          // 5. Conclusion
+          {
+            title: "Conclusion- Where can I make my wallet?",
+            block: [
+              {
+                paraBlock: [
+                  {
+                    textItems: [
+                      {
+                        text: "If you feel ready to make a wallet now, then you can choose from these 3 options - MetaMask, Frontier and Argent. These are the most sought after [[wallets on the Ethereum chain]].",
+                        linkItems: ["wallets on the Ethereum chain"],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                accordianBlock: [
+                  {
+                    accordianTitle: "MetaMask Wallet",
+                    accordianPanel: [
+                      {
+                        paraBlock: [
+                          {
+                            textItems: [
+                              {
+                                text: "MetaMask is available as a browser extension and a mobile app - it equips you with a key vault, secure login, token wallet, and token exchange. You can create your [[MetaMask wallet here]]. This is what your wallet would look like on MetaMask as soon as you create it",
+                                linkItems: ["MetaMask wallet here"],
+                              },
+                            ],
+                            image: {
+                              src: "/wallets/MetaMask.jpeg",
+                              alt: "Metamask wallet",
+                              width: "200",
+                              height: "400",
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    accordianTitle: "Frontier wallet",
+                    accordianPanel: [
+                      {
+                        paraBlock: [
+                          {
+                            textItems: [
+                              {
+                                text: "The Frontier wallet is a non-custodial, secure wallet catering to crypto, DeFi, NFTs and more across 35+ blockchains. You can create your [[Frontier wallet here]]. This is what your wallet would look like on Frontier as soon as you create it -",
+                                linkItems: ["Frontier wallet here"],
+                              },
+                            ],
+                            image: {
+                              src: "/wallets/Frontier.jpeg",
+                              alt: "Frontier wallet",
+                              width: "200",
+                              height: "400",
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    accordianTitle: "Argent wallet",
+                    accordianPanel: [
+                      {
+                        paraBlock: [
+                          {
+                            textItems: [
+                              {
+                                text: "The Argent wallet enables you to buy, earn, stake and trade on Ethereum Layer 2 with low fees & bulletproof security. You can create your [[Argent wallet here]]. This is what your wallet would look like on Argent as soon as you create it - ",
+                                linkItems: ["Argent wallet here"],
+                              },
+                            ],
+                            image: {
+                              src: "/wallets/argent.png",
+                              alt: "Argent wallet",
+                              width: "200",
+                              height: "400",
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        simulationHeader: "Wallet Creation Simulation",
+      };
+    default:
+      return undefined;
+  }
+};
+
 export const getSimulationData = (
   simulationType: string,
   blockchain: Blockchains
@@ -913,5 +1169,7 @@ export const getSimulationData = (
     return getAlgorandData(simulationType);
   } else if (blockchain === Blockchains.Ethereum) {
     return getEthereumData(simulationType);
+  } else if (blockchain === Blockchains.Filecoin) {
+    return getFilecoinData(simulationType);
   }
 };
