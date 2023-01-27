@@ -46,7 +46,8 @@ const navbarLinks = [
   },
   {
     name: "Contact Us",
-    link: "mailto:welcome@flaq.club?subject=Hi!%20I'm%20interested%20in%20knowing%20more%20about%20Flaq",
+    link:
+      "mailto:welcome@flaq.club?subject=Hi!%20I'm%20interested%20in%20knowing%20more%20about%20Flaq",
   },
 ];
 
@@ -82,12 +83,17 @@ const Header = ({
         w="100%"
         fontFamily={"Nunito Sans"}
       >
-        <Flex py="4" justifyContent={"space-between"} alignItems='center'>
+        <Flex py="4" justifyContent={"space-between"} alignItems="center">
           <Box>
             <Link passHref href={"https://flaq.club/"}>
               <a>
                 <HStack gap="2">
-                  <Image src={logo} width="40px" height="40px" alt="Flaq logo" />
+                  <Image
+                    src={logo}
+                    width="40px"
+                    height="40px"
+                    alt="Flaq logo"
+                  />
                   <Box>
                     <Text
                       fontSize={"20"}
