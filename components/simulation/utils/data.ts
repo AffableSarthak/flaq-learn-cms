@@ -322,7 +322,7 @@ const getSolanaData = (simulationType: string): SimType | undefined => {
                   {
                     textItems: [
                       {
-                        text: "[[Gm]] gm! Now that you’ve learnt how to [[create your wallet]] on the Solana chain, it’s time to take the next step w Flaq - let’s see how transferring crypto works. How can you send crypto to your friend/employer/employee/relative/xyz? It’s simple. We’ll take you through a three-step interactive simulation that replicates the UI of transferring crypto on Solana, and you’ll master it! 🚀 Teeny tiny revision for you - everyone receives a public address after creating a wallet, just like you did - and that’s everyone’s digital identity! So, to try transferring crypto in a simulation, on the testnet network(where you won’t lose any real money), you will be entering the intended receiver’s public address and if your balance permits the transaction, it’ll happen like magic! 🪄",
+                        text: "[[Gm]] gm! Now that you’ve learnt how to [[create your wallet]] on the Solana chain, it’s time to take the next step w Flaq - let’s see how transferring crypto works. How can you send crypto to your friend/employer/employee/relative/xyz? It’s simple. We’ll take you through an interactive simulation that replicates the UI of transferring crypto on Solana, and you’ll master it! 🚀 Teeny tiny revision for you - everyone receives a public address after creating a wallet, just like you did - and that’s everyone’s digital identity! So, to try transferring crypto in a simulation, on the testnet network (where you won’t lose any real money), you will be entering the intended receiver’s public address and if your balance permits the transaction, it’ll happen like magic! 🪄",
                         linkItems: ["Gm", "create your wallet"],
                       },
                     ],
@@ -341,11 +341,11 @@ const getSolanaData = (simulationType: string): SimType | undefined => {
                   {
                     textItems: [
                       {
-                        text: "But I barely have any SOL? Dw, we got u! Let’s start by giving you a fixed balance of 20 SOL! Now, you can test out how to transfer crypto by ‘sending’ your crypto to a sample receiver public address that we will give you.",
+                        text: "But I barely have any SOL? Dw, we got u! Let’s start by giving you a fixed balance of 20 SOL! Now, you can test out how to transfer crypto by ‘sending’ your crypto to a sample receiver public address. Copy the sample receiver address given below, and paste it when asked to enter it. ✒️",
                         linkItems: [],
                       },
                     ],
-                    paraTitle: "step 1: ‘Send’ some SOL",
+                    paraTitle: "‘Send’ some SOL",
                   },
                 ],
               },
@@ -354,11 +354,11 @@ const getSolanaData = (simulationType: string): SimType | undefined => {
                   {
                     textItems: [
                       {
-                        text: "Now that you’ve clicked on ‘send’, you need to decide how much crypto you want to send. Choose any amount you want to try with - 2 SOL, 15 SOL - anything (remember - it’s not real money! This is a just a simulation). If you wanna tr ansfer all the crypto, then just click on ‘max’ and the system will enter in your total balance, itself! Just to cover all the bases - make sure you’ve entered the right amount you want to transfer, and make sure you’ve entered the right address - click on ‘preview’ to preview your transaction before confirming it!",
+                        text: "Now that you’ve clicked on ‘send’, you need to decide how much crypto you want to send. Choose any amount you want to try with - 2 SOL, 15 SOL - anything (remember - it’s not real money! This is a just a simulation). If you wanna transfer all the crypto, then just click on ‘max’ and the system will enter in your total balance, itself! Just to cover all the bases - make sure you’ve entered the right amount you want to transfer, and make sure you’ve entered the sample receiver public address that we have provided you with. Click on ‘preview’ to preview your transaction before confirming it! ✔️                        ",
                         linkItems: [],
                       },
                     ],
-                    paraTitle: "step 2: Enter the Amount",
+                    paraTitle: "Enter the Amount",
                   },
                 ],
               },
@@ -367,11 +367,11 @@ const getSolanaData = (simulationType: string): SimType | undefined => {
                   {
                     textItems: [
                       {
-                        text: "One last step to go! The gas fees. What’s that? The usually minimal transactional fees that you have to pay to the blockchain network, for engaging in this transaction on it! The gas fees usually depend on the value of the crypto of that blockchain as well, and people actually take gas fees as an important factor into consideration while determining which blockchain to transact on! After a minimal gas fee is reduced from the amount you entered in, you can now click on ‘send’ and finally transfer the crypto! 🥳",
+                        text: "One last step to go! The gas fees or network fees. What’s that? This is the usually minimal transactional fees that you have to pay to the blockchain network, for engaging in this transaction on it. The gas fees usually depend on the value of the crypto of that blockchain as well, and people actually take gas fees as an important factor into consideration while determining which blockchain to transact on. After a minimal gas fee is reduced from the amount you entered in, you can now click on ‘send’ and finally transfer the crypto! 🚀                        ",
                         linkItems: [],
                       },
                     ],
-                    paraTitle: "step 3: Make sure all's good!",
+                    paraTitle: "Make sure all's good!",
                   },
                 ],
               },
@@ -384,7 +384,7 @@ const getSolanaData = (simulationType: string): SimType | undefined => {
                         linkItems: [],
                       },
                     ],
-                    paraTitle: "step 4: Confirm your transaction went thru!",
+                    paraTitle: "Confirm your transaction went thru!",
                   },
                 ],
               },
