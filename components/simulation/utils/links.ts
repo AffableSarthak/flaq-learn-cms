@@ -30,10 +30,26 @@ const links: Links = {
   "MetaMask wallet here": "https://metamask.io/download/",
   "Frontier wallet here": "https://www.frontier.xyz/download",
   "Argent wallet here": "https://www.argent.xyz/",
-  "Cryptocurrencies - Your A to Z Guide": "https://learn.flaq.club/dive-into-web3/cryptocurrencies-the-a-to-z-guide",
-  "Tokens: The Basics Covered for You": "https://learn.flaq.club/dive-into-web3/tokens-the-basics-covered-for-you",
-  "Gm": "https://learn.flaq.club/gm!-welcome-to-flaq-%F0%9F%A4%9D/web3-slang#f0f50430d5b946e4b34a79d159253a49",
-  "create your wallet": "https://learn.flaq.club/gm!-welcome-to-flaq-%F0%9F%A4%9D/web3-slang#f0f50430d5b946e4b34a79d159253a49"
+  "Cryptocurrencies - Your A to Z Guide":
+    "https://learn.flaq.club/dive-into-web3/cryptocurrencies-the-a-to-z-guide",
+  "Tokens: The Basics Covered for You":
+    "https://learn.flaq.club/dive-into-web3/tokens-the-basics-covered-for-you",
+  Gm: "https://learn.flaq.club/gm!-welcome-to-flaq-%F0%9F%A4%9D/web3-slang#f0f50430d5b946e4b34a79d159253a49",
+  "create your wallet":
+    "https://learn.flaq.club/gm!-welcome-to-flaq-%F0%9F%A4%9D/web3-slang#f0f50430d5b946e4b34a79d159253a49",
+  "your FILWallet here": "https://filwallet.co/",
+  "Trust wallet here":
+    "https://play.google.com/store/apps/details?id=com.wallet.crypto.trustapp&referrer=utm_source%3Dwebsite",
+  Solana: "https://solana.com/",
+  "The Famous Coins: Bitcoin, Ethereum and Solana":
+    "https://learn.flaq.club/dive-into-web3/the-famous-coins-bitcoin-ethereum-and-solana",
+  "The Technology behind Web3 - Blockchain":
+    "https://learn.flaq.club/dive-into-web3/the-technology-behind-web3-blockchain",
+  Algorand: "https://www.algorand.com/",
+  Ethereum: "https://ethereum.org/en/",
+  "open-source":
+    "https://learn.flaq.club/blog/Web3-Dictionary-a656e60e6e364a92854a697e0ba23cfb#c1aa9491686d43ecb13199c6cfb3ab36",
+  Filecoin: "https://filecoin.io/",
 };
 
 export default links;

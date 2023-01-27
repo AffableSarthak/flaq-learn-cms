@@ -1069,7 +1069,7 @@ const getFilecoinData = (simulationType: string): SimType | undefined => {
                   {
                     textItems: [
                       {
-                        text: "If you feel ready to make a wallet now, then you can choose from these 3 options - MetaMask, Frontier and Argent. These are the most sought after [[wallets on the Ethereum chain]].",
+                        text: "If you feel ready to make a wallet now, then you can choose from these 2 options - Trust and FIL Wallet. These are the most sought after wallets on the Filecoin chain. ",
                         linkItems: ["wallets on the Ethereum chain"],
                       },
                     ],
@@ -1079,20 +1079,20 @@ const getFilecoinData = (simulationType: string): SimType | undefined => {
               {
                 accordianBlock: [
                   {
-                    accordianTitle: "MetaMask Wallet",
+                    accordianTitle: "Trust Wallet",
                     accordianPanel: [
                       {
                         paraBlock: [
                           {
                             textItems: [
                               {
-                                text: "MetaMask is available as a browser extension and a mobile app - it equips you with a key vault, secure login, token wallet, and token exchange. You can create your [[MetaMask wallet here]]. This is what your wallet would look like on MetaMask as soon as you create it",
-                                linkItems: ["MetaMask wallet here"],
+                                text: "Trust Wallet is a multichain solution that allows you to buy, store, collect NFTs, exchange and earn crypto. It supports Filecoin. You can create your [[Trust wallet here]]. This is what your wallet would like on Trust as soon as you create it - ",
+                                linkItems: ["Trust wallet here"],
                               },
                             ],
                             image: {
-                              src: "/wallets/MetaMask.jpeg",
-                              alt: "Metamask wallet",
+                              src: "/wallets/trust-fil.jpeg",
+                              alt: "Trust wallet",
                               width: "200",
                               height: "400",
                             },
@@ -1102,43 +1102,20 @@ const getFilecoinData = (simulationType: string): SimType | undefined => {
                     ],
                   },
                   {
-                    accordianTitle: "Frontier wallet",
+                    accordianTitle: "FILWallet",
                     accordianPanel: [
                       {
                         paraBlock: [
                           {
                             textItems: [
                               {
-                                text: "The Frontier wallet is a non-custodial, secure wallet catering to crypto, DeFi, NFTs and more across 35+ blockchains. You can create your [[Frontier wallet here]]. This is what your wallet would look like on Frontier as soon as you create it -",
-                                linkItems: ["Frontier wallet here"],
+                                text: "The FILWallet is a decentralized digital asset wallet that is built on the web3.0 ecosystem. You can create [[your FILWallet here]]. This is what your wallet would like on FILWallet as soon as you create it - ",
+                                linkItems: ["your FILWallet here"],
                               },
                             ],
                             image: {
-                              src: "/wallets/Frontier.jpeg",
-                              alt: "Frontier wallet",
-                              width: "200",
-                              height: "400",
-                            },
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                  {
-                    accordianTitle: "Argent wallet",
-                    accordianPanel: [
-                      {
-                        paraBlock: [
-                          {
-                            textItems: [
-                              {
-                                text: "The Argent wallet enables you to buy, earn, stake and trade on Ethereum Layer 2 with low fees & bulletproof security. You can create your [[Argent wallet here]]. This is what your wallet would look like on Argent as soon as you create it - ",
-                                linkItems: ["Argent wallet here"],
-                              },
-                            ],
-                            image: {
-                              src: "/wallets/argent.png",
-                              alt: "Argent wallet",
+                              src: "/wallets/FILWalet.jpeg",
+                              alt: "FILWallet",
                               width: "200",
                               height: "400",
                             },

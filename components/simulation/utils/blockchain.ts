@@ -14,6 +14,19 @@ export const getBlockchainData = () => {
     {
       name: "Solana",
       icon: solanaIcon,
+      paraBlock: [
+        {
+          textItems: [
+            {
+              text: "[[Solana]] is a decentralized blockchain created to support globally user-friendly and scalable apps. Read '[[The Famous Coins: Bitcoin, Ethereum and Solana]]' to learn all about Solana.",
+              linkItems: [
+                "Solana",
+                "The Famous Coins: Bitcoin, Ethereum and Solana",
+              ],
+            },
+          ],
+        },
+      ],
       simulations: [
         {
           name: "Create Wallet",
@@ -62,6 +75,19 @@ export const getBlockchainData = () => {
     {
       name: "Algorand",
       icon: algorandIcon,
+      paraBlock: [
+        {
+          textItems: [
+            {
+              text: "[[Algorand]] is a proof-of-stake blockchain cryptocurrency protocol. To equip yourself about what blockchains are, in depth, read '[[The Technology behind Web3 - Blockchain]]'.",
+              linkItems: [
+                "Algorand",
+                "The Technology behind Web3 - Blockchain",
+              ],
+            },
+          ],
+        },
+      ],
       simulations: [
         {
           name: "Create Wallet",
@@ -110,6 +136,19 @@ export const getBlockchainData = () => {
     {
       name: "Ethereum",
       icon: ethereumIcon,
+      paraBlock: [
+        {
+          textItems: [
+            {
+              text: "[[Ethereum]] is an open-source blockchain that powers the ether (ETH) cryptocurrency along with various other decentralized apps. Read '[[The Famous Coins: Bitcoin, Ethereum and Solana]]' to learn all about Ethereum.",
+              linkItems: [
+                "The Famous Coins: Bitcoin, Ethereum and Solana",
+                "Ethereum",
+              ],
+            },
+          ],
+        },
+      ],
       simulations: [
         {
           name: "Create Wallet",
@@ -158,6 +197,22 @@ export const getBlockchainData = () => {
     {
       name: "Filecoin",
       icon: filecoinIcon,
+      paraBlock: [
+        {
+          textItems: [
+            {
+              text: "[[Filecoin]] is an open-source cloud storage marketplace, protocol, and incentive layer. The core Filecoin layer has provided the foundation to build the Filecoin Virtual Machine (FVM). On top of the FVM, we have Native Filecoin Actors and the Filecoin Ethereum Virtual Machine (FEVM) being built.",
+              linkItems: ["Filecoin"],
+            },
+          ],
+          image: {
+            src: "/wallets/filecoin-arch.png",
+            alt: "Filecoin Architecture wallet",
+            width: "600",
+            height: "300",
+          },
+        },
+      ],
       simulations: [
         {
           name: "Create Fil Wallet",

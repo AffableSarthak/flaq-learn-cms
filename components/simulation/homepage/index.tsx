@@ -19,6 +19,7 @@ import Link from "next/link";
 import { getBlockchainData } from "../utils/blockchain";
 import Footer from "../../common/Footer";
 import Header from "../../common/Header";
+import RenderParaBlock from "../layout/main/RenderParaBlock";
 
 type Props = {};
 
@@ -196,29 +197,61 @@ const HomePage = (props: Props) => {
                 <TabPanels>
                   {chainSimulations.map((chain: any, key: number) => {
                     return chain.simulations.length > 0 ? (
-                      <TabPanel key={key}>
-                        <Grid
-                          templateColumns={{
-                            base: "repeat(1, 1fr)",
-                            sm: "repeat(1, 1fr)",
-                            md: "repeat(2, 1fr)",
-                            lg: "repeat(3, 1fr)",
-                          }}
-                          gap={6}
-                        >
-                          {chain.simulations.map(
-                            (simulation: any, key: number) => (
-                              <div key={key}>
-                                {simulation.isActive ? (
-                                  <Link
-                                    key={key}
-                                    passHref
-                                    href={`simulation/${simulation.link}`}
-                                  >
+                      <>
+                        <TabPanel key={key}>
+                          <RenderParaBlock
+                            key={chain.name}
+                            block={chain.paraBlock}
+                          />
+                          <Grid
+                            templateColumns={{
+                              base: "repeat(1, 1fr)",
+                              sm: "repeat(1, 1fr)",
+                              md: "repeat(2, 1fr)",
+                              lg: "repeat(3, 1fr)",
+                            }}
+                            gap={6}
+                          >
+                            {chain.simulations.map(
+                              (simulation: any, key: number) => (
+                                <div key={key}>
+                                  {simulation.isActive ? (
+                                    <Link
+                                      key={key}
+                                      passHref
+                                      href={`simulation/${simulation.link}`}
+                                    >
+                                      <GridItem
+                                        cursor="pointer"
+                                        border="1px solid #000000"
+                                        bg="#C4FFE614"
+                                        w={{ base: "306px", md: "384px" }}
+                                        h={{ base: "179px", md: "218px" }}
+                                        display={"flex"}
+                                        alignItems={"center"}
+                                        justifyContent={"center"}
+                                        borderRadius={"20px"}
+                                      >
+                                        <VStack>
+                                          <Image
+                                            src={simulation.icon}
+                                            alt={simulation.name}
+                                          />
+                                          <Text
+                                            fontFamily={"Poppins"}
+                                            fontSize={{ md: "lg", base: "md" }}
+                                            fontWeight={700}
+                                          >
+                                            {simulation.name}
+                                          </Text>
+                                        </VStack>
+                                      </GridItem>
+                                    </Link>
+                                  ) : (
                                     <GridItem
-                                      cursor="pointer"
+                                      key={key}
                                       border="1px solid #000000"
-                                      bg="#C4FFE614"
+                                      bg="#1A1A1A5C"
                                       w={{ base: "306px", md: "384px" }}
                                       h={{ base: "179px", md: "218px" }}
                                       display={"flex"}
@@ -238,42 +271,16 @@ const HomePage = (props: Props) => {
                                         >
                                           {simulation.name}
                                         </Text>
+                                        <Text>Coming soon</Text>
                                       </VStack>
                                     </GridItem>
-                                  </Link>
-                                ) : (
-                                  <GridItem
-                                    key={key}
-                                    border="1px solid #000000"
-                                    bg="#1A1A1A5C"
-                                    w={{ base: "306px", md: "384px" }}
-                                    h={{ base: "179px", md: "218px" }}
-                                    display={"flex"}
-                                    alignItems={"center"}
-                                    justifyContent={"center"}
-                                    borderRadius={"20px"}
-                                  >
-                                    <VStack>
-                                      <Image
-                                        src={simulation.icon}
-                                        alt={simulation.name}
-                                      />
-                                      <Text
-                                        fontFamily={"Poppins"}
-                                        fontSize={{ md: "lg", base: "md" }}
-                                        fontWeight={700}
-                                      >
-                                        {simulation.name}
-                                      </Text>
-                                      <Text>Coming soon</Text>
-                                    </VStack>
-                                  </GridItem>
-                                )}
-                              </div>
-                            )
-                          )}
-                        </Grid>
-                      </TabPanel>
+                                  )}
+                                </div>
+                              )
+                            )}
+                          </Grid>
+                        </TabPanel>
+                      </>
                     ) : (
                       <TabPanel key={key}>
                         <Box key={key} w="100%" h="100%">
