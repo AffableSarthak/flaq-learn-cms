@@ -1,7 +1,6 @@
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import * as web3 from "@solana/web3.js";
-import * as bip39 from "bip39";
+import * as ethers from "ethers";
 
 interface CreateWalletState {
   seedPhrase: string;
@@ -27,15 +26,16 @@ export const useCreateEthWalletStore = create<CreateWalletState>()(
         showPublicKey: false,
         setLoader: (isLoading: boolean) => set({ isLoading }),
         generateSeedPhrase: () => {
-          const mnemonic = bip39.generateMnemonic();
+          const wallet = ethers.Wallet.createRandom();
+          console.log("privateKey:", wallet.privateKey); // private key
+          const mnemonic = wallet.mnemonic.phrase;
+          const publickey = wallet.address;
+          //   const privateKey = wallet.privateKey
           set(() => ({ seedPhrase: mnemonic }));
-          const publicKey = get().getUserPublicKeyString(mnemonic);
-          set(() => ({ publickey: publicKey }));
+          set(() => ({ publickey: publickey }));
         },
         getUserPublicKeyString: (mnemonic: string) => {
-          const seed = bip39.mnemonicToSeedSync(mnemonic, "");
-          const keypair = web3.Keypair.fromSeed(seed.slice(0, 32));
-          return keypair.publicKey.toString();
+          return get().publickey;
         },
       }),
       {
