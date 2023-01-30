@@ -9,6 +9,7 @@ import {
 enum SolanaDataType {
   CreateWallet = "create-wallet",
   TransferCypto = "transfer-crypto",
+  SwapTokens = "swap-tokens"
 }
 
 enum AlgoranDataType {
@@ -394,6 +395,103 @@ const getSolanaData = (simulationType: string): SimType | undefined => {
               },
             ],
             simKey: SolanaSimulationKeys.TransferCypto,
+          },
+        ],
+        simulationHeader: "Transfer crypto simulation",
+      };
+    case SolanaDataType.SwapTokens:
+      return {
+        simulationData: [
+          // 1. Introduction
+          {
+            title: "Introduction",
+            block: [
+              {
+                paraBlock: [
+                  {
+                    textItems: [
+                      {
+                        text: "Hi! Please read [[Cryptocurrencies - Your A to Z Guide]] and [[Tokens: The Basics Covered for You]] to gain a fundamental understanding of cryptocurrencies, and tokens.",
+                        linkItems: [
+                          "Cryptocurrencies - Your A to Z Guide",
+                          "Tokens: The Basics Covered for You",
+                        ],
+                      },
+                    ],
+                    paraTitle:
+                      "Prerequisites before learning how to transfer crypto",
+                  },
+                  {
+                    textItems: [
+                      {
+                        text: "[[Gm]] gm! Now that you’ve learnt how to [[create your wallet]] on the Solana chain, it’s time to take the next step w Flaq - let’s see how transferring crypto works. How can you send crypto to your friend/employer/employee/relative/xyz? It’s simple. We’ll take you through an interactive simulation that replicates the UI of transferring crypto on Solana, and you’ll master it! 🚀 Teeny tiny revision for you - everyone receives a public address after creating a wallet, just like you did - and that’s everyone’s digital identity! So, to try transferring crypto in a simulation, on the testnet network (where you won’t lose any real money), you will be entering the intended receiver’s public address and if your balance permits the transaction, it’ll happen like magic! 🪄",
+                        linkItems: ["Gm", "create your wallet"],
+                      },
+                    ],
+                    paraTitle: "Let’s see how transferring crypto works now!",
+                  },
+                ],
+              },
+            ],
+          },
+          // 2. Transfer some SOL.
+          {
+            title: "Let's transfer some SOL",
+            block: [
+              {
+                paraBlock: [
+                  {
+                    textItems: [
+                      {
+                        text: "But I barely have any SOL? Dw, we got u! Let’s start by giving you a fixed balance of 20 SOL! Now, you can test out how to transfer crypto by ‘sending’ your crypto to a sample receiver public address. Copy the sample receiver address given below, and paste it when asked to enter it. ✒️",
+                        linkItems: [],
+                      },
+                    ],
+                    paraTitle: "‘Send’ some SOL",
+                  },
+                ],
+              },
+              {
+                paraBlock: [
+                  {
+                    textItems: [
+                      {
+                        text: "Now that you’ve clicked on ‘send’, you need to decide how much crypto you want to send. Choose any amount you want to try with - 2 SOL, 15 SOL - anything (remember - it’s not real money! This is a just a simulation). If you wanna transfer all the crypto, then just click on ‘max’ and the system will enter in your total balance, itself! Just to cover all the bases - make sure you’ve entered the right amount you want to transfer, and make sure you’ve entered the sample receiver public address that we have provided you with. Click on ‘preview’ to preview your transaction before confirming it! ✔️                        ",
+                        linkItems: [],
+                      },
+                    ],
+                    paraTitle: "Enter the Amount",
+                  },
+                ],
+              },
+              {
+                paraBlock: [
+                  {
+                    textItems: [
+                      {
+                        text: "One last step to go! The gas fees or network fees. What’s that? This is the usually minimal transactional fees that you have to pay to the blockchain network, for engaging in this transaction on it. The gas fees usually depend on the value of the crypto of that blockchain as well, and people actually take gas fees as an important factor into consideration while determining which blockchain to transact on. After a minimal gas fee is reduced from the amount you entered in, you can now click on ‘send’ and finally transfer the crypto! 🚀                        ",
+                        linkItems: [],
+                      },
+                    ],
+                    paraTitle: "Make sure all's good!",
+                  },
+                ],
+              },
+              {
+                paraBlock: [
+                  {
+                    textItems: [
+                      {
+                        text: "You sent the crypto! Are you sure it went thru successfully? Check your wallet balance to see if the amount you sent has been reduced, and also check your transaction history to ensure it went to the right public address! Once you’ve done that, congratulations! You just completed your first crypto transfer. 🥳",
+                        linkItems: [],
+                      },
+                    ],
+                    paraTitle: "Confirm your transaction went thru!",
+                  },
+                ],
+              },
+            ],
+            simKey: SolanaSimulationKeys.SwapTokens,
           },
         ],
         simulationHeader: "Transfer crypto simulation",
