@@ -162,7 +162,7 @@ const ClaimCard = ({ questionList }: Props) => {
                   placeholder="email"
                   required
                 />
-                <FormHelperText>We'll never share your email.</FormHelperText>
+                <FormHelperText>{`We'll never share your email.`}</FormHelperText>
               </FormControl>
               <FormControl isRequired my="3">
                 <FormLabel>Name</FormLabel>

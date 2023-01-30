@@ -20,13 +20,13 @@ import { stall } from "../../lib/utils";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 
-export default function claimNft({
+const ClaimNft = ({
   isClaimed,
   claimId,
 }: {
   isClaimed: boolean;
   claimId: string;
-}) {
+}) => {
   const [provider, setProvider] = useState();
   const [account, setAccount] = useState<string>("");
   const [error, setError] = useState("");
@@ -307,7 +307,7 @@ export default function claimNft({
       </Box>
     </>
   );
-}
+};
 
 export async function getServerSideProps(context: any) {
   const { id } = context.query;
@@ -339,3 +339,5 @@ export async function getServerSideProps(context: any) {
     },
   };
 }
+
+export default ClaimNft;
