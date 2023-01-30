@@ -51,10 +51,10 @@ export const getBlockchainData = () => {
         },
         {
           name: "Swap your Tokens",
-          link: "solana/create-wallet",
+          link: "solana/swap-tokens",
           icon: swapIcon,
           badgeText: "DeFi",
-          isActive: false,
+          isActive: true,
         },
         {
           name: "Stake and earn yield",
