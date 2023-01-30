@@ -16,6 +16,7 @@ import { BlockType } from "../../../types";
 export interface ShowcasePublicKeyProps {
   seedPhrase: string;
   publicKey: string;
+  f4Address?: string;
 }
 
 export interface AllOptions {
@@ -25,7 +26,7 @@ export interface AllOptions {
 }
 
 function ShowcasePublicKey(props: ShowcasePublicKeyProps) {
-  const { seedPhrase, publicKey } = props;
+  const { seedPhrase, publicKey, f4Address } = props;
 
   // util functions
   const jumble = () => {
@@ -173,6 +174,44 @@ function ShowcasePublicKey(props: ShowcasePublicKeyProps) {
             </Center>
           </ToolTip>
         </Box>
+        {f4Address !== undefined ? (
+          <Box
+            borderWidth={"0.5px"}
+            borderColor="whiteAlpha.200"
+            borderRadius="2xl"
+            p={10}
+            mt="4"
+          >
+            <Center mb={2}>
+              <Box>
+                <Text fontFamily={"Druk Wide Bold "}>
+                  F4 Address (Filecoin Address)
+                </Text>
+              </Box>
+            </Center>
+
+            <ToolTip text="don’t share this w anyone!">
+              <Center>
+                <Box
+                  style={{
+                    borderImage: "linear-gradient(60deg, #a6ebc9, #005704)",
+                    borderImageSlice: 1,
+                  }}
+                  borderRadius={"8px"}
+                  border="1px solid transparent"
+                  textAlign="center"
+                  as="samp"
+                  px="2"
+                  py="4"
+                >
+                  {f4Address}
+                </Box>
+              </Center>
+            </ToolTip>
+          </Box>
+        ) : (
+          <></>
+        )}
       </>
     );
   };
@@ -226,7 +265,7 @@ const RenderSelectedWords = ({
         minH={{ base: "267px", md: "155px" }}
         border={"1px solid #d6d9dc"}
         borderRadius="6px"
-        w="96%"
+        w="100%"
       >
         <Grid
           templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }}

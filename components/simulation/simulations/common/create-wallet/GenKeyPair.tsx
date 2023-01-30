@@ -5,11 +5,10 @@ import ToolTip from "../../../../common/ToolTip";
 interface GenKeyPairProps {
   seedPhrase: string;
   generateKey: () => void;
-  f4Address?: string;
 }
 
 const GenKeyPair = (props: GenKeyPairProps) => {
-  const { seedPhrase, generateKey, f4Address } = props;
+  const { seedPhrase, generateKey } = props;
   const isUserDataAvailable = () => {
     return seedPhrase.length !== 0;
   };
@@ -58,43 +57,6 @@ const GenKeyPair = (props: GenKeyPairProps) => {
               </Center>
             </ToolTip>
           </Box>
-          {f4Address !== undefined ? (
-            <Box
-              borderWidth={"0.5px"}
-              borderColor="whiteAlpha.200"
-              borderRadius="2xl"
-              p={10}
-            >
-              <Center mb={2}>
-                <Box>
-                  <Text fontFamily={"Druk Wide Bold "}>
-                    F4 Address (Filecoin Address)
-                  </Text>
-                </Box>
-              </Center>
-
-              <ToolTip text="don’t share this w anyone!">
-                <Center>
-                  <Box
-                    style={{
-                      borderImage: "linear-gradient(60deg, #a6ebc9, #005704)",
-                      borderImageSlice: 1,
-                    }}
-                    borderRadius={"8px"}
-                    border="1px solid transparent"
-                    textAlign="center"
-                    as="samp"
-                    px="2"
-                    py="4"
-                  >
-                    {f4Address}
-                  </Box>
-                </Center>
-              </ToolTip>
-            </Box>
-          ) : (
-            <></>
-          )}
         </Flex>
       )}
     </Box>

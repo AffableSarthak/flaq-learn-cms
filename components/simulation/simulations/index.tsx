@@ -164,20 +164,18 @@ const RenderFilecoinSimulation = ({
 
   switch (simKey) {
     case FilecoinSimulationKeys.GenKeyPair: {
-      return (
-        <GenKeyPair
-          seedPhrase={seedPhrase}
-          generateKey={generateKey}
-          f4Address={f4Address}
-        />
-      );
+      return <GenKeyPair seedPhrase={seedPhrase} generateKey={generateKey} />;
     }
     case FilecoinSimulationKeys.BackupSeedPhrase: {
       return <BackupSeedPhrase seedPhrase={seedPhrase} />;
     }
     case FilecoinSimulationKeys.ShowcasePublicKey: {
       return (
-        <ShowcasePublicKey publicKey={publicKey} seedPhrase={seedPhrase} />
+        <ShowcasePublicKey
+          publicKey={publicKey}
+          seedPhrase={seedPhrase}
+          f4Address={f4Address}
+        />
       );
     }
     default:

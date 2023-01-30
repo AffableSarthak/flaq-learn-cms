@@ -18,10 +18,10 @@ export const getBlockchainData = () => {
         {
           textItems: [
             {
-              text: "[[Solana]] is a decentralized blockchain created to support globally user-friendly and scalable apps. Read '[[The Famous Coins: Bitcoin, Ethereum and Solana]]' to learn all about Solana.",
+              text: "[[Solana]] is a decentralized blockchain created to support globally user-friendly and scalable apps. Read [['The Famous Coins: Bitcoin, Ethereum and Solana']] to learn all about Solana.",
               linkItems: [
                 "Solana",
-                "The Famous Coins: Bitcoin, Ethereum and Solana",
+                "'The Famous Coins: Bitcoin, Ethereum and Solana'",
               ],
             },
           ],
@@ -140,9 +140,9 @@ export const getBlockchainData = () => {
         {
           textItems: [
             {
-              text: "[[Ethereum]] is an open-source blockchain that powers the ether (ETH) cryptocurrency along with various other decentralized apps. Read '[[The Famous Coins: Bitcoin, Ethereum and Solana]]' to learn all about Ethereum.",
+              text: "[[Ethereum]] is an open-source blockchain that powers the ether (ETH) cryptocurrency along with various other decentralized apps. Read [['The Famous Coins: Bitcoin, Ethereum and Solana']] to learn all about Ethereum.",
               linkItems: [
-                "The Famous Coins: Bitcoin, Ethereum and Solana",
+                "'The Famous Coins: Bitcoin, Ethereum and Solana'",
                 "Ethereum",
               ],
             },
@@ -208,8 +208,8 @@ export const getBlockchainData = () => {
           image: {
             src: "/wallets/filecoin-arch.png",
             alt: "Filecoin Architecture wallet",
-            width: "600",
-            height: "300",
+            width: "550",
+            height: "195",
           },
         },
       ],

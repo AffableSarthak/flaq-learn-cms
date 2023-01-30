@@ -41,7 +41,7 @@ const links: Links = {
   "Trust wallet here":
     "https://play.google.com/store/apps/details?id=com.wallet.crypto.trustapp&referrer=utm_source%3Dwebsite",
   Solana: "https://solana.com/",
-  "The Famous Coins: Bitcoin, Ethereum and Solana":
+  "'The Famous Coins: Bitcoin, Ethereum and Solana'":
     "https://learn.flaq.club/dive-into-web3/the-famous-coins-bitcoin-ethereum-and-solana",
   "The Technology behind Web3 - Blockchain":
     "https://learn.flaq.club/dive-into-web3/the-technology-behind-web3-blockchain",

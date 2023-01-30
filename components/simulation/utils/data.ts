@@ -1086,7 +1086,7 @@ const getFilecoinData = (simulationType: string): SimType | undefined => {
                           {
                             textItems: [
                               {
-                                text: "Trust Wallet is a multichain solution that allows you to buy, store, collect NFTs, exchange and earn crypto. It supports Filecoin. You can create your [[Trust wallet here]]. This is what your wallet would like on Trust as soon as you create it - ",
+                                text: "Trust Wallet is a multichain solution that allows you to buy, store, collect NFTs, exchange and earn crypto. It supports Filecoin. You can create your [[Trust wallet here]]. This is what your wallet would look like on Trust as soon as you create it - ",
                                 linkItems: ["Trust wallet here"],
                               },
                             ],
@@ -1109,7 +1109,7 @@ const getFilecoinData = (simulationType: string): SimType | undefined => {
                           {
                             textItems: [
                               {
-                                text: "The FILWallet is a decentralized digital asset wallet that is built on the web3.0 ecosystem. You can create [[your FILWallet here]]. This is what your wallet would like on FILWallet as soon as you create it - ",
+                                text: "The FILWallet is a decentralized digital asset wallet that is built on the web3.0 ecosystem. You can create [[your FILWallet here]]. This is what your wallet would look like on FILWallet as soon as you create it - ",
                                 linkItems: ["your FILWallet here"],
                               },
                             ],
