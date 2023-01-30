@@ -260,7 +260,7 @@ const ClaimNft = ({
           </Box>
 
           <Img
-            src="/img/claimNft/NFt1.svg"
+            src="/img/claimNft/NFT1.svg"
             position={"absolute"}
             top={"100px"}
             right={0}
@@ -268,7 +268,7 @@ const ClaimNft = ({
             display={["none", "none", "none", "block"]}
           />
           <Img
-            src="/img/claimNft/NFt2.svg"
+            src="/img/claimNft/NFT2.svg"
             position={"absolute"}
             top={["80px", "50px"]}
             left={0}
@@ -277,7 +277,7 @@ const ClaimNft = ({
             // display={["block", "none", "block"]}
           />
           <Img
-            src="/img/claimNft/NFt3.svg"
+            src="/img/claimNft/NFT3.svg"
             position={"absolute"}
             top={"400px"}
             left={0}
