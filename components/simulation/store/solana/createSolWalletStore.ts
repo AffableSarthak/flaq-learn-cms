@@ -59,7 +59,6 @@ export const useCreateSolWalletStore = create<CreateWalletState>()(
           let balance = await connection.getBalance(
             get().getUserPublicKey(mnemonic)
           );
-          console.log({ balance });
           set({ balance: balance });
         },
         getUserPublicKeyString: (mnemonic: string) => {
@@ -89,8 +88,6 @@ export const useCreateSolWalletStore = create<CreateWalletState>()(
               lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
               signature: tx,
             });
-
-            console.log(confirmTx);
           } catch (error) {
             console.log(error);
           } finally {

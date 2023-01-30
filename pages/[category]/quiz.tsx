@@ -2,17 +2,16 @@ import React from "react";
 
 import dynamic from "next/dynamic";
 import { queryDatabase } from "../../src/api/query-database";
-import {
-  getAllCategories,
-  getBlogRoutes,
-} from "../../src/utils/parse-properties";
-// import questions from "../../components/quiz/data";
+import { getAllCategories } from "../../src/utils/parse-properties";
 import { IQuestionsData, IQuestion } from "../../components/quiz/data";
 import getQuizData from "../../src/utils/quizUtils";
 
-const DynamicQuizWithNoSSR = dynamic(() => import("../../components/quiz/index"), {
-  ssr: false,
-});
+const DynamicQuizWithNoSSR = dynamic(
+  () => import("../../components/quiz/index"),
+  {
+    ssr: false,
+  }
+);
 interface Props {
   categoryLink: string;
   questionsData: IQuestionsData;
@@ -55,7 +54,6 @@ export async function getServerSideProps(context: any) {
       questionsData: {
         ...questionsData,
         questions: questionsData.map((data: IQuestion) => {
-          // delete data.answer;
           return data;
         }),
       },

@@ -48,7 +48,7 @@ const formatQuizData = (data: Array<IQuizData>) => {
           category: item.fields.Category,
           groupId: item.fields["Group Id"],
           createdTime: item.createdTime,
-          needHelp: item.fields.Link
+          needHelp: item.fields.Link,
         };
       });
     return quizData;
