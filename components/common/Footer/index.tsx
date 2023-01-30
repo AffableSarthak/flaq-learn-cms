@@ -20,8 +20,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { RiLinkedinFill, RiTelegramLine } from "react-icons/ri";
 import { FiTwitter } from "react-icons/fi";
 import { FaDiscord } from "react-icons/fa";
-import { AiOutlineInstagram } from 'react-icons/ai'
-import LooperGroup from "../../../public/img/blog/LooperGroup.svg";
+import { AiOutlineInstagram } from "react-icons/ai";
 import Link from "next/link";
 
 type Props = {};
@@ -136,7 +135,12 @@ const Footer = (props: Props) => {
               <Link passHref href={"https://flaq.club/"}>
                 <a>
                   <HStack gap="2" mt="4" mb={{ base: "8", md: "16" }}>
-                    <Image src={logo} width="40px" height="40px" alt="Flaq Logo" />
+                    <Image
+                      src={logo}
+                      width="40px"
+                      height="40px"
+                      alt="Flaq Logo"
+                    />
                     <Box>
                       <Text
                         fontSize={"20"}
@@ -292,7 +296,7 @@ const Footer = (props: Props) => {
             mx="auto"
             justifyContent={"space-between"}
             w="100%"
-            flexWrap={'wrap'}
+            flexWrap={"wrap"}
           >
             {links.map((link, key) => {
               return (
@@ -328,7 +332,7 @@ const Footer = (props: Props) => {
           }}
           justifyContent={"space-between"}
         >
-          <HStack gap="4" flexWrap={'wrap'}>
+          <HStack gap="4" flexWrap={"wrap"}>
             {socialLink.map((socialLink, key) => {
               return (
                 <Link key={key} passHref href={socialLink.link}>

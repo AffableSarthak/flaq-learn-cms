@@ -15,9 +15,9 @@ import { BsInstagram, BsTwitter } from "react-icons/bs";
 import { FaDiscord } from "react-icons/fa";
 
 const socials = [
-  { icon: <BsInstagram />, link: "" },
-  { icon: <BsTwitter />, link: "" },
-  { icon: <FaDiscord />, link: "" },
+  { icon: <BsInstagram />, link: "https://instagram.com/flaq_club" },
+  { icon: <BsTwitter />, link: "https://twitter.com/flaq_club" },
+  { icon: <FaDiscord />, link: "https://discord.com/invite/pgzHRFR2Jq" },
 ];
 
 export default function Header() {
@@ -42,7 +42,7 @@ export default function Header() {
         <HStack
           gap="2"
           onClick={() => {
-            router.push("/");
+            router.push("https://www.flaq.club/");
           }}
           cursor="pointer"
         >
@@ -53,6 +53,7 @@ export default function Header() {
             </Text>
           </Box>
         </HStack>
+
         <Flex
           flexDirection={["column", "row"]}
           alignItems="center"
@@ -68,7 +69,7 @@ export default function Header() {
                 bg="transparent"
                 color={"gray.500"}
                 _hover={{
-                  bg: "transparent",
+                  color: "#7BF8EC",
                 }}
               />
             </Link>

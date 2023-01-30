@@ -5,7 +5,6 @@ import {
   AccordionButton,
   AccordionPanel,
   Box,
-  Center,
   Heading,
   Flex,
   Img,
@@ -33,7 +32,7 @@ export default function Faq() {
         backgroundSize={"cover"}
         backgroundPosition="center"
         h={["230px", "unset"]}
-        w={["full", "920px"]}
+        w={["full", "600px", "800px"]}
       >
         <Heading
           fontSize={["30px", "60px"]}
@@ -121,7 +120,7 @@ export default function Faq() {
         left={10}
         width={"300px"}
         height={"288px"}
-        display={["none", "block"]}
+        display={["none", "none", "none", "block"]}
       />
     </Flex>
   );

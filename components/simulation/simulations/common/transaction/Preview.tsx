@@ -11,6 +11,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { MdKeyboardBackspace } from "react-icons/md";
+import { stall } from "../../../../../lib/utils";
 import { useTransactionStore } from "../../../store/solana/transactionStore";
 
 export default function Preview() {
@@ -33,10 +34,6 @@ export default function Preview() {
   const toast = useToast();
   const gasFee = (amount * 0.009) / 100;
   const totalAmount = amount + gasFee;
-
-  async function stall(stallTime = 3000) {
-    await new Promise((resolve) => setTimeout(resolve, stallTime));
-  }
 
   return (
     <>
