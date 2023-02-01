@@ -5,7 +5,6 @@ interface SwapState {
     logo: string;
     networkType: string;
     currentScreen: number;
-    userAddress: string;
     amount: number;
     balance: number;
     transaction: number[];
@@ -13,7 +12,6 @@ interface SwapState {
     setIsLoading: () => void;
     handleNetworkType: (network: string) => void;
     handleScreen: (screenNumber: number) => void;
-    handleUserAddress: (walletAddress: string) => void;
     handleAmount: (amount: number) => void;
     handleBalance: (sentAmount: number, balance: number) => void;
     resetTransaction: () => void;
@@ -45,8 +43,6 @@ export const useSwapStore = create<SwapState>()(
                     }),
                 handleScreen: (screenNumber: number) =>
                     set({ currentScreen: screenNumber }),
-                handleUserAddress: (walletAddress: string) =>
-                    set({ userAddress: walletAddress }),
                 handleAmount: (amount: number) => set({ amount: amount }),
                 handleBalance: (sentAmount: number, balance: number) =>
                     set({ balance: balance - sentAmount }),
@@ -59,7 +55,6 @@ export const useSwapStore = create<SwapState>()(
                 resetTransaction: () => {
                     set({
                         currentScreen: 0,
-                        userAddress: "",
                         amount: 0,
                         balance: 20,
                         transaction: [],
