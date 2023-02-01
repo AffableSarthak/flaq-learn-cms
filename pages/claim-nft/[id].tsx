@@ -13,12 +13,27 @@ import {
 import React, { useEffect, useState } from "react";
 import Faq from "../../components/claimNFT/Faqs";
 import Header from "../../components/claimNFT/Header";
-import { ethers } from "ethers";
-import Web3Modal from "web3modal";
-import { providerOptions } from "../../components/claimNFT/providerOptions";
+
+import { useWeb3Modal, Web3Button, Web3Modal } from "@web3modal/react";
 import { stall } from "../../lib/utils";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
+
+import {
+  EthereumClient,
+  modalConnectors,
+  walletConnectProvider,
+} from "@web3modal/ethereum";
+import { configureChains, createClient, WagmiConfig } from "wagmi";
+import {
+  arbitrum,
+  avalanche,
+  bsc,
+  fantom,
+  mainnet,
+  optimism,
+  polygon,
+} from "wagmi/chains";
 
 const ClaimNft = ({
   isClaimed,
@@ -27,101 +42,110 @@ const ClaimNft = ({
   isClaimed: boolean;
   claimId: string;
 }) => {
-  const [provider, setProvider] = useState();
-  const [account, setAccount] = useState<string>("");
-  const [error, setError] = useState("");
-  const [web3Mo, setWeb3Mo] = useState<Web3Modal | undefined>(undefined);
   const toast = useToast;
   const [isLoading, setIsLoading] = useState(false);
   const [nftMinted, setNftMinted] = useState(isClaimed);
 
+  const projectId = "4ed8b2d176658b1eb745fd40bd9195af";
+
+  // 2. Configure wagmi client
+  const chains = [mainnet, polygon, optimism, arbitrum, avalanche, fantom, bsc];
+  const { provider } = configureChains(chains, [
+    walletConnectProvider({ projectId }),
+  ]);
+  const wagmiClient = createClient({
+    autoConnect: true,
+    connectors: modalConnectors({
+      appName: "web3Modal",
+      chains,
+    }),
+    provider,
+  });
+
+  // 3. Configure modal ethereum client
+  const ethereumClient = new EthereumClient(wagmiClient, chains);
+
+  const [ready, setReady] = useState(false);
+
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      //here `window` is available
-      const web3Modal = new Web3Modal({
-        cacheProvider: true, // optional
-        providerOptions, // required
-      });
-      setWeb3Mo(web3Modal);
-    }
+    setReady(true);
   }, []);
 
   const mintNft = async () => {
-    setIsLoading(true);
-    const body = {
-      wallet_address: account,
-      quiz_claim_id: claimId,
-    };
+    console.log(ethereumClient.getAccount());
+    // setIsLoading(true);
+    // const body = {
+    //   // wallet_address: account,
+    //   quiz_claim_id: claimId,
+    // };
 
-    try {
-      await stall();
-      await fetch("https://apix.flaq.club/quiz/mint", {
-        method: "POST",
-        body: JSON.stringify(body),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      }).then((response) => {
-        return response.json();
-      });
-    } catch (e) {
-      console.log(e);
-    } finally {
-      let claimIdData;
-      try {
-        claimIdData = await (
-          await fetch(
-            `https://apix.flaq.club/quiz/claim-info?quizClaimId=${claimId}`
-          )
-        ).json();
-        setNftMinted(claimIdData.data.is_nft_claimed);
-      } catch (e) {
-        setNftMinted(false);
-      }
-      setIsLoading(false);
-    }
+    // try {
+    //   await stall();
+    //   await fetch("https://apix.flaq.club/quiz/mint", {
+    //     method: "POST",
+    //     body: JSON.stringify(body),
+    //     headers: {
+    //       "Content-type": "application/json; charset=UTF-8",
+    //     },
+    //   }).then((response) => {
+    //     return response.json();
+    //   });
+    // } catch (e) {
+    //   console.log(e);
+    // } finally {
+    //   let claimIdData;
+    //   try {
+    //     claimIdData = await (
+    //       await fetch(
+    //         `https://apix.flaq.club/quiz/claim-info?quizClaimId=${claimId}`
+    //       )
+    //     ).json();
+    //     setNftMinted(claimIdData.data.is_nft_claimed);
+    //   } catch (e) {
+    //     setNftMinted(false);
+    //   }
+    //   setIsLoading(false);
+    // }
   };
+  //   try {
+  //     const provider = await web3Mo?.connect();
+  //     const library = new ethers.providers.Web3Provider(provider);
+  //     const accounts = await library.listAccounts();
+  //     setProvider(provider);
+  //     if (accounts) setAccount(accounts[0]);
+  //   } catch (error) {
+  //     setError(error as string);
+  //   }
+  // };
 
-  const connectWallet = async () => {
-    try {
-      const provider = await web3Mo?.connect();
-      const library = new ethers.providers.Web3Provider(provider);
-      const accounts = await library.listAccounts();
-      setProvider(provider);
-      if (accounts) setAccount(accounts[0]);
-    } catch (error) {
-      setError(error as string);
-    }
-  };
+  // const refreshState = () => {
+  //   setAccount("");
+  // };
 
-  const refreshState = () => {
-    setAccount("");
-  };
+  // const disconnect = async () => {
+  //   await web3Mo?.clearCachedProvider();
+  //   refreshState();
+  // };
 
-  const disconnect = async () => {
-    await web3Mo?.clearCachedProvider();
-    refreshState();
-  };
+  // useEffect(() => {
+  //   if (web3Mo?.cachedProvider) {
+  //     connectWallet();
+  //   }
+  // }, [web3Mo]);
 
-  useEffect(() => {
-    if (web3Mo?.cachedProvider) {
-      connectWallet();
-    }
-  }, [web3Mo]);
-
-  const truncateAddress = (address: string) => {
-    if (!address) return "";
-    const match = address.match(
-      /^(0x[a-zA-Z0-9]{2})[a-zA-Z0-9]+([a-zA-Z0-9]{2})$/
-    );
-    if (!match) return address;
-    return `${match[1]}…${match[2]}`;
-  };
+  // const truncateAddress = (address: string) => {
+  //   if (!address) return "";
+  //   const match = address.match(
+  //     /^(0x[a-zA-Z0-9]{2})[a-zA-Z0-9]+([a-zA-Z0-9]{2})$/
+  //   );
+  //   if (!match) return address;
+  //   return `${match[1]}…${match[2]}`;
+  // };
 
   const renderMintNftBtn = () => {
-    if (nftMinted === true || account.length === 0) {
-      return <></>;
-    }
+    // if (nftMinted === true || account.length === 0) {
+    //   return <></>;
+    // }
 
     return (
       <Button
@@ -187,7 +211,7 @@ const ClaimNft = ({
                     NFT Minted!
                   </Highlight>
                 </Heading>
-                {account.length !== 0 ? (
+                {/* {account.length !== 0 ? (
                   <Box>
                     <Link
                       as={NextLink}
@@ -204,30 +228,27 @@ const ClaimNft = ({
                   <Text>
                     Please connect your wallet to generate the link to your NFT
                   </Text>
-                )}
+                )} */}
               </>
             )}
 
             <Box>
-              {account.length === 0 ? (
-                <Button
-                  px={["30px", "80px"]}
-                  py="14px"
-                  bg="white"
-                  fontWeight={600}
-                  fontSize="sm"
-                  color="black"
-                  _hover={{
-                    bg: "white",
-                  }}
-                  mt="54px"
-                  onClick={connectWallet}
-                >
-                  Connect your wallet
-                </Button>
-              ) : (
-                <></>
-              )}
+              {/* {account.length === 0 ? <></> : <></>} */}
+
+              {ready ? (
+                <WagmiConfig client={wagmiClient}>
+                  <Web3Button
+                    // icon="show"
+                    label="Connect Wallet"
+                    // balance="show"
+                  />
+
+                  <Web3Modal
+                    projectId={projectId}
+                    ethereumClient={ethereumClient}
+                  />
+                </WagmiConfig>
+              ) : null}
 
               {renderMintNftBtn()}
 
@@ -239,19 +260,19 @@ const ClaimNft = ({
                     as="samp"
                     fontSize={["1em", "1.4em", "1.8em"]}
                   >
-                    {truncateAddress(account)}
+                    {/* {truncateAddress(account)} */}
                   </Text>
-                  {account.length !== 0 ? (
+                  {/* {account.length !== 0 ? (
                     <Button
                       colorScheme="teal"
                       variant="link"
-                      onClick={disconnect}
+                      // onClick={disconnect}
                     >
                       Disconnect
                     </Button>
                   ) : (
                     <></>
-                  )}
+                  )} */}
                 </VStack>
               </Box>
             </Box>

@@ -19,6 +19,8 @@
     "@notionhq/client": "^1.0.4",
     "@solana/web3.js": "^1.66.2",
     "@types/gtag.js": "^0.0.12",
+    "@web3modal/ethereum": "^2.0.0",
+    "@web3modal/react": "^2.0.0",
     "algosdk": "^1.23.2",
     "bip39": "^3.0.4",
     "ethers": "^5.7.2",
@@ -31,6 +33,7 @@
     "react-dom": "18.0.0",
     "react-icons": "^4.4.0",
     "react-notion-x": "^6.15.2",
+    "wagmi": "^0.11.2",
     "web3modal": "^1.9.12",
     "zustand": "^4.1.4"
   },
