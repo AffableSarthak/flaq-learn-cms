@@ -11,6 +11,7 @@ import {
   FormControl,
   FormHelperText,
   HStack,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import useQuizStore from "../store";
@@ -35,6 +36,7 @@ const ClaimCard = ({ questionList }: Props) => {
   const { allQuiz, markCompleted, addQuiz, isClaimed, markClaimed } =
     useQuizStore();
   const router = useRouter();
+  const isNonHoverDevice = useMediaQuery("(hover: none)");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsLoading(true);
@@ -90,7 +92,13 @@ const ClaimCard = ({ questionList }: Props) => {
         quizSubmitRes.data.is_nft_claim_mail_sent === false ||
         quizSubmitRes.data.is_nft_claim_mail_sent === undefined
       ) {
-        router.push(`/claim-nft/${quizSubmitRes.data.claim_id}`);
+        if (isNonHoverDevice[0] === true) {
+          router.push(
+            `https://metamask.app.link/dapp/learn.flaq.club/claim-nft/${quizSubmitRes.data.claim_id}`
+          );
+        } else {
+          router.push(`/claim-nft/${quizSubmitRes.data.claim_id}`);
+        }
       }
 
       setQuizClaimId(quizSubmitRes.data.claim_id);

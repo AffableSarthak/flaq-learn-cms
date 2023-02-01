@@ -174,7 +174,7 @@ const ClaimNft = ({
                 fontSize={["32px", "30px", "60px"]}
               >
                 <Highlight query="NFT" styles={{ color: "#7BF8EC" }}>
-                  Congratulations! Claim you NFT
+                  Congratulations! Claim your NFT
                 </Highlight>
               </Heading>
             ) : (
