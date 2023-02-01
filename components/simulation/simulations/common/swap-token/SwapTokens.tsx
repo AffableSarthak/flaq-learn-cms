@@ -56,13 +56,13 @@ export default function TransactionForm() {
       price: 34.03,
     },
     {
-      img: "",
+      img: "https://s2.coinmarketcap.com/static/img/coins/200x200/3408.png",
       network: "usdc",
       value: 1910,
       price: 1.01,
     },
     {
-      img: "",
+      img: "https://s2.coinmarketcap.com/static/img/coins/200x200/6187.png",
       network: "serum",
       value: 0,
       price: 0.0,
@@ -106,6 +106,7 @@ export default function TransactionForm() {
             </HStack>
             <Input
               type={"number"}
+              value={amount}
               placeholder="enter amount"
               w="140px"
               fontSize={"sm"}
@@ -244,23 +245,30 @@ export default function TransactionForm() {
         </Box>
       </Stack>
       <Stack px={4} pb={14} h="full" justifyContent="flex-end">
-        <Button
-          w="full"
-          py={4}
-          bg="#97FCE9"
-          color="black"
-          _hover={{ bg: "#97FCE9" }}
-          // disabled={
-          //   validateAddress === false ||
-          //   validateAmount === false ||
-          //   totalAmount > balance
-          // }
-          onClick={() => {
-            handleScreen(2);
-          }}
-        >
-          Preview Swap
-        </Button>
+        {amount <= balance ? (
+          <Button
+            w="full"
+            py={4}
+            bg="#97FCE9"
+            color="black"
+            _hover={{ bg: "#97FCE9" }}
+            onClick={() => {
+              handleScreen(2);
+            }}
+          >
+            Preview Swap
+          </Button>
+        ) : (
+          <Button
+            w="full"
+            py={4}
+            bg="#FFDBDB"
+            color="#C20000"
+            _hover={{ bg: "#FFDBDB" }}
+          >
+            insufficient balance
+          </Button>
+        )}
       </Stack>
     </>
   );
