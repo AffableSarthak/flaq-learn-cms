@@ -10,6 +10,13 @@ import {
   Tabs,
   TabList,
   Tab,
+  Input,
+  Select,
+  MenuItem,
+  Image,
+  MenuList,
+  Menu,
+  MenuButton,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import {
@@ -20,13 +27,12 @@ import {
 import { GrCircleInformation } from "react-icons/gr";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import { useSwapStore } from "../../../store/solana/swapTokenStore";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 
 export default function TransactionForm() {
   const {
     handleScreen,
-    handleUserAddress,
     handleAmount,
-    userAddress,
     amount,
     balance,
     logo,
@@ -35,41 +41,33 @@ export default function TransactionForm() {
 
   const slippages: number[] = [0.1, 0.5, 1.5];
 
-  const [validateAddress, setValidateAddress] = useState<boolean>(false);
-  const [validateAmount, setValidateAmount] = useState<boolean>(false);
+  const [selected, setSelected] = useState({
+    img: "",
+    network: "",
+    value: 0,
+    price: 0,
+  });
 
-  const gasFee = (amount * 0.009) / 100;
-  const totalAmount = amount + gasFee;
-
-  const validateWalletAddress = () => {
-    // Do nothing if there's no public key.
-    if (userAddress.length === 0) {
-      return;
-    }
-
-    const Regxp = /\b[a-zA-Z0-9]{44}\b/;
-    if (Regxp.test(userAddress) === true) {
-      setValidateAddress(true);
-    } else {
-      setValidateAddress(false);
-    }
-  };
-
-  const validateEnteredAmount = () => {
-    if (amount <= balance && amount > 0) {
-      setValidateAmount(true);
-    } else {
-      setValidateAmount(false);
-    }
-  };
-
-  useEffect(() => {
-    validateWalletAddress();
-  }, [userAddress]);
-
-  useEffect(() => {
-    validateEnteredAmount();
-  }, [amount]);
+  const TokenList = [
+    {
+      img: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
+      network: "solana",
+      value: 56.67,
+      price: 34.03,
+    },
+    {
+      img: "",
+      network: "usdc",
+      value: 1910,
+      price: 1.01,
+    },
+    {
+      img: "",
+      network: "serum",
+      value: 0,
+      price: 0.0,
+    },
+  ];
 
   return (
     <>
@@ -92,9 +90,9 @@ export default function TransactionForm() {
         </HStack>
       </HStack>
       <Stack py={6} px={7}>
-        <Box px={4} py={6} mb={6} rounded="xl" bg="#1A1A1A">
+        <Box px={4} py={6} rounded="xl" bg="#1A1A1A" w="full">
           <Text color={"#9999A5"} fontSize="sm" fontFamily={"Poppins"}>
-            you pay
+            Swap from
           </Text>
           <HStack alignItems={"center"} justifyContent="space-between" mt={2}>
             <HStack alignItems={"center"}>
@@ -102,30 +100,32 @@ export default function TransactionForm() {
               <Text fontWeight={"medium"} fontFamily="Poppins">
                 {networkType}
               </Text>
-              <Box ml={6}>
+              {/* <Box ml={6}>
                 <MdOutlineKeyboardArrowRight />
-              </Box>
+              </Box> */}
             </HStack>
-            <Text fontFamily="Poppins">20.5</Text>
+            <Input
+              type={"number"}
+              placeholder="enter amount"
+              w="140px"
+              fontSize={"sm"}
+              border={0}
+              outline="none"
+              focusBorderColor={"#1A1A1A"}
+              textAlign="right"
+              px={0}
+              onChange={(e) => handleAmount(parseFloat(e.target.value))}
+            />
           </HStack>
-          <Flex alignItems={"center"}>
-            <Divider />
-            <Box
-              bg="#232323"
-              rounded={"full"}
-              border="1px"
-              borderColor={"black"}
-              w="fit-content"
-              p={2}
-            >
-              <MdOutlineSwapVert fontSize={"24px"} color="#97FCE9" />
-            </Box>
-            <Divider />
-          </Flex>
+        </Box>
+        <Flex justifyContent={"center"}>
+          <MdOutlineSwapVert fontSize={"24px"} color="#97FCE9" />
+        </Flex>
+        <Box px={4} py={6} mb={6} rounded="xl" bg="#1A1A1A" w="full">
           <Text color={"#9999A5"} fontSize="sm" fontFamily={"Poppins"}>
-            you receieve
+            swap to
           </Text>
-          <HStack alignItems={"center"} justifyContent="space-between" mt={2}>
+          {/* <HStack alignItems={"center"} justifyContent="space-between" mt={2}>
             <HStack alignItems={"center"}>
               <Avatar src={logo} name={networkType} size="sm" />
               <Text fontWeight={"medium"} fontFamily="Poppins">
@@ -136,7 +136,84 @@ export default function TransactionForm() {
               </Box>
             </HStack>
             <Text fontFamily="Poppins">11393.31</Text>
-          </HStack>
+          </HStack> */}
+          <Menu>
+            <MenuButton
+              as={Button}
+              rightIcon={<ChevronDownIcon />}
+              w="full"
+              mt={4}
+              display="flex"
+              alignItems={"center"}
+              bg="transparent"
+              px={0}
+              _hover={{
+                bg: "transparent",
+              }}
+              _active={{
+                bg: "transparent",
+              }}
+            >
+              {selected.network.length == 0 ? (
+                <Text fontSize={"sm"} textAlign={"start"}>
+                  Choose a coin
+                </Text>
+              ) : (
+                <HStack
+                  alignItems={"center"}
+                  justifyContent="space-between"
+                  w="full"
+                >
+                  <HStack alignItems={"center"}>
+                    <Avatar src={selected.img} name={selected.network} />
+                    <Box textAlign={"start"}>
+                      <Text fontWeight={"medium"} fontFamily="Space Mono">
+                        {selected.network}
+                      </Text>
+                      <Text fontFamily={"Space Mono"}>{selected.value}</Text>
+                    </Box>
+                  </HStack>
+                  <Stack>
+                    <Text fontFamily={"Space Mono"}>${selected.price}</Text>
+                  </Stack>
+                </HStack>
+              )}
+            </MenuButton>
+            <MenuList w="290px" bg="#1A1A1A" px={2}>
+              {TokenList.map((token, index) => (
+                <MenuItem
+                  key={index}
+                  mt={index > 0 ? 2 : 0}
+                  bg="#101010"
+                  border="1px"
+                  borderColor={"#151515"}
+                  rounded="xl"
+                  onClick={() => {
+                    setSelected(token);
+                  }}
+                >
+                  <HStack
+                    alignItems={"center"}
+                    justifyContent="space-between"
+                    w="full"
+                  >
+                    <HStack alignItems={"center"}>
+                      <Avatar src={token.img} name={token.network} />
+                      <Box>
+                        <Text fontWeight={"medium"} fontFamily="Space Mono">
+                          {token.network}
+                        </Text>
+                        <Text fontFamily={"Space Mono"}>{token.value}</Text>
+                      </Box>
+                    </HStack>
+                    <Stack>
+                      <Text fontFamily={"Space Mono"}>${token.price}</Text>
+                    </Stack>
+                  </HStack>
+                </MenuItem>
+              ))}
+            </MenuList>
+          </Menu>
         </Box>
         <Box>
           <HStack gap={2}>
