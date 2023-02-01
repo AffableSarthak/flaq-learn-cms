@@ -7,6 +7,7 @@ import {
   IconButton,
   Progress,
   Text,
+  useMediaQuery,
   VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
@@ -37,6 +38,8 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
 
   const { allQuiz, setScore, getCurrentScore } = useQuizStore();
   const currentScore = getCurrentScore(questionList[0].category, allQuiz);
+
+  const isNonHoverDevice = useMediaQuery("(hover: none)");
 
   const getUnAnswerdQuestions = () => {
     return questionList.findIndex((question) => question.selectedOption === -1);
@@ -92,6 +95,30 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
     setCurrentQuestion(-1);
     setScore(questionList[0].category, 0);
   }
+
+  const getQuestionHoverStyle = (key: number) => {
+    const selectedStyle = {
+      opacity: 0.8,
+      bg: "#70ffe9",
+      color: "#1A1A1A",
+      borderColor: "#70ffe9",
+    };
+
+    const defaultStyle = {
+      opacity: 1,
+      cursor: "default",
+    };
+
+    if (isNonHoverDevice[0] === true) {
+      return defaultStyle;
+    }
+
+    if (questionList[currentQuestion].selectedOption !== key + 1) {
+      return selectedStyle;
+    } else {
+      return defaultStyle;
+    }
+  };
 
   return (
     <Container
@@ -221,21 +248,7 @@ const Quiz = ({ categoryLink, questionsData }: Props) => {
                             return (
                               <Button
                                 zIndex={500}
-                                _hover={
-                                  questionList[currentQuestion]
-                                    .selectedOption !==
-                                  key + 1
-                                    ? {
-                                        opacity: 0.8,
-                                        bg: "#70ffe9",
-                                        color: "#1A1A1A",
-                                        borderColor: "#70ffe9",
-                                      }
-                                    : {
-                                        opacity: 1,
-                                        cursor: "default",
-                                      }
-                                }
+                                _hover={getQuestionHoverStyle(key)}
                                 w="100%"
                                 bg={`${
                                   questionList[currentQuestion]

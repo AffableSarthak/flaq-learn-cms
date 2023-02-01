@@ -54,7 +54,6 @@ const ClaimCard = ({ questionList }: Props) => {
       .then((response) => {
         markCompleted(questionList[0].category);
         markClaimed(questionList[0].category);
-
         return response.json();
       })
       .catch((err) => {
@@ -66,26 +65,44 @@ const ClaimCard = ({ questionList }: Props) => {
           duration: 4000,
           isClosable: true,
         });
-      })
-      .finally(() => {
-        setFormData({
-          email: "",
-          name: "",
-          should_send_email: "false",
-          quiz_id: `${questionList[0].groupId}`,
-        });
       });
 
-    if (
-      quizSubmitRes.data.is_nft_claim_mail_sent === false ||
-      quizSubmitRes.data.is_nft_claim_mail_sent === undefined
-    ) {
-      router.push(`/claim-nft/${quizSubmitRes.data.claim_id}`);
+    console.log({ quizSubmitRes });
+
+    if (quizSubmitRes.status_code === 500) {
+      toast({
+        title: `${quizSubmitRes.message}`,
+        description: `NFT already claimed with ${formData.email}`,
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+      });
+      setFormData({
+        email: "",
+        name: "",
+        should_send_email: "false",
+        quiz_id: `${questionList[0].groupId}`,
+      });
+      setIsLoading(false);
+      return;
+    } else if (quizSubmitRes.status_code === 200) {
+      if (
+        quizSubmitRes.data.is_nft_claim_mail_sent === false ||
+        quizSubmitRes.data.is_nft_claim_mail_sent === undefined
+      ) {
+        router.push(`/claim-nft/${quizSubmitRes.data.claim_id}`);
+      }
+
+      setQuizClaimId(quizSubmitRes.data.claim_id);
+      setIssNftClaimMailSent(quizSubmitRes.data.is_nft_claim_mail_sent);
     }
 
-    setQuizClaimId(quizSubmitRes.data.claim_id);
-    setIssNftClaimMailSent(quizSubmitRes.data.is_nft_claim_mail_sent);
-
+    setFormData({
+      email: "",
+      name: "",
+      should_send_email: "false",
+      quiz_id: `${questionList[0].groupId}`,
+    });
     setIsLoading(false);
   };
 
@@ -111,7 +128,7 @@ const ClaimCard = ({ questionList }: Props) => {
         p="2"
       >
         <Text fontSize={["lg", "xl"]} mb={4}>
-          We have send you a link you can use to redeem your Flaq insignia when
+          We have sent a link you can use to redeem your Flaq insignia when
           you’re ready.
         </Text>
 
