@@ -23,7 +23,6 @@ import { useSwapStore } from "../../../store/solana/swapTokenStore";
 
 export default function Preview() {
   const {
-    userAddress,
     handleScreen,
     handleBalance,
     handleTransaction,
@@ -33,7 +32,6 @@ export default function Preview() {
     balance,
     transaction,
     handleAmount,
-    handleUserAddress,
     isLoading,
     setIsLoading,
   } = useSwapStore();
@@ -153,7 +151,7 @@ export default function Preview() {
             handleBalance(parseFloat(totalAmount.toFixed(2)), balance);
             handleTransaction(totalAmount, transaction);
             handleAmount(0);
-            handleUserAddress("");
+            // handleUserAddress("");
             handleScreen(0);
             toast({
               title: "Transaction successful",
