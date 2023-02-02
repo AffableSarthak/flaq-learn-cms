@@ -1,10 +1,10 @@
-import create from "zustand";
+import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 interface IQuestionSet {
   category: string;
   completed: boolean;
   claimed: boolean;
-  score: number
+  score: number;
 }
 interface IQuizAllStore {
   allQuiz: Array<IQuestionSet>;
@@ -23,7 +23,9 @@ export const useQuizStore = create<IQuizAllStore>()(
         allQuiz: [],
         addQuiz: (quiz: IQuestionSet) => {
           set((data) => {
-            const isExist = data.allQuiz.find((q) => q.category === quiz.category);
+            const isExist = data.allQuiz.find(
+              (q) => q.category === quiz.category
+            );
             if (isExist) {
               return { allQuiz: [...data.allQuiz] };
             } else {
@@ -65,8 +67,8 @@ export const useQuizStore = create<IQuizAllStore>()(
             if (!quiz) return { allQuiz: data.allQuiz };
             data.allQuiz[data.allQuiz.indexOf(quiz)].score = score;
             return { allQuiz: data.allQuiz };
-          })
-        }
+          });
+        },
       }),
       {
         name: "quiz-store",
