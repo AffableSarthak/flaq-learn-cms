@@ -15,24 +15,20 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-import TransactionForm from "./TransactionForm";
+import TransactionForm from "./SwapTokens";
 import Preview from "./Preview";
-import {
-  NetworkType,
-  useTransactionStore,
-} from "../../../store/solana/transactionStore";
+import { useSwapStore } from "../../../store/solana/swapTokenStore";
 import { CopyIcon } from "@chakra-ui/icons";
 
-export default function Transaction({ network }: { network: NetworkType }) {
+export default function SwapTokens({ network }: { network: string }) {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
-    networkMetadata,
     currentScreen,
     resetTransaction,
     handleNetworkType,
     networkType,
-  } = useTransactionStore();
+  } = useSwapStore();
 
   useEffect(() => {
     handleNetworkType(network);
@@ -60,7 +56,9 @@ export default function Transaction({ network }: { network: NetworkType }) {
               colorScheme="green"
               _hover={{ cursor: "pointer" }}
               onClick={() => {
-                navigator.clipboard.writeText(networkMetadata.sampleAddress);
+                navigator.clipboard.writeText(
+                  "DqnRv6uwbUEQwuzfhemqSrmLmAGg7JV83Eb5QbMLNw1J"
+                );
                 toast({
                   title: `Copied to clipboard`,
                   status: "success",
@@ -69,7 +67,7 @@ export default function Transaction({ network }: { network: NetworkType }) {
                 });
               }}
             >
-              {networkMetadata.sampleAddress} <CopyIcon />
+              DqnRv6uwbUEQwuzfhemqSrmLmAGg7JV83Eb5QbMLNw1J <CopyIcon />
             </Code>
           </Center>
         </Box>

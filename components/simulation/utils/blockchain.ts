@@ -51,7 +51,7 @@ export const getBlockchainData = () => {
         },
         {
           name: "Swap your Tokens",
-          link: "solana/create-wallet",
+          link: "solana/swap-tokens",
           icon: swapIcon,
           badgeText: "DeFi",
           isActive: false,
@@ -98,10 +98,10 @@ export const getBlockchainData = () => {
         },
         {
           name: "Transfer Cryptocurrencies",
-          link: "solana/create-wallet",
+          link: "algorand/transfer-crypto",
           icon: swapIcon,
           badgeText: "Basic",
-          isActive: false,
+          isActive: true,
         },
         {
           name: "Mint an NFT",
@@ -159,10 +159,10 @@ export const getBlockchainData = () => {
         },
         {
           name: "Transfer Cryptocurrencies",
-          link: "solana/create-wallet",
+          link: "ethereum/transfer-crypto",
           icon: swapIcon,
           badgeText: "Basic",
-          isActive: false,
+          isActive: true,
         },
         {
           name: "Mint an NFT",
@@ -223,10 +223,10 @@ export const getBlockchainData = () => {
         },
         {
           name: "Transfer Fil to addresses",
-          link: "solana/create-wallet",
+          link: "filecoin/transfer-crypto",
           icon: swapIcon,
           badgeText: "Basic",
-          isActive: false,
+          isActive: true,
         },
 
         {

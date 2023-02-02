@@ -7,7 +7,7 @@ export default function TransactionCard({
 }: {
   transactionAmount: number;
 }) {
-  const { networkType, logo } = useTransactionStore();
+  const { networkType, networkMetadata } = useTransactionStore();
   return (
     <HStack
       p={4}
@@ -19,7 +19,7 @@ export default function TransactionCard({
       justifyContent={"space-between"}
     >
       <HStack alignItems={"center"}>
-        <Avatar src={logo} name={networkType} />
+        <Avatar src={networkMetadata.icon} name={networkType} />
         <Box>
           <Text fontWeight={"medium"} fontFamily="Poppins">
             {networkType == "SOL" ? "Solana" : null}

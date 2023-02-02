@@ -16,6 +16,7 @@ import { useCreateEthWalletStore } from "../store/ethereum/createEthWalletStore"
 import { useCreateAlgoWalletStore } from "../store/algorand/createAlgoWalletStore";
 import Transaction from "./common/transaction";
 import { useCreateFilWalletStore } from "../store/filecoin/createFilWalletStore";
+import SwapTokens from "./common/swap-token";
 
 export interface SimulationProps {
   simKey:
@@ -80,6 +81,8 @@ const RenderSolanaSimulation = ({
       return <Airdrop />;
     case SolanaSimulationKeys.TransferCypto:
       return <Transaction network={"SOL"} />;
+    case SolanaSimulationKeys.SwapTokens:
+      return <SwapTokens network={"SOL"} />;
     default:
       return <></>;
   }
@@ -90,16 +93,20 @@ const RenderAlgorandSimulation = ({
 }: {
   simKey: AlgorandSimulationKeys;
 }) => {
-  const { seedPhrase, publicKey, createWallet, isLoading } =
-    useCreateAlgoWalletStore(
-      (state) => ({
-        seedPhrase: state.seedPhrase,
-        publicKey: state.publicKey,
-        createWallet: state.createWallet,
-        isLoading: state.isLoading,
-      }),
-      shallow
-    );
+  const {
+    seedPhrase,
+    publicKey,
+    createWallet,
+    isLoading,
+  } = useCreateAlgoWalletStore(
+    (state) => ({
+      seedPhrase: state.seedPhrase,
+      publicKey: state.publicKey,
+      createWallet: state.createWallet,
+      isLoading: state.isLoading,
+    }),
+    shallow
+  );
 
   switch (simKey) {
     case AlgorandSimulationKeys.GenAccount:
@@ -110,6 +117,8 @@ const RenderAlgorandSimulation = ({
       return (
         <ShowcasePublicKey publicKey={publicKey} seedPhrase={seedPhrase} />
       );
+    case AlgorandSimulationKeys.TransferCypto:
+      return <Transaction network={"ALGO"} />;
     default:
       return <></>;
   }
@@ -141,6 +150,8 @@ const RenderEthereumSimulation = ({
         <ShowcasePublicKey publicKey={publicKey} seedPhrase={seedPhrase} />
       );
     }
+    case EthereumSimulationKeys.TransferCypto:
+      return <Transaction network={"ETH"} />;
     default:
       return <></>;
   }
@@ -151,16 +162,20 @@ const RenderFilecoinSimulation = ({
 }: {
   simKey: FilecoinSimulationKeys;
 }) => {
-  const { seedPhrase, generateKey, publicKey, f4Address } =
-    useCreateFilWalletStore(
-      (state) => ({
-        seedPhrase: state.seedPhrase,
-        generateKey: state.generateSeedPhrase,
-        publicKey: state.publickey,
-        f4Address: state.f4Adrress,
-      }),
-      shallow
-    );
+  const {
+    seedPhrase,
+    generateKey,
+    publicKey,
+    f4Address,
+  } = useCreateFilWalletStore(
+    (state) => ({
+      seedPhrase: state.seedPhrase,
+      generateKey: state.generateSeedPhrase,
+      publicKey: state.publickey,
+      f4Address: state.f4Adrress,
+    }),
+    shallow
+  );
 
   switch (simKey) {
     case FilecoinSimulationKeys.GenKeyPair: {
@@ -178,6 +193,8 @@ const RenderFilecoinSimulation = ({
         />
       );
     }
+    case FilecoinSimulationKeys.TransferCypto:
+      return <Transaction network={"FIL"} />;
     default:
       return <></>;
   }

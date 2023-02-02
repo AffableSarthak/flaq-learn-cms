@@ -21,7 +21,7 @@ export default function Preview() {
     handleBalance,
     handleTransaction,
     amount,
-    logo,
+    networkMetadata,
     networkType,
     balance,
     transaction,
@@ -57,7 +57,7 @@ export default function Preview() {
       </HStack>
       <Stack py={6} px={7}>
         <HStack alignItems={"center"}>
-          <Avatar size={"lg"} src={logo} name={networkType} />
+          <Avatar size={"lg"} src={networkMetadata.icon} name={networkType} />
           <Box ml={4}>
             <Text
               fontWeight={"medium"}
@@ -85,7 +85,7 @@ export default function Preview() {
               type="text"
               mt={4}
               disabled
-              value={"A1ToXDqnRv6uwbUEQwuzfhemqSrmLmAGg7JV8338ksAz"}
+              value={networkMetadata.senderAddress}
             />
           </Box>
           <Box mt={4}>
