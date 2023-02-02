@@ -10,7 +10,7 @@ import {
 enum SolanaDataType {
   CreateWallet = "create-wallet",
   TransferCypto = "transfer-crypto",
-  SwapTokens = "swap-tokens"
+  SwapTokens = "swap-tokens",
 }
 
 enum AlgoranDataType {
@@ -787,20 +787,20 @@ const getAlgorandData = (simulationType: string): SimType | undefined => {
               },
             ],
           },
-          // 2. Transfer some Algorand.
+          // 2. Transfer some ALGO.
           {
-            title: "Let's transfer some Algorand",
+            title: "Let's transfer some ALGO",
             block: [
               {
                 paraBlock: [
                   {
                     textItems: [
                       {
-                        text: "But I barely have any Algorand? Dw, we got u! Let’s start by giving you a fixed balance of 20 Algorand! Now, you can test out how to transfer crypto by ‘sending’ your crypto to a sample receiver public address. Copy the sample receiver address given below, and paste it when asked to enter it. ✒️",
+                        text: "But I barely have any ALGO? Dw, we got u! Let’s start by giving you a fixed balance of 20 ALGO! Now, you can test out how to transfer crypto by ‘sending’ your crypto to a sample receiver public address. Copy the sample receiver address given below, and paste it when asked to enter it. ✒️",
                         linkItems: [],
                       },
                     ],
-                    paraTitle: "‘Send’ some Algorand",
+                    paraTitle: "‘Send’ some ALGO",
                   },
                 ],
               },
@@ -809,7 +809,7 @@ const getAlgorandData = (simulationType: string): SimType | undefined => {
                   {
                     textItems: [
                       {
-                        text: "Now that you’ve clicked on ‘send’, you need to decide how much crypto you want to send. Choose any amount you want to try with - 2 Algorand, 15 Algorand - anything (remember - it’s not real money! This is a just a simulation). If you wanna transfer all the crypto, then just click on ‘max’ and the system will enter in your total balance, itself! Just to cover all the bases - make sure you’ve entered the right amount you want to transfer, and make sure you’ve entered the sample receiver public address that we have provided you with. Click on ‘preview’ to preview your transaction before confirming it! ✔️                        ",
+                        text: "Now that you’ve clicked on ‘send’, you need to decide how much crypto you want to send. Choose any amount you want to try with - 2 ALGO, 15 ALGO - anything (remember - it’s not real money! This is a just a simulation). If you wanna transfer all the crypto, then just click on ‘max’ and the system will enter in your total balance, itself! Just to cover all the bases - make sure you’ve entered the right amount you want to transfer, and make sure you’ve entered the sample receiver public address that we have provided you with. Click on ‘preview’ to preview your transaction before confirming it! ✔️                        ",
                         linkItems: [],
                       },
                     ],
@@ -1136,20 +1136,20 @@ const getEthereumData = (simulationType: string): SimType | undefined => {
               },
             ],
           },
-          // 2. Transfer some Ethereum.
+          // 2. Transfer some ETH.
           {
-            title: "Let's transfer some Ethereum",
+            title: "Let's transfer some ETH",
             block: [
               {
                 paraBlock: [
                   {
                     textItems: [
                       {
-                        text: "But I barely have any Ethereum? Dw, we got u! Let’s start by giving you a fixed balance of 20 Ethereum! Now, you can test out how to transfer crypto by ‘sending’ your crypto to a sample receiver public address. Copy the sample receiver address given below, and paste it when asked to enter it. ✒️",
+                        text: "But I barely have any ETH? Dw, we got u! Let’s start by giving you a fixed balance of 20 ETH! Now, you can test out how to transfer crypto by ‘sending’ your crypto to a sample receiver public address. Copy the sample receiver address given below, and paste it when asked to enter it. ✒️",
                         linkItems: [],
                       },
                     ],
-                    paraTitle: "‘Send’ some Ethereum",
+                    paraTitle: "‘Send’ some ETH",
                   },
                 ],
               },
@@ -1158,7 +1158,7 @@ const getEthereumData = (simulationType: string): SimType | undefined => {
                   {
                     textItems: [
                       {
-                        text: "Now that you’ve clicked on ‘send’, you need to decide how much crypto you want to send. Choose any amount you want to try with - 2 Ethereum, 15 Ethereum - anything (remember - it’s not real money! This is a just a simulation). If you wanna transfer all the crypto, then just click on ‘max’ and the system will enter in your total balance, itself! Just to cover all the bases - make sure you’ve entered the right amount you want to transfer, and make sure you’ve entered the sample receiver public address that we have provided you with. Click on ‘preview’ to preview your transaction before confirming it! ✔️                        ",
+                        text: "Now that you’ve clicked on ‘send’, you need to decide how much crypto you want to send. Choose any amount you want to try with - 2 ETH, 15 ETH - anything (remember - it’s not real money! This is a just a simulation). If you wanna transfer all the crypto, then just click on ‘max’ and the system will enter in your total balance, itself! Just to cover all the bases - make sure you’ve entered the right amount you want to transfer, and make sure you’ve entered the sample receiver public address that we have provided you with. Click on ‘preview’ to preview your transaction before confirming it! ✔️                        ",
                         linkItems: [],
                       },
                     ],
@@ -1462,20 +1462,20 @@ const getFilecoinData = (simulationType: string): SimType | undefined => {
               },
             ],
           },
-          // 2. Transfer some Filecoin.
+          // 2. Transfer some FIL.
           {
-            title: "Let's transfer some Filecoin",
+            title: "Let's transfer some FIL",
             block: [
               {
                 paraBlock: [
                   {
                     textItems: [
                       {
-                        text: "But I barely have any Filecoin? Dw, we got u! Let’s start by giving you a fixed balance of 20 SOL! Now, you can test out how to transfer crypto by ‘sending’ your crypto to a sample receiver public address. Copy the sample receiver address given below, and paste it when asked to enter it. ✒️",
+                        text: "But I barely have any FIL? Dw, we got u! Let’s start by giving you a fixed balance of 20 SOL! Now, you can test out how to transfer crypto by ‘sending’ your crypto to a sample receiver public address. Copy the sample receiver address given below, and paste it when asked to enter it. ✒️",
                         linkItems: [],
                       },
                     ],
-                    paraTitle: "‘Send’ some Filecoin",
+                    paraTitle: "‘Send’ some FIL",
                   },
                 ],
               },
@@ -1484,7 +1484,7 @@ const getFilecoinData = (simulationType: string): SimType | undefined => {
                   {
                     textItems: [
                       {
-                        text: "Now that you’ve clicked on ‘send’, you need to decide how much crypto you want to send. Choose any amount you want to try with - 2 Filecoin, 15 Filecoin - anything (remember - it’s not real money! This is a just a simulation). If you wanna transfer all the crypto, then just click on ‘max’ and the system will enter in your total balance, itself! Just to cover all the bases - make sure you’ve entered the right amount you want to transfer, and make sure you’ve entered the sample receiver public address that we have provided you with. Click on ‘preview’ to preview your transaction before confirming it! ✔️                        ",
+                        text: "Now that you’ve clicked on ‘send’, you need to decide how much crypto you want to send. Choose any amount you want to try with - 2 FIL, 15 FIL - anything (remember - it’s not real money! This is a just a simulation). If you wanna transfer all the crypto, then just click on ‘max’ and the system will enter in your total balance, itself! Just to cover all the bases - make sure you’ve entered the right amount you want to transfer, and make sure you’ve entered the sample receiver public address that we have provided you with. Click on ‘preview’ to preview your transaction before confirming it! ✔️                        ",
                         linkItems: [],
                       },
                     ],

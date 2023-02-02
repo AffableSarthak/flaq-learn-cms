@@ -53,20 +53,29 @@ const SimulationCard = ({ cardData, setCardData, blockchain }: Props) => {
           <Box>
             {/* Nav */}
             <Flex bottom={0} mx="auto" justifyContent={"space-between"} py="4">
-              <Button
-                variant={"primarybtn"}
-                disabled={isBackDisabled}
-                onClick={() => setCardData(currentSimulationIndex - 1)}
-              >
-                Back
-              </Button>
-              <Button
-                variant={"primarybtn"}
-                disabled={isNextDisabled}
-                onClick={() => setCardData(currentSimulationIndex + 1)}
-              >
-                Next
-              </Button>
+              {isBackDisabled ? (
+                <></>
+              ) : (
+                <Button
+                  variant={"primarybtn"}
+                  disabled={isBackDisabled}
+                  onClick={() => setCardData(currentSimulationIndex - 1)}
+                >
+                  Back
+                </Button>
+              )}
+
+              {isNextDisabled ? (
+                <></>
+              ) : (
+                <Button
+                  variant={"primarybtn"}
+                  disabled={isNextDisabled}
+                  onClick={() => setCardData(currentSimulationIndex + 1)}
+                >
+                  Next
+                </Button>
+              )}
             </Flex>
           </Box>
         </Box>

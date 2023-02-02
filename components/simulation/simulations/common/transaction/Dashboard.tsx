@@ -39,10 +39,10 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
             </Text>
             <Box w={1} h={1} bg="#858585" mx={2}></Box>
             <Text fontWeight="semibold" fontFamily={"Poppins"} color="black">
-              {networkMetadata.sampleAddress.slice(0, 5)}...
-              {networkMetadata.sampleAddress.slice(
-                networkMetadata.sampleAddress.length - 5,
-                networkMetadata.sampleAddress.length
+              {networkMetadata.senderAddress.slice(0, 5)}...
+              {networkMetadata.senderAddress.slice(
+                networkMetadata.senderAddress.length - 5,
+                networkMetadata.senderAddress.length
               )}
             </Text>
           </HStack>
