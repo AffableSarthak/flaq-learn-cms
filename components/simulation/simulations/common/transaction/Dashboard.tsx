@@ -6,14 +6,20 @@ import { useTransactionStore } from "../../../store/solana/transactionStore";
 import TransactionCard from "./TransactionCard";
 
 export default function Dashboard({ onClose }: { onClose: () => void }) {
-  const { handleScreen, balance, networkType, transaction, resetTransaction } =
-    useTransactionStore();
+  const {
+    networkMetadata,
+    handleScreen,
+    balance,
+    networkType,
+    transaction,
+    resetTransaction,
+  } = useTransactionStore();
   return (
     <>
       <Stack
         alignItems={"center"}
         w="full"
-        background="linear-gradient(229.14deg, #94F533 -2.89%, #2AD0CA 84.74%)"
+        background={networkMetadata.bgColor}
         boxShadow="0px 4px 24px rgba(172, 234, 254, 0.4)"
         pb={5}
         borderRadius="2xl"
@@ -33,7 +39,11 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
             </Text>
             <Box w={1} h={1} bg="#858585" mx={2}></Box>
             <Text fontWeight="semibold" fontFamily={"Poppins"} color="black">
-              A1ToX...38ksAz
+              {networkMetadata.sampleAddress.slice(0, 5)}...
+              {networkMetadata.sampleAddress.slice(
+                networkMetadata.sampleAddress.length - 5,
+                networkMetadata.sampleAddress.length
+              )}
             </Text>
           </HStack>
           <Box
@@ -46,7 +56,7 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
             <IoCloseOutline fontSize={"24px"} color="black" />
           </Box>
         </HStack>
-        <Stack px={[16, 24]} py={9}>
+        <Stack px={[16, 20]} py={9}>
           <Stack alignItems={"center"} color="black">
             <Text fontWeight={"medium"}>BALANCE IN {networkType}</Text>
             <Text

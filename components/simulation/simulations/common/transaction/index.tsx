@@ -17,14 +17,22 @@ import {
 import React, { useEffect } from "react";
 import TransactionForm from "./TransactionForm";
 import Preview from "./Preview";
-import { useTransactionStore } from "../../../store/solana/transactionStore";
+import {
+  NetworkType,
+  useTransactionStore,
+} from "../../../store/solana/transactionStore";
 import { CopyIcon } from "@chakra-ui/icons";
 
-export default function Transaction({ network }: { network: string }) {
+export default function Transaction({ network }: { network: NetworkType }) {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { currentScreen, resetTransaction, handleNetworkType, networkType } =
-    useTransactionStore();
+  const {
+    networkMetadata,
+    currentScreen,
+    resetTransaction,
+    handleNetworkType,
+    networkType,
+  } = useTransactionStore();
 
   useEffect(() => {
     handleNetworkType(network);
@@ -52,9 +60,7 @@ export default function Transaction({ network }: { network: string }) {
               colorScheme="green"
               _hover={{ cursor: "pointer" }}
               onClick={() => {
-                navigator.clipboard.writeText(
-                  "DqnRv6uwbUEQwuzfhemqSrmLmAGg7JV83Eb5QbMLNw1J"
-                );
+                navigator.clipboard.writeText(networkMetadata.sampleAddress);
                 toast({
                   title: `Copied to clipboard`,
                   status: "success",
@@ -63,7 +69,7 @@ export default function Transaction({ network }: { network: string }) {
                 });
               }}
             >
-              DqnRv6uwbUEQwuzfhemqSrmLmAGg7JV83Eb5QbMLNw1J <CopyIcon />
+              {networkMetadata.sampleAddress} <CopyIcon />
             </Code>
           </Center>
         </Box>

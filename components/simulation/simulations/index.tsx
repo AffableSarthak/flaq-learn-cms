@@ -117,6 +117,8 @@ const RenderAlgorandSimulation = ({
       return (
         <ShowcasePublicKey publicKey={publicKey} seedPhrase={seedPhrase} />
       );
+    case AlgorandSimulationKeys.TransferCypto:
+      return <Transaction network={"ALGO"} />;
     default:
       return <></>;
   }
@@ -148,6 +150,8 @@ const RenderEthereumSimulation = ({
         <ShowcasePublicKey publicKey={publicKey} seedPhrase={seedPhrase} />
       );
     }
+    case EthereumSimulationKeys.TransferCypto:
+      return <Transaction network={"ETH"} />;
     default:
       return <></>;
   }
@@ -191,6 +195,8 @@ const RenderFilecoinSimulation = ({
         <ShowcasePublicKey publicKey={publicKey} seedPhrase={seedPhrase} />
       );
     }
+    case FilecoinSimulationKeys.TransferCypto:
+      return <Transaction network={"FIL"} />;
     default:
       return <></>;
   }

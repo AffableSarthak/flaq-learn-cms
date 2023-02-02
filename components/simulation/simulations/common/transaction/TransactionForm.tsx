@@ -22,6 +22,8 @@ export default function TransactionForm() {
     userAddress,
     amount,
     balance,
+    networkType,
+    networkMetadata,
   } = useTransactionStore();
 
   const [validateAddress, setValidateAddress] = useState<boolean>(false);
@@ -36,11 +38,16 @@ export default function TransactionForm() {
       return;
     }
 
-    const Regxp = /\b[a-zA-Z0-9]{44}\b/;
-    if (Regxp.test(userAddress) === true) {
+    let regexp = new RegExp(networkMetadata.regex);
+    console.log(networkMetadata.regex);
+    console.log(regexp);
+
+    if (regexp.test(userAddress) === true) {
       setValidateAddress(true);
+      console.log("kjnfs");
     } else {
       setValidateAddress(false);
+      console.log("here");
     }
   };
 
@@ -76,7 +83,7 @@ export default function TransactionForm() {
         </Box>
         <HStack alignItems={"center"}>
           <Text fontWeight="semibold" fontFamily={"Poppins"}>
-            Send SOL
+            Send {networkType}
           </Text>
         </HStack>
       </HStack>

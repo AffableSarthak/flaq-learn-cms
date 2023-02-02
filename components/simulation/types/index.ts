@@ -2,12 +2,14 @@ export enum EthereumSimulationKeys {
   GenKeyPair = "genKeyPair",
   BackupSeedPhrase = "backupSeedPhrase",
   ShowcasePublicKey = "showcasePublicKey",
+  TransferCypto = "transfercrypto",
 }
 
 export enum FilecoinSimulationKeys {
   GenKeyPair = "genKeyPair",
   BackupSeedPhrase = "backupSeedPhrase",
   ShowcasePublicKey = "showcasePublicKey",
+  TransferCypto = "transfercrypto",
 }
 
 export enum SolanaSimulationKeys {
@@ -23,6 +25,7 @@ export enum AlgorandSimulationKeys {
   GenAccount = "genAccount",
   BackupSeedPhrase = "backupSeedPhrase",
   ShowcasePublicKey = "showcasePublicKey",
+  TransferCypto = "transfercrypto",
 }
 
 export enum Blockchains {
