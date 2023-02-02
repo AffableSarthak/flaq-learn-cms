@@ -357,7 +357,7 @@ const RenderButton = ({
       <Button
         px="12"
         variant={"primarybtn"}
-        disabled={selectedList.length !== seedPhraseLength}
+        isDisabled={selectedList.length !== seedPhraseLength}
         onClick={submitHandler}
       >
         Verify Seed Phrase

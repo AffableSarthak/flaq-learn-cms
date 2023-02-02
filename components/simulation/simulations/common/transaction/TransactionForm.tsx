@@ -141,7 +141,7 @@ export default function TransactionForm() {
                 }}
               />
               <HStack alignItems={"center"} mr={4}>
-                <Text>SOL</Text>
+                <Text>{networkType}</Text>
                 <Button
                   size="xs"
                   onClick={() =>
@@ -181,7 +181,7 @@ export default function TransactionForm() {
               <Input
                 type="text"
                 mt={2}
-                disabled
+                isDisabled
                 value={isNaN(gasFee) ? "" : gasFee}
               />
             </Box>
@@ -197,7 +197,7 @@ export default function TransactionForm() {
               <Input
                 type="text"
                 mt={2}
-                disabled
+                isDisabled
                 value={isNaN(totalAmount) ? "" : totalAmount}
                 // isInvalid={totalAmount > balance}
               />
@@ -221,7 +221,7 @@ export default function TransactionForm() {
           bg="#97FCE9"
           color="black"
           _hover={{ bg: "#97FCE9" }}
-          disabled={
+          isDisabled={
             validateAddress === false ||
             validateAmount === false ||
             totalAmount > balance

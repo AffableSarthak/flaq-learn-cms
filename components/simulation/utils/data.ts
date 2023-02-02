@@ -1471,7 +1471,7 @@ const getFilecoinData = (simulationType: string): SimType | undefined => {
                   {
                     textItems: [
                       {
-                        text: "But I barely have any FIL? Dw, we got u! Let’s start by giving you a fixed balance of 20 SOL! Now, you can test out how to transfer crypto by ‘sending’ your crypto to a sample receiver public address. Copy the sample receiver address given below, and paste it when asked to enter it. ✒️",
+                        text: "But I barely have any FIL? Dw, we got u! Let’s start by giving you a fixed balance of 20 FIL! Now, you can test out how to transfer crypto by ‘sending’ your crypto to a sample receiver public address. Copy the sample receiver address given below, and paste it when asked to enter it. ✒️",
                         linkItems: [],
                       },
                     ],

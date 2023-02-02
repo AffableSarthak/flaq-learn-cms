@@ -143,7 +143,7 @@ export default function Preview() {
           _hover={{ bg: "#97FCE9" }}
           isLoading={isLoading}
           loadingText="Confirming your transaction..."
-          disabled={totalAmount > balance || isLoading}
+          isDisabled={totalAmount > balance || isLoading}
           onClick={async () => {
             setIsLoading();
             await stall(5000);

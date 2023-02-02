@@ -58,7 +58,7 @@ const SimulationCard = ({ cardData, setCardData, blockchain }: Props) => {
               ) : (
                 <Button
                   variant={"primarybtn"}
-                  disabled={isBackDisabled}
+                  isDisabled={isBackDisabled}
                   onClick={() => setCardData(currentSimulationIndex - 1)}
                 >
                   Back
@@ -70,7 +70,7 @@ const SimulationCard = ({ cardData, setCardData, blockchain }: Props) => {
               ) : (
                 <Button
                   variant={"primarybtn"}
-                  disabled={isNextDisabled}
+                  isDisabled={isNextDisabled}
                   onClick={() => setCardData(currentSimulationIndex + 1)}
                 >
                   Next

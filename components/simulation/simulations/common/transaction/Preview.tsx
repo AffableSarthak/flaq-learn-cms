@@ -84,7 +84,7 @@ export default function Preview() {
             <Input
               type="text"
               mt={4}
-              disabled
+              isDisabled
               value={networkMetadata.senderAddress}
             />
           </Box>
@@ -96,7 +96,7 @@ export default function Preview() {
             >
               To
             </FormLabel>
-            <Input type="text" mt={4} disabled value={userAddress} />
+            <Input type="text" mt={4} isDisabled value={userAddress} />
           </Box>
           {/* <Box mt={4}>
             <FormLabel
@@ -109,7 +109,7 @@ export default function Preview() {
             <Input
               type="text"
               mt={4}
-              disabled
+              isDisabled
               value={gasFee}
               isInvalid={totalAmount > balance}
             />
@@ -125,7 +125,7 @@ export default function Preview() {
           _hover={{ bg: "#97FCE9" }}
           isLoading={isLoading}
           loadingText="Confirming your transaction..."
-          disabled={totalAmount > balance || isLoading}
+          isDisabled={totalAmount > balance || isLoading}
           onClick={async () => {
             setIsLoading();
             await stall(5000);
