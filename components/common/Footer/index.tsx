@@ -12,6 +12,7 @@ import {
   InputRightElement,
   Show,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import React from "react";
 import Image from "next/image";
@@ -81,17 +82,16 @@ const socialLink = [
 ];
 const Footer = (props: Props) => {
   const [email, setEmail] = React.useState("");
-  const [message, setMessage] = React.useState("");
+  const toast = useToast();
 
   let handleSubmit = async (e: any) => {
+    console.log(email);
     e.preventDefault();
     try {
-      let res = await fetch("https://landing-form.vercel.app/api/submit", {
+      let res = await fetch("https://apix.flaq.club/users/create", {
         method: "POST",
         body: JSON.stringify({
-          data: {
-            user_email: email,
-          },
+          email: email,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -99,11 +99,32 @@ const Footer = (props: Props) => {
       });
       let resJson = await res.json();
       if (res.status === 200) {
-        setEmail("");
-        setMessage("Subscribed Successfully");
-      } else {
-        setMessage("Some error occured");
+        toast({
+          description: `${email} subscribed to Flaq newsletter`,
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top-right",
+        });
+      } else if (res.status === 400) {
+        toast({
+          description: `Something went wrong, try again later`,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+          position: "top-right",
+        });
+      } else if (res.status === 500) {
+        toast({
+          description: `${email} already subscribed to Flaq newsletter`,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+          position: "top-right",
+        });
       }
+
+      setEmail("");
     } catch (err) {
       console.log(err);
     }
@@ -262,11 +283,6 @@ const Footer = (props: Props) => {
                   <br />
                 </Show>
               </InputGroup>
-              <Show above="md">
-                <Box mx="4" textAlign={"center"}>
-                  <Text>{message}</Text>
-                </Box>
-              </Show>
             </Box>
 
             <Show below="md">
@@ -286,7 +302,6 @@ const Footer = (props: Props) => {
                   Subscribe
                 </Button>
               </Box>
-              <Text>{message}</Text>
             </Show>
           </Flex>
         </form>

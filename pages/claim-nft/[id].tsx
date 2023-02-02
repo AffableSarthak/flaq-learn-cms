@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Center,
   Flex,
   Heading,
   Highlight,
@@ -124,23 +125,27 @@ const ClaimNft = ({
     }
 
     return (
-      <Button
-        px={["30px", "80px"]}
-        py="14px"
-        bg="white"
-        fontWeight={600}
-        fontSize="sm"
-        color="black"
-        _hover={{
-          bg: "white",
-        }}
-        mt="54px"
-        isLoading={isLoading}
-        loadingText="Please wait while we mint the NFT to your account..."
-        onClick={mintNft}
-      >
-        Mint NFT
-      </Button>
+      <Center>
+        <Box>
+          <Button
+            px={["30px", "80px"]}
+            py="14px"
+            bg="white"
+            fontWeight={600}
+            fontSize="sm"
+            color="black"
+            _hover={{
+              bg: "white",
+            }}
+            mt="54px"
+            isLoading={isLoading}
+            loadingText="Minting NFT to your account..."
+            onClick={mintNft}
+          >
+            Mint NFT
+          </Button>
+        </Box>
+      </Center>
     );
   };
 
