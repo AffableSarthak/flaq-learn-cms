@@ -68,7 +68,8 @@ export const useTransactionStore = create<TransactionState>()(
             set({
               networkMetadata: {
                 bgColor:
-                  "linear-gradient(229.14deg, #d55a30 -2.89%, #a20f7a 84.74%)",
+                  "linear-gradient(229.14deg, #94F533 -2.89%, #2AD0CA 84.74%)",
+
                 icon: "https://s2.coinmarketcap.com/static/img/coins/200x200/4030.png",
                 regex: "[a-zA-Z0-9]{58}",
                 senderAddress:
@@ -82,7 +83,7 @@ export const useTransactionStore = create<TransactionState>()(
             set({
               networkMetadata: {
                 bgColor:
-                  "linear-gradient(229.14deg, #81a6f7 -2.89%, #a6fbf5 84.74%)",
+                  "linear-gradient(229.14deg, #94F533 -2.89%, #2AD0CA 84.74%)",
                 icon: "https://e7.pngegg.com/pngimages/505/627/png-clipart-ethereum-bitcoin-cryptocurrency-logo-litecoin-bitcoin-angle-triangle-thumbnail.png",
                 regex: "^(0x)[a-zA-Z0-9]{40}",
                 senderAddress: "0x6a2253b59b314b593551aACc36c857D292A6bADd",
@@ -93,7 +94,8 @@ export const useTransactionStore = create<TransactionState>()(
           if (network === "FIL") {
             set({
               networkMetadata: {
-                bgColor: "#0090ff",
+                bgColor:
+                  "linear-gradient(229.14deg, #94F533 -2.89%, #2AD0CA 84.74%)",
                 icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Filecoin.svg/1200px-Filecoin.svg.png",
                 regex: "^(f4)[a-zA-Z0-9]{42}",
                 senderAddress: "f410f5iiatzw337wssidtx6nknpg3bf5pnwt47byin3y",
