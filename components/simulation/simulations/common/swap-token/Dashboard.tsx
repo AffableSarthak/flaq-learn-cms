@@ -6,14 +6,8 @@ import HistoryCard from "./HistoryCard";
 import { useSwapTokenStore } from "../../../store/solana/swapTokenStore";
 
 export default function Dashboard({ onClose }: { onClose: () => void }) {
-  const {
-    handleScreen,
-    balance,
-    networkType,
-    resetState,
-    swapHistory,
-    networkMetadata,
-  } = useSwapTokenStore();
+  const { handleScreen, balance, resetState, swapHistory, networkMetadata } =
+    useSwapTokenStore();
 
   const { swapFromToken, sampleAddress } = networkMetadata;
 
