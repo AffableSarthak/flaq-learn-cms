@@ -3,9 +3,6 @@ import {
   HStack,
   Stack,
   Text,
-  Input,
-  FormControl,
-  FormLabel,
   Button,
   Avatar,
   useToast,
@@ -14,31 +11,29 @@ import {
 } from "@chakra-ui/react";
 import { FaLongArrowAltDown } from "react-icons/fa";
 import { IoIosInformationCircleOutline } from "react-icons/io";
-import {
-  MdKeyboardBackspace,
-  MdOutlineKeyboardArrowRight,
-  MdOutlineSwapVert,
-} from "react-icons/md";
-import { useSwapStore } from "../../../store/solana/swapTokenStore";
+import { MdKeyboardBackspace } from "react-icons/md";
+import { useSwapTokenStore } from "../../../store/solana/swapTokenStore";
 
 export default function Preview() {
   const {
     handleScreen,
     handleBalance,
-    handleTransaction,
-    amount,
-    logo,
-    networkType,
+    selectedSwapTo,
+    networkMetadata,
+    slippage,
     balance,
-    transaction,
-    handleAmount,
+    setSwapFromVal,
+    swapFromVal,
     isLoading,
+    setSwapHistory,
+    setFinalSwapVal,
     setIsLoading,
-  } = useSwapStore();
+  } = useSwapTokenStore();
+
+  const { swapFromToken } = networkMetadata;
+  const networkFee = 0.2459;
 
   const toast = useToast();
-  const gasFee = (amount * 0.009) / 100;
-  const totalAmount = amount + gasFee;
 
   async function stall(stallTime = 3000) {
     await new Promise((resolve) => setTimeout(resolve, stallTime));
@@ -71,12 +66,16 @@ export default function Preview() {
           </Text>
           <HStack alignItems={"center"} justifyContent="space-between" mt={2}>
             <HStack alignItems={"center"}>
-              <Avatar src={logo} name={networkType} size="sm" />
+              <Avatar
+                src={swapFromToken?.icon}
+                name={swapFromToken?.name}
+                size="sm"
+              />
               <Text fontWeight={"medium"} fontFamily="Poppins">
-                {networkType}
+                {swapFromToken?.name}
               </Text>
             </HStack>
-            <Text fontFamily="Poppins">20.5</Text>
+            <Text fontFamily="Poppins">{swapFromVal}</Text>
           </HStack>
           <Flex alignItems={"center"}>
             <Divider color={"black"} />
@@ -90,12 +89,20 @@ export default function Preview() {
           </Text>
           <HStack alignItems={"center"} justifyContent="space-between" mt={2}>
             <HStack alignItems={"center"}>
-              <Avatar src={logo} name={networkType} size="sm" />
+              <Avatar
+                src={selectedSwapTo.icon}
+                name={selectedSwapTo.name}
+                size="sm"
+              />
               <Text fontWeight={"medium"} fontFamily="Poppins">
-                USDC
+                {selectedSwapTo.symbol}
               </Text>
             </HStack>
-            <Text fontFamily="Poppins">11393.31</Text>
+            <Text fontFamily="Poppins">
+              {isNaN(swapFromVal * selectedSwapTo.multiplier)
+                ? 0
+                : (swapFromVal * selectedSwapTo.multiplier).toFixed(2)}
+            </Text>
           </HStack>
         </Box>
         <Box rounded="xl" bg="#1A1A1A">
@@ -112,7 +119,7 @@ export default function Preview() {
               <IoIosInformationCircleOutline color="#9999A5" />
             </HStack>
             <Text fontWeight={600} color="#83E0B8" fontFamily={"Poppins"}>
-              $0.000173
+              {networkFee}
             </Text>
           </HStack>
           <Divider />
@@ -129,7 +136,7 @@ export default function Preview() {
               <IoIosInformationCircleOutline color="#9999A5" />
             </HStack>
             <Text fontWeight={600} color="#9999A5" fontFamily={"Poppins"}>
-              1%
+              {slippage}
             </Text>
           </HStack>
         </Box>
@@ -143,25 +150,29 @@ export default function Preview() {
           _hover={{ bg: "#97FCE9" }}
           isLoading={isLoading}
           loadingText="Confirming your transaction..."
-          isDisabled={totalAmount > balance || isLoading}
           onClick={async () => {
             setIsLoading();
             await stall(5000);
             setIsLoading();
-            handleBalance(parseFloat(totalAmount.toFixed(2)), balance);
-            handleTransaction(totalAmount, transaction);
-            handleAmount(0);
-            // handleUserAddress("");
+            handleBalance(balance - (swapFromVal + networkFee));
+            const swapValTo = swapFromVal * selectedSwapTo.multiplier;
+            const final = swapValTo - 0.01 * swapValTo;
+            setFinalSwapVal(final);
+            setSwapHistory({
+              tokName: selectedSwapTo.name,
+              swapValue: final,
+            });
+            setSwapFromVal(0);
             handleScreen(0);
             toast({
-              title: "Transaction successful",
+              title: "swap successful",
               status: "success",
               duration: 3000,
               isClosable: true,
             });
           }}
         >
-          Send
+          Confirm swap
         </Button>
       </Stack>
     </>

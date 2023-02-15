@@ -6,68 +6,45 @@ import {
   Button,
   Flex,
   Avatar,
-  Divider,
   Tabs,
   TabList,
   Tab,
   Input,
-  Select,
   MenuItem,
-  Image,
   MenuList,
   Menu,
   MenuButton,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import {
-  MdKeyboardBackspace,
-  MdOutlineKeyboardArrowRight,
-  MdOutlineSwapVert,
-} from "react-icons/md";
-import { GrCircleInformation } from "react-icons/gr";
+import { useState } from "react";
+import { MdKeyboardBackspace, MdOutlineSwapVert } from "react-icons/md";
 import { IoIosInformationCircleOutline } from "react-icons/io";
-import { useSwapStore } from "../../../store/solana/swapTokenStore";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import {
+  SlippageValues,
+  TokenState,
+  useSwapTokenStore,
+} from "../../../store/solana/swapTokenStore";
 
 export default function TransactionForm() {
   const {
     handleScreen,
-    handleAmount,
-    amount,
+    setSelectedSwapTo,
     balance,
-    logo,
-    networkType,
-  } = useSwapStore();
+    networkMetadata,
+    swapFromVal,
+    slippageOptions,
+    setSlippage,
+    setSwapFromVal,
+  } = useSwapTokenStore();
 
-  const slippages: number[] = [0.1, 0.5, 1.5];
+  const { swapFromToken, tokenList } = networkMetadata;
 
-  const [selected, setSelected] = useState({
-    img: "",
-    network: "",
-    value: 0,
-    price: 0,
+  const [selected, setSelected] = useState<TokenState>({
+    icon: "",
+    name: "",
+    symbol: "",
+    multiplier: 0,
   });
-
-  const TokenList = [
-    {
-      img: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
-      network: "solana",
-      value: 56.67,
-      price: 34.03,
-    },
-    {
-      img: "https://s2.coinmarketcap.com/static/img/coins/200x200/3408.png",
-      network: "usdc",
-      value: 1910,
-      price: 1.01,
-    },
-    {
-      img: "https://s2.coinmarketcap.com/static/img/coins/200x200/6187.png",
-      network: "serum",
-      value: 0,
-      price: 0.0,
-    },
-  ];
 
   return (
     <>
@@ -96,17 +73,18 @@ export default function TransactionForm() {
           </Text>
           <HStack alignItems={"center"} justifyContent="space-between" mt={2}>
             <HStack alignItems={"center"}>
-              <Avatar src={logo} name={networkType} size="sm" />
+              <Avatar
+                src={swapFromToken?.icon}
+                name={swapFromToken?.name}
+                size="sm"
+              />
               <Text fontWeight={"medium"} fontFamily="Poppins">
-                {networkType}
+                {swapFromToken?.symbol}
               </Text>
-              {/* <Box ml={6}>
-                <MdOutlineKeyboardArrowRight />
-              </Box> */}
             </HStack>
             <Input
               type={"number"}
-              value={amount}
+              value={swapFromVal}
               placeholder="enter amount"
               w="140px"
               fontSize={"sm"}
@@ -115,7 +93,7 @@ export default function TransactionForm() {
               focusBorderColor={"#1A1A1A"}
               textAlign="right"
               px={0}
-              onChange={(e) => handleAmount(parseFloat(e.target.value))}
+              onChange={(e) => setSwapFromVal(parseFloat(e.target.value))}
             />
           </HStack>
         </Box>
@@ -126,18 +104,7 @@ export default function TransactionForm() {
           <Text color={"#9999A5"} fontSize="sm" fontFamily={"Poppins"}>
             swap to
           </Text>
-          {/* <HStack alignItems={"center"} justifyContent="space-between" mt={2}>
-            <HStack alignItems={"center"}>
-              <Avatar src={logo} name={networkType} size="sm" />
-              <Text fontWeight={"medium"} fontFamily="Poppins">
-                USDC
-              </Text>
-              <Box ml={6}>
-                <MdOutlineKeyboardArrowRight />
-              </Box>
-            </HStack>
-            <Text fontFamily="Poppins">11393.31</Text>
-          </HStack> */}
+
           <Menu>
             <MenuButton
               as={Button}
@@ -155,7 +122,7 @@ export default function TransactionForm() {
                 bg: "transparent",
               }}
             >
-              {selected.network.length == 0 ? (
+              {selected.name.length == 0 ? (
                 <Text fontSize={"sm"} textAlign={"start"}>
                   Choose a coin
                 </Text>
@@ -166,22 +133,28 @@ export default function TransactionForm() {
                   w="full"
                 >
                   <HStack alignItems={"center"}>
-                    <Avatar src={selected.img} name={selected.network} />
+                    <Avatar src={selected.icon} name={selected.name} />
                     <Box textAlign={"start"}>
                       <Text fontWeight={"medium"} fontFamily="Space Mono">
-                        {selected.network}
+                        {selected.symbol}
                       </Text>
-                      <Text fontFamily={"Space Mono"}>{selected.value}</Text>
+                      <Text fontFamily={"Space Mono"}>
+                        {selected.multiplier}
+                      </Text>
                     </Box>
                   </HStack>
-                  <Stack>
-                    <Text fontFamily={"Space Mono"}>${selected.price}</Text>
+                  <Stack overflowX="auto" pl="6">
+                    <Text fontFamily={"Space Mono"}>
+                      {isNaN(swapFromVal * selected.multiplier)
+                        ? 0
+                        : (swapFromVal * selected.multiplier).toFixed(2)}
+                    </Text>
                   </Stack>
                 </HStack>
               )}
             </MenuButton>
             <MenuList w="290px" bg="#1A1A1A" px={2}>
-              {TokenList.map((token, index) => (
+              {tokenList.map((token, index) => (
                 <MenuItem
                   key={index}
                   mt={index > 0 ? 2 : 0}
@@ -197,18 +170,27 @@ export default function TransactionForm() {
                     alignItems={"center"}
                     justifyContent="space-between"
                     w="full"
+                    overflowX={"auto"}
+                    py="2"
                   >
                     <HStack alignItems={"center"}>
-                      <Avatar src={token.img} name={token.network} />
+                      <Avatar src={token.icon} name={token.name} />
                       <Box>
                         <Text fontWeight={"medium"} fontFamily="Space Mono">
-                          {token.network}
+                          {token.name}
                         </Text>
-                        <Text fontFamily={"Space Mono"}>{token.value}</Text>
+                        {/* <Text fontFamily={"Space Mono"}>{token.value}</Text> */}
+                        <Text fontFamily={"Space Mono"}>
+                          {token.multiplier}
+                        </Text>
                       </Box>
                     </HStack>
                     <Stack>
-                      <Text fontFamily={"Space Mono"}>${token.price}</Text>
+                      <Text fontFamily={"Space Mono"}>
+                        {isNaN(swapFromVal * selected.multiplier)
+                          ? 0
+                          : (swapFromVal * selected.multiplier).toFixed(2)}
+                      </Text>
                     </Stack>
                   </HStack>
                 </MenuItem>
@@ -224,17 +206,21 @@ export default function TransactionForm() {
             <IoIosInformationCircleOutline color="#9999A5" />
           </HStack>
           <HStack mt={4}>
-            <Tabs variant="soft-rounded">
+            <Tabs variant="soft-rounded" defaultIndex={1}>
               <TabList gap={2}>
-                {slippages.map((slippage, index) => (
+                {slippageOptions.map((slippage, index) => (
                   <Tab
                     key={index}
                     bg="#1A1A1A"
                     color={"white"}
-                    _focus={{ bg: "white", color: "black" }}
+                    _focus={{ bg: "#97fce9", color: "black" }}
+                    _selected={{ bg: "#97fce9", color: "black" }}
                     py={2}
                     px={4}
                     fontWeight={400}
+                    onClick={() => {
+                      setSlippage(slippage as SlippageValues);
+                    }}
                   >
                     {slippage}%
                   </Tab>
@@ -245,30 +231,31 @@ export default function TransactionForm() {
         </Box>
       </Stack>
       <Stack px={4} pb={14} h="full" justifyContent="flex-end">
-        {amount <= balance ? (
-          <Button
-            w="full"
-            py={4}
-            bg="#97FCE9"
-            color="black"
-            _hover={{ bg: "#97FCE9" }}
-            onClick={() => {
-              handleScreen(2);
-            }}
-          >
-            Preview Swap
-          </Button>
-        ) : (
-          <Button
-            w="full"
-            py={4}
-            bg="#FFDBDB"
-            color="#C20000"
-            _hover={{ bg: "#FFDBDB" }}
-          >
-            insufficient balance
-          </Button>
-        )}
+        <Button
+          w="full"
+          py={4}
+          bg="#97FCE9"
+          color="black"
+          _hover={{ bg: "#97FCE9" }}
+          isDisabled={
+            swapFromVal >= balance ||
+            swapFromVal === 0 ||
+            selected.name.length === 0 ||
+            isNaN(swapFromVal)
+          }
+          onClick={() => {
+            setSelectedSwapTo(selected);
+            handleScreen(2);
+          }}
+        >
+          {!isNaN(swapFromVal) && swapFromVal !== 0
+            ? swapFromVal >= balance
+              ? `insufficient ${swapFromToken?.symbol} balance`
+              : selected.name.length === 0
+              ? "select a coin"
+              : "preview swap"
+            : "enter an amount"}
+        </Button>
       </Stack>
     </>
   );

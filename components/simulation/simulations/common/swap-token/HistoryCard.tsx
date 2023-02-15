@@ -9,14 +9,26 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
-import { useSwapStore } from "../../../store/solana/swapTokenStore";
+import {
+  SwapHistory,
+  useSwapTokenStore,
+} from "../../../store/solana/swapTokenStore";
 
 export default function HistoryCard({
-  transactionAmount,
+  swapHistory,
 }: {
-  transactionAmount: number;
+  swapHistory: SwapHistory;
 }) {
-  const { networkType, logo } = useSwapStore();
+  const { networkType, networkMetadata } = useSwapTokenStore();
+  const { swapFromToken, tokenList } = networkMetadata;
+
+  const tokenDeets = () => {
+    const tokenDeets = tokenList.filter(
+      (item) => item.name === swapHistory.tokName
+    );
+    return tokenDeets[0];
+  };
+
   return (
     <HStack
       p={4}
@@ -29,19 +41,29 @@ export default function HistoryCard({
     >
       <HStack alignItems={"center"}>
         <AvatarGroup>
-          <Avatar src={logo} name={networkType} size="sm" mb={3} />
-          <Avatar src={logo} name={networkType} size="sm" mt={3} />
+          <Avatar
+            src={swapFromToken?.icon}
+            name={swapFromToken?.name}
+            size="sm"
+            mb={3}
+          />
+          <Avatar
+            src={tokenDeets().icon}
+            name={tokenDeets().name}
+            size="sm"
+            mt={3}
+          />
         </AvatarGroup>
         <Box>
           <Flex alignItems={"center"}>
             <Text fontWeight={"medium"} fontFamily="Poppins">
-              {networkType}
+              {swapFromToken?.symbol}
             </Text>
             <Box mx={2}>
               <BsArrowRight />
             </Box>
             <Text fontWeight={"medium"} fontFamily="Poppins">
-              USDC
+              {tokenDeets().symbol}
             </Text>
           </Flex>
           <Text color="#8A8A8A" fontFamily="Poppins" fontSize={"sm"}>
@@ -55,7 +77,7 @@ export default function HistoryCard({
           +4.02%
         </Text> */}
         <Text color="#9999A5" fontFamily="Poppins">
-          {transactionAmount.toFixed(4)} {networkType}
+          {swapHistory.swapValue.toFixed(4)} {tokenDeets().symbol}
         </Text>
       </Stack>
     </HStack>

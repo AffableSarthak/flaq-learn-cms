@@ -1,18 +1,22 @@
 import React from "react";
 import { Box, Center, HStack, Stack, Text } from "@chakra-ui/react";
 import { IoCloseOutline } from "react-icons/io5";
-import { useSwapStore } from "../../../store/solana/swapTokenStore";
 import { MdOutlineSwapVert } from "react-icons/md";
 import HistoryCard from "./HistoryCard";
+import { useSwapTokenStore } from "../../../store/solana/swapTokenStore";
 
 export default function Dashboard({ onClose }: { onClose: () => void }) {
   const {
     handleScreen,
     balance,
     networkType,
-    transaction,
-    resetTransaction,
-  } = useSwapStore();
+    resetState,
+    swapHistory,
+    networkMetadata,
+  } = useSwapTokenStore();
+
+  const { swapFromToken, sampleAddress } = networkMetadata;
+
   return (
     <>
       <Stack
@@ -38,14 +42,18 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
             </Text>
             <Box w={1} h={1} bg="#858585" mx={2}></Box>
             <Text fontWeight="semibold" fontFamily={"Poppins"} color="black">
-              A1ToX...38ksAz
+              {sampleAddress.slice(0, 5)}...
+              {sampleAddress.slice(
+                sampleAddress.length - 5,
+                sampleAddress.length
+              )}
             </Text>
           </HStack>
           <Box
             cursor={"pointer"}
             onClick={() => {
               onClose();
-              resetTransaction();
+              resetState();
             }}
           >
             <IoCloseOutline fontSize={"24px"} color="black" />
@@ -53,14 +61,17 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
         </HStack>
         <Stack px={[16, 24]} py={9}>
           <Stack alignItems={"center"} color="black">
-            <Text fontWeight={"medium"}>BALANCE IN {networkType}</Text>
+            <Text fontWeight={"medium"}>
+              BALANCE IN {swapFromToken?.symbol}
+            </Text>
             <Text
               fontWeight={"medium"}
               mt={2}
               fontSize={"36px"}
               lineHeight={"42px"}
             >
-              {balance.toFixed(2)} {networkType}
+              {balance.toFixed(2)}
+              {/* {swapFromToken?.symbol} */}
             </Text>
             {/* <Box mt={2} px={2} py={1} bg="white" rounded={"lg"}>
               ☝️
@@ -94,14 +105,14 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
         History
       </Text>
       <Box px={4} overflowY="auto">
-        {transaction.length > 0 ? (
-          transaction.map((item, index) => (
-            <HistoryCard key={index} transactionAmount={item} />
+        {swapHistory.length > 0 ? (
+          swapHistory.map((item, index) => (
+            <HistoryCard key={index} swapHistory={item} />
           ))
         ) : (
           <Center h="full" p="4">
             <Text color="gray.600" fontWeight={"semibold"}>
-              No transaction history
+              No Swap History
             </Text>
           </Center>
         )}

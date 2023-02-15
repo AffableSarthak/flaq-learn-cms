@@ -9,26 +9,20 @@ import {
   Stack,
   Center,
   Box,
-  Text,
-  Code,
   useToast,
   Flex,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import TransactionForm from "./SwapTokens";
 import Preview from "./Preview";
-import { useSwapStore } from "../../../store/solana/swapTokenStore";
-import { CopyIcon } from "@chakra-ui/icons";
+import { useSwapTokenStore } from "../../../store/solana/swapTokenStore";
+import { NetworkType } from "../../../store/solana/transactionStore";
 
-export default function SwapTokens({ network }: { network: string }) {
+export default function SwapTokens({ network }: { network: NetworkType }) {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const {
-    currentScreen,
-    resetTransaction,
-    handleNetworkType,
-    networkType,
-  } = useSwapStore();
+  const { currentScreen, resetState, handleNetworkType, networkType } =
+    useSwapTokenStore();
 
   useEffect(() => {
     handleNetworkType(network);
@@ -37,7 +31,7 @@ export default function SwapTokens({ network }: { network: string }) {
   return (
     <>
       <Flex direction="column" gap={"4"}>
-        <Box>
+        {/* <Box>
           <Center>
             <Text
               fontSize={{ base: "md", md: "lg", lg: "xl" }}
@@ -70,11 +64,11 @@ export default function SwapTokens({ network }: { network: string }) {
               DqnRv6uwbUEQwuzfhemqSrmLmAGg7JV83Eb5QbMLNw1J <CopyIcon />
             </Code>
           </Center>
-        </Box>
+        </Box> */}
         <Center>
           <Box>
             <Button variant={"primarybtn"} onClick={onOpen}>
-              {`Let's transfer your first ${networkType}! 🪙`}
+              {`Let's swap your first token! 🪙`}
             </Button>
           </Box>
         </Center>
@@ -83,7 +77,7 @@ export default function SwapTokens({ network }: { network: string }) {
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          resetTransaction();
+          resetState();
           onClose();
         }}
         isCentered
