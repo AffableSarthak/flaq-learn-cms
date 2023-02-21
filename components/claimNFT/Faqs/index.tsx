@@ -11,10 +11,25 @@ import {
 } from "@chakra-ui/react";
 
 const Faqs: { question: string; answer: string }[] = [
-  { question: "Is minting free?", answer: "" },
-  { question: "How many NFTs can I mint?", answer: "" },
-  { question: "Can I mint myself", answer: "" },
-  { question: "I Like Mints", answer: "" },
+  {
+    question: "What if I don't have a wallet?",
+    answer:
+      "No problem! We got u. The link that we email to you will never expire, and therefore, whenever you do decide to take the step and install a wallet, you can claim the NFT by clicking on the link in the mail.",
+  },
+  {
+    question: "Is minting free?",
+    answer:
+      "Yes! We have made the entire experience gas-less and you don't have to spend a single dime on minting the Flaq Insignia. ",
+  },
+  {
+    question: "How many NFTs can I mint?",
+    answer:
+      "Only 1 NFT can be minted per email ID. If you try to mint NFTs twice with the same mail ID, an error message automatically shows up. ",
+  },
+  {
+    question: "What if I face issues during the minting process?",
+    answer: "Feel free to contact us at content@flaq.club! :)",
+  },
 ];
 
 export default function Faq() {
@@ -90,12 +105,7 @@ export default function Faq() {
                         <AddIcon fontSize="12px" />
                       )}
                     </AccordionButton>
-                    <AccordionPanel pb={4}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </AccordionPanel>
+                    <AccordionPanel pb={4}>{faq.answer}</AccordionPanel>
                   </>
                 )}
               </AccordionItem>
