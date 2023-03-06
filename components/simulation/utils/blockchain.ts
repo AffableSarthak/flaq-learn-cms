@@ -228,7 +228,6 @@ export const getBlockchainData = () => {
           badgeText: "Basic",
           isActive: true,
         },
-
         {
           name: "Web3 storage",
           link: "solana/create-wallet",

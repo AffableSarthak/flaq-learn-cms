@@ -14,6 +14,7 @@ import {
   MenuList,
   Menu,
   MenuButton,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { MdKeyboardBackspace, MdOutlineSwapVert } from "react-icons/md";
@@ -84,7 +85,7 @@ export default function TransactionForm() {
             </HStack>
             <Input
               type={"number"}
-              value={swapFromVal}
+              value={swapFromVal.toString()}
               placeholder="enter amount"
               w="140px"
               fontSize={"sm"}

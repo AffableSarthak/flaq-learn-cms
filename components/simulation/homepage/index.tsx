@@ -48,8 +48,8 @@ const HomePage = (props: Props) => {
           link: "/",
         }}
       />
-      <Box bg="#040F03" maxWidth={"100%"}>
-        <Container maxWidth={"90vw"}>
+      <Box bg="#040F03">
+        <Container maxW={"1240px"}>
           <Box my="8" w="100%">
             <Text
               fontFamily={"Druk Wide Bold"}
@@ -81,7 +81,7 @@ const HomePage = (props: Props) => {
                   What are simulations - why are they the future of web3
                   education? 🔮
                 </Text>
-                <Text pl="3" fontSize={{ base: "xl", md: "lg" }}>
+                <Text fontSize={{ base: "xl", md: "lg" }}>
                   Aren’t we all tired of the bookish academic learning in
                   schools and colleges that seldom help us in our daily lives?
                   📚The education system needs to take a leap to practical
@@ -107,8 +107,8 @@ const HomePage = (props: Props) => {
                   But what will I learn through these interactive simulations?
                   🤔
                 </Text>
-                <Text pl="3" fontSize={{ base: "xl", md: "lg" }}>
-                  These simulations offer exactly what we claim - a testrun of
+                <Text fontSize={{ base: "xl", md: "lg" }}>
+                  Thes simulations offer exactly what we claim - a testrun of
                   web3! This means that you’ll be learning how to create a
                   wallet, backup a seed phrase, swap tokens, and so much more,
                   on the widely used chains in the web3 space - Solana,
